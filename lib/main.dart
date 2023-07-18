@@ -13,7 +13,7 @@ Future<void> main() async {
       EasyLocalization(
         supportedLocales: L10n.all,
         fallbackLocale: L10n.all[0],
-          path: 'assets/l10n',
+          path: 'assets/lang',
         child: MultiBlocProvider(
           providers: [
             BlocProvider(
