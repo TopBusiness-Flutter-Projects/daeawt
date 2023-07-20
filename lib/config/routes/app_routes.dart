@@ -80,7 +80,7 @@ class AppRoutes{
       return MaterialPageRoute(builder: (context) =>  const NotificationScreen(),);
 
     case Routes.profileRoute:
-      return MaterialPageRoute(builder: (context) =>  const ProfileScreen(),);
+      return MaterialPageRoute(builder: (context) =>   ProfileScreen(),);
 
     case Routes.scanRoute:
       return MaterialPageRoute(builder: (context) =>  const ScanScreen(),);

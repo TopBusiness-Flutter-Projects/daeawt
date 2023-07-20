@@ -24,11 +24,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void initState() {
     super.initState();
-    formKey.currentState!.validate();
+    //formKey.currentState!.validate();
   }
 
   Widget build(BuildContext context) {
-    SignupCubit cubit=context.read<SignupCubit>();
+    SignupCubit cubit = context.read<SignupCubit>();
     return Form(
       key: formKey,
       child: Scaffold(
@@ -42,11 +42,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: Stack(
                     children: [
                       Container(
-                          decoration:  const BoxDecoration(
+                          decoration: const BoxDecoration(
                               gradient: LinearGradient(colors: [
-                                AppColors.orange2,
-                                AppColors.primary,
-                              ])),
+                            AppColors.orange2,
+                            AppColors.primary,
+                          ])),
                           padding: const EdgeInsets.only(left: 20, bottom: 10),
                           height: 300,
                           width: double.infinity,
@@ -54,18 +54,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           child: Image.asset(
                             AssetsManager.dawatBarKudIcon,
                           )),
-                     Positioned(
-                       left: 0,
-                         top: 40,
-                         child: TextDirection.LTR==Directionality.of(context)?
-                         IconButton(onPressed: (){
-                           Navigator.pop(context);
-                         }, icon: const Icon(Icons.arrow_back,color: Colors.white,size: 30,)):
-                             IconButton(onPressed: (){
-                               Navigator.pop(context);
-                             }, icon: const Icon(Icons.arrow_forward,color: Colors.white,size: 30),
-                         ),
-                     ),
+                      Positioned(
+                        left: 0,
+                        top: 40,
+                        child: TextDirection.LTR == Directionality.of(context)
+                            ? IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_back,
+                                  color: Colors.white,
+                                  size: 30,
+                                ))
+                            : IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(Icons.arrow_forward,
+                                    color: Colors.white, size: 30),
+                              ),
+                      ),
                     ],
                   ),
                 ),
@@ -77,15 +86,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 15,
               ),
-               const Text(
+              const Text(
                 AppStrings.signUpToCreateInvitation,
                 style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
               ).tr(),
-
               Padding(
                   padding: const EdgeInsets.all(18.0),
-                  child:
-                  TextFormField(
+                  child: TextFormField(
                     maxLines: 1,
                     autofocus: false,
                     cursorColor: AppColors.primary,
@@ -93,10 +100,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     onChanged: (data) {
                       formKey.currentState!.validate();
-                      cubit.registerModel.name= data;
+                      cubit.registerModel.name = data;
                       cubit.checkValidLoginData();
                     },
-                   // controller: cubit.emailControl,
+                    // controller: cubit.emailControl,
                     validator: (value) {
                       print(value);
                       if (value == null || value.isEmpty) {
@@ -105,26 +112,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       return null;
                     },
                     decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 5),
                         prefixIcon: Icon(
                           Icons.person_2_outlined,
                           color: AppColors.primary,
                         ),
                         hintText: 'name'.tr(),
-                        border:  OutlineInputBorder(
+                        border: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         fillColor: AppColors.grey1,
-                        filled: true
-
-                    ),
-                  )
-                ),
-
+                        filled: true),
+                  )),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                  child:     TextFormField(
+                  child: TextFormField(
                     maxLines: 1,
                     autofocus: false,
                     cursorColor: AppColors.primary,
@@ -132,7 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     onChanged: (data) {
                       formKey.currentState!.validate();
-                      cubit.registerModel.phone= data;
+                      cubit.registerModel.phone = data;
                       cubit.checkValidLoginData();
                     },
                     // controller: cubit.emailControl,
@@ -144,25 +148,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       return null;
                     },
                     decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 5),
                         prefixIcon: Icon(
                           Icons.wifi_calling_3_rounded,
                           color: AppColors.primary,
                         ),
                         hintText: 'phone_number'.tr(),
-                        border:  OutlineInputBorder(
+                        border: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         fillColor: AppColors.grey1,
-                        filled: true
-
-                    ),
+                        filled: true),
                   )),
               Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0,vertical: 18),
-                  child:
-                  TextFormField(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 18.0, vertical: 18),
+                  child: TextFormField(
                     maxLines: 1,
                     autofocus: false,
                     cursorColor: AppColors.primary,
@@ -170,7 +173,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     onChanged: (data) {
                       formKey.currentState!.validate();
-                      cubit.registerModel.email= data;
+                      cubit.registerModel.email = data;
                       cubit.checkValidLoginData();
                     },
                     // controller: cubit.emailControl,
@@ -182,24 +185,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       return null;
                     },
                     decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 5),
                         prefixIcon: Icon(
                           Icons.mail_outlined,
                           color: AppColors.primary,
                         ),
                         hintText: 'email'.tr(),
-                        border:  OutlineInputBorder(
+                        border: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         fillColor: AppColors.grey1,
-                        filled: true
-
-                    ),
-                  ) ),
+                        filled: true),
+                  )),
               Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                  child:     TextFormField(
+                  child: TextFormField(
                     maxLines: 1,
                     autofocus: false,
                     cursorColor: AppColors.primary,
@@ -207,7 +209,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     textInputAction: TextInputAction.next,
                     onChanged: (data) {
                       formKey.currentState!.validate();
-                      cubit.registerModel.password= data;
+                      cubit.registerModel.password = data;
                       cubit.checkValidLoginData();
                     },
                     // controller: cubit.emailControl,
@@ -219,20 +221,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       return null;
                     },
                     decoration: InputDecoration(
-                        contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 5),
                         prefixIcon: Icon(
                           Icons.lock_outline,
                           color: AppColors.primary,
                         ),
                         hintText: 'password'.tr(),
-                        border:  OutlineInputBorder(
+                        border: OutlineInputBorder(
                           borderSide: BorderSide.none,
                           borderRadius: BorderRadius.circular(10.0),
                         ),
                         fillColor: AppColors.grey1,
-                        filled: true
-
-                    ),
+                        filled: true),
                   )),
               const SizedBox(
                 height: 15,
@@ -240,11 +241,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 25,
               ),
-               CustomButton(
+              CustomButton(
                 text: AppStrings.createAccount,
-                 onPressed: (){
-
-                 },
+                onPressed: () {
+                  cubit.register(context);
+                },
               ),
               const SizedBox(
                 height: 25,
@@ -256,7 +257,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     const Text(
                       AppStrings.alreadyHaveAnAccount,
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                     ).tr(),
                     TextButton(
                         onPressed: () {
@@ -294,7 +296,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 4.0),
                       child: const Text(
                         AppStrings.orLogInWith,
-                        style: TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+                        style: TextStyle(
+                            fontWeight: FontWeight.w400, fontSize: 16),
                       ).tr(),
                     ),
                     const Expanded(

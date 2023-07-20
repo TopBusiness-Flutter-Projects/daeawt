@@ -1,5 +1,5 @@
 class EndPoints {
-  static const String baseUrl = 'https://trj.topbusiness.io/api/';
+  static const String baseUrl = 'https://daawat.topbusiness.io/api/';
   static const String userUrl = '${baseUrl}auth/login';
   static const String deleteUrl = '${baseUrl}provider/auth/delete-account';
   static const String providerhomeListUrl = '${baseUrl}client/home';

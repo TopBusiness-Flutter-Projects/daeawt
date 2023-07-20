@@ -96,7 +96,7 @@ class User {
     name: json["name"],
     phone: json["phone"],
     email: json["email"],
-    status: json["status"],
+    status: json["status"]??0,
     userType: json["user_type"],
     watts: json["watts"],
     image: json["image"],

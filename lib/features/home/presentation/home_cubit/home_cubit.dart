@@ -3,6 +3,7 @@ import 'package:contacts_service/contacts_service.dart';
 import 'package:daeawt/core/utils/app_strings.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
@@ -99,11 +100,15 @@ class HomeCubit extends Cubit<HomeState> {
       List<Contact> contacts =
           (await ContactsService.getContacts(withThumbnails: false)).toList();
 
+
       for (int i = 0; i < contacts.length; i++) {
-        contactModelList.add(ContactModel(
-            name: contacts[i].displayName,
-            phones: contacts[i].phones,
-            isSelected: false));
+        if(contacts[i].phones!.isNotEmpty){
+          contactModelList.add(ContactModel(
+              name: contacts[i].displayName,
+              phones: contacts[i].phones,
+              isSelected: false));
+        }
+
       }
 
       return contacts;
@@ -207,6 +212,7 @@ class HomeCubit extends Cubit<HomeState> {
     }
 
 
+    Phoenix.rebirth(context);
 
 
   }

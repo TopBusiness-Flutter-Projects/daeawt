@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
-    formKey.currentState!.validate();
+    //formKey.currentState!.validate();
   }
 
   @override
@@ -166,7 +166,9 @@ LoginCubit cubit=context.read<LoginCubit>();
             ),
              CustomButton(
               text: AppStrings.login,
-               onPressed: (){},
+               onPressed: (){
+
+               },
             ),
             const SizedBox(
               height: 25,

@@ -1,7 +1,7 @@
 import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/widgets/my_svg_widget.dart';
 import 'package:daeawt/features/home/presentation/home_cubit/home_cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,6 +17,7 @@ class DetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var languageCode = easy.EasyLocalization.of(context)!.locale.languageCode;
     return BlocConsumer<HomeCubit, HomeState>(
       listener: (context, state) {
         // TODO: implement listener
@@ -41,101 +42,21 @@ class DetailsScreen extends StatelessWidget {
                   height: 160,
                   width: double.infinity,
                   child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    textDirection: TextDirection.ltr,
+                    //mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      IconButton(
-                          padding: EdgeInsets.zero,
-                          onPressed: () {
-                            showModalBottomSheet(context: context,
-                              backgroundColor:AppColors.primary ,
-                              builder: (context) {
-                              return Container(
-                                width: double.infinity,
-                                height: MediaQuery.of(context).size.height*0.25,
-                                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                                decoration: const BoxDecoration(
-                                  color: AppColors.primary,
-                                  borderRadius: BorderRadius.only(
-                                    topLeft: Radius.circular(30),
-                                    topRight: Radius.circular(30),
-                                  )
-
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    //settings
-                                   Row(children: [
-                                     const Text(AppStrings.settings,style: TextStyle(fontWeight: FontWeight.w700,fontSize: 17,color: Colors.white),).tr(),
-                                     const Spacer(),
-                                     IconButton(onPressed: (){
-                                       Navigator.pop(context);
-                                     },
-                                         padding: EdgeInsets.zero,
-                                         icon: const Icon(Icons.close,color: Colors.white,size: 25,)),
-
-                                   ],),
-                                    //edit
-                                    InkWell(
-                                      onTap: () {
-                                        Navigator.pushNamed(context, Routes.addInvitationRoute);
-                                      },
-                                      child: Row(
-                                        children: [
-                                        const MySvgWidget(path: AssetsManager.editIcon, size: 25),
-                                        const SizedBox(width: 15,),
-                                        const Text(AppStrings.occasionModification,style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20,color: Colors.white),).tr()
-                                      ],),
-                                    ),
-                                    //delete
-                                    InkWell(
-                                      onTap: (){
-                                        _showDialog(context);
-                                        // showDialog(
-                                        //   context: context, builder: (context) {
-                                        //   return
-                                        //     SizedBox(
-                                        //     width: 300,
-                                        //     height: 200,
-                                        //     child: Column(
-                                        //       mainAxisSize: MainAxisSize.min,
-                                        //       children: [
-                                        //         Text(AppStrings.areYouSureDeleteOccasion),
-                                        //
-                                        //       ],
-                                        //     ),
-                                        //   );
-                                        // },);
-                                      },
-                                      child: Row(children: [
-                                        const MySvgWidget(path: AssetsManager.deleteIcon, size: 25),
-                                        const SizedBox(width: 15,),
-                                        const Text(AppStrings.deleteTheOccasion,style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20,color: Colors.white),).tr()
-                                      ],),
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },);
-                          },
-                          icon: const MySvgWidget(path: AssetsManager.menuIcon,size: 20,)),
-
-                      const Text(
-                        AppStrings.occasionDetails,
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: Colors.white),
-                      ).tr(),
+                      //arrow back
                       IconButton(
                         padding: EdgeInsets.zero,
                         icon:
-                       // Localizations.localeOf(context)==Locale("ar")?
-                        const Icon(
-                          Icons.arrow_back,
-                          color: Colors.white,
-                          size: 30,
+
+                        Transform.rotate(
+                          angle:languageCode=="ar"?(3.14):0 ,
+                          child: const Icon(
+                            Icons.arrow_back,
+                            color: Colors.white,
+                            size: 30,
+                          ),
                         ),
                         //     :  const Icon(
                         //   Icons.arrow_back,
@@ -146,6 +67,78 @@ class DetailsScreen extends StatelessWidget {
                           Navigator.pop(context);
                         },
                       ),
+                      Spacer(),
+                      const Text(
+                        AppStrings.occasionDetails,
+                        style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.white),
+                      ).tr(),
+                      Spacer(),
+                      IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () {
+                            showModalBottomSheet(context: context,
+                              backgroundColor:AppColors.primary ,
+                              builder: (context) {
+                                return Container(
+                                  width: double.infinity,
+                                  height: MediaQuery.of(context).size.height*0.25,
+                                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                                  decoration: const BoxDecoration(
+                                      color: AppColors.primary,
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(30),
+                                        topRight: Radius.circular(30),
+                                      )
+
+                                  ),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      //settings
+                                      Row(children: [
+                                        const Text(AppStrings.settings,style: TextStyle(fontWeight: FontWeight.w700,fontSize: 17,color: Colors.white),).tr(),
+                                        const Spacer(),
+                                        IconButton(onPressed: (){
+                                          Navigator.pop(context);
+                                        },
+                                            padding: EdgeInsets.zero,
+                                            icon: const Icon(Icons.close,color: Colors.white,size: 25,)),
+
+                                      ],),
+                                      //edit
+                                      InkWell(
+                                        onTap: () {
+                                          Navigator.pushNamed(context, Routes.addInvitationRoute);
+                                        },
+                                        child: Row(
+                                          children: [
+                                            const MySvgWidget(path: AssetsManager.editIcon, size: 25),
+                                            const SizedBox(width: 15,),
+                                            const Text(AppStrings.occasionModification,style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20,color: Colors.white),).tr()
+                                          ],),
+                                      ),
+                                      //delete
+                                      InkWell(
+                                        onTap: (){
+                                          _showDialog(context);
+
+                                        },
+                                        child: Row(children: [
+                                          const MySvgWidget(path: AssetsManager.deleteIcon, size: 25),
+                                          const SizedBox(width: 15,),
+                                          const Text(AppStrings.deleteTheOccasion,style: TextStyle(fontWeight: FontWeight.w700,fontSize: 20,color: Colors.white),).tr()
+                                        ],),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },);
+                          },
+                          icon: const MySvgWidget(path: AssetsManager.menuIcon,size: 20,)),
 
                     ],
                   ),
@@ -194,6 +187,7 @@ class DetailsScreen extends StatelessWidget {
                                 value: 'item1',
                                 child: InkWell(
                                   onTap: () {
+                                    Navigator.pop(context);
                                     Navigator.pushNamed(context, Routes.reminderRoute);
                                   },
                                   child: const Text(AppStrings.sendReminder,style: TextStyle(

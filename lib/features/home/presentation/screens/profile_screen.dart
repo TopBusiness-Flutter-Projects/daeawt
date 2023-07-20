@@ -10,8 +10,8 @@ import '../../../../core/widgets/my_svg_widget.dart';
 
 
 class ProfileScreen extends StatelessWidget{
-  const ProfileScreen({Key? key}) : super(key: key);
-
+   ProfileScreen({Key? key}) : super(key: key);
+  int x=0;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeState>(
@@ -20,6 +20,7 @@ class ProfileScreen extends StatelessWidget{
   },
   builder: (context, state) {
     HomeCubit cubit = context.read<HomeCubit>();
+
     return Scaffold(
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -155,6 +156,8 @@ class ProfileScreen extends StatelessWidget{
                     ),
                     child: InkWell(
                       onTap: () {
+
+
                         cubit.changeApplicationLanguage(context);
                        // EasyLocalization.of(context)?.setLocale(Locale('en', ''));
 

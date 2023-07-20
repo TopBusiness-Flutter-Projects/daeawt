@@ -232,7 +232,6 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                 fontWeight: FontWeight.w700
                             ),),
                                 SizedBox(
-                                  height: 85,
                                   width: 150,
                                   child: Column(
                                   mainAxisAlignment:MainAxisAlignment.center,
@@ -247,6 +246,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                     ),)),
                                     ListView.builder(
                                       shrinkWrap: true,
+                                      physics: NeverScrollableScrollPhysics(),
                                       itemCount:cubit.contactModelList[i].phones?.length ,
                                       itemBuilder: (context, index) {
 

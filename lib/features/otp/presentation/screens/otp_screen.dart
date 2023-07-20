@@ -14,6 +14,8 @@ class OtpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var languageCode = EasyLocalization.of(context)!.locale.languageCode;
+
     return Scaffold(
       body:
       Column(
@@ -38,16 +40,15 @@ class OtpScreen extends StatelessWidget {
                         AssetsManager.dawatBarKudIcon,
                       )),
                   Positioned(
-                    left: 0,
-                    top: 40,
-                    child: TextDirection.LTR==Directionality.of(context)?
-                    IconButton(onPressed: (){
-                      Navigator.pop(context);
-                    }, icon: const Icon(Icons.arrow_back,color: Colors.white,size: 30,)):
-                    IconButton(onPressed: (){
-                      Navigator.pop(context);
-                    }, icon: const Icon(Icons.arrow_forward,color: Colors.white,size: 30),
-                    ),
+                      left: 0,
+                      top: 40,
+                      child:   IconButton(
+                        onPressed: (){
+                          Navigator.pop(context);
+                        }, icon: Transform.rotate(
+                        angle:languageCode=="ar"?(3.14):0 ,
+                        child:  const Icon(Icons.arrow_back,color: Colors.white,size: 30,),),
+                      )
                   ),
                 ],
               ),
