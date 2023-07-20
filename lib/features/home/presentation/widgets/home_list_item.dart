@@ -1,49 +1,57 @@
 import 'package:daeawt/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/assets_manager.dart';
+import '../../models/home_list_item_model.dart';
 
 class HomeListItem extends StatelessWidget {
-  const HomeListItem({Key? key}) : super(key: key);
+  final HomeListItemModel homeListItemModel ;
+  const HomeListItem({Key? key,required this.homeListItemModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Card(
-          child: Row(
-            children: [
-              Image.asset(AssetsManager.homeItem,),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "sat, 01 jun 2023",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
-                    ),
-                    Text("عيد ميلاد",
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700)),
-                    Row(
-                      children: [
-                        Icon(Icons.location_on,color: AppColors.primary,),
-                        Text("شبين الكوم , المنوفية",
-                            style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.w400)),
-                      ],
-                    ),
+        InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, Routes.detailsRoute,arguments: homeListItemModel);
+          },
+          child: Card(
+            child: Row(
+              children: [
+                Image.asset(homeListItemModel.image!),//AssetsManager.homeItem,
+                 Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${homeListItemModel.date}",//sat, 01 jun 2023
+                        style:
+                            const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                      ),
+                      Text("${homeListItemModel.occasionTitle}",//عيد ميلاد
+                          style: const TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w700)),
+                      Row(
+                        children: [
+                          const Icon(Icons.location_on,color: AppColors.primary,),
+                          Text("${homeListItemModel.address}",//شبين الكوم , المنوفية
+                              style: const TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.w400)),
+                        ],
+                      ),
 
-                    SizedBox(
-                      height: 45,
-                    ),
+                      SizedBox(
+                        height: 45,
+                      ),
 
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
         Positioned(
@@ -58,7 +66,8 @@ class HomeListItem extends StatelessWidget {
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15))),
-              child: const Text("مؤكد",style: TextStyle(color: AppColors.green1),)),
+              child:  Text("${homeListItemModel.status}",//مؤكد
+                style: const TextStyle(color: AppColors.green1),)),
         )
       ],
     );

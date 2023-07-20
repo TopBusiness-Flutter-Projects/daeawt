@@ -41,6 +41,7 @@ class AppStrings{
   static const String userName = 'user_name';
   static const String theTopic = 'the_topic';
   static const String theMessage = 'the_message';
+  static const String theMessages = 'the_messages';
   static const String send = 'send';
   static const String createNewInvitation = 'create_new_invitation';
   static const String occasionDetails = 'occasion_details';
@@ -65,6 +66,26 @@ class AppStrings{
   static const String addGuests = 'add_guests';
   static const String companion = 'companion';
   static const String save = 'save';
+  static const String review = 'review';
+  static const String invitationLookLike = 'invitation_lookLike';
+  static const String reviewInvitation = 'review_invitation';
+  static const String apology = 'apology';
+  static const String invitationLocation = 'invitation_location';
+  static const String sendInvitations = 'send_invitations';
+  static const String scanned = 'scanned';
+  static const String confirmation = 'confirmation';
+  static const String apologies = 'apologies';
+  static const String wait = 'wait';
+  static const String notSent = 'not_sent';
+  static const String failed = 'failed';
+  static const String sendReminder = 'send_reminder';
+  static const String settings = 'settings';
+  static const String occasionModification = 'occasion_modification';
+  static const String deleteTheOccasion = 'delete_occasion';
+  static const String areYouSureDeleteOccasion = 'are_you_sure_delete_occasion';
+  static const String cancel = 'cancel';
+  static const String selectContacts1 = 'select_contacts1';
+  static const String reminderWillBeSent = 'reminder_will_be_sent';
 
 
 }

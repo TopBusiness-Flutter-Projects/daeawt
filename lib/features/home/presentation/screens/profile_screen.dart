@@ -1,9 +1,12 @@
 import 'package:daeawt/core/utils/app_strings.dart';
 import 'package:daeawt/core/utils/assets_manager.dart';
+import 'package:daeawt/features/home/presentation/home_cubit/home_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/widgets/my_svg_widget.dart';
 
 
 class ProfileScreen extends StatelessWidget{
@@ -11,6 +14,12 @@ class ProfileScreen extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
+    return BlocConsumer<HomeCubit, HomeState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    HomeCubit cubit = context.read<HomeCubit>();
     return Scaffold(
       body: Stack(
         alignment: Alignment.bottomCenter,
@@ -40,16 +49,16 @@ class ProfileScreen extends StatelessWidget{
               child:  Row(
 
                 children: [
-                   SizedBox(width: MediaQuery.of(context).size.width*0.1,),
+                   SizedBox(width: MediaQuery.of(context).size.width*0.2,),
                   const Text(AppStrings.myAccount,style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w700),).tr(),
-                  SizedBox(width: MediaQuery.of(context).size.width*0.55),
-                  const Icon(Icons.delete_outline,color: Colors.white,),
+                  SizedBox(width: MediaQuery.of(context).size.width*0.5),
+                  const  MySvgWidget(path: AssetsManager.deleteIcon, size: 22),
                   const SizedBox(width: 10,),
                    IconButton(
                     onPressed: (){
                       Navigator.pushNamed(context, Routes.editProfileRoute);
                     },
-                  icon: const Icon(Icons.edit_calendar_outlined,color: Colors.white,)),
+                  icon: const MySvgWidget(path: AssetsManager.editIcon, size: 22),),
                   const SizedBox(width: 50,),
 
                 ],
@@ -144,16 +153,23 @@ class ProfileScreen extends StatelessWidget{
                       borderRadius: BorderRadius.circular(10),
                       border: Border.all(width: 2,color: AppColors.grey3)
                     ),
-                    child: Row(
-                      children: [
-                        Image.asset(AssetsManager.languageIcon),
-                        const SizedBox(width: 15,),
-                        const Text(AppStrings.language,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),).tr(),
-                        SizedBox(width: MediaQuery.of(context).size.width*0.5,),
-                        Directionality.of(context)==TextDirection.LTR?
-                        Text("ع"): Text("En")
+                    child: InkWell(
+                      onTap: () {
+                        cubit.changeApplicationLanguage(context);
+                       // EasyLocalization.of(context)?.setLocale(Locale('en', ''));
 
-                      ],
+                      },
+                      child: Row(
+                        children: [
+                          Image.asset(AssetsManager.languageIcon),
+                          const SizedBox(width: 15,),
+                          const Text(AppStrings.language,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),).tr(),
+                          SizedBox(width: MediaQuery.of(context).size.width*0.4,),
+                          Localizations.localeOf(context)==Locale("en")?
+                          Text(cubit.arabicSymbol): Text(cubit.englishSymbol)
+
+                        ],
+                      ),
                     ),
                   ),
                   InkWell(
@@ -263,5 +279,7 @@ class ProfileScreen extends StatelessWidget{
         ],
       ),
     );
+  },
+);
   }
 }

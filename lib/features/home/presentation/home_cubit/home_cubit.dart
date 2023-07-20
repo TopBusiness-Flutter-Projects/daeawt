@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:contacts_service/contacts_service.dart';
+import 'package:daeawt/core/utils/app_strings.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -7,13 +9,20 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../../core/utils/assets_manager.dart';
+import '../../../splash/presentation/screens/splash_screen.dart';
 import '../../models/contact_model.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeInitial());
+  List<String> detailsIconsList = [AssetsManager.messagesIcon,AssetsManager.invitedIcon,
+    AssetsManager.scannedIcon,AssetsManager.confirmedIcon,AssetsManager.apologiesIcon,
+    AssetsManager.waitingIcon,AssetsManager.notSentIcon,AssetsManager.failedIcon];
 
+  List<String> detailsLabels = [AppStrings.theMessage,AppStrings.invited,AppStrings.scanned,
+             AppStrings.confirmation,AppStrings.apologies,AppStrings.wait,AppStrings.notSent,AppStrings.failed];
   final ImagePicker picker = ImagePicker();
    XFile? invitationImage;
 
@@ -21,21 +30,36 @@ class HomeCubit extends Cubit<HomeState> {
 
   bool withSendingDate = false;
 
+  bool isBottomDetailsWidgetVisible = true; //TODO-->
+
   List<ContactModel> contactModelList = [];
+  List<ContactModel> selectedContactModelList = [];
+
+  int numberOfInvitedPeople = 0 ;
 
  late GoogleMapController mapController ;
   LatLng selectedLocation = const LatLng(30.0459, 31.2243);
   late Placemark? place;
   String address = "";
+  String englishSymbol = "En";
+  String arabicSymbol = "ع";
+  bool isEnglish = true;
+
+  List<String> languageOptions = ["العربية","English"];
+  String selectedLanguage = 'العربية';
+
 
   selectLocation(LatLng newLocation){
     selectedLocation = newLocation;
     emit(ChangeLocationState());
   }
+  removeSelectedContact(int index){
+    selectedContactModelList.removeAt(index);
+    emit(RemoveSelectedContactState());
+  }
 
   changesSelectButton(bool isSelected) {
     isSelected = !isSelected;
-
     emit(SelectButtonChangingState());
     return isSelected;
   }
@@ -61,10 +85,13 @@ class HomeCubit extends Cubit<HomeState> {
             (await ContactsService.getContacts(withThumbnails: false)).toList();
 
         for (int i = 0; i < contacts.length; i++) {
-          contactModelList.add(ContactModel(
-              name: contacts[i].displayName,
-              phones: contacts[i].phones,
-              isSelected: false));
+          if(contacts[i].phones!.isNotEmpty){
+            contactModelList.add(ContactModel(
+                name: contacts[i].displayName,
+                phones: contacts[i].phones,
+                isSelected: false));
+          }
+
         }
         return contacts;
       }
@@ -123,8 +150,7 @@ class HomeCubit extends Cubit<HomeState> {
       place = placemarks[0];
       address =
       '${place?.name}, ${place?.subLocality}, ${place
-          ?.subAdministrativeArea}';
-      print(address);
+          ?.subAdministrativeArea},${place?.country}';
       emit(LocationPermissionSuccessState());
     }
     else{
@@ -133,7 +159,8 @@ class HomeCubit extends Cubit<HomeState> {
        List<Placemark> placemarks = await placemarkFromCoordinates(selectedLocation.latitude, selectedLocation.longitude);
        place = placemarks[0];
        address =
-       '${place?.name}, ${place?.street},';
+       '${place?.name}, ${place?.street}, ${place
+           ?.subAdministrativeArea},${place?.country}';
        emit(LocationPermissionSuccessState());
      }
      else{
@@ -142,5 +169,50 @@ class HomeCubit extends Cubit<HomeState> {
     }
 
 
+  }
+
+  incrementNumberOfInvitedPeople(){
+    numberOfInvitedPeople++;
+    emit(IncrementNumberOfInvitedPeopleState());
+  }
+
+  decrementNumberOfInvitedPeople(){
+    if(numberOfInvitedPeople<=0){
+      numberOfInvitedPeople=0;
+    }
+    else{
+      numberOfInvitedPeople--;
+
+    }
+    emit(DecrementNumberOfInvitedPeopleState());
+  }
+
+  changeLanguageOption(String newLanguage){
+    selectedLanguage = newLanguage ;
+    emit(ChangingLanguageState());
+  }
+
+  changeApplicationLanguage(BuildContext context){
+    Locale appLocale = Localizations.localeOf(context);
+
+    if(appLocale==Locale("ar")){
+
+      EasyLocalization.of(context)?.setLocale(Locale('en', ''));
+      emit(ChangingApplicationLanguageState());
+    }
+    else if (appLocale==Locale("en")){
+
+      EasyLocalization.of(context)?.setLocale(Locale('ar', ''));
+      emit(ChangingApplicationLanguageState());
+    }
+
+
+
+
+  }
+
+  visibleBottomDetailsWidget(){
+    isBottomDetailsWidgetVisible = !isBottomDetailsWidgetVisible;
+    emit(ChangingBottomDetailsVisibleState());
   }
 }

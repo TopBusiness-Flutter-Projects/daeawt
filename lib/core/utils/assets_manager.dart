@@ -12,6 +12,7 @@ class AssetsManager{
   static const String profileImage = "$imagePath/profile_image.png";
   static const String contactUsImage = "$imagePath/contact_us_image.png";
   static const String mapImage = "$imagePath/map_image.png";
+  static const String invitationPlaceholder = "$imagePath/invitation_placeholder.png";
 
   //*************************************************************
   static const String dawatBarKudIcon = "$iconsPath/dawat_barkud_logo.png";
@@ -31,4 +32,16 @@ class AssetsManager{
   static const String theTopicIcon = "$iconsPath/the_topic.png";
   static const String theMessageIcon = "$iconsPath/the_message.png";
   static const String uploadImageIcon = "$iconsPath/upload_image.png";
+  //*******************************************************************svg
+  static const String messagesIcon = "$iconsPath/messages_icon.svg";
+  static const String invitedIcon = "$iconsPath/invited_icon.svg";
+  static const String scannedIcon = "$iconsPath/scanned_icon.svg";
+  static const String confirmedIcon = "$iconsPath/confirmed_icon.svg";
+  static const String apologiesIcon = "$iconsPath/apologies_icon.svg";
+  static const String waitingIcon = "$iconsPath/waiting_icon.svg";
+  static const String notSentIcon = "$iconsPath/not_sent_icon.svg";
+  static const String failedIcon = "$iconsPath/failed_icon.svg";
+  static const String menuIcon = "$iconsPath/menu_icon.svg";
+  static const String editIcon = "$iconsPath/edit_icon.svg";
+  static const String deleteIcon = "$iconsPath/delete_icon.svg";
 }

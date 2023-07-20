@@ -228,7 +228,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const Text("المكرم" , style: TextStyle(
-                                fontSize: 18,
+                                fontSize: 16,
                                 fontWeight: FontWeight.w700
                             ),),
                                 SizedBox(
@@ -247,7 +247,6 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                     ),)),
                                     ListView.builder(
                                       shrinkWrap: true,
-
                                       itemCount:cubit.contactModelList[i].phones?.length ,
                                       itemBuilder: (context, index) {
 
@@ -269,6 +268,15 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                 TextButton(
                                     onPressed: () {
                                   cubit.contactModelList[i].isSelected =  cubit.changesSelectButton(cubit.contactModelList[i].isSelected!);
+                                  if(cubit.contactModelList[i].isSelected!){
+                                    if(cubit.contactModelList[i].phones!.isNotEmpty){
+                                      cubit.selectedContactModelList.add(cubit.contactModelList[i]);
+                                    }
+
+                                  }
+                                  else {
+                                    cubit.selectedContactModelList.remove(cubit.contactModelList[i]);
+                                  }
 
                                     },
 
@@ -291,7 +299,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                           },
                         );
                       } else if (snapshot.hasError) {
-                        return Text("Error in getting contacts");
+                        return const Text("Error in getting contacts");
                       } else {
                         return const Center(
                           child: CircularProgressIndicator(),
@@ -312,6 +320,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                       child: CustomButton(
                         backgroundColor: AppColors.primary,
                         onPressed: () {
+
                          Navigator.pushNamed(context, Routes.addInvitationStep3Route);
                         },
                         text: AppStrings.tracking,

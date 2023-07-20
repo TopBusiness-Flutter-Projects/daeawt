@@ -62,6 +62,25 @@
   "invited": "المدعوين",
   "add_guests": "اضافة مدعوين",
   "companion": "مرافقين",
-  "save": "حفظ"
+  "save": "حفظ",
+  "invitation_location": "موقع المناسبة",
+  "apology": "اعتذار",
+  "invitation_lookLike": "سيكون شكل دعواتك هكذا",
+  "review_invitation": "استعراض رسالة الدعوة",
+  "review": "استعراض",
+  "scanned": "الممسوح ضوئيا",
+  "confirmation": "التأكيد",
+  "apologies": "الاعتذار",
+  "wait": "الانتظار",
+  "not_sent": "لم يتم الارسال",
+  "failed": "فشل",
+  "send_reminder": "ارسال تذكير",
+  "settings": "الاعدادات",
+  "occasion_modification": "تعديل المناسبة",
+  "delete_occasion": "حذف المناسبة",
+  "are_you_sure_delete_occasion": "هل انت متأكد من حذف مناسبة ",
+  "cancel": "الغاء",
+  "select_contacts1": "حدد جهات الاتصال",
+  "reminder_will_be_sent": "سيتم ارسال التذكير لكل جهات الاتصال المحددة"
 
 }

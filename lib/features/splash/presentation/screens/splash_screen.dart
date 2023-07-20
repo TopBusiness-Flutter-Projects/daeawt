@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 
 import '../../../../core/utils/assets_manager.dart';
 
+
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -22,6 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
    Timer(const Duration(milliseconds: 1000),() {
      Navigator.pushReplacementNamed(context, Routes.loginRoute);
    },);
+
     super.initState();
   }
 
@@ -29,6 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return  Scaffold(
       body: Center(
         child:

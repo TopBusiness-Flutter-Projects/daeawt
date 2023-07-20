@@ -5,6 +5,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/home_app_bar.dart';
+import '../../models/home_list_item_model.dart';
 import '../widgets/home_list_item.dart';
 
 class HomeTab extends StatelessWidget {
@@ -60,9 +61,9 @@ class HomeTab extends StatelessWidget {
             child: ListView.separated(
               separatorBuilder: (context, index) => const SizedBox(height: 15,),
               padding: const EdgeInsets.all(9),
-              itemCount: 10,
+              itemCount: 5,
               itemBuilder: (context, index) {
-                return  const HomeListItem();
+                return   HomeListItem(homeListItemModel:homeItems[index] ,);
               },
             ),
           ),

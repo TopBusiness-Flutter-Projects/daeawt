@@ -62,6 +62,25 @@
   "invited": "Invited",
   "add_guests": "Add guests",
   "companion": "Companion",
-  "save": "Save"
+  "save": "Save",
+  "invitation_location": "Invitation Location",
+  "apology": "Apology",
+  "invitation_lookLike": "Your invitations will look like this",
+  "review_invitation": "Review the invitation letter",
+  "review": "Review",
+  "scanned": "Scanned",
+  "confirmation": "Confirmation",
+  "apologies": "Apologies",
+  "wait": "Wait",
+  "not_sent": "Not Sent",
+  "failed": "Failed",
+  "send_reminder": "Send a reminder",
+  "settings": "Settings",
+  "occasion_modification": "Occasion Modification",
+  "delete_occasion": "Delete Occasion",
+  "are_you_sure_delete_occasion": "Are you sure to delete an event ",
+  "cancel": "Cancel",
+  "select_contacts1": "Select Contacts",
+  "reminder_will_be_sent": "The reminder will be sent to all selected contacts"
 
 }
