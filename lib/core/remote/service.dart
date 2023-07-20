@@ -9,6 +9,7 @@ import '../error/exceptions.dart';
 import '../error/failures.dart';
 
 
+import '../model/InvitationDataModel.dart';
 import '../model/user_model.dart';
 import '../preferences/preferences.dart';
 
@@ -62,5 +63,22 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+  Future<Either<Failure, InvitationDataModel>> getInvitationHome(
+      ) async {
+     String lan = await Preferences.instance.getSavedLang();
+     UserModel loginModel = await Preferences.instance.getUserModel();
 
+     try {
+      final response = await dio.get(
+        EndPoints.invitationhomeListUrl ,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.accessToken!},
+        ),
+      );
+      print(response);
+      return Right(InvitationDataModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
 }

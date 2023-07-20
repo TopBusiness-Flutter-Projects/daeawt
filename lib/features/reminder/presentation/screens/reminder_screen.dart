@@ -1,4 +1,3 @@
-import 'package:daeawt/features/home/presentation/home_cubit/home_cubit.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,6 +5,7 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
+import '../../../home/cubit/home_cubit.dart';
 
 class ReminderScreen extends StatelessWidget {
   const ReminderScreen({Key? key}) : super(key: key);

@@ -1,10 +1,14 @@
+import 'package:daeawt/features/home/cubit/home_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/home_app_bar.dart';
+import '../../../../core/widgets/no_data_widget.dart';
+import '../../../../core/widgets/show_loading_indicator.dart';
 import '../../models/home_list_item_model.dart';
 import '../widgets/home_list_item.dart';
 
@@ -13,6 +17,8 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    HomeCubit cubit = context.read<HomeCubit>();
+
     return Scaffold(
       body:  Column(
         children: [
@@ -58,14 +64,39 @@ class HomeTab extends StatelessWidget {
             ),
           ),
           Expanded(
-            child: ListView.separated(
-              separatorBuilder: (context, index) => const SizedBox(height: 15,),
-              padding: const EdgeInsets.all(9),
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return   HomeListItem(homeListItemModel:homeItems[index] ,);
-              },
-            ),
+            child: BlocBuilder<HomeCubit, HomeState>(
+  builder: (context, state) {
+    if(state  is InvitationsHomeLoading){
+      return Center(child: ShowLoadingIndicator());
+    }
+    else if(state is InvitationsHomeError){
+      return Center(
+        child:    NoDataWidget(onclick: () {
+          cubit.geInvitationsHome();
+        },
+          title: 'no_data'.tr(),
+        ),
+      );
+    }
+    else{
+      if(cubit.invitationsList.isNotEmpty){
+    return ListView.builder(
+      itemCount: cubit.invitationsList.length,
+      itemBuilder: (context, index) {
+      return  HomeListItem(homeListItemModel:cubit.invitationsList.elementAt(index) ,);
+    },);}
+    else{
+        return Center(
+          child:    NoDataWidget(onclick: () {
+            cubit.geInvitationsHome();
+          },
+            title: 'no_data'.tr(),
+          ),
+        );
+      }
+    }
+  },
+),
           ),
         ],
       ),

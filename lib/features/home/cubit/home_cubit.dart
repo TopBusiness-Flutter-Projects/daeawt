@@ -11,13 +11,19 @@ import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../../core/utils/assets_manager.dart';
-import '../../../splash/presentation/screens/splash_screen.dart';
-import '../../models/contact_model.dart';
+import '../../../core/model/InvitationDataModel.dart';
+import '../../../core/remote/service.dart';
+import '../../splash/presentation/screens/splash_screen.dart';
+import '../models/contact_model.dart';
 
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  HomeCubit() : super(HomeInitial());
+  final ServiceApi api;
+  List<InvitationModel> invitationsList = [];
+  HomeCubit(this.api) : super(HomeInitial()){
+    geInvitationsHome();
+  }
   List<String> detailsIconsList = [AssetsManager.messagesIcon,AssetsManager.invitedIcon,
     AssetsManager.scannedIcon,AssetsManager.confirmedIcon,AssetsManager.apologiesIcon,
     AssetsManager.waitingIcon,AssetsManager.notSentIcon,AssetsManager.failedIcon];
@@ -221,4 +227,19 @@ class HomeCubit extends Cubit<HomeState> {
     isBottomDetailsWidgetVisible = !isBottomDetailsWidgetVisible;
     emit(ChangingBottomDetailsVisibleState());
   }
+  geInvitationsHome() async {
+    //  print("ddldlldld0");
+    // print(selectedIndividualType);
+    invitationsList.clear();
+    emit(InvitationsHomeLoading());
+    final response = await api.getInvitationHome();
+    response.fold(
+          (l) => emit(InvitationsHomeError()),
+          (r) {
+            invitationsList = r.data;
+        emit(InvitationsHomeLoaded());
+      },
+    );
+  }
+
 }

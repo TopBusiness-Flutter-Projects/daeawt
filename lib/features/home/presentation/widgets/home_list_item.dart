@@ -2,11 +2,13 @@ import 'package:daeawt/core/utils/app_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../config/routes/app_routes.dart';
+import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/assets_manager.dart';
+import '../../../../core/widgets/network_image.dart';
 import '../../models/home_list_item_model.dart';
 
 class HomeListItem extends StatelessWidget {
-  final HomeListItemModel homeListItemModel ;
+  final InvitationModel homeListItemModel ;
   const HomeListItem({Key? key,required this.homeListItemModel}) : super(key: key);
 
   @override
@@ -20,7 +22,12 @@ class HomeListItem extends StatelessWidget {
           child: Card(
             child: Row(
               children: [
-                Image.asset(homeListItemModel.image!),//AssetsManager.homeItem,
+                ManageNetworkImage(
+                  imageUrl: homeListItemModel.image,
+                  borderRadius: 90,
+                  width: 110,
+                  height: 110,
+                ),//AssetsManager.homeItem,
                  Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -31,7 +38,7 @@ class HomeListItem extends StatelessWidget {
                         style:
                             const TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
                       ),
-                      Text("${homeListItemModel.occasionTitle}",//عيد ميلاد
+                      Text("${homeListItemModel.title}",//عيد ميلاد
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w700)),
                       Row(
