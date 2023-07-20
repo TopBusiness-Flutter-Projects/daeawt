@@ -2,59 +2,63 @@ import 'package:daeawt/features/home/presentation/home_cubit/home_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
+import 'package:daeawt/injector.dart' as injector;
+import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 
+import 'app.dart';
+import 'app_bloc_observer.dart';
 import 'config/routes/app_routes.dart';
+import 'core/utils/app_colors.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
+
+  // await Firebase.initializeApp(
+  //   options: DefaultFirebaseOptions.currentPlatform,
+  // );
+
+  // await PushNotificationService.instance.initialise();
+  await FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
+  // await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE)
+  //     .then((value) {
+  //   print('************************************************');
+  //   print(value);
+  //   print('************************************************');
+  // });
+
+  // await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
+  //AppColors.getPrimaryColor();
+
+  // FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
+  // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+  //   alert: true,
+  //   badge: true,
+  //   sound: true,
+  // );
+  // await pushNotificationService!.initialise();
+  // await FirebaseMessaging.instance.setForegroundNotificationPresentationOptions(
+  //   alert: true,
+  //   badge: true,
+  //   sound: true,
+  // );
+  await injector.setup();
+  Bloc.observer = AppBlocObserver();
+
   runApp(
-      EasyLocalization(
-        supportedLocales: L10n.all,
-        fallbackLocale: L10n.all[0],
-          path: 'assets/lang',
-        child: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) {
-              return HomeCubit();
-            },)
-          ],
-            child: const MyApp()),
-      ),
+    EasyLocalization(
+      supportedLocales: [Locale('ar', ''), Locale('en', '')],
+      path: 'assets/lang',
+      saveLocale: true,
+      startLocale: Locale('ar', ''),
+      fallbackLocale: Locale('ar', ''),
+      child: Phoenix(child: const Elmazoon()),
+    ),
   );
 }
-
-class MyApp extends StatelessWidget {
-
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-
-    return MaterialApp(
-
-      debugShowCheckedModeBanner: false,
-      localizationsDelegates:context.localizationDelegates ,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      theme: ThemeData(
-        useMaterial3: true,
-        fontFamily: "Cairo"
-      ),
-         onGenerateRoute: AppRouter.onGenerateRoute,
-    );
-  }
-}
-
-
-class L10n{
-  static final all = [
-    const Locale('en'),
-    const Locale('ar'),
-
-  ];
-}
-
+final locator = GetIt.instance;

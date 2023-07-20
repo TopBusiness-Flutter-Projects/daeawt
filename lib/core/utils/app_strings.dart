@@ -1,15 +1,25 @@
 class AppStrings{
+  static const String appName = 'app_name';
+  static const String fontFamily = 'Cairo';
   static const String noRouteFound = 'No Route Found';
   static const String login = 'login';
   static const String logIn = 'logIn';
   static const String email = 'email';
+  static const String contentType = 'Content-Type';
+  static const String applicationJson = 'application/json';
+  static const String serverFailure = 'Server Failure';
+  static const String serverFail = 'server_fail';
+  static const String cacheFailure = 'Cache Failure';
+  static const String unexpectedError = 'Unexpected Error';
   static const String loginToCreateInvitation = 'login_to_create_invitation';
   static const String signUpToCreateInvitation = 'sign_up_to_create_invitation';
   static const String forgetPassword = 'forgetPassword';
   static const String haveNoAccount = 'have_no_account';
   static const String createAccount = 'create_account';
   static const String enterMobileNumber = 'enter_mobile_number';
-
+  static const String englishCode = 'en';
+  static const String arabicCode = 'ar';
+  static const String locale = 'locale';
   static const String orLogInWith = 'or_log_in_with';
   static const String signUpWithGoogle = 'sign_up_with_google';
   static const String createNewAccount = 'create_new_account';

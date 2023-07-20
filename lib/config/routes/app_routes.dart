@@ -47,7 +47,7 @@ class Routes{
   static const String reminderRoute = "/reminderScreen";
 }
 
-class AppRouter{
+class AppRoutes{
   //on generate route
  static Route onGenerateRoute( RouteSettings settings){
   switch(settings.name){
@@ -59,7 +59,7 @@ class AppRouter{
       return MaterialPageRoute(builder: (context) => const LoginScreen(),);
 
     case Routes.signUpRoute:
-      return MaterialPageRoute(builder: (context) => const SignUpScreen(),);
+      return MaterialPageRoute(builder: (context) =>  SignUpScreen(),);
 
     case Routes.forgotPasswordRoute:
       return MaterialPageRoute(builder: (context) => const ForgotPasswordScreen(),);

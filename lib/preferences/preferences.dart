@@ -3,9 +3,8 @@ import 'dart:ui';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../model/user_model.dart';
-import '../utils/app_colors.dart';
-import '../utils/app_strings.dart';
+import '../core/model/user_model.dart';
+import '../core/utils/app_strings.dart';
 
 class Preferences {
   static final Preferences instance = Preferences._internal();

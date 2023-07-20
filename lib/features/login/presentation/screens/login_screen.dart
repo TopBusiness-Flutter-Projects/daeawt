@@ -2,17 +2,33 @@ import 'package:daeawt/core/utils/app_strings.dart';
 import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/bottom_curve.dart';
+import '../../cubit/login_cubit.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    formKey.currentState!.validate();
+  }
+
+  @override
   Widget build(BuildContext context) {
+LoginCubit cubit=context.read<LoginCubit>();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -51,20 +67,76 @@ class LoginScreen extends StatelessWidget {
             ),
             Padding(
                 padding: const EdgeInsets.all(18.0),
-                child: CustomTextFormField(
-                  hintText: AppStrings.email,
-                  prefixIcon: const Icon(
-                    Icons.email_outlined,
-                    color: AppColors.primary,
+                child: TextFormField(
+                  maxLines: 1,
+                  autofocus: false,
+                  cursorColor: AppColors.primary,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  onChanged: (data) {
+                    formKey.currentState!.validate();
+                    cubit.loginModel.email= data;
+                    cubit.checkValidLoginData();
+                  },
+                  // controller: cubit.emailControl,
+                  validator: (value) {
+                    print(value);
+                    if (value == null || value.isEmpty) {
+                      return 'field_reguired'.tr();
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
+                      prefixIcon: Icon(
+                        Icons.mail_outlined,
+                        color: AppColors.primary,
+                      ),
+                      hintText: 'email'.tr(),
+                      border:  OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      fillColor: AppColors.grey1,
+                      filled: true
+
                   ),
                 )),
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                child: CustomTextFormField(
-                  hintText: "password",
-                  prefixIcon: const Icon(
-                    Icons.lock_outline,
-                    color: AppColors.primary,
+                child: TextFormField(
+                  maxLines: 1,
+                  autofocus: false,
+                  cursorColor: AppColors.primary,
+                  keyboardType: TextInputType.visiblePassword,
+                  textInputAction: TextInputAction.next,
+                  onChanged: (data) {
+                    formKey.currentState!.validate();
+                    cubit.loginModel.password= data;
+                    cubit.checkValidLoginData();
+                  },
+                  // controller: cubit.emailControl,
+                  validator: (value) {
+                    print(value);
+                    if (value == null || value.isEmpty) {
+                      return 'field_reguired'.tr();
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
+                      prefixIcon: Icon(
+                        Icons.lock_outline,
+                        color: AppColors.primary,
+                      ),
+                      hintText: 'password'.tr(),
+                      border:  OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      fillColor: AppColors.grey1,
+                      filled: true
+
                   ),
                 )),
             const SizedBox(

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 
 class AppColors{
+  static Color error = Colors.red;
+  static Color success = Colors.green;
   static const Color primary = Color(0xffFF914C);
   static const Color orange2 = Color(0xffFBB589);
+  static Color hint = Colors.grey;
+  static Color blackLite = Colors.black54;
   static const Color orange3 = Color(0xffFFEAD7);
   static const Color red1 = Color(0xffEA4335);
   static const Color red2 = Color(0xffC70000);
@@ -19,5 +23,9 @@ class AppColors{
   static const Color green2 = Color(0xff34A853);
   static const Color green3 = Color(0xff04CA00);
   static const Color black1 = Color(0xff363637);
+  static const Color black = Color(0xff000000);
+  static const Color white = Color(0xffffffff);
+
+
   static const Color transparent = Color(0xff00FFFFFF);
 }
