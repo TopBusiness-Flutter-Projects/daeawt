@@ -44,4 +44,5 @@ class AssetsManager{
   static const String menuIcon = "$iconsPath/menu_icon.svg";
   static const String editIcon = "$iconsPath/edit_icon.svg";
   static const String deleteIcon = "$iconsPath/delete_icon.svg";
+  static const String shareIcon = "$iconsPath/share_icon.svg";
 }

@@ -145,8 +145,7 @@ class DetailsScreen extends StatelessWidget {
                 ),
               ),
               Column(
-                //  shrinkWrap: true,
-                //   physics: AlwaysScrollableScrollPhysics(),
+
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -234,33 +233,43 @@ class DetailsScreen extends StatelessWidget {
                                 // vertical spaces
                                 mainAxisSpacing: 10),
                         itemBuilder: (context, index) {
-                          return Material(
-                            elevation: 10,
-                            shadowColor: Colors.black.withOpacity(0.7),
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                MySvgWidget(
-                                    path: cubit.detailsIconsList[index],
-                                    size: 65),
-                                //  const SizedBox(height: 10,),
-                                Text(
-                                  (index + 1).toString(),
-                                  style: const TextStyle(
-                                      color: AppColors.black1,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500),
-                                ),
-                                Text(
-                                  cubit.detailsLabels[index],
-                                  style: const TextStyle(
-                                      color: AppColors.grey5,
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w500),
-                                ).tr(),
-                              ],
+                          return InkWell(
+                            onTap: (){
+                              if(index==1){
+                                Navigator.pushNamed(context, Routes.invitedRoute);
+                              }
+                              else if(index==0){
+                                Navigator.pushNamed(context, Routes.messagesRoute);
+                              }
+                            },
+                            child: Material(
+                              elevation: 10,
+                              shadowColor: Colors.black.withOpacity(0.7),
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  MySvgWidget(
+                                      path: cubit.detailsIconsList[index],
+                                      size: 65),
+                                  //  const SizedBox(height: 10,),
+                                  Text(
+                                    (index + 1).toString(),
+                                    style: const TextStyle(
+                                        color: AppColors.black1,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500),
+                                  ),
+                                  Text(
+                                    cubit.detailsLabels[index],
+                                    style: const TextStyle(
+                                        color: AppColors.grey5,
+                                        fontSize: 18,
+                                        fontWeight: FontWeight.w500),
+                                  ).tr(),
+                                ],
+                              ),
                             ),
                           );
                         },
@@ -268,7 +277,9 @@ class DetailsScreen extends StatelessWidget {
 
                   //اضافة مدعوين
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, Routes.addPersonRoute);
+                    },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.black1,
                       minimumSize:
@@ -332,7 +343,7 @@ class DetailsScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                              Text("${homeListItemModel.date}",style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
+                              Text(homeListItemModel.date,style: const TextStyle(fontSize: 16,fontWeight: FontWeight.w400),),
 
                               const SizedBox(width: 20,),
                               Container(
@@ -342,17 +353,17 @@ class DetailsScreen extends StatelessWidget {
                                       color: AppColors.lightGreen,
                                       borderRadius: BorderRadius.circular(10)),
 
-                                  child:  Text("${homeListItemModel.status}",//مؤكد
+                                  child:  Text(homeListItemModel.status,//مؤكد
                                     style: const TextStyle(color: AppColors.green1),)),
 
                             ],),
-                            Text("${homeListItemModel.title}",style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700)),
+                            Text(homeListItemModel.title,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700)),
                           const SizedBox(height: 5,),
                           Row(
 
                             children: [
                             const Icon(Icons.location_on_outlined,color: AppColors.primary,),
-                            Text("${homeListItemModel.address}",style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w400))
+                            Text(homeListItemModel.address,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w400))
                           ],),
                             const SizedBox(height: 20,)
                           ],
@@ -374,7 +385,7 @@ class DetailsScreen extends StatelessWidget {
           buttonPadding: EdgeInsets.symmetric(horizontal: 2),
 
           title: const Text(AppStrings.areYouSureDeleteOccasion,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),).tr(),
-          content: Text('${homeListItemModel.title}',style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700)),
+          content: Text(homeListItemModel.title,style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700)),
 
           actions: <Widget>[
             Container(
