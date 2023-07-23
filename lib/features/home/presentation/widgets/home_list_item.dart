@@ -5,7 +5,6 @@ import '../../../../config/routes/app_routes.dart';
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/widgets/network_image.dart';
-import '../../models/home_list_item_model.dart';
 
 class HomeListItem extends StatelessWidget {
   final InvitationModel homeListItemModel ;

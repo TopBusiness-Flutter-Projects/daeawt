@@ -9,7 +9,6 @@ import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/home_app_bar.dart';
 import '../../../../core/widgets/no_data_widget.dart';
 import '../../../../core/widgets/show_loading_indicator.dart';
-import '../../models/home_list_item_model.dart';
 import '../widgets/home_list_item.dart';
 
 class HomeTab extends StatelessWidget {

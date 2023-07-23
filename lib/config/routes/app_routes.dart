@@ -18,7 +18,7 @@ import 'package:daeawt/features/signup/presentation/screens/signup.dart';
 import 'package:daeawt/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/home/models/home_list_item_model.dart';
+import '../../core/model/InvitationDataModel.dart';
 import '../../features/home/presentation/screens/add_invitation3.dart';
 import '../../features/home/presentation/screens/add_invitation4.dart';
 import '../../features/home/presentation/screens/add_invitation5.dart';
@@ -104,7 +104,7 @@ class AppRoutes{
       return MaterialPageRoute(builder: (context) =>   const AddInvitationStepFiveScreen(),);
 
     case Routes.detailsRoute:
-      var homeListModel = settings.arguments as HomeListItemModel;
+      var homeListModel = settings.arguments as InvitationModel;
       return MaterialPageRoute(builder: (context) =>    DetailsScreen(homeListItemModel:homeListModel ),);
 
 

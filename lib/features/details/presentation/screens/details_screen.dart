@@ -1,5 +1,6 @@
 import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/widgets/my_svg_widget.dart';
+import '../../../../core/model/InvitationDataModel.dart';
 import '../../../home/cubit/home_cubit.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
@@ -9,10 +10,9 @@ import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
-import '../../../home/models/home_list_item_model.dart';
 
 class DetailsScreen extends StatelessWidget {
-  final HomeListItemModel homeListItemModel;
+  final InvitationModel homeListItemModel;
   const DetailsScreen({Key? key,required this.homeListItemModel}) : super(key: key);
 
   @override
@@ -346,7 +346,7 @@ class DetailsScreen extends StatelessWidget {
                                     style: const TextStyle(color: AppColors.green1),)),
 
                             ],),
-                            Text("${homeListItemModel.occasionTitle}",style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700)),
+                            Text("${homeListItemModel.title}",style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700)),
                           const SizedBox(height: 5,),
                           Row(
 
@@ -374,7 +374,7 @@ class DetailsScreen extends StatelessWidget {
           buttonPadding: EdgeInsets.symmetric(horizontal: 2),
 
           title: const Text(AppStrings.areYouSureDeleteOccasion,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),).tr(),
-          content: Text('${homeListItemModel.occasionTitle}',style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700)),
+          content: Text('${homeListItemModel.title}',style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700)),
 
           actions: <Widget>[
             Container(
