@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:contacts_service/contacts_service.dart';
+import 'package:daeawt/core/remote/service.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -12,7 +13,10 @@ import '../../../home/models/contact_model.dart';
 part 'add_invitation_state.dart';
 
 class AddInvitationCubit extends Cubit<AddInvitationState> {
-  AddInvitationCubit() : super(AddInvitationInitial());
+
+  AddInvitationCubit(this.api) : super(AddInvitationInitial());
+
+  ServiceApi api;
 
   final ImagePicker picker = ImagePicker();
   XFile? invitationImage;

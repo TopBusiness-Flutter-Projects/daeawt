@@ -1,4 +1,6 @@
 import 'package:daeawt/core/utils/app_strings.dart';
+import 'package:daeawt/features/add_new_contacts/presentation/screens/add_new_contacts.dart';
+import 'package:daeawt/features/add_person/presentation/screens/add_person.dart';
 import 'package:daeawt/features/contact_us/presentation/screens/contact_us.dart';
 import 'package:daeawt/features/details/presentation/screens/details_screen.dart';
 import 'package:daeawt/features/edit_profile/presentation/screens/edit_profile.dart';
@@ -10,10 +12,13 @@ import 'package:daeawt/features/home/presentation/screens/home_screen.dart';
 import 'package:daeawt/features/home/presentation/screens/notification_screen.dart';
 import 'package:daeawt/features/home/presentation/screens/profile_screen.dart';
 import 'package:daeawt/features/home/presentation/screens/scan_screen.dart';
+import 'package:daeawt/features/invited/presentation/screens/invited_screen.dart';
 import 'package:daeawt/features/login/presentation/screens/login_screen.dart';
+import 'package:daeawt/features/messages/presentation/screens/messages_screen.dart';
 import 'package:daeawt/features/new_password/presentation/screens/new_password_screen.dart';
 import 'package:daeawt/features/otp/presentation/screens/otp_screen.dart';
 import 'package:daeawt/features/reminder/presentation/screens/reminder_screen.dart';
+import 'package:daeawt/features/send_new_contacts/presentation/screens/send_new_contacts.dart';
 import 'package:daeawt/features/signup/presentation/screens/signup.dart';
 import 'package:daeawt/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
@@ -45,6 +50,11 @@ class Routes{
   static const String googleMapRoute = "/googleMapScreen";
   static const String detailsRoute = "/detailsScreen";
   static const String reminderRoute = "/reminderScreen";
+  static const String invitedRoute = "/invitedScreen";
+  static const String messagesRoute = "/messagesScreen";
+  static const String addPersonRoute = "/addPersonScreen";
+  static const String addNewContactsRoute = "/addNewContactsScreen";
+  static const String sendNewContactsRoute = "/sendNewContactsScreen";
 }
 
 class AppRoutes{
@@ -114,6 +124,21 @@ class AppRoutes{
 
     case Routes.reminderRoute:
       return MaterialPageRoute(builder: (context) =>   const ReminderScreen(),);
+
+    case Routes.invitedRoute:
+      return MaterialPageRoute(builder: (context) =>   const InvitedScreen(),);
+
+    case Routes.messagesRoute:
+      return MaterialPageRoute(builder: (context) =>   const MessagesScreen(),);
+
+    case Routes.addPersonRoute:
+      return MaterialPageRoute(builder: (context) =>   const AddPerson(),);
+
+    case Routes.addNewContactsRoute:
+      return MaterialPageRoute(builder: (context) =>   const AddNewContacts(),);
+
+    case Routes.sendNewContactsRoute:
+      return MaterialPageRoute(builder: (context) =>   const SendNewContacts(),);
 
     default:
       return undefinedRoute();

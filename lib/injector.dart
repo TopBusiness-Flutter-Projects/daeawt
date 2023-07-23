@@ -1,4 +1,8 @@
 
+import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
+import 'package:daeawt/features/invited/presentation/cubit/invited_cubit.dart';
+import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
+
 import 'core/api/app_interceptors.dart';
 import 'core/api/base_api_consumer.dart';
 import 'core/api/dio_consumer.dart';
@@ -9,6 +13,7 @@ import 'package:get_it/get_it.dart';
 
 import 'features/home/cubit/home_cubit.dart';
 import 'features/login/cubit/login_cubit.dart';
+import 'features/messages/presentation/cubit/messages_cubit.dart';
 import 'features/signup/cubit/signup_cubit.dart';
 
 
@@ -30,6 +35,19 @@ Future<void> setup() async {
   serviceLocator.registerFactory(
     () => SignupCubit(serviceLocator()),
   );
+  serviceLocator.registerFactory(
+        () => MessagesCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => ReminderCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => InvitedCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => AddInvitationCubit(serviceLocator()),
+  );
+
 
 
   ///////////////////////////////////////////////////////////////////////////////

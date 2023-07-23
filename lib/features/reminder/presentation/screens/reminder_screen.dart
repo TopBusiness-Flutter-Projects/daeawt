@@ -24,6 +24,8 @@ class ReminderScreen extends StatelessWidget {
     ReminderCubit cubit = context.read<ReminderCubit>();
     return Scaffold(
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipPath(
             clipper: SmallBottomCurveClipper(),
@@ -125,31 +127,34 @@ class ReminderScreen extends StatelessWidget {
             ],
           ),
          const SizedBox(height: 10,),
-          SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: 60,
-              child:
-              TextFormField(
-                keyboardType: TextInputType.text,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'username_valid'.tr();
-                  }
-                  return null;
-                },
-                decoration: InputDecoration(
-                    contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
-                    prefixIcon:const Icon(Icons.search),
-                    hintText: AppStrings.searchYourInvitations.tr(),
-                    border:  OutlineInputBorder(
-                      borderSide: BorderSide.none,
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                    fillColor: AppColors.grey1,
-                    filled: true
+          //search
+          Center(
+            child: SizedBox(
+                width: MediaQuery.of(context).size.width * 0.8,
+                height: 60,
+                child:
+                TextFormField(
+                  keyboardType: TextInputType.text,
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'username_valid'.tr();
+                    }
+                    return null;
+                  },
+                  decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.symmetric(vertical: 8,horizontal: 5),
+                      prefixIcon:const Icon(Icons.search),
+                      hintText: AppStrings.searchYourInvitations.tr(),
+                      border:  OutlineInputBorder(
+                        borderSide: BorderSide.none,
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      fillColor: AppColors.grey1,
+                      filled: true
 
+                  ),
                 ),
-              ),
+            ),
           ),
           //تحديد الكل
           Row(
@@ -166,17 +171,69 @@ class ReminderScreen extends StatelessWidget {
               child:
           ListView.builder(
             shrinkWrap: true,
-            itemCount: context.read<AddInvitationCubit>().selectedContactModelList.length,
+            itemCount: 3,
+            //context.read<AddInvitationCubit>().selectedContactModelList.length,
             itemBuilder: (context, index) {
-              return Row(
-                children: [
-                 // CheckboxListTile(value: true, onChanged: (value) {},),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(context.read<AddInvitationCubit>().selectedContactModelList[index].name!),
-                  )
-                ],);
-            },))
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0,vertical: 4),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+
+                      child: CheckboxListTile(
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 10),
+                        controlAffinity: ListTileControlAffinity.trailing,
+                        value: false,
+                        onChanged: (bool? value) {
+                         // cubit.changeWithBarcodeCheckListTile(value);
+                        },
+                      ),
+                      height: 50,
+                      width: 20,
+                    ),
+                   const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: SizedBox(
+                          height: 20,
+                          child: Center(
+                            child: Text("mohammed mahmod",
+                               style: TextStyle(
+                                 fontWeight: FontWeight.w700,
+                                 fontSize: 18,
+                                 color: AppColors.black1
+                               ),
+                               // context.read<AddInvitationCubit>().selectedContactModelList[index].name!
+                            ),
+                          ),
+                        ),
+                      ),
+                    Spacer()
+
+                  ],),
+              );
+            },)),
+          //اضافة مدعوين
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: AppColors.black1,
+                minimumSize:
+                Size(MediaQuery.of(context).size.width * 0.85, 60),
+              ),
+              child: Text(
+                AppStrings.send.tr(),
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 18),
+              ),
+            ),
+          ),
         ],
       ),
     );
