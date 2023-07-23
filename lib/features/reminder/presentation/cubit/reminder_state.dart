@@ -4,3 +4,4 @@ part of 'reminder_cubit.dart';
 abstract class ReminderState {}
 
 class ReminderInitial extends ReminderState {}
+class RemiderLoaded extends ReminderState {}

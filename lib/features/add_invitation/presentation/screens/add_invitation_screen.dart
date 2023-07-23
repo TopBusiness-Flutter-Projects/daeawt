@@ -288,7 +288,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         color: AppColors.orange3),
                     child: Row(
                       children: [
-                        Image.asset(AssetsManager.uploadImageIcon),
+                        Image.asset(ImageAssests.uploadImageIcon),
                         const SizedBox(
                           width: 10,
                         ),
@@ -379,7 +379,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         //TODO-->
                         Navigator.pushNamed(context, Routes.googleMapRoute);
                       },
-                      child: Image.asset(AssetsManager.mapImage)),
+                      child: Image.asset(ImageAssests.mapImage)),
                 ),
                 //location name
                 Padding(

@@ -20,20 +20,16 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   final ServiceApi api;
   List<InvitationModel> invitationsList = [];
+
+  TextEditingController searchController=TextEditingController();
   HomeCubit(this.api) : super(HomeInitial()){
     geInvitationsHome();
   }
-  List<String> detailsIconsList = [AssetsManager.messagesIcon,AssetsManager.invitedIcon,
-    AssetsManager.scannedIcon,AssetsManager.confirmedIcon,AssetsManager.apologiesIcon,
-    AssetsManager.waitingIcon,AssetsManager.notSentIcon,AssetsManager.failedIcon];
-
-  List<String> detailsLabels = [AppStrings.theMessage,AppStrings.invited,AppStrings.scanned,
-             AppStrings.confirmation,AppStrings.apologies,AppStrings.wait,AppStrings.notSent,AppStrings.failed];
 
 
 
 
-  bool isBottomDetailsWidgetVisible = true; //TODO-->
+
 
 
 
@@ -72,16 +68,13 @@ class HomeCubit extends Cubit<HomeState> {
 
   }
 
-  visibleBottomDetailsWidget(){
-    isBottomDetailsWidgetVisible = !isBottomDetailsWidgetVisible;
-    emit(ChangingBottomDetailsVisibleState());
-  }
+
   geInvitationsHome() async {
     //  print("ddldlldld0");
     // print(selectedIndividualType);
     invitationsList.clear();
     emit(InvitationsHomeLoading());
-    final response = await api.getInvitationHome();
+    final response = await api.getInvitationHome(searchController.value.text);
     response.fold(
           (l) => emit(InvitationsHomeError()),
           (r) {

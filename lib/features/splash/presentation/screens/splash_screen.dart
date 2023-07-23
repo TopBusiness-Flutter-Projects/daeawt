@@ -75,7 +75,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Align(
                 alignment: Alignment.topLeft,
                 child: Image.asset(
-                  AssetsManager.splashLeftCorner,
+                  ImageAssests.splashLeftCorner,
                   width: MediaQuery.of(context).size.width * 0.75,
                 )),
             Padding(
@@ -85,20 +85,20 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: SizedBox(
                     //height: 200,
                     width: MediaQuery.of(context).size.width * 0.8,
-                    child: Image.asset(AssetsManager.splashCenterLogo)),
+                    child: Image.asset(ImageAssests.splashCenterLogo)),
               ),
             ),
             const Spacer(),
             Align(
                 alignment: Alignment.bottomRight,
                 child: Image.asset(
-                  AssetsManager.splashRightCorner,
+                  ImageAssests.splashRightCorner,
                   width: MediaQuery.of(context).size.width * 0.95,
                 )),
           ],
         ),
       )
-          //Image.asset(AssetsManager.splashImage)
+          //Image.asset(ImageAssests.splashImage)
           ),
     );
   }

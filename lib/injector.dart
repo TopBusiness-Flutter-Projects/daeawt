@@ -3,6 +3,8 @@ import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation
 import 'package:daeawt/features/invited/presentation/cubit/invited_cubit.dart';
 import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
 
+import 'package:daeawt/features/details/cubit/detials_cubit.dart';
+
 import 'core/api/app_interceptors.dart';
 import 'core/api/base_api_consumer.dart';
 import 'core/api/dio_consumer.dart';
@@ -46,6 +48,9 @@ Future<void> setup() async {
   );
   serviceLocator.registerFactory(
         () => AddInvitationCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+    () => DetailsCubit(),
   );
 
 

@@ -26,8 +26,13 @@ class HomeTab extends StatelessWidget {
               width: MediaQuery.of(context).size.width * 0.8,
               height: 60,
               child: CustomTextFormField(
+                textController: cubit.searchController,
                 hintText: AppStrings.searchYourInvitations,
                 prefixIcon: const Icon(Icons.search),
+
+                onChanged: (p0) {
+                  cubit.geInvitationsHome();
+                },
               )),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),

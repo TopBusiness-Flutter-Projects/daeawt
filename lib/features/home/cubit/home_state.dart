@@ -8,7 +8,6 @@ class HomeInitial extends HomeState {}
 
 
 class ChangingApplicationLanguageState extends HomeState {}
-class ChangingBottomDetailsVisibleState extends HomeState {}
 class InvitationsHomeLoaded extends HomeState {}
 class InvitationsHomeError extends HomeState {}
 class InvitationsHomeLoading extends HomeState {}

@@ -37,7 +37,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                         width: double.infinity,
                         //color: Colors.orange,
                         child: Image.asset(
-                          AssetsManager.dawatBarKudIcon,
+                          ImageAssests.dawatBarKudIcon,
                         )),
                     Positioned(
                         left: 0,

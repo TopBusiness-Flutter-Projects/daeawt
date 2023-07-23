@@ -51,7 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 300,
                           //color: Colors.orange,
                           child: Image.asset(
-                            AssetsManager.dawatBarKudIcon,
+                            ImageAssests.dawatBarKudIcon,
                           )),
                     ),
                   ),
@@ -252,7 +252,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         width: 5,
                       ),
                       Image.asset(
-                        AssetsManager.googleIcon,
+                        ImageAssests.googleIcon,
                       )
                     ],
                   )

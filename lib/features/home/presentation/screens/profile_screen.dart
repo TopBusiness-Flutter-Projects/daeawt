@@ -52,13 +52,13 @@ class ProfileScreen extends StatelessWidget{
                    SizedBox(width: MediaQuery.of(context).size.width*0.2,),
                   const Text(AppStrings.myAccount,style: TextStyle(color: Colors.white,fontSize: 18,fontWeight: FontWeight.w700),).tr(),
                   SizedBox(width: MediaQuery.of(context).size.width*0.5),
-                  const  MySvgWidget(path: AssetsManager.deleteIcon, size: 22),
+                  const  MySvgWidget(path: ImageAssests.deleteIcon, size: 22),
                   const SizedBox(width: 10,),
                    IconButton(
                     onPressed: (){
                       Navigator.pushNamed(context, Routes.editProfileRoute);
                     },
-                  icon: const MySvgWidget(path: AssetsManager.editIcon, size: 22),),
+                  icon: const MySvgWidget(path: ImageAssests.editIcon, size: 22),),
                   const SizedBox(width: 50,),
 
                 ],
@@ -122,7 +122,7 @@ class ProfileScreen extends StatelessWidget{
                     shape: BoxShape.circle,
                   border: Border.all(color:AppColors.grey3,width: 3)
                 ),
-                child: Image.asset(AssetsManager.profileImage),
+                child: Image.asset(ImageAssests.profileImage),
               )
           ),
 
@@ -163,7 +163,7 @@ class ProfileScreen extends StatelessWidget{
                       },
                       child: Row(
                         children: [
-                          Image.asset(AssetsManager.languageIcon),
+                          Image.asset(ImageAssests.languageIcon),
                           const SizedBox(width: 15,),
                           const Text(AppStrings.language,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),).tr(),
                           SizedBox(width: MediaQuery.of(context).size.width*0.4,),
@@ -189,7 +189,7 @@ class ProfileScreen extends StatelessWidget{
                       ),
                       child: Row(
                         children: [
-                          Image.asset(AssetsManager.contactUsIcon),
+                          Image.asset(ImageAssests.contactUsIcon),
                           const SizedBox(width: 15,),
                           const Text(AppStrings.contactUs,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),).tr(),
 
@@ -208,7 +208,7 @@ class ProfileScreen extends StatelessWidget{
                     ),
                     child: Row(
                       children: [
-                        Image.asset(AssetsManager.shareAppIcon),
+                        Image.asset(ImageAssests.shareAppIcon),
                         const SizedBox(width: 15,),
                         const Text(AppStrings.shareApp,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),).tr(),
 
@@ -226,7 +226,7 @@ class ProfileScreen extends StatelessWidget{
                     ),
                     child: Row(
                       children: [
-                        Image.asset(AssetsManager.rateAppIcon),
+                        Image.asset(ImageAssests.rateAppIcon),
                         const SizedBox(width: 15,),
                         const Text(AppStrings.rateApp,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),).tr(),
 
@@ -248,7 +248,7 @@ class ProfileScreen extends StatelessWidget{
                       ),
                       child: Row(
                         children: [
-                          Image.asset(AssetsManager.logOutIcon),
+                          Image.asset(ImageAssests.logOutIcon),
                           const SizedBox(width: 15,),
                           const Text(AppStrings.logout,style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700),).tr(),
 
@@ -267,13 +267,13 @@ class ProfileScreen extends StatelessWidget{
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(AssetsManager.facebookIcon),
+                  Image.asset(ImageAssests.facebookIcon),
                   const SizedBox(width: 10,),
-                  Image.asset(AssetsManager.instagramIcon),
+                  Image.asset(ImageAssests.instagramIcon),
                   const SizedBox(width: 10,),
-                  Image.asset(AssetsManager.twitterIcon),
+                  Image.asset(ImageAssests.twitterIcon),
                   const SizedBox(width: 10,),
-                  Image.asset(AssetsManager.linkedInIcon),
+                  Image.asset(ImageAssests.linkedInIcon),
                 ],
               )),
 

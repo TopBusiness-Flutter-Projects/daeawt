@@ -14,7 +14,7 @@ class ScanListItem extends StatelessWidget {
           //  mainAxisAlignment: MainAxisAlignment.start,
           // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(AssetsManager.homeItem),
+            Image.asset(ImageAssests.homeItem),
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Column(

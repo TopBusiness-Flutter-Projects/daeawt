@@ -2,7 +2,7 @@
  const String imagePath = 'assets/images';
  const String iconsPath = 'assets/icons';
 
-class AssetsManager{
+class ImageAssests{
 
   static const String splashImage = "$imagePath/splash.png";
   static const String splashCenterLogo = "$imagePath/splash_center_logo.png";
