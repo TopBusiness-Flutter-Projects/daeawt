@@ -1,4 +1,6 @@
-import '../../cubit/home_cubit.dart';import 'package:easy_localization/easy_localization.dart';
+import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
+
+import '../../../home/cubit/home_cubit.dart';import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/app_routes.dart';
@@ -6,19 +8,19 @@ import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/custom_buttom.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
-import '../widgets/number_widget.dart';
+import '../../../home/presentation/widgets/number_widget.dart';
 
 class AddInvitationStepThreeScreen extends StatelessWidget {
   const AddInvitationStepThreeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit, HomeState>(
+    return BlocConsumer<AddInvitationCubit, AddInvitationState>(
       listener: (context, state) {
         // TODO: implement listener
       },
       builder: (context, state) {
-        HomeCubit cubit = context.read<HomeCubit>();
+        AddInvitationCubit cubit = context.read<AddInvitationCubit>();
         return Scaffold(
           body: SingleChildScrollView(
             child: Column(

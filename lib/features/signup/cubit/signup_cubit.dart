@@ -17,6 +17,7 @@ class SignupCubit extends Cubit<SignupState> {
 bool isLoginValid=false;
   final ServiceApi api;
   SignupCubit(this.api) : super(SignupInitial());
+
   void checkValidLoginData() {
     if (registerModel.isDataValid()) {
       isLoginValid = true;

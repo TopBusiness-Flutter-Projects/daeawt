@@ -13,11 +13,15 @@ import '../model/login_model.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
+
+  LoginCubit(this.api) : super(LoginInitial());
+
   LoginModel loginModel = LoginModel();
   bool isLoginValid=false;
   final ServiceApi api;
 
-  LoginCubit(this.api) : super(LoginInitial());
+
+
   void login(BuildContext context) async {
     AppWidget.createProgressDialog(context, 'wait'.tr());
     final response = await api.postLogin(loginModel);

@@ -6,7 +6,8 @@ import '../utils/app_colors.dart';
 class CustomTextFormField extends StatelessWidget {
   Widget? prefixIcon;
   String? hintText;
-   CustomTextFormField({this.prefixIcon,this.hintText,Key? key}) : super(key: key);
+  void Function(String)? onChanged;
+   CustomTextFormField({this.prefixIcon,this.hintText,Key? key,this.onChanged}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +32,7 @@ class CustomTextFormField extends StatelessWidget {
           filled: true
 
       ),
+      onChanged: onChanged,
     );
   }
 }

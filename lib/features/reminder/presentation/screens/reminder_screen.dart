@@ -1,3 +1,5 @@
+import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
+import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,12 +16,12 @@ class ReminderScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     String languageCode = easy.EasyLocalization.of(context)!.locale.languageCode;
 
-    return  BlocConsumer<HomeCubit, HomeState>(
+    return  BlocConsumer<ReminderCubit, ReminderState>(
   listener: (context, state) {
     // TODO: implement listener
   },
   builder: (context, state) {
-    HomeCubit cubit = context.read<HomeCubit>();
+    ReminderCubit cubit = context.read<ReminderCubit>();
     return Scaffold(
       body: Column(
         children: [
@@ -164,14 +166,14 @@ class ReminderScreen extends StatelessWidget {
               child:
           ListView.builder(
             shrinkWrap: true,
-            itemCount: cubit.selectedContactModelList.length,
+            itemCount: context.read<AddInvitationCubit>().selectedContactModelList.length,
             itemBuilder: (context, index) {
               return Row(
                 children: [
                  // CheckboxListTile(value: true, onChanged: (value) {},),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(cubit.selectedContactModelList[index].name!),
+                    child: Text(context.read<AddInvitationCubit>().selectedContactModelList[index].name!),
                   )
                 ],);
             },))

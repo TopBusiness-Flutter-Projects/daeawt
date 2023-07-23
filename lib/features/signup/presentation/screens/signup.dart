@@ -244,8 +244,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
               CustomButton(
                 text: AppStrings.createAccount,
                 onPressed: () {
+                  if(cubit.isLoginValid){
                   cubit.register(context);
-                },
+                }
+                  else{
+                    formKey.currentState!.validate();
+                  }
+    },
               ),
               const SizedBox(
                 height: 25,

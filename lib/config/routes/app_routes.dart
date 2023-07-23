@@ -4,8 +4,8 @@ import 'package:daeawt/features/details/presentation/screens/details_screen.dart
 import 'package:daeawt/features/edit_profile/presentation/screens/edit_profile.dart';
 import 'package:daeawt/features/forgot_password/presentation/screens/forgot_password_screen.dart';
 import 'package:daeawt/features/google_map/presentation/screens/google_map.dart';
-import 'package:daeawt/features/home/presentation/screens/add_invitation2.dart';
-import 'package:daeawt/features/home/presentation/screens/add_invitation_screen.dart';
+import 'package:daeawt/features/add_invitation/presentation/screens/add_invitation2.dart';
+import 'package:daeawt/features/add_invitation/presentation/screens/add_invitation_screen.dart';
 import 'package:daeawt/features/home/presentation/screens/home_screen.dart';
 import 'package:daeawt/features/home/presentation/screens/notification_screen.dart';
 import 'package:daeawt/features/home/presentation/screens/profile_screen.dart';
@@ -19,9 +19,9 @@ import 'package:daeawt/features/splash/presentation/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/model/InvitationDataModel.dart';
-import '../../features/home/presentation/screens/add_invitation3.dart';
-import '../../features/home/presentation/screens/add_invitation4.dart';
-import '../../features/home/presentation/screens/add_invitation5.dart';
+import '../../features/add_invitation/presentation/screens/add_invitation3.dart';
+import '../../features/add_invitation/presentation/screens/add_invitation4.dart';
+import '../../features/add_invitation/presentation/screens/add_invitation5.dart';
 
 class Routes{
   //all strings

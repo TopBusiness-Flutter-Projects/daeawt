@@ -7,21 +7,21 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/custom_buttom.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
-import '../../cubit/home_cubit.dart';
-import '../widgets/number_widget.dart';
+import '../../../home/presentation/widgets/number_widget.dart';
 import 'package:contacts_service/contacts_service.dart';
+import '../cubit/add_invitation_cubit.dart';
 
 class AddInvitationStepTwoScreen extends StatelessWidget {
    const AddInvitationStepTwoScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit,HomeState>(
+    return BlocConsumer<AddInvitationCubit,AddInvitationState>(
       listener: (context, state) {
 
       },
       builder: (context, state) {
-        HomeCubit cubit = context.read<HomeCubit>();
+        AddInvitationCubit cubit = context.read<AddInvitationCubit>();
      return Scaffold(
         body: SingleChildScrollView(
           child: Column(
@@ -198,6 +198,9 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: 60,
                     child: CustomTextFormField(
+                      onChanged: (p0) {
+
+                      },
                       hintText: AppStrings.search,
                       prefixIcon: const Icon(Icons.search),
                     )),

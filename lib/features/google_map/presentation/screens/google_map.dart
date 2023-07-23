@@ -1,3 +1,4 @@
+import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -9,12 +10,12 @@ class GoogleMapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomeCubit,HomeState>(
+    return BlocConsumer<AddInvitationCubit,AddInvitationState>(
       listener: (context, state) {
 
       },
       builder: (context, state) {
-        HomeCubit cubit = context.read<HomeCubit>();
+        AddInvitationCubit cubit = context.read<AddInvitationCubit>();
      return  Scaffold(
         body: GoogleMap(
           myLocationButtonEnabled: true,
