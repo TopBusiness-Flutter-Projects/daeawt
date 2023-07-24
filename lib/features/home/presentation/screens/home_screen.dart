@@ -78,9 +78,11 @@ class _HomeScreenState extends State<HomeScreen>
             FloatingActionButtonLocation.miniCenterDocked,
         bottomNavigationBar: TabBar(
           //dividerColor: AppColors.orange1,
+
           labelColor: AppColors.primary,
           unselectedLabelColor: Colors.black,
           indicatorWeight: 1,
+
           controller: controller,
           tabs: [
             Tab(
@@ -91,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen>
                   ),
                   const Text(
                     AppStrings.home,
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 10),
                   ).tr()
                 ],
               ),
@@ -102,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen>
                   const Icon(Icons.notification_important),
                   const Text(
                     AppStrings.notifications,
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 10),
                   ).tr()
                 ],
               ),
@@ -113,7 +115,7 @@ class _HomeScreenState extends State<HomeScreen>
                   const Icon(Icons.scanner),
                   const Text(
                     AppStrings.scan,
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 10),
                   ).tr(),
                 ],
               ),
@@ -124,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen>
                   const Icon(Icons.person_2_outlined),
                   const Text(
                     AppStrings.profile,
-                    style: TextStyle(fontSize: 12),
+                    style: TextStyle(fontSize: 10),
                   ).tr(),
                 ],
               ),
