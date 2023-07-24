@@ -123,7 +123,25 @@ class AppRoutes{
       return MaterialPageRoute(builder: (context) =>   const GoogleMapScreen(),);
 
     case Routes.reminderRoute:
-      return MaterialPageRoute(builder: (context) =>   const ReminderScreen(),);
+       InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
+      return MaterialPageRoute(builder: (context) =>    ReminderScreen(homeListItemModel: homeListItemModel,),);
+
+    case Routes.invitedRoute:
+      InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
+
+      return MaterialPageRoute(builder: (context) =>    InvitedScreen(homeListItemModel: homeListItemModel,),);
+
+    case Routes.messagesRoute:
+      return MaterialPageRoute(builder: (context) =>   const MessagesScreen(),);
+
+    case Routes.addPersonRoute:
+      return MaterialPageRoute(builder: (context) =>   const AddPerson(),);
+
+    case Routes.addNewContactsRoute:
+      return MaterialPageRoute(builder: (context) =>   const AddNewContacts(),);
+
+    case Routes.sendNewContactsRoute:
+      return MaterialPageRoute(builder: (context) =>   const SendNewContacts(),);
 
     case Routes.invitedRoute:
       return MaterialPageRoute(builder: (context) =>   const InvitedScreen(),);

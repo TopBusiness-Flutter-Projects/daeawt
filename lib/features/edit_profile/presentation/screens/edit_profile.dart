@@ -70,7 +70,7 @@ class EditProfileScreen extends StatelessWidget {
             children: [
               CircleAvatar(
                 radius: 40,
-                child: Image.asset(AssetsManager.profileImage),
+                child: Image.asset(ImageAssests.profileImage),
               ),
               Icon(
                 Icons.edit_calendar,

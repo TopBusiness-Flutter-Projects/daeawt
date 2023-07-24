@@ -137,6 +137,8 @@ class Invitee {
   DateTime createdAt;
   DateTime updatedAt;
 
+  bool isselected=false;
+
   Invitee({
     required this.id,
     required this.invitationId,

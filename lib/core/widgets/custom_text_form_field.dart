@@ -7,13 +7,15 @@ class CustomTextFormField extends StatelessWidget {
   Widget? prefixIcon;
   String? hintText;
   void Function(String)? onChanged;
-   CustomTextFormField({this.prefixIcon,this.hintText,Key? key,this.onChanged}) : super(key: key);
+
+  TextEditingController? textController;
+   CustomTextFormField({this.prefixIcon,this.hintText,Key? key,this.onChanged,this.textController}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return   TextFormField(
       keyboardType: TextInputType.text,
-      //controller:cubit.nameController ,
+      controller:textController ,
       validator: (value) {
         if (value == null || value.isEmpty) {
           return 'username_valid'.tr();

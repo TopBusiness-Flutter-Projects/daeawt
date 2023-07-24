@@ -265,7 +265,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                             child: Image.asset(
-                                              AssetsManager
+                                              ImageAssests
                                                   .invitationPlaceholder,
                                             )),
                                       )

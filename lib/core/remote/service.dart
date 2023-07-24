@@ -63,7 +63,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
-  Future<Either<Failure, InvitationDataModel>> getInvitationHome(
+  Future<Either<Failure, InvitationDataModel>> getInvitationHome(String search
       ) async {
      String lan = await Preferences.instance.getSavedLang();
      UserModel loginModel = await Preferences.instance.getUserModel();
@@ -71,6 +71,9 @@ class ServiceApi {
      try {
       final response = await dio.get(
         EndPoints.invitationhomeListUrl ,
+        queryParameters: {
+          "search_key":search
+        },
         options: Options(
           headers: {'Authorization': loginModel.data!.accessToken!},
         ),

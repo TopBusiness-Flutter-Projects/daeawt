@@ -52,7 +52,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           width: double.infinity,
                           //color: Colors.orange,
                           child: Image.asset(
-                            AssetsManager.dawatBarKudIcon,
+                            ImageAssests.dawatBarKudIcon,
                           )),
                       Positioned(
                         left: 0,
@@ -331,7 +331,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     width: 5,
                   ),
                   Image.asset(
-                    AssetsManager.googleIcon,
+                    ImageAssests.googleIcon,
                   )
                 ],
               )

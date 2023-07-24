@@ -14,7 +14,7 @@ class NotificationsListItem extends StatelessWidget {
           Column(
 
             children: [
-              Image.asset(AssetsManager.notificationIcon),
+              Image.asset(ImageAssests.notificationIcon),
               const SizedBox(height: 40,)
             ],
           ),

@@ -1,4 +1,5 @@
 import 'package:daeawt/core/utils/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../config/routes/app_routes.dart';
@@ -21,12 +22,13 @@ class HomeListItem extends StatelessWidget {
           child: Card(
             child: Row(
               children: [
+                homeListItemModel.image.isNotEmpty?
                 ManageNetworkImage(
                   imageUrl: homeListItemModel.image,
                   borderRadius: 90,
                   width: 110,
                   height: 110,
-                ),//AssetsManager.homeItem,
+                ):Image.asset(ImageAssests.homeItem),//ImageAssests.homeItem,
                  Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -67,13 +69,13 @@ class HomeListItem extends StatelessWidget {
           child: Container(
             alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-              decoration: const BoxDecoration(
-                  color: AppColors.lightGreen,
+              decoration:  BoxDecoration(
+                  color:homeListItemModel.status=="0"?AppColors.grey1: AppColors.lightGreen,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15))),
-              child:  Text("${homeListItemModel.status}",//مؤكد
-                style: const TextStyle(color: AppColors.green1),)),
+              child:  Text("${homeListItemModel.status=="0"?"not_confirmed".tr():"confirmed".tr()}",//مؤكد
+                style:  TextStyle(color:homeListItemModel.status=="0"?AppColors.black1: AppColors.green1),)),
         )
       ],
     );

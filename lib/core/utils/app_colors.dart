@@ -8,6 +8,8 @@ class AppColors{
   static Color hint = Colors.grey;
   static Color blackLite = Colors.black54;
   static const Color orange3 = Color(0xffFFEAD7);
+  static const Color lightRed = Color(0xffB2EDB1);
+
   static const Color red1 = Color(0xffEA4335);
   static const Color red2 = Color(0xffC70000);
   static const Color grey1 = Color(0xffE9EAEB);

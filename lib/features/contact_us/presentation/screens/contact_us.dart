@@ -62,21 +62,21 @@ class ContactUsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Image.asset(AssetsManager.contactUsImage),
+            Image.asset(ImageAssests.contactUsImage),
             ContactUs(
-                prefixIcon: Image.asset(AssetsManager.userNameIcon),
+                prefixIcon: Image.asset(ImageAssests.userNameIcon),
                 hint: AppStrings.userName.tr()),
             ContactUs(
-                prefixIcon: Image.asset(AssetsManager.phoneNumberIcon),
+                prefixIcon: Image.asset(ImageAssests.phoneNumberIcon),
                 hint: AppStrings.phoneNumber.tr(),
             textInputType: TextInputType.number),
             ContactUs(
-                prefixIcon: Image.asset(AssetsManager.theTopicIcon),
+                prefixIcon: Image.asset(ImageAssests.theTopicIcon),
                 hint: AppStrings.theTopic.tr()),
             ContactUs(
                 prefixIcon: Padding(
                   padding:  EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.12),
-                  child: Image.asset(AssetsManager.theMessageIcon),
+                  child: Image.asset(ImageAssests.theMessageIcon),
                 ),
                 hint: AppStrings.theMessage.tr(),
                     minLines: 5,
