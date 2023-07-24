@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:daeawt/core/model/InvitationDataModel.dart';
+import 'package:daeawt/core/remote/service.dart';
 import 'package:meta/meta.dart';
 
 import '../../../core/utils/app_strings.dart';
@@ -8,6 +9,12 @@ import '../../../core/utils/assets_manager.dart';
 part 'detials_state.dart';
 
 class DetailsCubit extends Cubit<DetialsState> {
+
+  DetailsCubit(this.api) : super(DetialsInitial());
+
+
+
+  ServiceApi api ;
   List<String> detailsIconsList = [ImageAssests.messagesIcon,ImageAssests.invitedIcon,
     ImageAssests.scannedIcon,ImageAssests.confirmedIcon,ImageAssests.apologiesIcon,
     ImageAssests.waitingIcon,ImageAssests.notSentIcon,ImageAssests.failedIcon];
@@ -21,7 +28,7 @@ class DetailsCubit extends Cubit<DetialsState> {
     isBottomDetailsWidgetVisible = !isBottomDetailsWidgetVisible;
     emit(ChangingBottomDetailsVisibleState());
   }
-  DetailsCubit() : super(DetialsInitial());
+
 
   void setdata(InvitationModel homeListItemModel) {
     emit(DetialsLoading());

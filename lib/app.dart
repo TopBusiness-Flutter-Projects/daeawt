@@ -1,6 +1,9 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:daeawt/features/details/cubit/detials_cubit.dart';
+import 'package:daeawt/features/messages/presentation/cubit/messages_cubit.dart';
+import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,7 +28,9 @@ import 'core/utils/toast_message_method.dart';
 // import 'features/downloads_videos/cubit/downloads_videos_cubit.dart';
 
 
+import 'features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
 import 'features/home/cubit/home_cubit.dart';
+import 'features/invited/presentation/cubit/invited_cubit.dart';
 import 'features/login/cubit/login_cubit.dart';
 import 'features/signup/cubit/signup_cubit.dart';
 
@@ -117,6 +122,22 @@ class _ElmazoonState extends State<Elmazoon> {
         BlocProvider(
           create: (_) => injector.serviceLocator<SignupCubit>(),
         ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<DetailsCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<AddInvitationCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<InvitedCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<ReminderCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<MessagesCubit>(),
+        ),
+
 
        ],
        child:
