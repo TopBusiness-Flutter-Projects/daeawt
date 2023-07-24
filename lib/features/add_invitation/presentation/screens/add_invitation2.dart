@@ -273,12 +273,12 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                   cubit.contactModelList[i].isSelected =  cubit.changesSelectButton(cubit.contactModelList[i].isSelected!);
                                   if(cubit.contactModelList[i].isSelected!){
                                     if(cubit.contactModelList[i].phones!.isNotEmpty){
-                                      cubit.selectedContactModelList.add(cubit.contactModelList[i]);
+                                      cubit.model.selectedContactModelList.add(cubit.contactModelList[i]);
                                     }
 
                                   }
                                   else {
-                                    cubit.selectedContactModelList.remove(cubit.contactModelList[i]);
+                                    cubit.model.selectedContactModelList.remove(cubit.contactModelList[i]);
                                   }
 
                                     },
@@ -322,6 +322,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                     Expanded(
                       child: CustomButton(
                         backgroundColor: AppColors.primary,
+
                         onPressed: () {
 
                          Navigator.pushNamed(context, Routes.addInvitationStep3Route);

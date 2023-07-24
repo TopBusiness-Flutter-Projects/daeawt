@@ -9,22 +9,27 @@ import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import '../../../home/models/contact_model.dart';
+import '../../model/add_invitation_model.dart';
 
 part 'add_invitation_state.dart';
 
 class AddInvitationCubit extends Cubit<AddInvitationState> {
+  TextEditingController dateController=TextEditingController();
 
+bool isDataVaild1=false;
   AddInvitationCubit(this.api) : super(AddInvitationInitial());
-
+  DateTime initialDate = DateTime(DateTime.now().year);
+  DateTime startData = DateTime(DateTime.now().year );
+  DateTime endData = DateTime(DateTime.now().year + 100000);
   ServiceApi api;
-
+  AddInvitationModel model=AddInvitationModel();
   final ImagePicker picker = ImagePicker();
+  String birthDate = 'YYYY-MM-DD';
   XFile? invitationImage;
   bool withBarcode = false;
   String address = "";
   bool withSendingDate = false;
   List<ContactModel> contactModelList = [];
-  List<ContactModel> selectedContactModelList = [];
   int numberOfInvitedPeople = 0 ;
   late GoogleMapController mapController ;
   LatLng selectedLocation = const LatLng(30.0459, 31.2243);
@@ -67,12 +72,15 @@ class AddInvitationCubit extends Cubit<AddInvitationState> {
 
   changeWithBarcodeCheckListTile(bool? value){
     withBarcode = value!;
+    model.has_qrcode=withBarcode?1:0;
     emit(ChangeWithBarcodeCheckListTileState());
 
   }
 
   changeWithSendingDateCheckListTile(bool? value){
     withSendingDate = value!;
+    model.send_date=withSendingDate?1:0;
+
     emit(ChangeWithSendingDateCheckListTileState());
   }
 
@@ -139,7 +147,7 @@ class AddInvitationCubit extends Cubit<AddInvitationState> {
   }
 
   removeSelectedContact(int index){
-    selectedContactModelList.removeAt(index);
+    model.selectedContactModelList.removeAt(index);
     emit(RemoveSelectedContactState());
   }
 
@@ -150,6 +158,7 @@ class AddInvitationCubit extends Cubit<AddInvitationState> {
       address =
       '${place?.name}, ${place?.subLocality}, ${place
           ?.subAdministrativeArea},${place?.country}';
+      model.address=address;
       emit(LocationPermissionSuccessState());
     }
     else{
@@ -160,6 +169,7 @@ class AddInvitationCubit extends Cubit<AddInvitationState> {
         address =
         '${place?.name}, ${place?.street}, ${place
             ?.subAdministrativeArea},${place?.country}';
+        model.address=address;
         emit(LocationPermissionSuccessState());
       }
       else{
@@ -178,5 +188,22 @@ class AddInvitationCubit extends Cubit<AddInvitationState> {
   changeLanguageOption(String newLanguage){
     selectedLanguage = newLanguage ;
     emit(ChangingLanguageState());
+  }
+
+  void updateBirthDate({required String date}) {
+    this.birthDate = date;
+    model.date = date;
+    dateController.text=date;
+    checkDataVaild1();
+    emit(InvitationDateSelected());  }
+
+  void checkDataVaild1() {
+    if(model.isDataVaild1()){
+      isDataVaild1=true;
+    }
+    else{
+      isDataVaild1=false;
+    }
+    emit(InvitationVaild());
   }
 }

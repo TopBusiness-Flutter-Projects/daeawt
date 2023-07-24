@@ -9,16 +9,18 @@ class CustomTextFormField extends StatelessWidget {
   void Function(String)? onChanged;
 
   TextEditingController? textController;
-   CustomTextFormField({this.prefixIcon,this.hintText,Key? key,this.onChanged,this.textController}) : super(key: key);
+  bool? isenable;
+   CustomTextFormField({this.prefixIcon,this.hintText,Key? key,this.onChanged,this.textController,this.isenable=true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return   TextFormField(
       keyboardType: TextInputType.text,
       controller:textController ,
+      enabled: isenable,
       validator: (value) {
         if (value == null || value.isEmpty) {
-          return 'username_valid'.tr();
+          return 'field_valid'.tr();
         }
         return null;
       },

@@ -286,8 +286,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                   child: Row(
                                     children: [
                                       Text(
-                                        cubit.selectedContactModelList.isNotEmpty?
-                                        "المكرم : ${cubit.selectedContactModelList[0].name??" "}":" ",
+                                        cubit.model.selectedContactModelList.isNotEmpty?
+                                        "المكرم : ${cubit.model.selectedContactModelList[0].name??" "}":" ",
                                         textAlign: TextAlign.start,
                                         style: const TextStyle(
                                             fontWeight: FontWeight.w400,

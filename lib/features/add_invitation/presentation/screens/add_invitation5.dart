@@ -249,7 +249,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                                             color: AppColors.primary
                                           ),),
                                           Text(
-                                            "${cubit.selectedContactModelList.length}",
+                                            "${cubit.model.selectedContactModelList.length}",
                                               style: const TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w700,
@@ -316,7 +316,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 38.0),
                       child:
-                      cubit.selectedContactModelList[index].phones!.isNotEmpty?
+                      cubit.model.selectedContactModelList[index].phones!.isNotEmpty?
                       Row(children: [
                         Text("${index+1} - المكرم :",style: const TextStyle(
                           fontWeight: FontWeight.w700,
@@ -324,7 +324,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                         ),),
 
                         Expanded(
-                          child: Text(" ${cubit.selectedContactModelList[index].name}",style: const TextStyle(
+                          child: Text(" ${cubit.model.selectedContactModelList[index].name}",style: const TextStyle(
                           fontWeight: FontWeight.w400,
                               fontSize: 20
                           ),
@@ -339,7 +339,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                     );
                   }, separatorBuilder: (context, index) {
                 return const SizedBox(height: 10,);
-              }, itemCount:cubit.selectedContactModelList.length),
+              }, itemCount:cubit.model.selectedContactModelList.length),
               )
             ],
           ),

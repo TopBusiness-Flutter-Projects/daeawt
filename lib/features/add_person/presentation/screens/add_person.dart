@@ -161,141 +161,141 @@ class AddPerson extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.45,
               width: MediaQuery.of(context).size.width * 0.9,
-              child: ListView.separated(
-                shrinkWrap: true,
-                separatorBuilder: (context, index) => const SizedBox(
-                  height: 20,
-                ),
-                itemCount: context.read<AddInvitationCubit>().selectedContactModelList.length,
-                itemBuilder: (context, index) {
-                  return context.read<AddInvitationCubit>().selectedContactModelList[index].phones!
-                      .isNotEmpty
-                      ? Stack(
-                    alignment: Alignment.bottomCenter,
-                    children: [
-                      SizedBox(
-                        height: 150,
-                        width:
-                        MediaQuery.of(context).size.width * 0.95,
-                      ),
-                      Container(
-                        alignment: Alignment.center,
-                        padding: const EdgeInsets.all(8),
-                        height: 112,
-                        width:
-                        MediaQuery.of(context).size.width * 0.86,
-                        decoration: BoxDecoration(
-                            color: AppColors.orange3,
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
-                            children: [
-                              Column(
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
-                                crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      const Text(
-                                        "المكرم : ",
-                                        style: TextStyle(
-                                            fontSize: 16,
-                                            fontWeight:
-                                            FontWeight.w700),
-                                      ),
-                                      Text(
-                                        "${context.read<AddInvitationCubit>().selectedContactModelList[index].name?.split(" ")[0]}",
-                                        style: const TextStyle(
-                                            fontSize: 17,
-                                            fontWeight:
-                                            FontWeight.w400),
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    "${context.read<AddInvitationCubit>().selectedContactModelList[index].phones?[0].value}",
-                                    style: const TextStyle(
-                                        fontSize: 14,
-                                        color: AppColors.grey5,
-                                        fontWeight: FontWeight.w700),
-                                  ),
-                                ],
-                              ),
-                              Container(
-                                width: 117,
-                                height: 33,
-                                decoration: BoxDecoration(
-                                    color: AppColors.primary,
-                                    borderRadius:
-                                    BorderRadius.circular(10)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {
-                                       // cubit.incrementNumberOfInvitedPeople();
-                                      },
-                                      icon: const Icon(
-                                        Icons.add,
-                                        color: Colors.white,
-                                      ),
-                                      padding: EdgeInsets.zero,
-                                    ),
-                                    Text(
-                                      context.read<AddInvitationCubit>().numberOfInvitedPeople
-                                          .toString(),
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 20,
-                                          fontWeight:
-                                          FontWeight.w700),
-                                    ),
-                                    IconButton(
-                                        onPressed: () {
-                                         // cubit.decrementNumberOfInvitedPeople();
-                                        },
-                                        icon: const Icon(
-                                          Icons.remove,
-                                          color: Colors.white,
-                                        ),
-                                        padding: EdgeInsets.zero),
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
-                      Positioned(
-                          right: 0,
-                          top: 15,
-                          child: CircleAvatar(
-                            radius: 18,
-                            backgroundColor: AppColors.primary,
-                            child: Center(
-                                child: IconButton(
-                                  onPressed: () {
-                                    //TODO-->
-                                   // cubit.removeSelectedContact(index);
-                                  },
-                                  icon: const Icon(
-                                    Icons.close,
-                                    color: Colors.white,
-                                  ),
-                                  padding: EdgeInsets.zero,
-                                )),
-                          )),
-                    ],
-                  )
-                      : SizedBox();
-                },
-              ),
+              // child: ListView.separated(
+              //   shrinkWrap: true,
+              //   separatorBuilder: (context, index) => const SizedBox(
+              //     height: 20,
+              //   ),
+              //   itemCount: context.read<AddInvitationCubit>().selectedContactModelList.length,
+              //   itemBuilder: (context, index) {
+              //     return context.read<AddInvitationCubit>().selectedContactModelList[index].phones!
+              //         .isNotEmpty
+              //         ? Stack(
+              //       alignment: Alignment.bottomCenter,
+              //       children: [
+              //         SizedBox(
+              //           height: 150,
+              //           width:
+              //           MediaQuery.of(context).size.width * 0.95,
+              //         ),
+              //         Container(
+              //           alignment: Alignment.center,
+              //           padding: const EdgeInsets.all(8),
+              //           height: 112,
+              //           width:
+              //           MediaQuery.of(context).size.width * 0.86,
+              //           decoration: BoxDecoration(
+              //               color: AppColors.orange3,
+              //               borderRadius: BorderRadius.circular(10)),
+              //           child: Padding(
+              //             padding: const EdgeInsets.all(8.0),
+              //             child: Row(
+              //               mainAxisAlignment:
+              //               MainAxisAlignment.spaceBetween,
+              //               children: [
+              //                 Column(
+              //                   mainAxisAlignment:
+              //                   MainAxisAlignment.center,
+              //                   crossAxisAlignment:
+              //                   CrossAxisAlignment.start,
+              //                   children: [
+              //                     Row(
+              //                       children: [
+              //                         const Text(
+              //                           "المكرم : ",
+              //                           style: TextStyle(
+              //                               fontSize: 16,
+              //                               fontWeight:
+              //                               FontWeight.w700),
+              //                         ),
+              //                         Text(
+              //                           "${context.read<AddInvitationCubit>().selectedContactModelList[index].name?.split(" ")[0]}",
+              //                           style: const TextStyle(
+              //                               fontSize: 17,
+              //                               fontWeight:
+              //                               FontWeight.w400),
+              //                         ),
+              //                       ],
+              //                     ),
+              //                     Text(
+              //                       "${context.read<AddInvitationCubit>().selectedContactModelList[index].phones?[0].value}",
+              //                       style: const TextStyle(
+              //                           fontSize: 14,
+              //                           color: AppColors.grey5,
+              //                           fontWeight: FontWeight.w700),
+              //                     ),
+              //                   ],
+              //                 ),
+              //                 Container(
+              //                   width: 117,
+              //                   height: 33,
+              //                   decoration: BoxDecoration(
+              //                       color: AppColors.primary,
+              //                       borderRadius:
+              //                       BorderRadius.circular(10)),
+              //                   child: Row(
+              //                     mainAxisAlignment:
+              //                     MainAxisAlignment.spaceBetween,
+              //                     children: [
+              //                       IconButton(
+              //                         onPressed: () {
+              //                          // cubit.incrementNumberOfInvitedPeople();
+              //                         },
+              //                         icon: const Icon(
+              //                           Icons.add,
+              //                           color: Colors.white,
+              //                         ),
+              //                         padding: EdgeInsets.zero,
+              //                       ),
+              //                       Text(
+              //                         context.read<AddInvitationCubit>().numberOfInvitedPeople
+              //                             .toString(),
+              //                         style: const TextStyle(
+              //                             color: Colors.white,
+              //                             fontSize: 20,
+              //                             fontWeight:
+              //                             FontWeight.w700),
+              //                       ),
+              //                       IconButton(
+              //                           onPressed: () {
+              //                            // cubit.decrementNumberOfInvitedPeople();
+              //                           },
+              //                           icon: const Icon(
+              //                             Icons.remove,
+              //                             color: Colors.white,
+              //                           ),
+              //                           padding: EdgeInsets.zero),
+              //                     ],
+              //                   ),
+              //                 )
+              //               ],
+              //             ),
+              //           ),
+              //         ),
+              //         Positioned(
+              //             right: 0,
+              //             top: 15,
+              //             child: CircleAvatar(
+              //               radius: 18,
+              //               backgroundColor: AppColors.primary,
+              //               child: Center(
+              //                   child: IconButton(
+              //                     onPressed: () {
+              //                       //TODO-->
+              //                      // cubit.removeSelectedContact(index);
+              //                     },
+              //                     icon: const Icon(
+              //                       Icons.close,
+              //                       color: Colors.white,
+              //                     ),
+              //                     padding: EdgeInsets.zero,
+              //                   )),
+              //             )),
+              //       ],
+              //     )
+              //         : SizedBox();
+              //   },
+              // ),
             ),
             const SizedBox(
               height: 40,

@@ -214,9 +214,9 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                     separatorBuilder: (context, index) => const SizedBox(
                       height: 20,
                     ),
-                    itemCount: cubit.selectedContactModelList.length,
+                    itemCount: cubit.model.selectedContactModelList.length,
                     itemBuilder: (context, index) {
-                      return cubit.selectedContactModelList[index].phones!
+                      return cubit.model.selectedContactModelList[index].phones!
                               .isNotEmpty
                           ? Stack(
                               alignment: Alignment.bottomCenter,
@@ -257,7 +257,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                           FontWeight.w700),
                                                 ),
                                                 Text(
-                                                  "${cubit.selectedContactModelList[index].name?.split(" ")[0]}",
+                                                  "${cubit.model.selectedContactModelList[index].name?.split(" ")[0]}",
                                                   style: const TextStyle(
                                                       fontSize: 17,
                                                       fontWeight:
@@ -266,7 +266,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                               ],
                                             ),
                                             Text(
-                                              "${cubit.selectedContactModelList[index].phones?[0].value}",
+                                              "${cubit.model.selectedContactModelList[index].phones?[0].value}",
                                               style: const TextStyle(
                                                   fontSize: 14,
                                                   color: AppColors.grey5,
