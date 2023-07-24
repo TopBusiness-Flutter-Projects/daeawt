@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
+import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/home_app_bar.dart';
 import '../../../../core/widgets/no_data_widget.dart';
@@ -73,12 +74,13 @@ class HomeTab extends StatelessWidget {
                   return const Center(child: ShowLoadingIndicator());
                 } else if (state is InvitationsHomeError) {
                   return Center(
-                    child: NoDataWidget(
-                      onclick: () {
-                        cubit.geInvitationsHome();
-                      },
-                      title: 'no_data'.tr(),
-                    ),
+                    child: Image.asset(ImageAssests.noDataIcon)
+                    // NoDataWidget(
+                    //   onclick: () {
+                    //     cubit.geInvitationsHome();
+                    //   },
+                    //   title: 'no_data'.tr(),
+                    // ),
                   );
                 } else {
                   if (cubit.invitationsList.isNotEmpty) {
@@ -93,12 +95,13 @@ class HomeTab extends StatelessWidget {
                     );
                   } else {
                     return Center(
-                      child: NoDataWidget(
-                        onclick: () {
-                          cubit.geInvitationsHome();
-                        },
-                        title: 'no_data'.tr(),
-                      ),
+                      child:Image.asset(ImageAssests.noDataIcon)
+                      // NoDataWidget(
+                      //   onclick: () {
+                      //     cubit.geInvitationsHome();
+                      //   },
+                      //   title: 'no_data'.tr(),
+                      // ),
                     );
                   }
                 }

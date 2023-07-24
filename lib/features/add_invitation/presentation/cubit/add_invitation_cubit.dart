@@ -217,6 +217,23 @@ bool isDataVaild1=false;
     return true;
   }
 
+  String? _currentAddress;
+  Position? _currentPosition;
+
+  // Future<void> _getCurrentPosition() async {
+  //   final hasPermission = await _handleLocationPermission();
+  //   if (!hasPermission) return;
+  //   await Geolocator.getCurrentPosition(
+  //       desiredAccuracy: LocationAccuracy.high)
+  //       .then((Position position) {
+  //    // setState(() => _currentPosition = position);
+  //   }).catchError((e) {
+  //     debugPrint(e);
+  //   });
+  // }
+
+
+
   moveCamera(LatLng target){
     mapController.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target:target,zoom: 14 )));
     emit(CameraMoveState());
