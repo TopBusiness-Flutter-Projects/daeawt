@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen>
         floatingActionButton: Stack(
           children: [
             Positioned(
-              bottom: 10,
+              bottom: 30,
               left: 170,
               right: 170,
               child: FloatingActionButton(

@@ -70,7 +70,7 @@ class HomeTab extends StatelessWidget {
             child: BlocBuilder<HomeCubit, HomeState>(
               builder: (context, state) {
                 if (state is InvitationsHomeLoading) {
-                  return Center(child: ShowLoadingIndicator());
+                  return const Center(child: ShowLoadingIndicator());
                 } else if (state is InvitationsHomeError) {
                   return Center(
                     child: NoDataWidget(

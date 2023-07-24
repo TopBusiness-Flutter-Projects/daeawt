@@ -17,3 +17,4 @@ class ChangeLocationState extends AddInvitationState {}
 class ChangingLanguageState extends AddInvitationState {}
 class InvitationDateSelected extends AddInvitationState {}
 class InvitationVaild extends AddInvitationState {}
+class CameraMoveState extends AddInvitationState {}
