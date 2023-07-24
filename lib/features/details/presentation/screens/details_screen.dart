@@ -507,17 +507,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          buttonPadding: EdgeInsets.symmetric(horizontal: 2),
+          actionsAlignment: MainAxisAlignment.center,
+          buttonPadding: const EdgeInsets.symmetric(horizontal: 2),
           title: const Text(
             AppStrings.areYouSureDeleteOccasion,
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
           ).tr(),
-          content: Text('${widget.homeListItemModel.title}',
+          content: Text(widget.homeListItemModel.title,textAlign: TextAlign.center,
               style:
                   const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
           actions: <Widget>[
             Container(
-              width: MediaQuery.of(context).size.width * 0.32,
+              width: MediaQuery.of(context).size.width * 0.35,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.green3),
@@ -532,7 +533,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
             ),
             Container(
-              width: MediaQuery.of(context).size.width * 0.32,
+              width: MediaQuery.of(context).size.width * 0.35,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: AppColors.red2),
