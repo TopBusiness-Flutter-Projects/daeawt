@@ -12,14 +12,14 @@ import '../../../../core/widgets/show_loading_indicator.dart';
 import '../widgets/home_list_item.dart';
 
 class HomeTab extends StatelessWidget {
-   HomeTab({Key? key}) : super(key: key);
+  HomeTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     HomeCubit cubit = context.read<HomeCubit>();
 
     return Scaffold(
-      body:  Column(
+      body: Column(
         children: [
           const HomeAppBar(),
           SizedBox(
@@ -29,7 +29,6 @@ class HomeTab extends StatelessWidget {
                 textController: cubit.searchController,
                 hintText: AppStrings.searchYourInvitations,
                 prefixIcon: const Icon(Icons.search),
-
                 onChanged: (p0) {
                   cubit.geInvitationsHome();
                 },
@@ -47,8 +46,8 @@ class HomeTab extends StatelessWidget {
                     ),
                     const Text(
                       AppStrings.allInvitations,
-                      style: TextStyle(
-                          fontSize: 20, fontWeight: FontWeight.w700),
+                      style:
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
                     ).tr(),
                     const Positioned(
                       bottom: 3,
@@ -69,38 +68,42 @@ class HomeTab extends StatelessWidget {
           ),
           Expanded(
             child: BlocBuilder<HomeCubit, HomeState>(
-  builder: (context, state) {
-    if(state  is InvitationsHomeLoading){
-      return Center(child: ShowLoadingIndicator());
-    }
-    else if(state is InvitationsHomeError){
-      return Center(
-        child:    NoDataWidget(onclick: () {
-          cubit.geInvitationsHome();
-        },
-          title: 'no_data'.tr(),
-        ),
-      );
-    }
-    else{
-      if(cubit.invitationsList.isNotEmpty){
-    return ListView.builder(
-      itemCount: cubit.invitationsList.length,
-      itemBuilder: (context, index) {
-      return  HomeListItem(homeListItemModel:cubit.invitationsList.elementAt(index) ,);
-    },);}
-    else{
-        return Center(
-          child:    NoDataWidget(onclick: () {
-            cubit.geInvitationsHome();
-          },
-            title: 'no_data'.tr(),
-          ),
-        );
-      }
-    }
-  },
-),
+              builder: (context, state) {
+                if (state is InvitationsHomeLoading) {
+                  return Center(child: ShowLoadingIndicator());
+                } else if (state is InvitationsHomeError) {
+                  return Center(
+                    child: NoDataWidget(
+                      onclick: () {
+                        cubit.geInvitationsHome();
+                      },
+                      title: 'no_data'.tr(),
+                    ),
+                  );
+                } else {
+                  if (cubit.invitationsList.isNotEmpty) {
+                    return ListView.builder(
+                      itemCount: cubit.invitationsList.length,
+                      itemBuilder: (context, index) {
+                        return HomeListItem(
+                          homeListItemModel:
+                              cubit.invitationsList.elementAt(index),
+                        );
+                      },
+                    );
+                  } else {
+                    return Center(
+                      child: NoDataWidget(
+                        onclick: () {
+                          cubit.geInvitationsHome();
+                        },
+                        title: 'no_data'.tr(),
+                      ),
+                    );
+                  }
+                }
+              },
+            ),
           ),
         ],
       ),

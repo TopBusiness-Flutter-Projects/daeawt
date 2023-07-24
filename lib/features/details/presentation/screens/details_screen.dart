@@ -66,11 +66,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             size: 30,
                           ),
                         ),
-                        //     :  const Icon(
-                        //   Icons.arrow_back,
-                        //   color: Colors.white,
-                        //   size: 30,
-                        // ),
+
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -303,6 +299,24 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     }
                                     else if(index==0){
                                       Navigator.pushNamed(context, Routes.messagesRoute);
+                                    }
+                                    else if(index==2){
+                                      Navigator.pushNamed(context, Routes.scannedRoute);
+                                    }
+                                    else if(index ==3){
+                                      Navigator.pushNamed(context, Routes.confirmedRoute);
+                                    }
+                                    else if(index ==5){
+                                      Navigator.pushNamed(context, Routes.waitingRoute);
+                                    }
+                                    else if(index ==4){
+                                      Navigator.pushNamed(context, Routes.apologyRoute);
+                                    }
+                                    else if(index ==7){
+                                      Navigator.pushNamed(context, Routes.failedRoute);
+                                    }
+                                    else if(index ==6){
+                                      Navigator.pushNamed(context, Routes.notSentRoute);
                                     }
                                   },
                                   child: Material(

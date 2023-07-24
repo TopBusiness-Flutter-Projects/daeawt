@@ -44,13 +44,16 @@ class NotificationScreen extends StatelessWidget {
             child: ListView.separated(
               itemCount: 10,
               itemBuilder: (context, index) {
-              return const NotificationsListItem();
-            }, separatorBuilder: (BuildContext context, int index) {
-
+                return const NotificationsListItem();
+              },
+              separatorBuilder: (BuildContext context, int index) {
                 return Divider();
-            },),
+              },
+            ),
           ),
-          const SizedBox(height: 50,)
+          const SizedBox(
+            height: 50,
+          )
         ],
       ),
     );

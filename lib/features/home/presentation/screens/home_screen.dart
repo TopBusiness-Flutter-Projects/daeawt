@@ -22,10 +22,10 @@ class _HomeScreenState extends State<HomeScreen>
   TabController? controller;
 
   static List<Widget> pages = [
-     HomeTab(),
+    HomeTab(),
     const NotificationScreen(),
     const ScanScreen(),
-     ProfileScreen()
+    ProfileScreen()
   ];
 
   @override
@@ -45,8 +45,6 @@ class _HomeScreenState extends State<HomeScreen>
     return Scaffold(
         body: Column(
           children: [
-
-
             Expanded(
               child: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),
