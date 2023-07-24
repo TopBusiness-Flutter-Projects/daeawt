@@ -15,25 +15,42 @@ class GoogleMapScreen extends StatelessWidget {
       builder: (context, state) {
         AddInvitationCubit cubit = context.read<AddInvitationCubit>();
         return Scaffold(
-          body: GoogleMap(
-            myLocationButtonEnabled: true,
-            myLocationEnabled: true,
-            mapType: MapType.normal,
-            onTap: (LatLng location) {
-              cubit.selectLocation(location);
-              cubit.getAddressFromLatLng();
-            },
-            initialCameraPosition:
-                const CameraPosition(target: LatLng(30.0450, 31.2242), zoom: 8),
-            onMapCreated: (controller) {
-              cubit.mapController = controller;
-            },
-            markers: {
-              Marker(
-                markerId: const MarkerId("cairo"),
-                position: cubit.selectedLocation,
+          body: Stack(
+            children: [
+              GoogleMap(
+
+                myLocationButtonEnabled: true,
+                myLocationEnabled: true,
+                mapType: MapType.normal,
+                onTap: (LatLng location) {
+                  cubit.selectLocation(location);
+                  cubit.getAddressFromLatLng();
+                },
+                initialCameraPosition:
+                    const CameraPosition(target: LatLng(30.0450, 31.2242), zoom: 8),
+                onMapCreated: (controller) {
+                  cubit.mapController = controller;
+                },
+                markers: {
+                  Marker(
+                    markerId: const MarkerId("cairo"),
+                    position: cubit.selectedLocation,
+                  )
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 38.0),
+                child: Align(
+                  alignment: Alignment.bottomLeft,
+                  child: ElevatedButton(
+                    child: Text("select"),
+                    onPressed: () {
+                     // context.read<AddServiceCubit>().setAddress(cubit.place);
+                      Navigator.pop(context);
+                    },),
+                ),
               )
-            },
+            ],
           ),
         );
       },

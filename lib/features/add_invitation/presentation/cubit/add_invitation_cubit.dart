@@ -1,8 +1,11 @@
+
+
 import 'package:bloc/bloc.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:daeawt/core/remote/service.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
@@ -145,7 +148,11 @@ class AddInvitationCubit extends Cubit<AddInvitationState> {
 
   getAddressFromLatLng() async {
     if(await Permission.location.isGranted){
+
+      Position userCurrentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      selectedLocation = LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude);
       List<Placemark> placemarks = await placemarkFromCoordinates(selectedLocation.latitude, selectedLocation.longitude);
+      moveCamera(selectedLocation);
       place = placemarks[0];
       address =
       '${place?.name}, ${place?.subLocality}, ${place
@@ -155,6 +162,9 @@ class AddInvitationCubit extends Cubit<AddInvitationState> {
     else{
       await Permission.location.request();
       if(await Permission.location.isGranted||await Permission.location.isLimited){
+        Position userCurrentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+        selectedLocation = LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude);
+        moveCamera(selectedLocation);
         List<Placemark> placemarks = await placemarkFromCoordinates(selectedLocation.latitude, selectedLocation.longitude);
         place = placemarks[0];
         address =
@@ -168,6 +178,38 @@ class AddInvitationCubit extends Cubit<AddInvitationState> {
     }
 
 
+  }
+
+  Future<bool> _handleLocationPermission(context) async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Location services are disabled. Please enable the services')));
+      return false;
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Location permissions are denied')));
+        return false;
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Location permissions are permanently denied, we cannot request permissions.')));
+      return false;
+    }
+    return true;
+  }
+
+  moveCamera(LatLng target){
+    mapController.moveCamera(CameraUpdate.newCameraPosition(CameraPosition(target:target,zoom: 14 )));
+    emit(CameraMoveState());
   }
 
   selectLocation(LatLng newLocation){
