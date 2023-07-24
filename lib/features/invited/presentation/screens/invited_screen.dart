@@ -161,7 +161,6 @@ cubit.onSearchTextChanged(p0);
 ),
     );
   }
-
   @override
   void initState() {
     super.initState();
