@@ -1,3 +1,4 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -48,14 +49,15 @@ Future<void> main() async {
   Bloc.observer = AppBlocObserver();
 
   runApp(
-    EasyLocalization(
+    DevicePreview(builder: (context) =>  EasyLocalization(
       supportedLocales: [Locale('ar', ''), Locale('en', '')],
       path: 'assets/lang',
       saveLocale: true,
       startLocale: Locale('ar', ''),
       fallbackLocale: Locale('ar', ''),
       child: Phoenix(child: const Elmazoon()),
-    ),
+    ),),
+
   );
 }
 final locator = GetIt.instance;

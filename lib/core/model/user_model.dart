@@ -14,27 +14,27 @@ class UserModel {
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
-    data: Data.fromJson(json["data"]),
+    data:json["data"]!=null? Data.fromJson(json["data"]):json["data"],
     message: json["message"],
     code: json["code"],
   );
 
   Map<String, dynamic> toJson() => {
-    "data": data!.toJson(),
+    "data": data?.toJson(),
     "message": message,
     "code": code,
   };
 }
 
 class Data {
-  User user;
-  String accessToken;
-  String tokenType;
+  User? user;
+  String? accessToken;
+  String? tokenType;
 
   Data({
-    required this.user,
-    required this.accessToken,
-    required this.tokenType,
+     this.user,
+     this.accessToken,
+     this.tokenType,
   });
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
@@ -44,7 +44,7 @@ class Data {
   );
 
   Map<String, dynamic> toJson() => {
-    "user": user.toJson(),
+    "user": user?.toJson(),
     "access_token": accessToken,
     "token_type": tokenType,
   };

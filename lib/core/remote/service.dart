@@ -11,6 +11,7 @@ import '../error/failures.dart';
 
 
 import '../model/InvitationDataModel.dart';
+import '../model/reset_password_model.dart';
 import '../model/status_resspons.dart';
 import '../model/user_model.dart';
 import '../preferences/preferences.dart';
@@ -29,6 +30,7 @@ class ServiceApi {
         formDataIsEnabled: true,
         body: await userData.updateToJson(),
       );
+
       return Right(UserModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
@@ -70,6 +72,7 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
   Future<Either<Failure, UserModel>> postLogin(LoginModel model) async {
     try {
       final response = await dio.post(
@@ -84,6 +87,63 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+
+  Future<Either<Failure, ResetPsswordModel>> postResetPassword(String email) async {
+    print("(((((((((((((((((((((((((((((((((((((((");
+    try {
+      final response = await dio.post(
+        EndPoints.resetPasswordUrl,
+        body: {
+          'email': email,
+
+        },
+      );
+      print(".............................................");
+      print(response);
+      return Right(ResetPsswordModel.fromJson(response));
+    } on ServerException {
+
+      return Left(ServerFailure());
+    }
+  }
+
+  Future<Either<Failure, ResetPsswordModel>> postResetPassword1(String email) async {
+    print("(((((((((((((((((((((((((((((((((((((((");
+    try {
+      final response = await dio.post(
+        EndPoints.resetPasswordUrl,
+        body: {
+          'email': email,
+
+        },
+      );
+      print(".............................................");
+      print(response);
+      return Right(ResetPsswordModel.fromJson(response));
+    } on ServerException {
+
+      return Left(ServerFailure());
+    }
+  }
+
+  postCheckCode(String code) async {
+    try {
+      final response = await dio.post(
+        EndPoints.checkCodeUrl,
+        body: {
+          'code': code,
+
+        },
+      );
+      print(".............................................");
+      print(response);
+      return Right(ResetPsswordModel.fromJson(response));
+    } on ServerException {
+
+      return Left(ServerFailure());
+    }
+  }
+
   Future<Either<Failure, InvitationDataModel>> getInvitationHome(String search
       ) async {
      String lan = await Preferences.instance.getSavedLang();

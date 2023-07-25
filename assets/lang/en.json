@@ -83,6 +83,7 @@
   "select_contacts1": "Select Contacts",
   "reminder_will_be_sent": "The reminder will be sent to all selected contacts",
   "select_all": "Select All",
-  "the_messages": "The Messages"
+  "the_messages": "The Messages",
+  "please_enter_email": "Please enter your email to recover your password"
 
 }

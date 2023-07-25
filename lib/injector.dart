@@ -1,7 +1,10 @@
 
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
 import 'package:daeawt/features/details/cubit/detials_cubit.dart';
+import 'package:daeawt/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
 import 'package:daeawt/features/invited/presentation/cubit/invited_cubit.dart';
+import 'package:daeawt/features/otp/presentation/cubit/otp_cubit.dart';
+import 'package:daeawt/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
 import 'package:daeawt/features/scan/cubit/scan_cubit.dart';
 
@@ -54,6 +57,15 @@ Future<void> setup() async {
   );
   serviceLocator.registerFactory(
         () => DetailsCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => ForgotPasswordCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => OtpCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => ProfileCubit(serviceLocator()),
   );
 
 

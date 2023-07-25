@@ -85,6 +85,7 @@
   "confirmed": "مؤكد",
   "not_confirmed": "مسودة",
   "select_all": "تحديد الكل",
-  "the_messages": "الرسائل"
+  "the_messages": "الرسائل",
+  "please_enter_email": "فضلا ادخل بريدك الالكتروني لنعيد لك كلمة المرور"
 
 }

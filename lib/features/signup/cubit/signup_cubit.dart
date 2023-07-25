@@ -32,9 +32,12 @@ bool isLoginValid=false;
     AppWidget.createProgressDialog(context, 'wait'.tr());
     final response = await api.registerUser(registerModel);
     response.fold(
-          (failure) => {Navigator.pop(context), emit(RegisterFailure())},
+          (failure) => {
+
+            Navigator.pop(context), emit(RegisterFailure())},
           (loginModel) {
-        if (loginModel.code == 409) {
+            print("------------------ ${loginModel.code}");
+        if (loginModel.code == 409 || loginModel.code == 410 ) {
           Navigator.pop(context);
           toastMessage("exists_email".tr(), context);
           // errorGetBar(translateText(AppStrings.noEmailError, context));

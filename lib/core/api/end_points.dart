@@ -13,6 +13,8 @@ class EndPoints {
   static const String addInvitationUrl = '${baseUrl}invitations/store';
   static const String updateUrl = '${baseUrl}provider/auth/update-profile';
   static const String contactUsUrl = '${baseUrl}client/auth/contact-us';
+  static const String resetPasswordUrl = '${baseUrl}provider/auth/password/email';
+  static const String checkCodeUrl = '${baseUrl}provider/auth/check-code';
 
 
 

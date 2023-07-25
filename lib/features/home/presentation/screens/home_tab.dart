@@ -34,6 +34,7 @@ class HomeTab extends StatelessWidget {
                   cubit.geInvitationsHome();
                 },
               )),
+          //all invitations
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Row(

@@ -7,15 +7,17 @@ class CustomTextFormField extends StatelessWidget {
   Widget? prefixIcon;
   String? hintText;
   void Function(String)? onChanged;
+  TextInputType? keyboardType;
 
   TextEditingController? textController;
   bool? isenable;
-   CustomTextFormField({this.prefixIcon,this.hintText,Key? key,this.onChanged,this.textController,this.isenable=true}) : super(key: key);
+   CustomTextFormField({this.prefixIcon,this.hintText,Key? key,this.onChanged,this.textController,this.isenable=true,this.keyboardType}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return   TextFormField(
-      keyboardType: TextInputType.text,
+
+      keyboardType: keyboardType,
       controller:textController ,
       enabled: isenable,
       validator: (value) {

@@ -39,6 +39,7 @@ dependencies:
   geolocator: ^8.2.0
   dropdown_button2: ^2.1.3
   flutter_svg:
+  device_preview:
 
 
 

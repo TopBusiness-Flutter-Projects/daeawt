@@ -23,14 +23,15 @@ class HomeListItem extends StatelessWidget {
                 arguments: homeListItemModel);
           },
           child: Card(
+
             child: Row(
               children: [
                 homeListItemModel.image.isNotEmpty
                     ? ManageNetworkImage(
                         imageUrl: homeListItemModel.image,
                         borderRadius: 90,
-                        width: 90,
-                        height: 90,
+                        width: MediaQuery.of(context).size.width*0.15,
+                        height: MediaQuery.of(context).size.height*0.1,
                       )
                     : Image.asset(
                         ImageAssests.homeItem), //ImageAssests.homeItem,

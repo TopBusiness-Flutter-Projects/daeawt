@@ -1,6 +1,9 @@
 import 'package:daeawt/core/widgets/custom_buttom.dart';
+import 'package:daeawt/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
+import 'package:daeawt/features/otp/presentation/cubit/otp_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -16,6 +19,18 @@ class OtpScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var languageCode = EasyLocalization.of(context)!.locale.languageCode;
 
+    return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    ForgotPasswordCubit cubit = context.read<ForgotPasswordCubit>();
+    return BlocConsumer<OtpCubit, OtpState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    OtpCubit cubit = context.read<OtpCubit>();
     return Scaffold(
       body:
       Column(
@@ -54,6 +69,7 @@ class OtpScreen extends StatelessWidget {
               ),
             ),
           ),
+          //ادخل الكود التأكيدى
           const Text(
             AppStrings.enterVerificationCode,
             style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
@@ -61,6 +77,7 @@ class OtpScreen extends StatelessWidget {
           const SizedBox(
             height: 25,
           ),
+          //سيتم ارسال كود تأكيدى على رقم الموبيل الخاص بك
           const Text(
             AppStrings.confirmationCodeSent,
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
@@ -69,9 +86,11 @@ class OtpScreen extends StatelessWidget {
             height: 50,
           ),
         //todo
+          //PinCodeTextField
           SizedBox(
             width: MediaQuery.of(context).size.width*0.6,
             child: PinCodeTextField(
+              controller:cubit.pinCode ,
               length: 6,
               appContext: context,
               keyboardType: TextInputType.number,
@@ -90,10 +109,15 @@ class OtpScreen extends StatelessWidget {
             height: 45,
           ),
           CustomButton(onPressed: () {
-            Navigator.pushNamed(context, Routes.newPasswordRoute);
+
+           // Navigator.pushNamed(context, Routes.newPasswordRoute);
           },text: AppStrings.confirm,)
         ],
       ),
     );
+  },
+);
+  },
+);
   }
 }

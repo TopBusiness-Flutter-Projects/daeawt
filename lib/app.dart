@@ -2,7 +2,10 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:daeawt/features/details/cubit/detials_cubit.dart';
+import 'package:daeawt/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
 import 'package:daeawt/features/messages/presentation/cubit/messages_cubit.dart';
+import 'package:daeawt/features/otp/presentation/cubit/otp_cubit.dart';
+import 'package:daeawt/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
 import 'package:daeawt/features/scan/cubit/scan_cubit.dart';
 import 'package:flutter/material.dart';
@@ -140,6 +143,15 @@ class _ElmazoonState extends State<Elmazoon> {
         ),
         BlocProvider(
           create: (_) => injector.serviceLocator<ScanCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<ForgotPasswordCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<OtpCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<ProfileCubit>(),
         ),
 
 

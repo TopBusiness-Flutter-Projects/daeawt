@@ -1,5 +1,6 @@
 import 'package:daeawt/core/widgets/custom_text_form_field.dart';
 import 'package:daeawt/core/widgets/small_bottom_curve.dart';
+import 'package:daeawt/preferences/preferences.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
@@ -26,15 +27,22 @@ class HomeAppBar extends StatelessWidget {
               width: double.infinity,
               //color: Colors.orange,
             ),
-             const Positioned(
+              Positioned(
               top: 50,
               right: 15,
               child: Column(
                 children: [
-                  Text("مرحبا , محمد محمد",
-                    style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: Colors.white),
-                  ),
-                  Text("اهلا بك فى دعوات",
+                  // const Text("مرحبا , ",
+                  //   style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: Colors.white),
+                  // ),
+                  FutureBuilder(
+                    future: Preferences.instance.getUserModel(),
+                    builder: (context, snapshot) {
+                    return  Text("مرحبا ,  ${snapshot.data?.data?.user?.name}",
+                      style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: Colors.white),
+                    );
+                  },),
+                  const Text("اهلا بك فى دعوات",
                     style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Colors.white),),
 
                 ],
