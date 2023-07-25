@@ -1,6 +1,7 @@
 import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/widgets/my_svg_widget.dart';
 import 'package:daeawt/core/widgets/show_loading_indicator.dart';
+import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/widgets/network_image.dart';
 import '../../../home/cubit/home_cubit.dart';
@@ -130,6 +131,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       //edit
                                       InkWell(
                                         onTap: () {
+                                          context.read<AddInvitationCubit>().setData(widget.homeListItemModel);
                                           Navigator.pushNamed(context,
                                               Routes.addInvitationRoute);
                                         },
@@ -483,7 +485,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 ),
                                 Text("${widget.homeListItemModel.address}",
                                     style: const TextStyle(
-                                        fontSize: 18,
+                                        fontSize: 14,
                                         fontWeight: FontWeight.w400))
                               ],
                             ),

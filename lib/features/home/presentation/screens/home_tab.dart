@@ -72,7 +72,8 @@ class HomeTab extends StatelessWidget {
               builder: (context, state) {
                 if (state is InvitationsHomeLoading) {
                   return const Center(child: ShowLoadingIndicator());
-                } else if (state is InvitationsHomeError) {
+                }
+                else if (state is InvitationsHomeError) {
                   return Center(
                     child: Image.asset(ImageAssests.noDataIcon)
                     // NoDataWidget(
@@ -82,7 +83,8 @@ class HomeTab extends StatelessWidget {
                     //   title: 'no_data'.tr(),
                     // ),
                   );
-                } else {
+                }
+                else {
                   if (cubit.invitationsList.isNotEmpty) {
                     return ListView.builder(
                       itemCount: cubit.invitationsList.length,

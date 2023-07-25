@@ -7,6 +7,8 @@ class ContactModel {
 
   bool? isSelected;
 
+  int numberOfInvitedPeople=0;
+
   ContactModel({this.name, this.phones, this.isSelected=false});
 
   @override

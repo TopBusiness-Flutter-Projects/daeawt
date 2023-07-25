@@ -2,8 +2,13 @@
 
 import 'package:bloc/bloc.dart';
 import 'package:contacts_service/contacts_service.dart';
+import 'package:daeawt/core/model/InvitationDataModel.dart';
 import 'package:daeawt/core/remote/service.dart';
+import 'package:daeawt/core/utils/toast_message_method.dart';
+import 'package:daeawt/features/home/cubit/home_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -11,6 +16,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+import '../../../../config/routes/app_routes.dart';
+import '../../../../core/utils/appwidget.dart';
 import '../../../home/models/contact_model.dart';
 import '../../model/add_invitation_model.dart';
 
@@ -33,7 +40,7 @@ bool isDataVaild1=false;
   String address = "";
   bool withSendingDate = false;
   List<ContactModel> contactModelList = [];
-  int numberOfInvitedPeople = 0 ;
+  List<ContactModel> allcontactModelList = [];
   late GoogleMapController mapController ;
   LatLng selectedLocation = const LatLng(30.0459, 31.2243);
   late Placemark? place;
@@ -53,6 +60,9 @@ bool isDataVaild1=false;
                   onTap: () async {
                     // Pick an image.
                     invitationImage = await picker.pickImage(source: ImageSource.gallery);
+                  model.image=invitationImage!.path;
+                    checkDataVaild1();
+
                     emit(SelectInvitationImageState());
 
                   },
@@ -63,6 +73,8 @@ bool isDataVaild1=false;
                   onTap: () async {
                     // Pick an image.
                     invitationImage =await  picker.pickImage(source: ImageSource.camera);
+                    model.image=invitationImage!.path;
+                     checkDataVaild1();
                     emit(SelectInvitationImageState());
 
                   },
@@ -105,6 +117,7 @@ bool isDataVaild1=false;
           }
 
         }
+        allcontactModelList.addAll(contactModelList);
         return contacts;
       }
     } else {
@@ -121,6 +134,7 @@ bool isDataVaild1=false;
         }
 
       }
+      allcontactModelList.addAll(contactModelList);
 
       return contacts;
     }
@@ -133,17 +147,18 @@ bool isDataVaild1=false;
     return isSelected;
   }
 
-  incrementNumberOfInvitedPeople(){
-    numberOfInvitedPeople++;
+  incrementNumberOfInvitedPeople(int index){
+    model.selectedContactModelList.elementAt(index).numberOfInvitedPeople++;
     emit(IncrementNumberOfInvitedPeopleState());
   }
 
-  decrementNumberOfInvitedPeople(){
-    if(numberOfInvitedPeople<=0){
-      numberOfInvitedPeople=0;
+  decrementNumberOfInvitedPeople(int index){
+    if(   model.selectedContactModelList.elementAt(index).numberOfInvitedPeople<=0){
+      model.selectedContactModelList.elementAt(index).numberOfInvitedPeople=0;
     }
     else{
-      numberOfInvitedPeople--;
+
+      model.selectedContactModelList.elementAt(index).numberOfInvitedPeople++;
 
     }
     emit(DecrementNumberOfInvitedPeopleState());
@@ -151,6 +166,7 @@ bool isDataVaild1=false;
 
   removeSelectedContact(int index){
     model.selectedContactModelList.removeAt(index);
+    contactModelList.elementAt(index).isSelected=false;
     emit(RemoveSelectedContactState());
   }
 
@@ -162,9 +178,12 @@ bool isDataVaild1=false;
       List<Placemark> placemarks = await placemarkFromCoordinates(selectedLocation.latitude, selectedLocation.longitude);
       moveCamera(selectedLocation);
       place = placemarks[0];
+      model.latitude=userCurrentPosition.latitude;
+      model.longitude=userCurrentPosition.longitude;
       address =
       '${place?.name}, ${place?.subLocality}, ${place
           ?.subAdministrativeArea},${place?.country}';
+      print(address);
       model.address=address;
       emit(LocationPermissionSuccessState());
     }
@@ -176,6 +195,9 @@ bool isDataVaild1=false;
         moveCamera(selectedLocation);
         List<Placemark> placemarks = await placemarkFromCoordinates(selectedLocation.latitude, selectedLocation.longitude);
         place = placemarks[0];
+        print(address);
+        model.latitude=userCurrentPosition.latitude;
+        model.longitude=userCurrentPosition.longitude;
         address =
         '${place?.name}, ${place?.street}, ${place
             ?.subAdministrativeArea},${place?.country}';
@@ -246,6 +268,7 @@ bool isDataVaild1=false;
 
   changeLanguageOption(String newLanguage){
     selectedLanguage = newLanguage ;
+    model.lang=selectedLanguage=="العربية"?"ar":"en";
     emit(ChangingLanguageState());
   }
 
@@ -265,4 +288,60 @@ bool isDataVaild1=false;
     }
     emit(InvitationVaild());
   }
+  onSearchTextChanged(String text) async {
+    contactModelList.clear();
+model.selectedContactModelList.clear();
+    print("dlflfllf");
+   // print(inviteess.length);
+    for (ContactModel userDetail in allcontactModelList) {
+      print(text+"dddd");
+      if (userDetail.name!.contains(text) )
+        contactModelList.add(userDetail);
+    }
+    emit(AddInvitationInitial());
+
+  }
+  void addinviatation(BuildContext context) async {
+    AppWidget.createProgressDialog(context, 'wait'.tr());
+    final response = await api.addInvitation(model);
+    response.fold(
+          (failure) => {Navigator.pop(context),
+           toastMessage("fail send".tr(), context)},
+          (loginModel) {
+     if (loginModel.code == 200) {
+       Navigator.pop(context);
+       context.read<HomeCubit>().geInvitationsHome();
+       Navigator.pushNamed(context, Routes.homeRoute);
+
+
+        }
+
+          else{
+              toastMessage("fail send".tr(), context);
+              }
+
+
+      },
+    );
+  }
+
+  void setData(InvitationModel homeListItemModel) {
+    model.title=homeListItemModel.title;
+    model.date=homeListItemModel.date;
+    model.as_draft=int.parse(homeListItemModel.status);
+    model.longitude=double.parse(homeListItemModel.longitude);
+    model.latitude=double.parse(homeListItemModel.latitude);
+    model.image=homeListItemModel.image;
+    dateController.text=homeListItemModel.date;
+    model.address=homeListItemModel.address;
+    address= model.address;
+    selectLocation(LatLng(model.latitude,  model.longitude));
+    updateBirthDate(date: model.date);
+    if(homeListItemModel.invitees.isNotEmpty){
+      for(int i=0;i<homeListItemModel.invitees.length;i++){
+
+      }
+    }
+  }
+
 }

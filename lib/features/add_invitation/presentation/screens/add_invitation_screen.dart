@@ -1,10 +1,13 @@
+import 'dart:io';
+
 import 'package:daeawt/core/utils/app_strings.dart';
 import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:daeawt/core/widgets/custom_text_form_field.dart';
 import 'package:daeawt/core/widgets/small_bottom_curve.dart';
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
-import '../../../home/cubit/home_cubit.dart';import 'package:easy_localization/easy_localization.dart';
+import '../../../home/cubit/home_cubit.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,7 +27,6 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocConsumer<AddInvitationCubit, AddInvitationState>(
       listener: (context, state) {
         if (state is SelectInvitationImageState) {
@@ -67,26 +69,27 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         Positioned(
                             left: 20,
                             top: 60,
-                            child: Directionality.of(context) == TextDirection.LTR
-                                ? IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(
-                                Icons.arrow_back,
-                                color: Colors.white,
-                                size: 35,
-                              ),
-                            )
-                                : IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: const Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 35,
-                                )))
+                            child:
+                                Directionality.of(context) == TextDirection.LTR
+                                    ? IconButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        icon: const Icon(
+                                          Icons.arrow_back,
+                                          color: Colors.white,
+                                          size: 35,
+                                        ),
+                                      )
+                                    : IconButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        icon: const Icon(
+                                          Icons.arrow_forward,
+                                          color: Colors.white,
+                                          size: 35,
+                                        )))
                       ],
                     ),
                   ),
@@ -228,14 +231,12 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                   InkWell(
                     onTap: () {
                       showBirthDateCalender();
-
                     },
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 28.0, vertical: 10),
                       child: CustomTextFormField(
-                        isenable:false,
-
+                        isenable: false,
                         textController: cubit.dateController,
                         hintText: AppStrings.enterEventName,
                       ),
@@ -247,7 +248,11 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: Visibility(
                           visible: cubit.model.date.isEmpty,
-                          child: Text('enter_date',style: TextStyle(color: AppColors.error,fontSize: 10),)),
+                          child: Text(
+                            'enter_date',
+                            style:
+                                TextStyle(color: AppColors.error, fontSize: 10),
+                          )),
                     ),
                   ),
                   //اسم المناسبة
@@ -276,9 +281,10 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                     child: CustomTextFormField(
                       hintText: AppStrings.enterEvenTitle,
                       onChanged: (p0) {
-                        cubit.model.title=p0;
+                        cubit.model.title = p0;
+                        formKey.currentState!.validate();
+                        cubit.checkDataVaild1();
                       },
-
                     ),
                   ),
                   const SizedBox(
@@ -307,8 +313,8 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                       await cubit.uploadInvitationImage(context);
                     },
                     child: Container(
-                      margin:
-                          const EdgeInsets.symmetric(horizontal: 28, vertical: 8),
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 28, vertical: 8),
                       padding: const EdgeInsets.symmetric(
                           horizontal: 18, vertical: 12),
                       decoration: BoxDecoration(
@@ -337,9 +343,24 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: Visibility(
                           visible: cubit.model.image.isEmpty,
-                          child: Text('enter_image',style: TextStyle(color: AppColors.error,fontSize: 10),)),
+                          child: Text(
+                            'enter_image',
+                            style:
+                                TextStyle(color: AppColors.error, fontSize: 10),
+                          )),
                     ),
                   ),
+                  cubit.model.image.isNotEmpty
+                      ? SizedBox(
+                          width: MediaQuery.of(context).size.width - 50,
+                          height: 150,
+                          child: Image.file(
+                              height: 150,
+                              width: MediaQuery.of(context).size.width - 50,
+                              fit: BoxFit.fill,
+                              File(cubit.model.image)),
+                        )
+                      : SizedBox(),
                   //first check box list tile
                   SizedBox(
                     height: 40,
@@ -352,9 +373,9 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                 vertical: 0, horizontal: 10),
                             controlAffinity: ListTileControlAffinity.leading,
                             value: cubit.withBarcode,
-                            title:
-                                const Text(AppStrings.invitationWithEntryBarcode)
-                                    .tr(),
+                            title: const Text(
+                                    AppStrings.invitationWithEntryBarcode)
+                                .tr(),
                             onChanged: (bool? value) {
                               cubit.changeWithBarcodeCheckListTile(value);
                             },
@@ -445,7 +466,11 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: Visibility(
                           visible: cubit.model.address.isEmpty,
-                          child: Text('enter_address',style: TextStyle(color: AppColors.error,fontSize: 10),)),
+                          child: Text(
+                            'enter_address',
+                            style:
+                                TextStyle(color: AppColors.error, fontSize: 10),
+                          )),
                     ),
                   ),
                   //last 2 buttons
@@ -458,12 +483,13 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                           child: CustomButton(
                             backgroundColor: AppColors.primary,
                             onPressed: () {
-                              if(formKey.currentState!.validate()&&cubit.isDataVaild1){
-                              Navigator.pushNamed(
-                                  context, Routes.addInvitationStep2Route);
-                            }
-
-                              },
+                              if (formKey.currentState!.validate() &&
+                                  cubit.isDataVaild1) {
+                                cubit.model.step=2;
+                                Navigator.pushNamed(
+                                    context, Routes.addInvitationStep2Route);
+                              }
+                            },
                             text: AppStrings.tracking,
                           ),
                         ),
@@ -473,7 +499,13 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         Expanded(
                           child: CustomButton(
                             onPressed: () {
-                              Navigator.pop(context);
+                              if (formKey.currentState!.validate() &&
+                                  cubit.isDataVaild1) {
+                                cubit.model.as_draft=1;
+
+                                cubit.addinviatation(context);
+
+                              }
                             },
                             text: AppStrings.saveAsDraft.tr(),
                           ),
@@ -492,6 +524,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
       },
     );
   }
+
   showBirthDateCalender() async {
     DateTime? date = await showDatePicker(
         context: context,
@@ -515,5 +548,4 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
           .updateBirthDate(date: DateFormat('yyyy-MM-dd', 'en').format(date));
     }
   }
-
 }

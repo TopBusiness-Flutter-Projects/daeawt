@@ -34,8 +34,8 @@ class InvitationModel {
   String longitude;
   String latitude;
   String password;
-  int userId;
-  String status;
+  dynamic userId;
+  dynamic status;
   int step;
   List<Invitee> invitees;
   int messages;

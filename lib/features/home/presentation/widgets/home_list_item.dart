@@ -29,8 +29,8 @@ class HomeListItem extends StatelessWidget {
                     ? ManageNetworkImage(
                         imageUrl: homeListItemModel.image,
                         borderRadius: 90,
-                        width: 110,
-                        height: 110,
+                        width: 90,
+                        height: 90,
                       )
                     : Image.asset(
                         ImageAssests.homeItem), //ImageAssests.homeItem,
@@ -55,8 +55,10 @@ class HomeListItem extends StatelessWidget {
                           ),
                           Text("${homeListItemModel.address}",
                               //شبين الكوم , المنوفية
+
                               style: const TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.w400)),
+
+                                  fontSize: 14, fontWeight: FontWeight.w400)),
                         ],
                       ),
                       SizedBox(
@@ -77,16 +79,16 @@ class HomeListItem extends StatelessWidget {
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
               decoration: BoxDecoration(
-                  color: homeListItemModel.status == "0"
+                  color: homeListItemModel.status == "0"||homeListItemModel.status==0
                       ? AppColors.grey1
                       : AppColors.lightGreen,
                   borderRadius: BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15))),
               child: Text(
-                "${homeListItemModel.status == "0" ? "not_confirmed".tr() : "confirmed".tr()}", //مؤكد
+                "${ homeListItemModel.status == "0"||homeListItemModel.status==0 ? "not_confirmed".tr() : "confirmed".tr()}", //مؤكد
                 style: TextStyle(
-                    color: homeListItemModel.status == "0"
+                    color:  homeListItemModel.status == "0"||homeListItemModel.status==0
                         ? AppColors.black1
                         : AppColors.green1),
               )),

@@ -1,3 +1,4 @@
+import 'package:daeawt/features/add_invitation/model/add_invitation_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
@@ -10,6 +11,7 @@ import '../error/failures.dart';
 
 
 import '../model/InvitationDataModel.dart';
+import '../model/status_resspons.dart';
 import '../model/user_model.dart';
 import '../preferences/preferences.dart';
 
@@ -45,6 +47,25 @@ class ServiceApi {
         body: await userData.updateuserToJson(),
       );
       return Right(UserModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  Future<Either<Failure, StatusResponse>> addInvitation(AddInvitationModel invitationModel) async {
+    try {
+      print(";;;;");
+      print(invitationModel.step);
+      UserModel loginModel = await Preferences.instance.getUserModel();
+
+      final response = await dio.post(
+        options: Options(
+          headers: {'Authorization': loginModel.data!.accessToken!},
+        ),
+        EndPoints.addInvitationUrl,
+        formDataIsEnabled: true,
+        body: await invitationModel.updateToJson(),
+      );
+      return Right(StatusResponse.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }

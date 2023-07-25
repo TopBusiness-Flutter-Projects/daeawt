@@ -265,7 +265,8 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                                               child: const Text(AppStrings.send, style: TextStyle(
                                                   color: Colors.white),).tr(),
                                               onPressed: () {
-                                                Navigator.pushNamed(context, Routes.homeRoute);
+                                                cubit.addinviatation(context);
+                                              //
 
                                               },
 

@@ -1,5 +1,6 @@
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
 
+import '../../../../core/utils/toast_message_method.dart';
 import '../../../home/cubit/home_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -287,7 +288,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                             children: [
                                               IconButton(
                                                 onPressed: () {
-                                                  cubit.incrementNumberOfInvitedPeople();
+                                                  cubit.incrementNumberOfInvitedPeople(index);
                                                 },
                                                 icon: const Icon(
                                                   Icons.add,
@@ -296,7 +297,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                 padding: EdgeInsets.zero,
                                               ),
                                               Text(
-                                                cubit.numberOfInvitedPeople
+                                                cubit.model.selectedContactModelList.elementAt(index).numberOfInvitedPeople
                                                     .toString(),
                                                 style: const TextStyle(
                                                     color: Colors.white,
@@ -306,7 +307,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                               ),
                                               IconButton(
                                                   onPressed: () {
-                                                    cubit.decrementNumberOfInvitedPeople();
+                                                    cubit.decrementNumberOfInvitedPeople(index);
                                                   },
                                                   icon: const Icon(
                                                     Icons.remove,
@@ -359,7 +360,15 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                         child: CustomButton(
                           backgroundColor: AppColors.primary,
                           onPressed: () {
-                             Navigator.pushNamed(context, Routes.addInvitationStep4Route);
+                            if(cubit.model.selectedContactModelList.length>0){
+                              cubit.model.step=4;
+
+                              Navigator.pushNamed(context, Routes.addInvitationStep4Route);
+
+                            }
+                            else{
+                              toastMessage("select_contact".tr(), context);
+                            }
                           },
                           text: AppStrings.tracking,
                         ),
@@ -370,8 +379,16 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                       Expanded(
                         child: CustomButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, Routes.homeRoute);
-                          },
+                            if(cubit.model.selectedContactModelList.length>0){
+                              cubit.model.as_draft=1;
+
+                              cubit.addinviatation(context);
+
+
+                            }
+                            else{
+                              toastMessage("select_contact".tr(), context);
+                            }                          },
                           text: AppStrings.save.tr(),
                         ),
                       ),

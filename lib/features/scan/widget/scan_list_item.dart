@@ -1,11 +1,14 @@
+import 'package:daeawt/core/model/InvitationDataModel.dart';
 import 'package:daeawt/core/utils/app_colors.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/utils/assets_manager.dart';
+import '../../../core/utils/assets_manager.dart';
+import '../../../core/widgets/network_image.dart';
 
 class ScanListItem extends StatelessWidget {
-  const ScanListItem({Key? key}) : super(key: key);
-
+  const ScanListItem({Key? key, required this.homeListItemModel}) : super(key: key);
+  final InvitationModel homeListItemModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,24 +20,33 @@ class ScanListItem extends StatelessWidget {
               //  mainAxisAlignment: MainAxisAlignment.start,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Image.asset(ImageAssests.homeItem),
-                const Padding(
+                homeListItemModel.image.isNotEmpty
+                    ? ManageNetworkImage(
+                  imageUrl: homeListItemModel.image,
+                  borderRadius: 90,
+                  width: 90,
+                  height: 90,
+                )
+                    : Image.asset(
+                    ImageAssests.homeItem),
+                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "sat, 01 jun 2023",
+                        DateFormat('yyyy EEE MMM dd  ').format(DateTime.parse(homeListItemModel.date))
+                     ,
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w400),
                       ),
-                      Text("عيد ميلاد",
+                      Text(homeListItemModel.title,
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w700)),
                       Text("الرقم السرى",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w700)),
-                      Text("1234567",
+                      Text(homeListItemModel.password,
                           style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,

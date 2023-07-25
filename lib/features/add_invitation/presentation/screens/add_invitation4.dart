@@ -297,18 +297,19 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                const Padding(
+                                 Padding(
                                   padding:
                                       EdgeInsets.symmetric(horizontal: 8.0),
                                   child: Row(
                                     children: [
                                       Text(
-                                        "نتشرف بدعوتكم لحضور عيد ميلاد",
+                                      cubit.selectedLanguage=="العربية"?
+                                      "نتشرف بدعوتكم لحضور " +cubit.model.title:"We are honored to invite you to attend "+cubit.model.title,
                                         textAlign: TextAlign.start,
                                         style: TextStyle(
                                             color: AppColors.black1,
                                             fontWeight: FontWeight.w400,
-                                            fontSize: 18),
+                                            fontSize: 14),
                                       ),
                                     ],
                                   ),
@@ -324,14 +325,16 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                   child: CustomButton(
                                       onPressed: () {},
                                       height: 45,
-                                      text: AppStrings.confirm,
+                                      text:                                      cubit.selectedLanguage=="العربية"?
+                                      "تأكيد":"Confirm",
                                       backgroundColor: AppColors.green2)),
                               const SizedBox(width: 8,),
                               Expanded(
                                 child: CustomButton(
                                   onPressed: () {},
                                   height: 45,
-                                  text: AppStrings.apology,
+                                  text:                                      cubit.selectedLanguage=="العربية"?
+                                  "اعتذر":"Applogy",
                                   backgroundColor: AppColors.red1,
                                 ),
                               ),
@@ -346,7 +349,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(50)
                           ),
-                          child: const Text(AppStrings.invitationLocation,style: TextStyle(
+                          child:  Text(                                      cubit.selectedLanguage=="العربية"?
+                          "موقع المناسبة":"Location",style: TextStyle(
                             color: AppColors.black1,
                             fontSize: 18,
                             fontWeight: FontWeight.w700
@@ -367,7 +371,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                         child: CustomButton(
                           backgroundColor: AppColors.primary,
                           onPressed: () {
-
+cubit.model.step=5;
                             Navigator.pushNamed(context, Routes.addInvitationStep5Route);
                           },
                           text: AppStrings.tracking,
@@ -379,7 +383,10 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                       Expanded(
                         child: CustomButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, Routes.homeRoute);
+                            cubit.model.as_draft=1;
+                            cubit.addinviatation(context);
+
+                            //    Navigator.pushNamed(context, Routes.homeRoute);
                           },
                           text: AppStrings.saveAsDraft.tr(),
                         ),

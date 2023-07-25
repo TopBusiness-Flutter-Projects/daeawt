@@ -2,7 +2,7 @@ import 'package:daeawt/core/utils/app_strings.dart';
 import 'package:daeawt/features/home/presentation/screens/home_tab.dart';
 import 'package:daeawt/features/home/presentation/screens/notification_screen.dart';
 import 'package:daeawt/features/home/presentation/screens/profile_screen.dart';
-import 'package:daeawt/features/home/presentation/screens/scan_screen.dart';
+import 'package:daeawt/features/scan/presenation/screens/scan_screen.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import '../../../../config/routes/app_routes.dart';

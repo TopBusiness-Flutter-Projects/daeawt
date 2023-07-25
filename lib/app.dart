@@ -4,6 +4,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:daeawt/features/details/cubit/detials_cubit.dart';
 import 'package:daeawt/features/messages/presentation/cubit/messages_cubit.dart';
 import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
+import 'package:daeawt/features/scan/cubit/scan_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -136,6 +137,9 @@ class _ElmazoonState extends State<Elmazoon> {
         ),
         BlocProvider(
           create: (_) => injector.serviceLocator<MessagesCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<ScanCubit>(),
         ),
 
 
