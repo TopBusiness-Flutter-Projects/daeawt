@@ -1,12 +1,16 @@
 
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
+import 'package:daeawt/features/confirmed/cubit/confirmed_cubit.dart';
 import 'package:daeawt/features/details/cubit/detials_cubit.dart';
+import 'package:daeawt/features/failed/presentation/cubit/faild_cubit.dart';
 import 'package:daeawt/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
 import 'package:daeawt/features/invited/presentation/cubit/invited_cubit.dart';
+import 'package:daeawt/features/not_sent/cubit/notsent_cubit.dart';
 import 'package:daeawt/features/otp/presentation/cubit/otp_cubit.dart';
 import 'package:daeawt/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
 import 'package:daeawt/features/scan/cubit/scan_cubit.dart';
+import 'package:daeawt/features/scanned/presentation/cubit/scanned_cubit.dart';
 
 import 'core/api/app_interceptors.dart';
 import 'core/api/base_api_consumer.dart';
@@ -16,10 +20,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
+import 'features/apology/cubit/appology_cubit.dart';
 import 'features/home/cubit/home_cubit.dart';
 import 'features/login/cubit/login_cubit.dart';
 import 'features/messages/presentation/cubit/messages_cubit.dart';
 import 'features/signup/cubit/signup_cubit.dart';
+import 'features/waiting/cubit/waiting_cubit.dart';
 
 
 
@@ -46,6 +52,25 @@ Future<void> setup() async {
   serviceLocator.registerFactory(
         () => MessagesCubit(serviceLocator()),
   );
+  serviceLocator.registerFactory(
+        () => ScannedCubit(),
+  );
+  serviceLocator.registerFactory(
+        () => ConfirmedCubit(),
+  );
+  serviceLocator.registerFactory(
+        () => AppologyCubit(),
+  );
+  serviceLocator.registerFactory(
+        () => NotsentCubit(),
+  );
+  serviceLocator.registerFactory(
+        () => FaildCubit(),
+  );
+  serviceLocator.registerFactory(
+        () => WaitingCubit(),
+  );
+
   serviceLocator.registerFactory(
         () => ReminderCubit(serviceLocator()),
   );

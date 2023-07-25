@@ -2,12 +2,16 @@ import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:daeawt/features/details/cubit/detials_cubit.dart';
+import 'package:daeawt/features/failed/presentation/cubit/faild_cubit.dart';
 import 'package:daeawt/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
 import 'package:daeawt/features/messages/presentation/cubit/messages_cubit.dart';
+import 'package:daeawt/features/not_sent/cubit/notsent_cubit.dart';
 import 'package:daeawt/features/otp/presentation/cubit/otp_cubit.dart';
 import 'package:daeawt/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
 import 'package:daeawt/features/scan/cubit/scan_cubit.dart';
+import 'package:daeawt/features/scanned/presentation/cubit/scanned_cubit.dart';
+import 'package:daeawt/features/waiting/cubit/waiting_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,6 +37,8 @@ import 'core/utils/toast_message_method.dart';
 
 
 import 'features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
+import 'features/apology/cubit/appology_cubit.dart';
+import 'features/confirmed/cubit/confirmed_cubit.dart';
 import 'features/home/cubit/home_cubit.dart';
 import 'features/invited/presentation/cubit/invited_cubit.dart';
 import 'features/login/cubit/login_cubit.dart';
@@ -143,6 +149,24 @@ class _ElmazoonState extends State<Elmazoon> {
         ),
         BlocProvider(
           create: (_) => injector.serviceLocator<ScanCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<ScannedCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<WaitingCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<FaildCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<NotsentCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<AppologyCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<ConfirmedCubit>(),
         ),
         BlocProvider(
           create: (_) => injector.serviceLocator<ForgotPasswordCubit>(),

@@ -39,8 +39,9 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                       height: 160,
                       width: double.infinity,
                       child: Center(
-                        child: const Text(
-                          AppStrings.createNewInvitation,
+                        child:  Text(
+                          cubit.homeListItemModel==null?
+                          AppStrings.createNewInvitation:"update_invitation".tr(),
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 18,
@@ -265,7 +266,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                                               child: const Text(AppStrings.send, style: TextStyle(
                                                   color: Colors.white),).tr(),
                                               onPressed: () {
-                                                cubit.addinviatation(context);
+                                               cubit.homeListItemModel==null? cubit.addinviatation(context): cubit.updateinviatation(context);
                                               //
 
                                               },

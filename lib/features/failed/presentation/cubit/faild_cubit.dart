@@ -2,25 +2,18 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
 import '../../../../core/model/InvitationDataModel.dart';
-import '../../../../core/remote/service.dart';
 
-part 'messages_state.dart';
+part 'faild_state.dart';
 
-class MessagesCubit extends Cubit<MessagesState> {
-  MessagesCubit( this.api) : super(MessagesInitial());
-  ServiceApi api;
-  bool isVisible = false;
-  changeVisibility(){
-    isVisible = !isVisible;
-    emit(ChangingVisibilityState());
-  }
+class FaildCubit extends Cubit<FaildState> {
+  FaildCubit() : super(FaildInitial());
   List<Invitee> invitees=[];
   List<Invitee> inviteess=[];
   void setdata(InvitationModel homeListItemModel) {
-    invitees=homeListItemModel.invitees;
-    inviteess.addAll(homeListItemModel.invitees);
+    invitees=homeListItemModel.all_failed;
+    inviteess.addAll(homeListItemModel.all_failed);
 
-    emit(MessageLoaded());
+    emit(FaildLoaded());
   }
   onSearchTextChanged(String text) async {
     invitees.clear();
@@ -32,7 +25,7 @@ class MessagesCubit extends Cubit<MessagesState> {
       if (userDetail.name.contains(text) )
         invitees.add(userDetail);
     }
-    emit(MessageLoaded());
+    emit(FaildLoaded());
 
   }
 }

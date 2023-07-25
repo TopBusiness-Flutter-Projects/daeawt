@@ -38,6 +38,13 @@ class InvitationModel {
   dynamic status;
   int step;
   List<Invitee> invitees;
+  List<Invitee> all_messages;
+  List<Invitee> all_confirmed;
+  List<Invitee> all_scanned;
+  List<Invitee> all_waiting;
+  List<Invitee> all_apologized;
+  List<Invitee> all_failed;
+  List<Invitee> all_not_sent;
   int messages;
   int inviteesCount;
   int scanned;
@@ -63,6 +70,13 @@ class InvitationModel {
     required this.status,
     required this.step,
     required this.invitees,
+    required this.all_apologized,
+    required this.all_confirmed,
+    required this.all_failed,
+    required this.all_messages,
+    required this.all_not_sent,
+    required this.all_scanned,
+    required this.all_waiting,
     required this.messages,
     required this.inviteesCount,
     required this.scanned,
@@ -89,6 +103,13 @@ class InvitationModel {
     status: json["status"],
     step: json["step"],
     invitees: List<Invitee>.from(json["invitees"].map((x) => Invitee.fromJson(x))),
+    all_waiting: List<Invitee>.from(json["all_waiting"].map((x) => Invitee.fromJson(x))),
+    all_apologized: List<Invitee>.from(json["all_apologized"].map((x) => Invitee.fromJson(x))),
+    all_confirmed: List<Invitee>.from(json["all_confirmed"].map((x) => Invitee.fromJson(x))),
+    all_failed: List<Invitee>.from(json["all_failed"].map((x) => Invitee.fromJson(x))),
+    all_messages: List<Invitee>.from(json["all_messages"].map((x) => Invitee.fromJson(x))),
+    all_not_sent: List<Invitee>.from(json["all_not_sent"].map((x) => Invitee.fromJson(x))),
+    all_scanned: List<Invitee>.from(json["all_scanned"].map((x) => Invitee.fromJson(x))),
     messages: json["messages"],
     inviteesCount: json["invitees_count"],
     scanned: json["scanned"],
@@ -115,6 +136,13 @@ class InvitationModel {
     "status": status,
     "step": step,
     "invitees": List<dynamic>.from(invitees.map((x) => x.toJson())),
+    "all_waiting": List<dynamic>.from(all_waiting.map((x) => x.toJson())),
+    "all_scanned": List<dynamic>.from(all_scanned.map((x) => x.toJson())),
+    "all_not_sent": List<dynamic>.from(all_not_sent.map((x) => x.toJson())),
+    "all_messages": List<dynamic>.from(all_messages.map((x) => x.toJson())),
+    "all_confirmed": List<dynamic>.from(all_confirmed.map((x) => x.toJson())),
+    "all_failed": List<dynamic>.from(all_failed.map((x) => x.toJson())),
+    "all_apologized": List<dynamic>.from(all_apologized.map((x) => x.toJson())),
     "messages": messages,
     "invitees_count": inviteesCount,
     "scanned": scanned,
@@ -127,6 +155,7 @@ class InvitationModel {
 }
 
 class Invitee {
+  List<Message> messages;
   int id;
   int invitationId;
   String name;
@@ -149,6 +178,7 @@ class Invitee {
     required this.status,
     required this.createdAt,
     required this.updatedAt,
+    required this.messages,
   });
 
   factory Invitee.fromJson(Map<String, dynamic> json) => Invitee(
@@ -161,6 +191,7 @@ class Invitee {
     status: json["status"],
     createdAt: DateTime.parse(json["created_at"]),
     updatedAt: DateTime.parse(json["updated_at"]),
+    messages:json["messages"]!=null? List<Message>.from(json["messages"].map((x) => Message.fromJson(x))):[],
   );
 
   Map<String, dynamic> toJson() => {
@@ -171,6 +202,46 @@ class Invitee {
     "phone": phone,
     "invitees_number": inviteesNumber,
     "status": status,
+    "created_at": createdAt.toIso8601String(),
+    "updated_at": updatedAt.toIso8601String(),
+    "messages": List<dynamic>.from(messages.map((x) => x.toJson())),
+  };
+}
+class Message {
+  int id;
+  int invitationId;
+  int inviteeId;
+  String title;
+  String message;
+  DateTime createdAt;
+  DateTime updatedAt;
+
+  Message({
+    required this.id,
+    required this.invitationId,
+    required this.inviteeId,
+    required this.title,
+    required this.message,
+    required this.createdAt,
+    required this.updatedAt,
+  });
+
+  factory Message.fromJson(Map<String, dynamic> json) => Message(
+    id: json["id"],
+    invitationId: json["invitation_id"],
+    inviteeId: json["invitee_id"],
+    title: json["title"],
+    message: json["message"],
+    createdAt: DateTime.parse(json["created_at"]),
+    updatedAt: DateTime.parse(json["updated_at"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "invitation_id": invitationId,
+    "invitee_id": inviteeId,
+    "title": title,
+    "message": message,
     "created_at": createdAt.toIso8601String(),
     "updated_at": updatedAt.toIso8601String(),
   };

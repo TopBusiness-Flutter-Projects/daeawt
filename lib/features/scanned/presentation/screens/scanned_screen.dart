@@ -1,6 +1,9 @@
+import 'package:daeawt/features/scanned/presentation/cubit/scanned_cubit.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/assets_manager.dart';
@@ -8,12 +11,27 @@ import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/my_svg_widget.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
 
-class ScannedScreen extends StatelessWidget {
-  const ScannedScreen({Key? key}) : super(key: key);
+class ScannedScreen extends StatefulWidget {
+  const ScannedScreen({Key? key, required this.homeListItemModel}) : super(key: key);
+  final InvitationModel homeListItemModel ;
 
+  @override
+  State<ScannedScreen> createState() => _ScannedScreenState();
+}
+
+class _ScannedScreenState extends State<ScannedScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ScannedCubit>().setdata(widget.homeListItemModel);
+  }
   @override
   Widget build(BuildContext context) {
     var languageCode = easy.EasyLocalization.of(context)!.locale.languageCode;
+    ScannedCubit cubit=context.read<ScannedCubit>();
+
+    return BlocBuilder<ScannedCubit, ScannedState>(
+  builder: (context, state) {
     return Scaffold (
       body: Column(
         children: [
@@ -69,7 +87,7 @@ class ScannedScreen extends StatelessWidget {
                 height: 60,
                 child: CustomTextFormField(
                   onChanged: (p0) {
-                   // cubit.onSearchTextChanged(p0);
+                    cubit.onSearchTextChanged(p0);
                   },
                   hintText: AppStrings.search,
                   prefixIcon: const Icon(Icons.search),
@@ -111,15 +129,15 @@ class ScannedScreen extends StatelessWidget {
                                 fontSize: 20
                             ),
                           ),
-                          Text("mohamed wael",
-                          //  cubit.invitees.elementAt(index).name ,
+                          Text(
+                            cubit.invitees.elementAt(index).name ,
                             style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 20
                           ),),
                         ],),
-                        Text("23/11/2023",
-                          //DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
+                        Text(
+                          easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 17,
@@ -135,13 +153,15 @@ class ScannedScreen extends StatelessWidget {
               );
             },
             // separatorBuilder: (context, index) =>Divider() ,
-            itemCount: 4
-          //  cubit.invitees.length
+            itemCount:
+            cubit.invitees.length
             , separatorBuilder: (BuildContext context, int index) {
             return Divider();
           },))
         ],
       ),
     );
+  },
+);
   }
 }

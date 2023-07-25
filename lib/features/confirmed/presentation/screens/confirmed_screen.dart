@@ -1,6 +1,9 @@
+import 'package:daeawt/features/confirmed/cubit/confirmed_cubit.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/assets_manager.dart';
@@ -8,11 +11,26 @@ import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/my_svg_widget.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
 
-class ConfirmedScreen extends StatelessWidget {
-  const ConfirmedScreen({Key? key}) : super(key: key);
+class ConfirmedScreen extends StatefulWidget {
+  const ConfirmedScreen({Key? key, required this.homeListItemModel}) : super(key: key);
+  final InvitationModel homeListItemModel ;
+
+  @override
+  State<ConfirmedScreen> createState() => _ConfirmedScreenState();
+}
+
+class _ConfirmedScreenState extends State<ConfirmedScreen> {  @override
+void initState() {
+  super.initState();
+  context.read<ConfirmedCubit>().setdata(widget.homeListItemModel);
+}
 
   @override Widget build(BuildContext context) {
+    ConfirmedCubit cubit=context.read<ConfirmedCubit>();
+
     var languageCode = easy.EasyLocalization.of(context)!.locale.languageCode;
+    return BlocBuilder<ConfirmedCubit, ConfirmedState>(
+  builder: (context, state) {
     return Scaffold (
       body: Column(
         children: [
@@ -68,7 +86,7 @@ class ConfirmedScreen extends StatelessWidget {
                 height: 60,
                 child: CustomTextFormField(
                   onChanged: (p0) {
-                    // cubit.onSearchTextChanged(p0);
+                     cubit.onSearchTextChanged(p0);
                   },
                   hintText: AppStrings.search,
                   prefixIcon: const Icon(Icons.search),
@@ -110,15 +128,15 @@ class ConfirmedScreen extends StatelessWidget {
                                 fontSize: 20
                             ),
                           ),
-                          Text("mohamed wael",
-                            //  cubit.invitees.elementAt(index).name ,
+                          Text(
+                              cubit.invitees.elementAt(index).name ,
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 20
                             ),),
                         ],),
-                        Text("23/11/2023",
-                          //DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
+                        Text(
+                          easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
                           style: TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 17,
@@ -134,13 +152,15 @@ class ConfirmedScreen extends StatelessWidget {
               );
             },
             // separatorBuilder: (context, index) =>Divider() ,
-            itemCount: 4
-            //  cubit.invitees.length
+            itemCount:
+              cubit.invitees.length
             , separatorBuilder: (BuildContext context, int index) {
             return Divider();
           },))
         ],
       ),
     );
+  },
+);
   }
 }

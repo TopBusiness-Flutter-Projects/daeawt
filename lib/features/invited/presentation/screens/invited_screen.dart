@@ -136,7 +136,8 @@ cubit.onSearchTextChanged(p0);
                                 fontSize: 20
                             ),),
                           ],),
-                          Text( DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
+                          Text(
+                            DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
                             style: TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 17,

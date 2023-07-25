@@ -38,14 +38,14 @@ class AddInvitationModel {
         "latitude": latitude,
         "step": step,
         "lang": lang,
-        if (image.isNotEmpty) ...{"image": await MultipartFile.fromFile(image)},
+        if (image.isNotEmpty&&!image.contains("http")) ...{"image": await MultipartFile.fromFile(image)},
         if (selectedContactModelList.isNotEmpty) ...{
           for (int i = 0; i < selectedContactModelList.length; i++) ...{
             "invitees[$i][invitees_number]":
                 selectedContactModelList.elementAt(i).numberOfInvitedPeople,
             "invitees[$i][name]": selectedContactModelList.elementAt(i).name,
             "invitees[$i][phone]":
-                selectedContactModelList.elementAt(i).phones!.elementAt(0)
+                selectedContactModelList.elementAt(i).phones!.elementAt(0).value
           }
         }
       };

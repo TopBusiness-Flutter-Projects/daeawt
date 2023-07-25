@@ -4,3 +4,4 @@ part of 'scanned_cubit.dart';
 abstract class ScannedState {}
 
 class ScannedInitial extends ScannedState {}
+class ScannedLoaded extends ScannedState {}

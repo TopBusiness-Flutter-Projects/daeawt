@@ -6,6 +6,7 @@ import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:daeawt/core/widgets/custom_text_form_field.dart';
 import 'package:daeawt/core/widgets/small_bottom_curve.dart';
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
+import '../../../../core/widgets/network_image.dart';
 import '../../../home/cubit/home_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -56,8 +57,9 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                           height: 160,
                           width: double.infinity,
                           child: Center(
-                            child: const Text(
-                              AppStrings.createNewInvitation,
+                            child:  Text(
+                              cubit.homeListItemModel==null?
+                              AppStrings.createNewInvitation:"update_invitation".tr(),
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 18,
@@ -280,6 +282,8 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 28.0),
                     child: CustomTextFormField(
                       hintText: AppStrings.enterEvenTitle,
+                      textController: cubit.nameController,
+
                       onChanged: (p0) {
                         cubit.model.title = p0;
                         formKey.currentState!.validate();
@@ -351,7 +355,17 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                     ),
                   ),
                   cubit.model.image.isNotEmpty
-                      ? SizedBox(
+                      ? cubit.model.image.contains("http")?
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 50,
+                    height: 150,
+                    child: ManageNetworkImage(
+                        height: 150,
+                        width: MediaQuery.of(context).size.width - 50,
+                       imageUrl: cubit.model.image),
+                  )
+
+                      : SizedBox(
                           width: MediaQuery.of(context).size.width - 50,
                           height: 150,
                           child: Image.file(
@@ -496,18 +510,22 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         const SizedBox(
                           width: 10,
                         ),
-                        Expanded(
-                          child: CustomButton(
-                            onPressed: () {
-                              if (formKey.currentState!.validate() &&
-                                  cubit.isDataVaild1) {
-                                cubit.model.as_draft=1;
+            Visibility(
+              visible: cubit.homeListItemModel==null?true:false,
+              child:  Expanded(
 
-                                cubit.addinviatation(context);
+                            child: CustomButton(
+                              onPressed: () {
+                                if (formKey.currentState!.validate() &&
+                                    cubit.isDataVaild1) {
+                                  cubit.model.as_draft=1;
 
-                              }
-                            },
-                            text: AppStrings.saveAsDraft.tr(),
+                                  cubit.addinviatation(context);
+
+                                }
+                              },
+                              text: AppStrings.saveAsDraft.tr(),
+                            ),
                           ),
                         ),
                       ],

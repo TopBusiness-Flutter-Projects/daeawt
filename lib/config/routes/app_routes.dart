@@ -144,7 +144,9 @@ class AppRoutes{
       return MaterialPageRoute(builder: (context) =>    InvitedScreen(homeListItemModel: homeListItemModel,),);
 
     case Routes.messagesRoute:
-      return MaterialPageRoute(builder: (context) =>   const MessagesScreen(),);
+      InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
+
+      return MaterialPageRoute(builder: (context) =>    MessagesScreen(homeListItemModel:homeListItemModel),);
 
     case Routes.addPersonRoute:
       return MaterialPageRoute(builder: (context) =>   const AddPerson(),);
@@ -159,8 +161,8 @@ class AppRoutes{
       InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
       return MaterialPageRoute(builder: (context) =>    InvitedScreen(homeListItemModel: homeListItemModel,),);
 
-    case Routes.messagesRoute:
-      return MaterialPageRoute(builder: (context) =>   const MessagesScreen(),);
+    // case Routes.messagesRoute:
+    //   return MaterialPageRoute(builder: (context) =>    MessagesScreen(),);
 
     case Routes.addPersonRoute:
       return MaterialPageRoute(builder: (context) =>   const AddPerson(),);
@@ -172,22 +174,34 @@ class AppRoutes{
       return MaterialPageRoute(builder: (context) =>   const SendNewContacts(),);
 
     case Routes.scannedRoute:
-      return MaterialPageRoute(builder: (context) =>   const ScannedScreen(),);
+      InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
+
+      return MaterialPageRoute(builder: (context) =>    ScannedScreen(homeListItemModel: homeListItemModel),);
 
     case Routes.confirmedRoute:
-      return MaterialPageRoute(builder: (context) =>   const ConfirmedScreen(),);
+      InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
+
+      return MaterialPageRoute(builder: (context) =>    ConfirmedScreen(homeListItemModel: homeListItemModel),);
 
     case Routes.waitingRoute:
-      return MaterialPageRoute(builder: (context) =>   const WaitingScreen(),);
+      InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
+
+      return MaterialPageRoute(builder: (context) =>    WaitingScreen(homeListItemModel: homeListItemModel),);
 
     case Routes.apologyRoute:
-      return MaterialPageRoute(builder: (context) =>   const ApologyScreen(),);
+      InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
+
+      return MaterialPageRoute(builder: (context) =>    ApologyScreen(homeListItemModel: homeListItemModel),);
 
     case Routes.failedRoute:
-      return MaterialPageRoute(builder: (context) =>   const FailedScreen(),);
+      InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
+
+      return MaterialPageRoute(builder: (context) =>    FailedScreen(homeListItemModel: homeListItemModel),);
 
     case Routes.notSentRoute:
-      return MaterialPageRoute(builder: (context) =>   const NotSentScreen(),);
+      InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
+
+      return MaterialPageRoute(builder: (context) =>    NotSentScreen(homeListItemModel: homeListItemModel),);
 
     default:
       return undefinedRoute();

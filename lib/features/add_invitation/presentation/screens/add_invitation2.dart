@@ -40,8 +40,9 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                         height: 160,
                         width: double.infinity,
                         child: Center(
-                          child: const Text(
-                            AppStrings.createNewInvitation,
+                          child:  Text(
+                            cubit.homeListItemModel==null?
+                            AppStrings.createNewInvitation:"update_invitation".tr(),
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 18,
@@ -351,19 +352,23 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                       const SizedBox(
                         width: 10,
                       ),
-                      Expanded(
-                        child: CustomButton(
-                          onPressed: () {
-                            if(cubit.model.selectedContactModelList.length>0){
-                              cubit.model.as_draft=1;
+                      Visibility(
+                        visible: cubit.homeListItemModel==null?true:false,
 
-                              cubit.addinviatation(context);
+                        child:  Expanded(
+                        child:  CustomButton(
+                            onPressed: () {
+                              if(cubit.model.selectedContactModelList.length>0){
+                                cubit.model.as_draft=1;
 
-                            }
-                            else{
-                              toastMessage("select_contact".tr(), context);
-                            }                          },
-                          text: AppStrings.saveAsDraft.tr(),
+                                cubit.addinviatation(context);
+
+                              }
+                              else{
+                                toastMessage("select_contact".tr(), context);
+                              }                          },
+                            text: AppStrings.saveAsDraft.tr(),
+                          ),
                         ),
                       ),
                     ],

@@ -1,19 +1,19 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-import '../../../../core/model/InvitationDataModel.dart';
+import '../../../core/model/InvitationDataModel.dart';
 
-part 'scanned_state.dart';
+part 'appology_state.dart';
 
-class ScannedCubit extends Cubit<ScannedState> {
-  ScannedCubit() : super(ScannedInitial());
+class AppologyCubit extends Cubit<AppologyState> {
+  AppologyCubit() : super(AppologyInitial());
   List<Invitee> invitees=[];
   List<Invitee> inviteess=[];
   void setdata(InvitationModel homeListItemModel) {
-    invitees=homeListItemModel.all_scanned;
-    inviteess.addAll(homeListItemModel.all_scanned);
+    invitees=homeListItemModel.all_apologized;
+    inviteess.addAll(homeListItemModel.all_apologized);
 
-    emit(ScannedLoaded());
+    emit(AppologyLoaded());
   }
   onSearchTextChanged(String text) async {
     invitees.clear();
@@ -25,7 +25,7 @@ class ScannedCubit extends Cubit<ScannedState> {
       if (userDetail.name.contains(text) )
         invitees.add(userDetail);
     }
-    emit(ScannedLoaded());
+    emit(AppologyLoaded());
 
   }
 }

@@ -5,3 +5,4 @@ abstract class MessagesState {}
 
 class MessagesInitial extends MessagesState {}
 class ChangingVisibilityState extends MessagesState {}
+class MessageLoaded extends MessagesState {}

@@ -4,13 +4,25 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
 
-class MessagesScreen extends StatelessWidget {
-  const MessagesScreen({Key? key}) : super(key: key);
+class MessagesScreen extends StatefulWidget {
+  const MessagesScreen({Key? key, required this.homeListItemModel}) : super(key: key);
+  final InvitationModel homeListItemModel ;
 
+  @override
+  State<MessagesScreen> createState() => _MessagesScreenState();
+}
+
+class _MessagesScreenState extends State<MessagesScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<MessagesCubit>().setdata(widget.homeListItemModel);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,7 +92,7 @@ class MessagesScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 18.0),
                       child: Column(
                         children: [
-                          const Row(
+                           Row(
                             children: [
                               Text("المكرم :",
                                 style: TextStyle(
@@ -88,7 +100,7 @@ class MessagesScreen extends StatelessWidget {
                                     fontSize: 20
                                 ),
                               ),
-                              Text("محمد", style: TextStyle(
+                              Text(cubit.invitees.elementAt(index).name , style: TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 20
                               ),),
@@ -98,7 +110,7 @@ class MessagesScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const Flexible(
-                                  child: Text("محتوى الرسالة محتوى الرسالة ",
+                                  child: Text("محتوى الرسالة ",
                                   style: TextStyle(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w400,
@@ -115,7 +127,16 @@ class MessagesScreen extends StatelessWidget {
 
                             ],),
                           Visibility(
-                            child: Text("details , details, details, details"),
+                            child:
+
+                            ListView.builder(
+                            itemBuilder: (context, index1) {
+                              return  Text(cubit.invitees.elementAt(index).messages.elementAt(index1).message);
+                            },
+                              itemCount: cubit.invitees.elementAt(index).messages.length,
+                              shrinkWrap: true,
+                              physics: NeverScrollableScrollPhysics(),
+                            ),
                             visible: cubit.isVisible,
                           )
 
@@ -124,7 +145,7 @@ class MessagesScreen extends StatelessWidget {
                     );
                   },
                   separatorBuilder: (context, index) => Divider(),
-                  itemCount: 4))
+                  itemCount: cubit.invitees.length))
             ],
           );
         },

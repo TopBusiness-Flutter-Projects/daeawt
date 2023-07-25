@@ -300,25 +300,25 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       Navigator.pushNamed(context, Routes.invitedRoute,arguments: widget.homeListItemModel);
                                     }
                                     else if(index==0){
-                                      Navigator.pushNamed(context, Routes.messagesRoute);
+                                      Navigator.pushNamed(context, Routes.messagesRoute,arguments: widget.homeListItemModel);
                                     }
                                     else if(index==2){
-                                      Navigator.pushNamed(context, Routes.scannedRoute);
+                                      Navigator.pushNamed(context, Routes.scannedRoute,arguments: widget.homeListItemModel);
                                     }
                                     else if(index ==3){
-                                      Navigator.pushNamed(context, Routes.confirmedRoute);
+                                      Navigator.pushNamed(context, Routes.confirmedRoute,arguments: widget.homeListItemModel);
                                     }
                                     else if(index ==5){
-                                      Navigator.pushNamed(context, Routes.waitingRoute);
+                                      Navigator.pushNamed(context, Routes.waitingRoute,arguments: widget.homeListItemModel);
                                     }
                                     else if(index ==4){
-                                      Navigator.pushNamed(context, Routes.apologyRoute);
+                                      Navigator.pushNamed(context, Routes.apologyRoute,arguments: widget.homeListItemModel);
                                     }
                                     else if(index ==7){
-                                      Navigator.pushNamed(context, Routes.failedRoute);
+                                      Navigator.pushNamed(context, Routes.failedRoute,arguments: widget.homeListItemModel);
                                     }
                                     else if(index ==6){
-                                      Navigator.pushNamed(context, Routes.notSentRoute);
+                                      Navigator.pushNamed(context, Routes.notSentRoute,arguments: widget.homeListItemModel);
                                     }
                                   },
                                   child: Material(
@@ -530,7 +530,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   style: TextStyle(color: Colors.white),
                 ).tr(),
                 onPressed: () {
-                  Navigator.of(context).pop();
+                  context.read<DetailsCubit>().delete(context);
+                 // Navigator.of(context).pop();
                 },
               ),
             ),

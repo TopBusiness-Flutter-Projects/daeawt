@@ -42,8 +42,9 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                         height: 160,
                         width: double.infinity,
                         child: Center(
-                          child: const Text(
-                            AppStrings.createNewInvitation,
+                          child:  Text(
+                            cubit.homeListItemModel==null?
+                            AppStrings.createNewInvitation:"update_invitation".tr(),
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 18,
@@ -380,15 +381,20 @@ cubit.model.step=5;
                       const SizedBox(
                         width: 10,
                       ),
-                      Expanded(
-                        child: CustomButton(
-                          onPressed: () {
-                            cubit.model.as_draft=1;
-                            cubit.addinviatation(context);
+                      Visibility(
+                        visible: cubit.homeListItemModel==null?true:false,
 
-                            //    Navigator.pushNamed(context, Routes.homeRoute);
-                          },
-                          text: AppStrings.saveAsDraft.tr(),
+                        child:
+                      Expanded(
+                        child:  CustomButton(
+                            onPressed: () {
+                              cubit.model.as_draft=1;
+                              cubit.addinviatation(context);
+
+                              //    Navigator.pushNamed(context, Routes.homeRoute);
+                            },
+                            text: AppStrings.saveAsDraft.tr(),
+                          ),
                         ),
                       ),
                     ],
