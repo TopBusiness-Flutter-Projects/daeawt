@@ -4,13 +4,10 @@ import 'package:daeawt/features/add_person/presentation/cubit/add_person_cubit.d
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/widgets/custom_buttom.dart';
-import '../../../../core/widgets/my_svg_widget.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
 
 class AddPerson extends StatefulWidget {
@@ -72,15 +69,15 @@ class _AddPersonState extends State<AddPerson> {
                         Navigator.pop(context);
                       },
                     ),
-                    Spacer(),
+                    const Spacer(),
                      Text(
                       'update_invitation'.tr(),
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.w700,
                           color: Colors.white),
                     ).tr(),
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
                         padding: EdgeInsets.zero,
                         onPressed: () {
@@ -95,7 +92,7 @@ class _AddPersonState extends State<AddPerson> {
                           context.read<AddInvitationCubit>().setData(widget.homeListItemModel);
                           Navigator.pushNamed(context, Routes.addNewContactsRoute);
                         },
-                        icon: Icon(
+                        icon: const Icon(
                             Icons.add,color: Colors.white,size: 30,
                         )),
 
@@ -246,7 +243,7 @@ class _AddPersonState extends State<AddPerson> {
                                     ],
                                   ),
                                   Text(
-                                    "${cubit.invitees[index].phone}",
+                                    cubit.invitees[index].phone,
                                     style: const TextStyle(
                                         fontSize: 14,
                                         color: AppColors.grey5,
@@ -320,7 +317,7 @@ class _AddPersonState extends State<AddPerson> {
                           )),
                     ],
                   )
-                      : SizedBox();
+                      : const SizedBox();
                 },
               ),
             ),

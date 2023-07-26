@@ -26,7 +26,7 @@ class OtpScreen extends StatelessWidget {
    // }
    if (state is CheckCodeFailure){
      ScaffoldMessenger.of(context).showSnackBar(
-         const SnackBar(content: Text("The code is invalid")));
+          SnackBar(content: const Text("code_invalid").tr()));
    }
   },
   builder: (context, state) {

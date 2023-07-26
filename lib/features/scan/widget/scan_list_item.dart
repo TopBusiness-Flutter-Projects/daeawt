@@ -30,29 +30,29 @@ class ScanListItem extends StatelessWidget {
                     : Image.asset(
                     ImageAssests.homeItem),
                  Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8.0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         DateFormat('yyyy EEE MMM dd  ').format(DateTime.parse(homeListItemModel.date))
                      ,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w400),
                       ),
                       Text(homeListItemModel.title,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w700)),
-                      Text("الرقم السرى",
-                          style: TextStyle(
+                      Text("secret_number".tr(),
+                          style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w700)),
                       Text(homeListItemModel.password,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.w400,
                               color: AppColors.grey4)),
 
-                      SizedBox(
+                      const SizedBox(
                         height: 45,
                       ),
                       // Padding(
@@ -85,9 +85,9 @@ class ScanListItem extends StatelessWidget {
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(15),
                         topRight: Radius.circular(15))),
-                child: const Text("المسح الضوئى",
+                child:  Text("photo_scan".tr(),
                     //"${homeListItemModel.status=="0"?"not_confirmed".tr():"confirmed".tr()}",//مؤكد
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.white
                       //homeListItemModel.status=="0"?AppColors.black1: AppColors.green1)
                       ,

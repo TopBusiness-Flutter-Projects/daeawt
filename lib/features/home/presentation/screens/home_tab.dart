@@ -1,14 +1,12 @@
 import 'package:daeawt/features/home/cubit/home_cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/home_app_bar.dart';
-import '../../../../core/widgets/no_data_widget.dart';
 import '../../../../core/widgets/show_loading_indicator.dart';
 import '../widgets/home_list_item.dart';
 
@@ -17,18 +15,20 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
     HomeCubit cubit = context.read<HomeCubit>();
 
     return Scaffold(
       body: Column(
         children: [
           const HomeAppBar(),
+          //search
           SizedBox(
               width: MediaQuery.of(context).size.width * 0.8,
               height: 60,
               child: CustomTextFormField(
                 textController: cubit.searchController,
-                hintText: AppStrings.searchYourInvitations,
+                hintText: AppStrings.searchYourInvitations.tr(),
                 prefixIcon: const Icon(Icons.search),
                 onChanged: (p0) {
                   cubit.geInvitationsHome();
@@ -40,7 +40,7 @@ class HomeTab extends StatelessWidget {
             child: Row(
               children: [
                 Stack(
-                  alignment: Alignment.centerRight,
+                  alignment:languageCode=="ar"? Alignment.centerRight:Alignment.centerLeft,
                   children: [
                     const CircleAvatar(
                       radius: 20,

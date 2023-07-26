@@ -4,11 +4,9 @@ import 'package:daeawt/core/widgets/show_loading_indicator.dart';
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/widgets/network_image.dart';
-import '../../../home/cubit/home_cubit.dart';
 import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -37,7 +35,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         DetailsCubit cubit = context.read<DetailsCubit>();
         return Scaffold(
           body: ListView(
-            physics: AlwaysScrollableScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             children: [
               ClipPath(
                 clipper: SmallBottomCurveClipper(),
@@ -80,7 +78,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             fontWeight: FontWeight.w700,
                             color: Colors.white),
                       ).tr(),
-                      Spacer(),
+                      const Spacer(),
                       IconButton(
                           padding: EdgeInsets.zero,
                           onPressed: () {
@@ -277,11 +275,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       child: BlocBuilder<DetailsCubit, DetialsState>(
                         builder: (context, state) {
                           if (state is DetialsLoading) {
-                            return ShowLoadingIndicator();
+                            return const ShowLoadingIndicator();
                           } else {
                             return GridView.builder(
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                               itemCount: cubit.detailsIconsList.length,
                               padding:
                                   const EdgeInsets.symmetric(horizontal: 20),
@@ -440,7 +438,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "${widget.homeListItemModel.date}",
+                                  widget.homeListItemModel.date,
                                   style: const TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w400),
@@ -450,7 +448,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 ),
                                 Container(
                                     alignment: Alignment.center,
-                                    padding: EdgeInsets.symmetric(
+                                    padding: const EdgeInsets.symmetric(
                                         horizontal: 10, vertical: 6),
                                     decoration: BoxDecoration(
                                         color:
@@ -461,7 +459,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: Text(
-                                      "${widget.homeListItemModel.status == "0" ? "not_confirmed".tr() : "confirmed".tr()}", //مؤكد
+                                      widget.homeListItemModel.status == "0" ? "not_confirmed".tr() : "confirmed".tr(), //مؤكد
                                       style: TextStyle(
                                           color:
                                               widget.homeListItemModel.status ==
@@ -471,7 +469,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     )),
                               ],
                             ),
-                            Text("${widget.homeListItemModel.title}",
+                            Text(widget.homeListItemModel.title,
                                 style: const TextStyle(
                                     fontSize: 18, fontWeight: FontWeight.w700)),
                             const SizedBox(
@@ -483,7 +481,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   Icons.location_on_outlined,
                                   color: AppColors.primary,
                                 ),
-                                Text("${widget.homeListItemModel.address}",
+                                Text(widget.homeListItemModel.address,
                                     style: const TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.w400))

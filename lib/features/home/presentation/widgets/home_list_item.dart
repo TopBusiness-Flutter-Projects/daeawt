@@ -1,5 +1,5 @@
 import 'package:daeawt/core/utils/app_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 
 import '../../../../config/routes/app_routes.dart';
@@ -15,6 +15,7 @@ class HomeListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
     return Stack(
       children: [
         InkWell(
@@ -30,8 +31,8 @@ class HomeListItem extends StatelessWidget {
                     ? ManageNetworkImage(
                         imageUrl: homeListItemModel.image,
                         borderRadius: 90,
-                        width: MediaQuery.of(context).size.width*0.15,
-                        height: MediaQuery.of(context).size.height*0.1,
+                        width: MediaQuery.of(context).size.width*0.2,
+                        height: MediaQuery.of(context).size.height*0.11,
                       )
                     : Image.asset(
                         ImageAssests.homeItem), //ImageAssests.homeItem,
@@ -41,11 +42,11 @@ class HomeListItem extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "${homeListItemModel.date}", //sat, 01 jun 2023
+                        homeListItemModel.date, //sat, 01 jun 2023
                         style: const TextStyle(
                             fontSize: 18, fontWeight: FontWeight.w400),
                       ),
-                      Text("${homeListItemModel.title}", //عيد ميلاد
+                      Text(homeListItemModel.title, //عيد ميلاد
                           style: const TextStyle(
                               fontSize: 18, fontWeight: FontWeight.w700)),
                       Row(
@@ -54,7 +55,7 @@ class HomeListItem extends StatelessWidget {
                             Icons.location_on,
                             color: AppColors.primary,
                           ),
-                          Text("${homeListItemModel.address}",
+                          Text(homeListItemModel.address,
                               //شبين الكوم , المنوفية
 
                               style: const TextStyle(
@@ -62,7 +63,7 @@ class HomeListItem extends StatelessWidget {
                                   fontSize: 14, fontWeight: FontWeight.w400)),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 45,
                       ),
                     ],
@@ -74,8 +75,10 @@ class HomeListItem extends StatelessWidget {
         ),
         Positioned(
           bottom: 4,
-          right: MediaQuery.of(context).size.width * 0.57,
-          left: MediaQuery.of(context).size.width * 0.2,
+          right:languageCode=="ar"? MediaQuery.of(context).size.width * 0.4:
+          MediaQuery.of(context).size.width * 0.4 ,
+          left:languageCode=="ar"? MediaQuery.of(context).size.width * 0.3:
+          MediaQuery.of(context).size.width * 0.27,
           child: Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
@@ -83,11 +86,11 @@ class HomeListItem extends StatelessWidget {
                   color: homeListItemModel.status == "0"||homeListItemModel.status==0
                       ? AppColors.grey1
                       : AppColors.lightGreen,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                       topLeft: Radius.circular(15),
                       topRight: Radius.circular(15))),
               child: Text(
-                "${ homeListItemModel.status == "0"||homeListItemModel.status==0 ? "not_confirmed".tr() : "confirmed".tr()}", //مؤكد
+                homeListItemModel.status == "0"||homeListItemModel.status==0 ? "not_confirmed".tr() : "confirmed".tr(), //مؤكد
                 style: TextStyle(
                     color:  homeListItemModel.status == "0"||homeListItemModel.status==0
                         ? AppColors.black1

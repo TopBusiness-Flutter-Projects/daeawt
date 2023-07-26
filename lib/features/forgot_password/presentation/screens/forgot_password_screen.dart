@@ -1,5 +1,3 @@
-import 'package:daeawt/core/utils/appwidget.dart';
-import 'package:daeawt/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
 import 'package:daeawt/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -23,10 +21,10 @@ class ForgotPasswordScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is InvalidEmailState) {
           ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("The selected email is invalid")));
+               SnackBar(content: const Text("email_invalid").tr()));
         } if (state is ResetPasswordFailure) {
           ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("ResetPasswordFailure")));
+               SnackBar(content: const Text("reset_password_failed").tr()));
         }
         if(state is ResetPasswordSuccess){
           Navigator.pushNamed(context, Routes.otpRoute);

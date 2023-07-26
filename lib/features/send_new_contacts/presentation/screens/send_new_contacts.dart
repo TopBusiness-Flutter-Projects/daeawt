@@ -1,8 +1,7 @@
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
@@ -12,6 +11,7 @@ class SendNewContacts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
     AddInvitationCubit cubit=context.read<AddInvitationCubit>();
     return  Scaffold(
 
@@ -47,26 +47,18 @@ class SendNewContacts extends StatelessWidget {
                 Positioned(
                     left: 20,
                     top: 60,
-                    child: Directionality.of(context) == TextDirection.LTR
-                        ? IconButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      icon: const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                        size: 35,
-                      ),
-                    )
-                        : IconButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: const Icon(
-                          Icons.arrow_forward,
-                          color: Colors.white,
-                          size: 35,
-                        )))
+                    child: Transform.rotate(
+                      angle:languageCode=="ar"?0:(3.14) ,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                            size: 35,
+                          )),)
+                )
               ],
             ),
           ),
@@ -154,7 +146,7 @@ class SendNewContacts extends StatelessWidget {
                               alignment: Alignment.bottomCenter,
 
                               children: [
-                                Container(
+                                SizedBox(
                                   height:MediaQuery.of(context).size.height*0.35 ,
                                   width:MediaQuery.of(context).size.width*0.72 ,
 
@@ -168,7 +160,7 @@ class SendNewContacts extends StatelessWidget {
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                       children: [
-                                        const Text("هل ترغب بارسال جميع الدعوات؟",style: TextStyle(
+                                         Text("wanna_send_invitations".tr(),style: const TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.w700,
                                             color: AppColors.primary
@@ -263,7 +255,7 @@ class SendNewContacts extends StatelessWidget {
                       ),
                     )
                   ],):
-                  SizedBox(),
+                  const SizedBox(),
                 );
               }, separatorBuilder: (context, index) {
             return const SizedBox(height: 10,);

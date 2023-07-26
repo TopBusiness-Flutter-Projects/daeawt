@@ -22,7 +22,7 @@ class NewPasswordScreen extends StatelessWidget {
       listener: (context, state) {
        if(state is NewPasswordFailureState){
          ScaffoldMessenger.of(context).showSnackBar(
-             const SnackBar(content: Text("The process failed try again")));
+              SnackBar(content: const Text("process_failed").tr()));
        }
       },
       builder: (context, state) {

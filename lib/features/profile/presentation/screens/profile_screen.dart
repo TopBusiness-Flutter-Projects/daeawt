@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
             body: Column(
              // alignment: Alignment.bottomCenter,
               children: [
-                SizedBox(height: 50,),
+                const SizedBox(height: 50,),
 
                 SizedBox(
                   width: MediaQuery.of(context).size.width,
@@ -105,7 +105,7 @@ class ProfileScreen extends StatelessWidget {
                              Positioned(
                                top: MediaQuery.of(context).size.height * 0.1,
                                right: MediaQuery.of(context).size.width * 0.05,
-                               child: CircleAvatar(
+                               child: const CircleAvatar(
                                  radius: 3,
                                  backgroundColor: AppColors.primary,
                                ),
@@ -113,7 +113,7 @@ class ProfileScreen extends StatelessWidget {
                              Positioned(
                                top: MediaQuery.of(context).size.height * 0.1,
                                left: MediaQuery.of(context).size.width * 0.05,
-                               child: CircleAvatar(
+                               child: const CircleAvatar(
                                  radius: 3,
                                  backgroundColor: AppColors.primary,
                                ),
@@ -123,7 +123,7 @@ class ProfileScreen extends StatelessWidget {
                              Positioned(
                                top: MediaQuery.of(context).size.height * 0.1,
                                left: MediaQuery.of(context).size.width * 0.21,
-                               child: CircleAvatar(
+                               child: const CircleAvatar(
                                  radius: 3,
                                  backgroundColor: AppColors.primary,
                                ),
@@ -154,7 +154,9 @@ class ProfileScreen extends StatelessWidget {
                                  backgroundColor: AppColors.primary,
                                ),
                              ),
-                           Positioned(child:  Container(
+                           Positioned(top: 0,
+                             left: 0,
+                             right: 0,child:  Container(
 height: 90,
                              padding: EdgeInsets.all(6),
                              decoration: BoxDecoration(
@@ -163,21 +165,18 @@ height: 90,
                                  border: Border.all(color: AppColors.grey3, width: 3)),
                              child: Image.asset(ImageAssests.profileImage),
                            ),
-                             top: 0,
-                             left: 0,
-                             right: 0,
                            )
 
                            ],),
                          ),
 
                          const Text(
-                           'محمد محمد',
+                           'محمد محمد',//todo-->
                            style: TextStyle(
                                fontWeight: FontWeight.w700, fontSize: 18),
                          ),
                          const Text(
-                           '01030504268',
+                           '01030504268',//todo-->
                            style: TextStyle(
                                fontWeight: FontWeight.w400, fontSize: 18),
                          ),

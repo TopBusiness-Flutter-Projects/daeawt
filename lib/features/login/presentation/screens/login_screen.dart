@@ -83,7 +83,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         // controller: cubit.emailControl,
                         validator: (value) {
-                          print(value);
                           if (value == null || value.isEmpty) {
                             return 'field_reguired'.tr();
                           }
@@ -92,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 8, horizontal: 5),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.mail_outlined,
                               color: AppColors.primary,
                             ),
@@ -119,7 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         // controller: cubit.emailControl,
                         validator: (value) {
-                          print(value);
+
                           if (value == null || value.isEmpty) {
                             return 'field_reguired'.tr();
                           }
@@ -128,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         decoration: InputDecoration(
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 8, horizontal: 5),
-                            prefixIcon: Icon(
+                            prefixIcon: const Icon(
                               Icons.lock_outline,
                               color: AppColors.primary,
                             ),
@@ -166,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 25,
                   ),
                   CustomButton(
-                    text: AppStrings.login,
+                    text: AppStrings.login.tr(),
                     onPressed: () {
                       cubit.login(context);
                     },

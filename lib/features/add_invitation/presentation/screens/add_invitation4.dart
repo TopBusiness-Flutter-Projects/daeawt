@@ -2,7 +2,7 @@ import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:io';
@@ -17,6 +17,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
+
     return BlocConsumer<AddInvitationCubit, AddInvitationState>(
       listener: (context, state) {
         // TODO: implement listener
@@ -45,7 +47,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                           child:  Text(
                             cubit.homeListItemModel==null?
                             AppStrings.createNewInvitation:"update_invitation".tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 18,
                                 color: Colors.white),
@@ -56,26 +58,18 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                       Positioned(
                           left: 20,
                           top: 60,
-                          child: Directionality.of(context) == TextDirection.LTR
-                              ? IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_back,
-                                    color: Colors.white,
-                                    size: 35,
-                                  ),
-                                )
-                              : IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.white,
-                                    size: 35,
-                                  )))
+                          child: Transform.rotate(
+                            angle:languageCode=="ar"?0:(3.14) ,
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size: 35,
+                                )),)
+                      )
                     ],
                   ),
                 ),
@@ -300,14 +294,14 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                 ),
                                  Padding(
                                   padding:
-                                      EdgeInsets.symmetric(horizontal: 8.0),
+                                      const EdgeInsets.symmetric(horizontal: 8.0),
                                   child: Row(
                                     children: [
                                       Text(
                                       cubit.selectedLanguage=="العربية"?
-                                      "نتشرف بدعوتكم لحضور " +cubit.model.title:"We are honored to invite you to attend "+cubit.model.title,
+                                      "نتشرف بدعوتكم لحضور ${cubit.model.title}":"We are honored to invite you to attend ${cubit.model.title}",
                                         textAlign: TextAlign.start,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             color: AppColors.black1,
                                             fontWeight: FontWeight.w400,
                                             fontSize: 14),
@@ -326,7 +320,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                   child: CustomButton(
                                       onPressed: () {},
                                       height: 45,
-                                      text:                                      cubit.selectedLanguage=="العربية"?
+                                      text:  cubit.selectedLanguage=="العربية"?
                                       "تأكيد":"Confirm",
                                       backgroundColor: AppColors.green2)),
                               const SizedBox(width: 8,),
@@ -334,8 +328,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                 child: CustomButton(
                                   onPressed: () {},
                                   height: 45,
-                                  text:                                      cubit.selectedLanguage=="العربية"?
-                                  "اعتذر":"Applogy",
+                                  text:  cubit.selectedLanguage=="العربية"?
+                                  "اعتذر":"Apology",
                                   backgroundColor: AppColors.red1,
                                 ),
                               ),
@@ -350,8 +344,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                             color: Colors.white,
                             borderRadius: BorderRadius.circular(50)
                           ),
-                          child:  Text(                                      cubit.selectedLanguage=="العربية"?
-                          "موقع المناسبة":"Location",style: TextStyle(
+                          child:  Text( cubit.selectedLanguage=="العربية"?
+                          "موقع المناسبة":"Location",style: const TextStyle(
                             color: AppColors.black1,
                             fontSize: 18,
                             fontWeight: FontWeight.w700

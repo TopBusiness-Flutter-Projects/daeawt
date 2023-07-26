@@ -1,4 +1,3 @@
-import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
 import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
 import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
@@ -6,9 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
-import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
-import '../../../home/cubit/home_cubit.dart';
 
 class ReminderScreen extends StatefulWidget {
   final InvitationModel homeListItemModel;
@@ -177,9 +174,9 @@ class _ReminderScreenState extends State<ReminderScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                      child: const Text(
-                        "select_all",
-                        style: TextStyle(
+                      child:  Text(
+                        "select_all".tr(),
+                        style: const TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.w700,
                             color: AppColors.primary),
@@ -205,6 +202,8 @@ class _ReminderScreenState extends State<ReminderScreen> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           SizedBox(
+                            height: 50,
+                            width: 20,
                             child: CheckboxListTile(
                               contentPadding: const EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
@@ -215,8 +214,6 @@ class _ReminderScreenState extends State<ReminderScreen> {
                                 // cubit.changeWithBarcodeCheckListTile(value);
                               },
                             ),
-                            height: 50,
-                            width: 20,
                           ),
                           Padding(
                             padding: EdgeInsets.all(8.0),
@@ -225,7 +222,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
                               child: Center(
                                 child: Text(
                                   cubit.invitees.elementAt(index).name,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w700,
                                       fontSize: 18,
                                       color: AppColors.black1),
@@ -234,7 +231,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
                               ),
                             ),
                           ),
-                          Spacer()
+                          const Spacer()
                         ],
                       ),
                     ),
@@ -268,6 +265,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
     );
   }
 
+  @override
   void initState() {
     super.initState();
     context.read<ReminderCubit>().setdata(widget.homeListItemModel);

@@ -1,10 +1,7 @@
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
-
-import '../../../home/cubit/home_cubit.dart';import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
@@ -15,6 +12,8 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
+
     return BlocConsumer<AddInvitationCubit, AddInvitationState>(
       listener: (context, state) {
         // TODO: implement listener
@@ -42,7 +41,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                         child:  Text(
                           cubit.homeListItemModel==null?
                           AppStrings.createNewInvitation:"update_invitation".tr(),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 18,
                               color: Colors.white),
@@ -53,7 +52,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                     Positioned(
                         left: 20,
                         top: 60,
-                        child: Directionality.of(context) == TextDirection.LTR
+                        child: Directionality.of(context) == TextDirection.ltr
                             ? IconButton(
                           onPressed: () {
                             Navigator.pop(context);
@@ -230,7 +229,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                                 alignment: Alignment.bottomCenter,
 
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     height:MediaQuery.of(context).size.height*0.35 ,
                                     width:MediaQuery.of(context).size.width*0.72 ,
 
@@ -244,11 +243,11 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          const Text("هل ترغب بارسال جميع الدعوات؟",style: TextStyle(
+                                          const Text("wanna_send_invitations",style: TextStyle(
                                             fontSize: 20,
                                             fontWeight: FontWeight.w700,
                                             color: AppColors.primary
-                                          ),),
+                                          ),).tr(),
                                           Text(
                                             "${cubit.model.selectedContactModelList.length}",
                                               style: const TextStyle(
@@ -337,7 +336,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                           ),
                         )
                       ],):
-                      SizedBox(),
+                      const SizedBox(),
                     );
                   }, separatorBuilder: (context, index) {
                 return const SizedBox(height: 10,);

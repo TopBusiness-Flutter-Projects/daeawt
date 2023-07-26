@@ -1,7 +1,6 @@
 import 'package:daeawt/core/utils/app_strings.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
@@ -53,7 +52,7 @@ class NotificationScreen extends StatelessWidget {
                   return const NotificationsListItem();
                 },
                 separatorBuilder: (BuildContext context, int index) {
-                  return Divider();
+                  return const Divider();
                 },
               ),
             ),

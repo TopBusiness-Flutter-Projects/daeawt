@@ -2,7 +2,6 @@ import 'package:daeawt/features/failed/presentation/cubit/faild_cubit.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -96,7 +95,7 @@ class _FailedScreenState extends State<FailedScreen> {
           Expanded(child: ListView.separated(
             itemBuilder:(context, index) {
               return Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 18.0),
+                padding:  const EdgeInsets.symmetric(horizontal: 18.0),
                 child: Row(
                   children: [
 
@@ -123,20 +122,20 @@ class _FailedScreenState extends State<FailedScreen> {
                     Column(
                       children: [
                         Row(children: [
-                          Text("المكرم :",
+                          const Text("المكرم :",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 20
                             ),
                           ),
                           Text(  cubit.invitees.elementAt(index).name ,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 20
                             ),),
                         ],),
                         Text( easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 17,
                               color: AppColors.grey2
@@ -154,7 +153,7 @@ class _FailedScreenState extends State<FailedScreen> {
             itemCount:
               cubit.invitees.length
             , separatorBuilder: (BuildContext context, int index) {
-            return Divider();
+            return const Divider();
           },))
         ],
       );

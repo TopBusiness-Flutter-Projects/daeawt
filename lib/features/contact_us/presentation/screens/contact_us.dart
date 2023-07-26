@@ -2,7 +2,6 @@ import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
-
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';

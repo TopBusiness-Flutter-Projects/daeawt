@@ -1,9 +1,8 @@
 import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:daeawt/core/widgets/small_bottom_curve.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
-
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -13,6 +12,8 @@ class EditProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
+
     return Scaffold(
       body: Column(
         children: [
@@ -42,26 +43,18 @@ class EditProfileScreen extends StatelessWidget {
                 Positioned(
                     left: 20,
                     top: 60,
-                    child: Directionality.of(context) == TextDirection.LTR
-                        ? IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                              size: 35,
-                            ),
-                          )
-                        : IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 35,
-                            )))
+                    child: Transform.rotate(
+                      angle:languageCode=="ar"?0:(3.14) ,
+                      child: IconButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          icon: const Icon(
+                            Icons.arrow_forward,
+                            color: Colors.white,
+                            size: 35,
+                          )),)
+                )
               ],
             ),
           ),
@@ -108,7 +101,7 @@ class EditProfileScreen extends StatelessWidget {
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 8),
                   prefixIcon: Icon(Icons.person,color: AppColors.primary,),
-                  hintText: 'محمد محمد',
+                  hintText: 'محمد محمد',//todo==>
                   fillColor: Colors.white,
                   filled: true),
             ),
@@ -142,7 +135,7 @@ class EditProfileScreen extends StatelessWidget {
                   border: InputBorder.none,
                   //contentPadding: EdgeInsets.symmetric(vertical: 8),
                   prefixIcon: Icon(Icons.phone_enabled_rounded,color: AppColors.primary,),
-                  hintText: '01020306548',
+                  hintText: '01020306548',//todo-->
                   fillColor: Colors.white,
                   filled: true),
             ),

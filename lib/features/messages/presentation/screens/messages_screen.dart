@@ -1,9 +1,7 @@
 import 'package:daeawt/features/messages/presentation/cubit/messages_cubit.dart';
-import 'package:daeawt/features/messages/presentation/cubit/messages_cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -25,6 +23,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
   }
   @override
   Widget build(BuildContext context) {
+    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
     return Scaffold(
       body: BlocConsumer<MessagesCubit, MessagesState>(
         listener: (context, state) {
@@ -62,26 +61,18 @@ class _MessagesScreenState extends State<MessagesScreen> {
                     Positioned(
                         left: 20,
                         top: 60,
-                        child: Directionality.of(context) == TextDirection.LTR
-                            ? IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                            size: 35,
-                          ),
-                        )
-                            : IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 35,
-                            )))
+                        child: Transform.rotate(
+                          angle:languageCode=="ar"?0:(3.14) ,
+                          child: IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                                size: 35,
+                              )),)
+                    )
                   ],
                 ),
               ),
@@ -89,18 +80,18 @@ class _MessagesScreenState extends State<MessagesScreen> {
               Expanded(child: ListView.separated(
                   itemBuilder: (context, index) {
                     return Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 18.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
                       child: Column(
                         children: [
                            Row(
                             children: [
-                              Text("المكرم :",
+                              const Text("المكرم :",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
                                     fontSize: 20
                                 ),
                               ),
-                              Text(cubit.invitees.elementAt(index).name , style: TextStyle(
+                              Text(cubit.invitees.elementAt(index).name , style: const TextStyle(
                                   fontWeight: FontWeight.w400,
                                   fontSize: 20
                               ),),
@@ -127,6 +118,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
 
                             ],),
                           Visibility(
+                            visible: cubit.isVisible,
                             child:
 
                             ListView.builder(
@@ -135,9 +127,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
                             },
                               itemCount: cubit.invitees.elementAt(index).messages.length,
                               shrinkWrap: true,
-                              physics: NeverScrollableScrollPhysics(),
+                              physics: const NeverScrollableScrollPhysics(),
                             ),
-                            visible: cubit.isVisible,
                           )
 
 

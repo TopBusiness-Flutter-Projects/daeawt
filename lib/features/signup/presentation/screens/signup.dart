@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -9,8 +9,7 @@ import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/widgets/bottom_curve.dart';
 import '../../../../core/widgets/custom_buttom.dart';
 import '../../cubit/signup_cubit.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -28,7 +27,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
     //formKey.currentState!.validate();
   }
 
+  @override
   Widget build(BuildContext context) {
+    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
+
     SignupCubit cubit = context.read<SignupCubit>();
     return Form(
       key: formKey,
@@ -56,26 +58,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             ImageAssests.dawatBarKudIcon,
                           )),
                       Positioned(
-                        left: 0,
-                        top: 40,
-                        child: TextDirection.LTR == Directionality.of(context)
-                            ? IconButton(
+                          left: 20,
+                          top: 60,
+                          child: Transform.rotate(
+                            angle:languageCode=="ar"?0:(3.14) ,
+                            child: IconButton(
                                 onPressed: () {
                                   Navigator.pop(context);
                                 },
                                 icon: const Icon(
-                                  Icons.arrow_back,
+                                  Icons.arrow_forward,
                                   color: Colors.white,
-                                  size: 30,
-                                ))
-                            : IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: const Icon(Icons.arrow_forward,
-                                    color: Colors.white, size: 30),
-                              ),
-                      ),
+                                  size: 35,
+                                )),)
+                      )
                     ],
                   ),
                 ),
@@ -115,7 +111,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 8, horizontal: 5),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.person_2_outlined,
                           color: AppColors.primary,
                         ),
@@ -151,7 +147,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 8, horizontal: 5),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.wifi_calling_3_rounded,
                           color: AppColors.primary,
                         ),
@@ -188,7 +184,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 8, horizontal: 5),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.mail_outlined,
                           color: AppColors.primary,
                         ),
@@ -224,7 +220,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.symmetric(
                             vertical: 8, horizontal: 5),
-                        prefixIcon: Icon(
+                        prefixIcon: const Icon(
                           Icons.lock_outline,
                           color: AppColors.primary,
                         ),

@@ -1,7 +1,6 @@
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -67,9 +66,9 @@ class _WaitingScreenState extends State<WaitingScreen> {
                     },
                   ),
                   SizedBox(width: MediaQuery.of(context).size.width*0.15,),
-                  const Text(
-                    AppStrings.wait,
-                    style: TextStyle(
+                   Text(
+                    AppStrings.wait.tr(),
+                    style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w700,
                         color: Colors.white),
@@ -89,7 +88,7 @@ class _WaitingScreenState extends State<WaitingScreen> {
                   onChanged: (p0) {
                      cubit.onSearchTextChanged(p0);
                   },
-                  hintText: AppStrings.search,
+                  hintText: AppStrings.search.tr(),
                   prefixIcon: const Icon(Icons.search),
                 )),
           ),
@@ -123,7 +122,7 @@ class _WaitingScreenState extends State<WaitingScreen> {
                     Column(
                       children: [
                         Row(children: [
-                          Text("المكرم :",
+                          const Text("المكرم :",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 20
@@ -131,14 +130,14 @@ class _WaitingScreenState extends State<WaitingScreen> {
                           ),
                           Text(
                             cubit.invitees.elementAt(index).name ,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 20
                             ),),
                         ],),
                         Text(
                           easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 17,
                               color: AppColors.grey2
@@ -146,7 +145,7 @@ class _WaitingScreenState extends State<WaitingScreen> {
 
                       ],),
                     const Spacer(),
-                     MySvgWidget(path: ImageAssests.shareIcon, size: 20),
+                     const MySvgWidget(path: ImageAssests.shareIcon, size: 20),
 
                   ],
                 ),
@@ -156,7 +155,7 @@ class _WaitingScreenState extends State<WaitingScreen> {
             itemCount:
               cubit.invitees.length
             , separatorBuilder: (BuildContext context, int index) {
-            return Divider();
+            return const Divider();
           },))
         ],
       );
