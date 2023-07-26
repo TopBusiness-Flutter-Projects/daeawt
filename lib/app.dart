@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:daeawt/features/contact_us/presentation/cubit/contact_us_cubit.dart';
 import 'package:daeawt/features/details/cubit/detials_cubit.dart';
 import 'package:daeawt/features/failed/presentation/cubit/faild_cubit.dart';
 import 'package:daeawt/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
@@ -184,6 +185,9 @@ class _ElmazoonState extends State<Elmazoon> {
         ),
         BlocProvider(
           create: (_) => injector.serviceLocator<AddPersonCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<ContactUsCubit>(),
         ),
 
 

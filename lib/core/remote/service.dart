@@ -3,6 +3,7 @@ import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
+import '../../features/contact_us/presentation/contact_model.dart';
 import '../../features/login/model/login_model.dart';
 import '../../features/signup/model/register_model.dart';
 import '../api/base_api_consumer.dart';
@@ -13,6 +14,7 @@ import '../error/failures.dart';
 
 import '../model/InvitationDataModel.dart';
 import '../model/check_code_model.dart';
+import '../model/contact_us_model.dart';
 import '../model/contacts_model.dart';
 import '../model/reset_password_model.dart';
 import '../model/setting.dart';
@@ -171,11 +173,25 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
-
+    postContactUs(ContactModel contactModel) async {
+    try{
+     final response = await dio.post(EndPoints.contactUsUrl,
+        body: {
+        "name":contactModel.userName,
+          "phone":contactModel.phoneNumber,
+          "subject":contactModel.topic,
+          "message":contactModel.message,
+        }
+      );
+      return Right(ContactUsModel.fromJson(response));
+    }on ServerException{
+      return Left(ServerFailure());
+    }
+    }
 
 
   Future<Either<Failure, ResetPasswordModel>> forgotPassword(String email) async {
-    print("(((((((((((((((((((((((((((((((((((((((");
+
     try {
       final response = await dio.post(
         EndPoints.forgotPasswordUrl,
@@ -184,8 +200,6 @@ class ServiceApi {
 
         },
       );
-      print(".............................................");
-      print(response);
       return Right(ResetPasswordModel.fromJson(response));
     } on ServerException {
 

@@ -17,10 +17,11 @@ class EndPoints {
   static const String sendreminderInvitationUrl = '${baseUrl}invitations/sendReminder';
   static const String deleteInvitationUrl = '${baseUrl}invitations/delete/';
   static const String updateUrl = '${baseUrl}provider/auth/update-profile';
-  static const String contactUsUrl = '${baseUrl}client/auth/contact-us';
+  static const String contactUsUrl = '${baseUrl}contact-us';
   static const String forgotPasswordUrl = '${baseUrl}provider/auth/forget-password';
   static const String checkCodeUrl = '${baseUrl}provider/auth/check-code';
   static const String passwordResetUrl = '${baseUrl}provider/auth/password-reset';
+
 
 
 

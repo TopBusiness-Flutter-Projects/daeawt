@@ -1,7 +1,9 @@
 import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/widgets/custom_buttom.dart';
+import 'package:daeawt/features/contact_us/presentation/cubit/contact_us_cubit.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -14,6 +16,12 @@ class ContactUsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var languageCode = easy.EasyLocalization.of(context)!.locale.languageCode;
+    return BlocConsumer<ContactUsCubit, ContactUsState>(
+  listener: (context, state) {
+    // TODO: implement listener
+  },
+  builder: (context, state) {
+    ContactUsCubit cubit = context.read<ContactUsCubit>();
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -63,16 +71,20 @@ class ContactUsScreen extends StatelessWidget {
             ),
             Image.asset(ImageAssests.contactUsImage),
             ContactUs(
+              controller: cubit.userNameController,
                 prefixIcon: Image.asset(ImageAssests.userNameIcon),
                 hint: AppStrings.userName.tr()),
             ContactUs(
+                controller: cubit.phoneNumberController,
                 prefixIcon: Image.asset(ImageAssests.phoneNumberIcon),
                 hint: AppStrings.phoneNumber.tr(),
             textInputType: TextInputType.number),
             ContactUs(
+                controller: cubit.topicController,
                 prefixIcon: Image.asset(ImageAssests.theTopicIcon),
                 hint: AppStrings.theTopic.tr()),
             ContactUs(
+              controller: cubit.messageController,
                 prefixIcon: Padding(
                   padding:  EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.12),
                   child: Image.asset(ImageAssests.theMessageIcon),
@@ -81,13 +93,16 @@ class ContactUsScreen extends StatelessWidget {
                     minLines: 5,
                     maxLines: 8,),
             const SizedBox(height: 30,),
-            CustomButton(onPressed: () {
-              Navigator.pushNamed(context, Routes.profileRoute);
+            CustomButton(onPressed: ()async {
+             await cubit.contactUs(context);
+             // Navigator.pushNamed(context, Routes.profileRoute);
             },text: AppStrings.send.tr(),),
             const SizedBox(height: 30,),
           ],
         ),
       ),
     );
+  },
+);
   }
 }

@@ -4,19 +4,21 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/app_strings.dart';
 
 class ContactUs extends StatelessWidget {
+  TextEditingController? controller;
  final Widget? prefixIcon;
  final String? hint;
 final TextInputType textInputType ;
 final int? minLines ;
 final int? maxLines ;
-  const ContactUs({Key? key,this.prefixIcon,this.hint,this.textInputType = TextInputType.text,
-  this.minLines=1,this.maxLines = 2}) : super(key: key);
+   ContactUs({Key? key,this.prefixIcon,this.hint,this.textInputType = TextInputType.text,
+  this.minLines=1,this.maxLines = 2,this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 28.0,vertical: 18),
       child: TextFormField(
+        controller:controller ,
         minLines: minLines,
         maxLines:maxLines,
         keyboardType:textInputType ,
