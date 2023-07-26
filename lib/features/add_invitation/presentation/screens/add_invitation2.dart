@@ -1,5 +1,5 @@
 import 'package:daeawt/core/utils/toast_message_method.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/app_routes.dart';
@@ -17,6 +17,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
     return BlocConsumer<AddInvitationCubit, AddInvitationState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -43,7 +44,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                           child:  Text(
                             cubit.homeListItemModel==null?
                             AppStrings.createNewInvitation:"update_invitation".tr(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 18,
                                 color: Colors.white),
@@ -54,26 +55,18 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                       Positioned(
                           left: 20,
                           top: 60,
-                          child: Directionality.of(context) == TextDirection.LTR
-                              ? IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_back,
-                                    color: Colors.white,
-                                    size: 35,
-                                  ),
-                                )
-                              : IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.white,
-                                    size: 35,
-                                  )))
+                          child: Transform.rotate(
+                            angle:languageCode=="ar"?0:(3.14) ,
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size: 35,
+                                )),)
+                      )
                     ],
                   ),
                 ),
@@ -254,7 +247,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                         ListView.builder(
                                           shrinkWrap: true,
                                           physics:
-                                              NeverScrollableScrollPhysics(),
+                                              const NeverScrollableScrollPhysics(),
                                           itemCount: cubit.contactModelList[i]
                                               .phones?.length,
                                           itemBuilder: (context, index) {
@@ -315,7 +308,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                             },
                           );
                         } else if (snapshot.hasError) {
-                          return const Text("Error in getting contacts");
+                          return const Text("error_getting_contacts").tr();
                         } else {
                           return const Center(
                             child: CircularProgressIndicator(),

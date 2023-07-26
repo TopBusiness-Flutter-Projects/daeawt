@@ -1,8 +1,6 @@
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
-
 import '../../../../core/utils/toast_message_method.dart';
-import '../../../home/cubit/home_cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/app_routes.dart';
@@ -17,6 +15,8 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? languageCode =
+        easy.EasyLocalization.of(context)?.locale.languageCode;
     return BlocConsumer<AddInvitationCubit, AddInvitationState>(
       listener: (context, state) {
         // TODO: implement listener
@@ -42,10 +42,11 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                         height: 160,
                         width: double.infinity,
                         child: Center(
-                          child:  Text(
-                            cubit.homeListItemModel==null?
-                            AppStrings.createNewInvitation:"update_invitation".tr(),
-                            style: TextStyle(
+                          child: Text(
+                            cubit.homeListItemModel == null
+                                ? AppStrings.createNewInvitation
+                                : "update_invitation".tr(),
+                            style: const TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontSize: 18,
                                 color: Colors.white),
@@ -56,26 +57,18 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                       Positioned(
                           left: 20,
                           top: 60,
-                          child: Directionality.of(context) == TextDirection.LTR
-                              ? IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_back,
-                                    color: Colors.white,
-                                    size: 35,
-                                  ),
-                                )
-                              : IconButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  icon: const Icon(
-                                    Icons.arrow_forward,
-                                    color: Colors.white,
-                                    size: 35,
-                                  )))
+                          child: Transform.rotate(
+                            angle: languageCode == "ar" ? 0 : (3.14),
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon: const Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size: 35,
+                                )),
+                          ))
                     ],
                   ),
                 ),
@@ -289,7 +282,9 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                             children: [
                                               IconButton(
                                                 onPressed: () {
-                                                  cubit.incrementNumberOfInvitedPeople(index);
+                                                  cubit
+                                                      .incrementNumberOfInvitedPeople(
+                                                          index);
                                                 },
                                                 icon: const Icon(
                                                   Icons.add,
@@ -298,7 +293,10 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                 padding: EdgeInsets.zero,
                                               ),
                                               Text(
-                                                cubit.model.selectedContactModelList.elementAt(index).numberOfInvitedPeople
+                                                cubit.model
+                                                    .selectedContactModelList
+                                                    .elementAt(index)
+                                                    .numberOfInvitedPeople
                                                     .toString(),
                                                 style: const TextStyle(
                                                     color: Colors.white,
@@ -308,7 +306,9 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                               ),
                                               IconButton(
                                                   onPressed: () {
-                                                    cubit.decrementNumberOfInvitedPeople(index);
+                                                    cubit
+                                                        .decrementNumberOfInvitedPeople(
+                                                            index);
                                                   },
                                                   icon: const Icon(
                                                     Icons.remove,
@@ -331,10 +331,9 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                       child: Center(
                                           child: IconButton(
                                         onPressed: () {
-                                          //TODO-->
                                           cubit.removeSelectedContact(index);
                                         },
-                                        icon: const Icon(
+                                            icon: const Icon(
                                           Icons.close,
                                           color: Colors.white,
                                         ),
@@ -343,7 +342,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                     )),
                               ],
                             )
-                          : SizedBox();
+                          : const SizedBox();
                     },
                   ),
                 ),
@@ -361,13 +360,12 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                         child: CustomButton(
                           backgroundColor: AppColors.primary,
                           onPressed: () {
-                            if(cubit.model.selectedContactModelList.length>0){
-                              cubit.model.step=4;
+                            if (cubit.model.selectedContactModelList.length > 0) {
+                              cubit.model.step = 4;
 
-                              Navigator.pushNamed(context, Routes.addInvitationStep4Route);
-
-                            }
-                            else{
+                              Navigator.pushNamed(
+                                  context, Routes.addInvitationStep4Route);
+                            } else {
                               toastMessage("select_contact".tr(), context);
                             }
                           },
@@ -378,21 +376,18 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                         width: 10,
                       ),
                       Visibility(
-                        visible: cubit.homeListItemModel==null?true:false,
-
-                        child:  Expanded(
-                        child:  CustomButton(
+                        visible: cubit.homeListItemModel == null ? true : false,
+                        child: Expanded(
+                          child: CustomButton(
                             onPressed: () {
-                              if(cubit.model.selectedContactModelList.length>0){
-                                cubit.model.as_draft=1;
+                              if (cubit.model.selectedContactModelList.length > 0) {
+                                cubit.model.as_draft = 1;
 
                                 cubit.addinviatation(context);
-
-
-                              }
-                              else{
+                              } else {
                                 toastMessage("select_contact".tr(), context);
-                              }                          },
+                              }
+                            },
                             text: AppStrings.save.tr(),
                           ),
                         ),

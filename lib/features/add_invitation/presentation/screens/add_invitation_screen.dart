@@ -7,8 +7,7 @@ import 'package:daeawt/core/widgets/custom_text_form_field.dart';
 import 'package:daeawt/core/widgets/small_bottom_curve.dart';
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
 import '../../../../core/widgets/network_image.dart';
-import '../../../home/cubit/home_cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
+import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -28,6 +27,9 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    String? languageCode =
+        easy.EasyLocalization.of(context)?.locale.languageCode;
+
     return BlocConsumer<AddInvitationCubit, AddInvitationState>(
       listener: (context, state) {
         if (state is SelectInvitationImageState) {
@@ -57,10 +59,11 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                           height: 160,
                           width: double.infinity,
                           child: Center(
-                            child:  Text(
-                              cubit.homeListItemModel==null?
-                              AppStrings.createNewInvitation:"update_invitation".tr(),
-                              style: TextStyle(
+                            child: Text(
+                              cubit.homeListItemModel == null
+                                  ? AppStrings.createNewInvitation
+                                  : "update_invitation".tr(),
+                              style: const TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 18,
                                   color: Colors.white),
@@ -71,27 +74,18 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         Positioned(
                             left: 20,
                             top: 60,
-                            child:
-                                Directionality.of(context) == TextDirection.LTR
-                                    ? IconButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        icon: const Icon(
-                                          Icons.arrow_back,
-                                          color: Colors.white,
-                                          size: 35,
-                                        ),
-                                      )
-                                    : IconButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        icon: const Icon(
-                                          Icons.arrow_forward,
-                                          color: Colors.white,
-                                          size: 35,
-                                        )))
+                            child: Transform.rotate(
+                              angle: languageCode == "ar" ? 0 : (3.14),
+                              child: IconButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  icon: const Icon(
+                                    Icons.arrow_forward,
+                                    color: Colors.white,
+                                    size: 35,
+                                  )),
+                            ))
                       ],
                     ),
                   ),
@@ -283,7 +277,6 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                     child: CustomTextFormField(
                       hintText: AppStrings.enterEvenTitle,
                       textController: cubit.nameController,
-
                       onChanged: (p0) {
                         cubit.nameController.text=p0;
                         cubit.model.title = p0;
@@ -357,26 +350,25 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                     ),
                   ),
                   cubit.model.image.isNotEmpty
-                      ? cubit.model.image.contains("http")?
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width - 50,
-                    height: 150,
-                    child: ManageNetworkImage(
-                        height: 150,
-                        width: MediaQuery.of(context).size.width - 50,
-                       imageUrl: cubit.model.image),
-                  )
-
-                      : SizedBox(
-                          width: MediaQuery.of(context).size.width - 50,
-                          height: 150,
-                          child: Image.file(
-                              height: 150,
+                      ? cubit.model.image.contains("http")
+                          ? SizedBox(
                               width: MediaQuery.of(context).size.width - 50,
-                              fit: BoxFit.fill,
-                              File(cubit.model.image)),
-                        )
-                      : SizedBox(),
+                              height: 150,
+                              child: ManageNetworkImage(
+                                  height: 150,
+                                  width: MediaQuery.of(context).size.width - 50,
+                                  imageUrl: cubit.model.image),
+                            )
+                          : SizedBox(
+                              width: MediaQuery.of(context).size.width - 50,
+                              height: 150,
+                              child: Image.file(
+                                  height: 150,
+                                  width: MediaQuery.of(context).size.width - 50,
+                                  fit: BoxFit.fill,
+                                  File(cubit.model.image)),
+                            )
+                      : const SizedBox(),
                   //first check box list tile
                   SizedBox(
                     height: 40,
@@ -486,7 +478,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                             'enter_address',
                             style:
                                 TextStyle(color: AppColors.error, fontSize: 10),
-                          )),
+                          ).tr()),
                     ),
                   ),
                   //last 2 buttons
@@ -501,7 +493,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                             onPressed: () {
                               if (formKey.currentState!.validate() &&
                                   cubit.isDataVaild1) {
-                                cubit.model.step=2;
+                                cubit.model.step = 2;
                                 Navigator.pushNamed(
                                     context, Routes.addInvitationStep2Route);
                               }
@@ -512,18 +504,17 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         const SizedBox(
                           width: 10,
                         ),
-            Visibility(
-              visible: cubit.homeListItemModel==null?true:false,
-              child:  Expanded(
-
+                        Visibility(
+                          visible:
+                              cubit.homeListItemModel == null ? true : false,
+                          child: Expanded(
                             child: CustomButton(
                               onPressed: () {
                                 if (formKey.currentState!.validate() &&
                                     cubit.isDataVaild1) {
-                                  cubit.model.as_draft=1;
+                                  cubit.model.as_draft = 1;
 
                                   cubit.addinviatation(context);
-
                                 }
                               },
                               text: AppStrings.saveAsDraft.tr(),
@@ -548,14 +539,14 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
   showBirthDateCalender() async {
     DateTime? date = await showDatePicker(
         context: context,
-        locale: EasyLocalization.of(context)!.locale,
+        locale: easy.EasyLocalization.of(context)!.locale,
         initialDate: BlocProvider.of<AddInvitationCubit>(context).initialDate,
         firstDate: BlocProvider.of<AddInvitationCubit>(context).startData,
         lastDate: BlocProvider.of<AddInvitationCubit>(context).endData,
         builder: (context, child) {
           return Theme(
             data: Theme.of(context).copyWith(
-                colorScheme: ColorScheme.light(
+                colorScheme: const ColorScheme.light(
                     primary: AppColors.primary,
                     onPrimary: AppColors.white,
                     onSurface: AppColors.black)),
@@ -564,8 +555,8 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
         });
 
     if (date != null) {
-      BlocProvider.of<AddInvitationCubit>(context)
-          .updateBirthDate(date: DateFormat('yyyy-MM-dd', 'en').format(date));
+      BlocProvider.of<AddInvitationCubit>(context).updateBirthDate(
+          date: easy.DateFormat('yyyy-MM-dd', 'en').format(date));
     }
   }
 }

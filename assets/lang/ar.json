@@ -86,6 +86,14 @@
   "not_confirmed": "مسودة",
   "select_all": "تحديد الكل",
   "the_messages": "الرسائل",
-  "please_enter_email": "فضلا ادخل بريدك الالكتروني لنعيد لك كلمة المرور"
+  "please_enter_email": "فضلا ادخل بريدك الالكتروني لنعيد لك كلمة المرور",
+  "error_getting_contacts": "حدث خطأ في استخراج جهات الاتصال",
+  "send_invitations": "ارسال الدعوات",
+  "wanna_send_invitations": "هل ترغب بارسال جميع الدعوات؟",
+  "email_invalid": "البريد الإلكتروني المحدد غير صالح",
+  "reset_password_failed": "فشل في تعيين رقم سري",
+  "process_failed": "فشلت العملية حاول مرة اخرى",
+  "code_invalid": "الكود غير صحيح",
+  "secret_number": "الرقم السري"
 
 }
