@@ -94,6 +94,8 @@
   "reset_password_failed": "فشل في تعيين رقم سري",
   "process_failed": "فشلت العملية حاول مرة اخرى",
   "code_invalid": "الكود غير صحيح",
-  "secret_number": "الرقم السري"
+  "secret_number": "الرقم السري",
+  "welcome": "مرحبا",
+  "welcome_to": "اهلا بك فى دعوات"
 
 }

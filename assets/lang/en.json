@@ -91,6 +91,10 @@
   "reset_password_failed": "Failed to reset password",
   "process_failed": "The process failed try again",
   "code_invalid": "The code is invalid",
-  "secret_number": "Secret Number"
+  "secret_number": "Secret Number",
+  "welcome": "Welcome",
+  "welcome_to": "Welcome to Daeawt"
+
+
 
 }

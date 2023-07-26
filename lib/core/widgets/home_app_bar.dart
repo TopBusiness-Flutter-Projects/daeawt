@@ -1,6 +1,7 @@
 import 'package:daeawt/core/widgets/custom_text_form_field.dart';
 import 'package:daeawt/core/widgets/small_bottom_curve.dart';
 import 'package:daeawt/preferences/preferences.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/app_colors.dart';
@@ -38,11 +39,11 @@ class HomeAppBar extends StatelessWidget {
                   FutureBuilder(
                     future: Preferences.instance.getUserModel(),
                     builder: (context, snapshot) {
-                    return  Text("مرحبا ,  ${snapshot.data?.data?.user?.name}",
+                    return  Text("welcome".tr()+snapshot.data!.data!.user!.name.toString(),
                       style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: Colors.white),
                     );
                   },),
-                  const Text("اهلا بك فى دعوات",
+                  const Text("welcome_to",
                     style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Colors.white),),
 
                 ],
