@@ -4,7 +4,7 @@ class EndPoints {
   //static const String deleteUrl = '${baseUrl}provider/auth/delete-account';
   static const String invitationhomeListUrl = '${baseUrl}invitations/home';
   static const String contactListUrl = '${baseUrl}invitations/contacts';
-//  static const String providerFilterListUrl = '${baseUrl}client/search';
+ static const String settingurl = '${baseUrl}setting';
   //static const String sliderhomeListUrl = '${baseUrl}sliders';
   //static const String citiesListUrl = '${baseUrl}cities';
   //static const String serviceTypeListUrl = '${baseUrl}translation_types';

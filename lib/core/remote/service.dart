@@ -15,6 +15,7 @@ import '../model/InvitationDataModel.dart';
 import '../model/check_code_model.dart';
 import '../model/contacts_model.dart';
 import '../model/reset_password_model.dart';
+import '../model/setting.dart';
 import '../model/status_resspons.dart';
 import '../model/user_model.dart';
 import '../preferences/preferences.dart';
@@ -245,6 +246,23 @@ class ServiceApi {
       );
       print(response);
       return Right(InvitationDataModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  Future<Either<Failure, SettingDataModel>> getSetting(
+      ) async {
+     String lan = await Preferences.instance.getSavedLang();
+   //  UserModel loginModel = await Preferences.instance.getUserModel();
+
+     try {
+      final response = await dio.get(
+        EndPoints.settingurl ,
+
+
+      );
+      print(response);
+      return Right(SettingDataModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }

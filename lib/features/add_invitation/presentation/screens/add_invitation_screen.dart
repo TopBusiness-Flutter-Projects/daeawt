@@ -285,7 +285,9 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                       textController: cubit.nameController,
 
                       onChanged: (p0) {
+                        cubit.nameController.text=p0;
                         cubit.model.title = p0;
+
                         formKey.currentState!.validate();
                         cubit.checkDataVaild1();
                       },

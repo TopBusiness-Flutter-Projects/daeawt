@@ -227,6 +227,7 @@ for(int j=0;j<contactModelList.length;j++){
       List<Placemark> placemarks = await placemarkFromCoordinates(
           selectedLocation.latitude, selectedLocation.longitude);
       moveCamera(selectedLocation);
+      model.title=nameController.text;
       place = placemarks[0];
       model.latitude = userCurrentPosition.latitude;
       model.longitude = userCurrentPosition.longitude;
