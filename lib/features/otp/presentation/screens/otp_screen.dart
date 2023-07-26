@@ -21,7 +21,13 @@ class OtpScreen extends StatelessWidget {
 
     return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
   listener: (context, state) {
-    // TODO: implement listener
+   // if(state is CheckCodeSuccess){
+   //   Navigator.pushNamed(context, Routes.newPasswordRoute);
+   // }
+   if (state is CheckCodeFailure){
+     ScaffoldMessenger.of(context).showSnackBar(
+         const SnackBar(content: Text("The code is invalid")));
+   }
   },
   builder: (context, state) {
     ForgotPasswordCubit cubit = context.read<ForgotPasswordCubit>();
@@ -33,86 +39,88 @@ class OtpScreen extends StatelessWidget {
     OtpCubit cubit = context.read<OtpCubit>();
     return Scaffold(
       body:
-      Column(
-        children: [
-          SizedBox(
-            width: MediaQuery.of(context).size.width,
-            child: ClipPath(
-              clipper: BottomCurveClipper(),
-              child: Stack(
-                children: [
-                  Container(
-                      decoration: const BoxDecoration(
-                          gradient: LinearGradient(colors: [
-                            AppColors.orange2,
-                            AppColors.primary,
-                          ])),
-                      padding: const EdgeInsets.only(left: 20, bottom: 10),
-                      height: 300,
-                      width: double.infinity,
-                      //color: Colors.orange,
-                      child: Image.asset(
-                        ImageAssests.dawatBarKudIcon,
-                      )),
-                  Positioned(
-                      left: 0,
-                      top: 40,
-                      child:   IconButton(
-                        onPressed: (){
-                          Navigator.pop(context);
-                        }, icon: Transform.rotate(
-                        angle:languageCode=="ar"?(3.14):0 ,
-                        child:  const Icon(Icons.arrow_back,color: Colors.white,size: 30,),),
-                      )
-                  ),
-                ],
+      SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: ClipPath(
+                clipper: BottomCurveClipper(),
+                child: Stack(
+                  children: [
+                    Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                              AppColors.orange2,
+                              AppColors.primary,
+                            ])),
+                        padding: const EdgeInsets.only(left: 20, bottom: 10),
+                        height: 300,
+                        width: double.infinity,
+                        //color: Colors.orange,
+                        child: Image.asset(
+                          ImageAssests.dawatBarKudIcon,
+                        )),
+                    Positioned(
+                        left: 0,
+                        top: 40,
+                        child:   IconButton(
+                          onPressed: (){
+                            Navigator.pop(context);
+                          }, icon: Transform.rotate(
+                          angle:languageCode=="ar"?(3.14):0 ,
+                          child:  const Icon(Icons.arrow_back,color: Colors.white,size: 30,),),
+                        )
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          //ادخل الكود التأكيدى
-          const Text(
-            AppStrings.enterVerificationCode,
-            style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
-          ).tr(),
-          const SizedBox(
-            height: 25,
-          ),
-          //سيتم ارسال كود تأكيدى على رقم الموبيل الخاص بك
-          const Text(
-            AppStrings.confirmationCodeSent,
-            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
-          ).tr(),
-          const SizedBox(
-            height: 50,
-          ),
-        //todo
-          //PinCodeTextField
-          SizedBox(
-            width: MediaQuery.of(context).size.width*0.6,
-            child: PinCodeTextField(
-              controller:cubit.pinCode ,
-              length: 6,
-              appContext: context,
-              keyboardType: TextInputType.number,
-              textStyle: const TextStyle(fontSize: 17),
-              pinTheme: PinTheme(
-                shape: PinCodeFieldShape.underline,
-                borderRadius: BorderRadius.circular(5),
-                fieldHeight: 20,
-                fieldWidth: 30,
-                activeFillColor: Colors.white,
-                inactiveColor: Colors.grey,
+            //ادخل الكود التأكيدى
+            const Text(
+              AppStrings.enterVerificationCode,
+              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+            ).tr(),
+            const SizedBox(
+              height: 25,
+            ),
+            //سيتم ارسال كود تأكيدى على رقم الموبيل الخاص بك
+            const Text(
+              AppStrings.confirmationCodeSent,
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+            ).tr(),
+            const SizedBox(
+              height: 50,
+            ),
+          //todo
+            //PinCodeTextField
+            SizedBox(
+              width: MediaQuery.of(context).size.width*0.6,
+              child: PinCodeTextField(
+                controller:cubit.pinCode ,
+                length: 6,
+                appContext: context,
+                keyboardType: TextInputType.number,
+                textStyle: const TextStyle(fontSize: 17),
+                pinTheme: PinTheme(
+                  shape: PinCodeFieldShape.underline,
+                  borderRadius: BorderRadius.circular(5),
+                  fieldHeight: 20,
+                  fieldWidth: 30,
+                  activeFillColor: Colors.white,
+                  inactiveColor: Colors.grey,
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 45,
-          ),
-          CustomButton(onPressed: () {
+            const SizedBox(
+              height: 45,
+            ),
+            CustomButton(onPressed: () async {
 
-           // Navigator.pushNamed(context, Routes.newPasswordRoute);
-          },text: AppStrings.confirm,)
-        ],
+           await  cubit.checkCode(context);
+            },text: AppStrings.confirm,)
+          ],
+        ),
       ),
     );
   },

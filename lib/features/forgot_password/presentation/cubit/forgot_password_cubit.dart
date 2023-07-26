@@ -18,50 +18,26 @@ class ForgotPasswordCubit extends Cubit<ForgotPasswordState> {
 
 
   TextEditingController emailController = TextEditingController();
-  ResetPsswordModel resetPasswordModel = ResetPsswordModel();
- // String message = "";
+  ResetPasswordModel resetPasswordModel = ResetPasswordModel();
 
-  // resetPassword(BuildContext context) async {
-  //   emit(ResetPasswordLoading());
-  //   AppWidget.createProgressDialog(context, "Loading");
-  //   final response = await api.postResetPassword(emailController.text);
-  //
-  //   response.fold((l) => emit(ResetPasswordFailure()), (r) {
-  //     resetPasswordModel = r;
-  //
-  //     if (resetPasswordModel.code == 200) {
-  //       Navigator.pushNamed(context, Routes.otpRoute);
-  //       emit(ResetPasswordSuccess());
-  //     }
-  //
-  //     if (resetPasswordModel.code == 422) {
-  //       Navigator.pop(context);
-  //      // toastMessage("Invalid Email".tr(), context);
-  //       emit(InvalidEmailState());
-  //     } else {
-  //       emit(ResetPasswordFailure());
-  //     }
-  //   });
-  // }
 
 
   resetPassword1(BuildContext context) async {
     emit(ResetPasswordLoading());
     AppWidget.createProgressDialog(context, "Loading");
-    final response = await api.postResetPassword1(emailController.text);
+    print(emailController.text);
+    final response = await api.forgotPassword(emailController.text);
 
     response.fold((l) => emit(ResetPasswordFailure()),
             (r) {
       resetPasswordModel = r;
-         print("____________________________________________________");
-         print(resetPasswordModel);
-      if (resetPasswordModel.message=="Code reset password send from email") {
+
+      if (resetPasswordModel.code==200) {
         Navigator.pop(context);
-        Navigator.pushNamed(context, Routes.otpRoute);
         emit(ResetPasswordSuccess());
       }
 
-      if (resetPasswordModel.message == "The given data was invalid.") {
+    else  if (resetPasswordModel.message == "The given data was invalid.") {
         Navigator.pop(context);
         // toastMessage("Invalid Email".tr(), context);
         emit(InvalidEmailState());

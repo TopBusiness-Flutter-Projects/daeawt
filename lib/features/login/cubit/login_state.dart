@@ -8,3 +8,6 @@ class OnLoginVaildFaild extends LoginState {}
 class OnLoginVaild extends LoginState {}
 class LoginFailure extends LoginState {}
 class LoginLoaded extends LoginState {}
+class LoginWithGoogleLoading extends LoginState {}
+class LoginWithGoogleFailure extends LoginState {}
+class LoginWithGoogleSuccess extends LoginState {}

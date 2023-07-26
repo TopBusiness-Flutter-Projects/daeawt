@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 
 import '../../../config/routes/app_routes.dart';
@@ -20,7 +22,54 @@ class LoginCubit extends Cubit<LoginState> {
   bool isLoginValid=false;
   final ServiceApi api;
 
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
+  //When the user taps the Google sign-in button, call the signInWithGoogle method:
+  Future<UserCredential> logInWithGoogle() async {
+    // Trigger the Google authentication flow.
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+    // Obtain the auth details from the request.
+    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+
+    // Create a new credential.
+    final OAuthCredential credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth?.accessToken,
+      idToken: googleAuth?.idToken,
+    );
+
+    // Once signed in, return the UserCredential.
+    return await FirebaseAuth.instance.signInWithCredential(credential);
+  }
+
+  saveUserDataByGoogleSignIn(BuildContext context) async {
+    AppWidget.createProgressDialog(context, "Loading");
+    UserCredential userCredential = await logInWithGoogle();
+    final response = await api.registerWithGoogle(userCredential);
+
+    response.fold(
+          (failure) => {Navigator.pop(context), emit(LoginWithGoogleLoading())},
+          (loginModel) {
+        print("------------------ ${loginModel.code}");
+        if (loginModel.code == 409 || loginModel.code == 410) {
+          Navigator.pop(context);
+          toastMessage("exists_email".tr(), context);
+          // errorGetBar(translateText(AppStrings.noEmailError, context));
+          emit(LoginWithGoogleFailure());
+        } else if (loginModel.code == 200) {
+          emit(LoginWithGoogleSuccess());
+          Navigator.pop(context);
+          Navigator.pushReplacementNamed(context, Routes.homeRoute);
+          Preferences.instance.setUser(loginModel).then((value) {
+            Navigator.pushNamedAndRemoveUntil(
+                context, Routes.homeRoute, (route) => false);
+            // emit(OnLoginSuccess(response));
+          });
+        }
+      },
+    );
+
+  }
 
   void login(BuildContext context) async {
     AppWidget.createProgressDialog(context, 'wait'.tr());

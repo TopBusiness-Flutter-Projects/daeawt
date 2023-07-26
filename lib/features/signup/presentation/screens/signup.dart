@@ -8,8 +8,9 @@ import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/widgets/bottom_curve.dart';
 import '../../../../core/widgets/custom_buttom.dart';
-import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../cubit/signup_cubit.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 class SignUpScreen extends StatefulWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -320,20 +321,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
               const SizedBox(
                 height: 35,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    AppStrings.signUpWithGoogle,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                  ).tr(),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Image.asset(
-                    ImageAssests.googleIcon,
-                  )
-                ],
+              InkWell(
+                onTap: () async {
+                 await cubit.saveUserDataByGoogleSignIn(context);
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text(
+                      AppStrings.signUpWithGoogle,
+                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                    ).tr(),
+                    const SizedBox(
+                      width: 5,
+                    ),
+                    Image.asset(
+                      ImageAssests.googleIcon,
+                    )
+                  ],
+                ),
               )
             ],
           ),

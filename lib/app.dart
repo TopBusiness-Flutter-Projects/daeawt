@@ -6,6 +6,7 @@ import 'package:daeawt/features/failed/presentation/cubit/faild_cubit.dart';
 import 'package:daeawt/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
 import 'package:daeawt/features/messages/presentation/cubit/messages_cubit.dart';
 import 'package:daeawt/features/not_sent/cubit/notsent_cubit.dart';
+import 'package:daeawt/features/new_password/presentation/cubit/new_password_cubit.dart';
 import 'package:daeawt/features/otp/presentation/cubit/otp_cubit.dart';
 import 'package:daeawt/features/profile/presentation/cubit/profile_cubit.dart';
 import 'package:daeawt/features/reminder/presentation/cubit/reminder_cubit.dart';
@@ -177,6 +178,9 @@ class _ElmazoonState extends State<Elmazoon> {
         ),
         BlocProvider(
           create: (_) => injector.serviceLocator<ProfileCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<NewPasswordCubit>(),
         ),
         BlocProvider(
           create: (_) => injector.serviceLocator<AddPersonCubit>(),

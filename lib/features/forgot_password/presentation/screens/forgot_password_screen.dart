@@ -28,6 +28,9 @@ class ForgotPasswordScreen extends StatelessWidget {
           ScaffoldMessenger.of(context).showSnackBar(
               const SnackBar(content: Text("ResetPasswordFailure")));
         }
+        if(state is ResetPasswordSuccess){
+          Navigator.pushNamed(context, Routes.otpRoute);
+        }
       },
       builder: (context, state) {
         ForgotPasswordCubit cubit = context.read<ForgotPasswordCubit>();

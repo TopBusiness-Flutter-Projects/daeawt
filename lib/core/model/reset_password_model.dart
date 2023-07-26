@@ -1,102 +1,34 @@
-// // To parse this JSON data, do
-// //
-// //     final resetPsswordModel = resetPsswordModelFromJson(jsonString);
-//
-// import 'dart:convert';
-//
-// ResetPsswordModel resetPsswordModelFromJson(String str) => ResetPsswordModel.fromJson(json.decode(str));
-//
-// String resetPsswordModelToJson(ResetPsswordModel data) => json.encode(data.toJson());
-//
-// class ResetPsswordModel {
-//   dynamic data;
-//   Message? message;
-//   int? code;
-//
-//   ResetPsswordModel({
-//     this.data,
-//     this.message,
-//     this.code,
-//   });
-//
-//   factory ResetPsswordModel.fromJson(Map<String, dynamic> json) => ResetPsswordModel(
-//     data: json["data"],
-//     message: json["message"] == null ? null : Message.fromJson(json["message"]),
-//     code: json["code"],
-//   );
-//
-//   Map<String, dynamic> toJson() => {
-//     "data": data,
-//     "message": message?.toJson(),
-//     "code": code,
-//   };
-// }
-//
-// class Message {
-//   List<String>? email;
-//
-//   Message({
-//     this.email,
-//   });
-//
-//   factory Message.fromJson(Map<String, dynamic> json) => Message(
-//     email: json["email"] == null ? [] : List<String>.from(json["email"]!.map((x) => x)),
-//   );
-//
-//   Map<String, dynamic> toJson() => {
-//     "email": email == null ? [] : List<dynamic>.from(email!.map((x) => x)),
-//   };
-// }
-
-
 // To parse this JSON data, do
 //
 //     final resetPsswordModel = resetPsswordModelFromJson(jsonString);
 
 import 'dart:convert';
 
-ResetPsswordModel resetPsswordModelFromJson(String str) => ResetPsswordModel.fromJson(json.decode(str));
+ResetPasswordModel resetPsswordModelFromJson(String str) => ResetPasswordModel.fromJson(json.decode(str));
 
-String resetPsswordModelToJson(ResetPsswordModel data) => json.encode(data.toJson());
+String resetPsswordModelToJson(ResetPasswordModel data) => json.encode(data.toJson());
 
-class ResetPsswordModel {
+class ResetPasswordModel {
   String? message;
-  Errors? errors;
+  int? code;
 
-  ResetPsswordModel({
+  ResetPasswordModel({
     this.message,
-    this.errors,
+    this.code,
   });
 
   @override
   String toString() {
-    return 'ResetPsswordModel{message: $message, errors: $errors}';
+    return 'ResetPsswordModel{message: $message, code: $code}';
   }
 
-  factory ResetPsswordModel.fromJson(Map<String, dynamic> json) => ResetPsswordModel(
+  factory ResetPasswordModel.fromJson(Map<String, dynamic> json) => ResetPasswordModel(
     message: json["message"],
-    errors: json["errors"] == null ? null : Errors.fromJson(json["errors"]),
+    code: json["code"]??0,
   );
 
   Map<String, dynamic> toJson() => {
     "message": message,
-    "errors": errors?.toJson(),
-  };
-}
-
-
-class Errors {
-  List<String>? email;
-
-  Errors({
-    this.email,
-  });
-
-  factory Errors.fromJson(Map<String, dynamic> json) => Errors(
-    email: json["email"] == null ? [] : List<String>.from(json["email"]!.map((x) => x)),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "email": email == null ? [] : List<dynamic>.from(email!.map((x) => x)),
+    "code": code,
   };
 }

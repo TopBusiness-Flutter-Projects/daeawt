@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/assets_manager.dart';
-import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/bottom_curve.dart';
 import '../../cubit/login_cubit.dart';
 
@@ -240,21 +239,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 35,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        AppStrings.signUpWithGoogle,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w700),
-                      ).tr(),
-                      const SizedBox(
-                        width: 5,
-                      ),
-                      Image.asset(
-                        ImageAssests.googleIcon,
-                      )
-                    ],
+                  InkWell(
+                    onTap: () async {
+                    await  cubit.saveUserDataByGoogleSignIn(context);
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          AppStrings.signUpWithGoogle,
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.w700),
+                        ).tr(),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Image.asset(
+                          ImageAssests.googleIcon,
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),

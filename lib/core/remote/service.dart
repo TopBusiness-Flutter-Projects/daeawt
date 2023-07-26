@@ -1,6 +1,7 @@
 import 'package:daeawt/features/add_invitation/model/add_invitation_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../features/login/model/login_model.dart';
 import '../../features/signup/model/register_model.dart';
@@ -11,6 +12,7 @@ import '../error/failures.dart';
 
 
 import '../model/InvitationDataModel.dart';
+import '../model/check_code_model.dart';
 import '../model/contacts_model.dart';
 import '../model/reset_password_model.dart';
 import '../model/status_resspons.dart';
@@ -30,6 +32,25 @@ class ServiceApi {
         EndPoints.registerUrl,
         formDataIsEnabled: true,
         body: await userData.updateToJson(),
+      );
+
+      return Right(UserModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  Future<Either<Failure, UserModel>> registerWithGoogle(UserCredential userCredential) async {
+    try {
+      final response = await dio.post(
+        EndPoints.registerWithGoogleUrl,
+        formDataIsEnabled: true,
+        body: {
+          "email":userCredential.user?.email,
+          "name":userCredential.user?.displayName,
+          "google_id":userCredential.user?.uid,
+
+
+        },
       );
 
       return Right(UserModel.fromJson(response));
@@ -150,11 +171,13 @@ class ServiceApi {
     }
   }
 
-  Future<Either<Failure, ResetPsswordModel>> postResetPassword(String email) async {
+
+
+  Future<Either<Failure, ResetPasswordModel>> forgotPassword(String email) async {
     print("(((((((((((((((((((((((((((((((((((((((");
     try {
       final response = await dio.post(
-        EndPoints.resetPasswordUrl,
+        EndPoints.forgotPasswordUrl,
         body: {
           'email': email,
 
@@ -162,33 +185,14 @@ class ServiceApi {
       );
       print(".............................................");
       print(response);
-      return Right(ResetPsswordModel.fromJson(response));
+      return Right(ResetPasswordModel.fromJson(response));
     } on ServerException {
 
       return Left(ServerFailure());
     }
   }
 
-  Future<Either<Failure, ResetPsswordModel>> postResetPassword1(String email) async {
-    print("(((((((((((((((((((((((((((((((((((((((");
-    try {
-      final response = await dio.post(
-        EndPoints.resetPasswordUrl,
-        body: {
-          'email': email,
-
-        },
-      );
-      print(".............................................");
-      print(response);
-      return Right(ResetPsswordModel.fromJson(response));
-    } on ServerException {
-
-      return Left(ServerFailure());
-    }
-  }
-
-  postCheckCode(String code) async {
+ Future<Either<Failure,CheckCodeModel>> postCheckCode(String code) async {
     try {
       final response = await dio.post(
         EndPoints.checkCodeUrl,
@@ -199,11 +203,29 @@ class ServiceApi {
       );
       print(".............................................");
       print(response);
-      return Right(ResetPsswordModel.fromJson(response));
+      return Right(CheckCodeModel.fromJson(response));
     } on ServerException {
 
       return Left(ServerFailure());
     }
+  }
+
+  Future<Either<Failure, ResetPasswordModel>> postPasswordReset(String password , String passwordConfirmation , String code) async {
+    try{
+      final response = await dio.post(EndPoints.passwordResetUrl,
+        body: {
+        "password":password,
+          "password_confirmation":passwordConfirmation,
+          "code":code,
+        },
+      );
+      print("0000000000000000000000000000000000000000000000");
+      print(response);
+      return Right(ResetPasswordModel.fromJson(response));
+    }on ServerException{
+      return Left(ServerFailure());
+    }
+
   }
 
   Future<Either<Failure, InvitationDataModel>> getInvitationHome(String search
