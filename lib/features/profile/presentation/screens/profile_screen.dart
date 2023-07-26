@@ -192,7 +192,8 @@ height: 90,
                             color: Colors.white,
                             shape: BoxShape.circle,
                             border: Border.all(color: AppColors.grey3, width: 3)),
-                        child: Image.asset(ImageAssests.profileImage)
+                        child:cubit.userModel==null||cubit.userModel!.data!.user!.image.isEmpty? Image.asset(ImageAssests.profileImage):
+                        ManageCircleNetworkImage(imageUrl: cubit.userModel!.data!.user!.image,),
                       ),
                         top: 0,
                         left: 0,
