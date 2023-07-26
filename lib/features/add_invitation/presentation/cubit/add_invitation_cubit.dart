@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:contacts_service/contacts_service.dart';
 import 'package:daeawt/core/model/InvitationDataModel.dart';
 import 'package:daeawt/core/remote/service.dart';
+import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/utils/toast_message_method.dart';
 import 'package:daeawt/features/home/cubit/home_cubit.dart';
 import 'package:easy_localization/easy_localization.dart' as tr;
@@ -359,9 +360,16 @@ for(int j=0;j<contactModelList.length;j++){
           {Navigator.pop(context), toastMessage(tr.tr("fail send"), context)},
       (loginModel) {
         if (loginModel.code == 200) {
+     homeListItemModel=null;
+      isfirst=true;
+      nameController.text='';
+      dateController.text='';
+      model=AddInvitationModel();
+
           Navigator.pop(context);
           context.read<HomeCubit>().geInvitationsHome();
           Navigator.pushNamed(context, Routes.homeRoute);
+      emit(AddInvitationInitial());
         } else {
           toastMessage(tr.tr("fail send"), context);
         }
@@ -378,6 +386,15 @@ for(int j=0;j<contactModelList.length;j++){
           {Navigator.pop(context), toastMessage(tr.tr("fail send"), context)},
       (loginModel) {
         if (loginModel.code == 200) {
+
+          homeListItemModel=null;
+          isfirst=true;
+          nameController.text='';
+          dateController.text='';
+          model=AddInvitationModel();
+
+
+          emit(AddInvitationInitial());
           Navigator.pop(context);
           context.read<HomeCubit>().geInvitationsHome();
           Navigator.pushNamed(context, Routes.homeRoute);
