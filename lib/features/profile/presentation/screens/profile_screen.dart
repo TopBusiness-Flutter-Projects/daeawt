@@ -25,16 +25,14 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  PackageInfo? packageInfo;
+  PackageInfo? packageInfo ;
 
   final InAppReview inAppReview = InAppReview.instance;
-
   @override
   void initState() {
     super.initState();
     setuppackage();
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProfileCubit, ProfileState>(
@@ -45,7 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ProfileCubit cubit = context.read<ProfileCubit>();
 
         return WillPopScope(
-          onWillPop: () async {
+          onWillPop: () async{
             Navigator.pushNamed(context, Routes.homeRoute);
             return true;
           },
@@ -61,10 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   Center(
                     child: SizedBox(
-                      width: MediaQuery
-                          .of(context)
-                          .size
-                          .width,
+                      width: MediaQuery.of(context).size.width,
                       height: 100,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -88,8 +83,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                             IconButton(
                               onPressed: () {
-                                Navigator.pushNamed(
-                                    context, Routes.editProfileRoute);
+                                Navigator.pushNamed(context, Routes.editProfileRoute);
                               },
                               icon: const MySvgWidget(
                                   path: ImageAssests.editIcon, size: 22),
@@ -104,46 +98,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Container(
                     width: double.infinity,
-                    height: MediaQuery
-                        .of(context)
-                        .size
-                        .height * 0.85,
+                    height: MediaQuery.of(context).size.height* 0.85,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                           topRight: Radius.circular(40),
                           topLeft: Radius.circular(40)),
                     ),
-                    child: ListView(
+                    child:ListView(
                       shrinkWrap: true,
                       physics: NeverScrollableScrollPhysics(),
                       children: [
                         SizedBox(height: 20,),
                         SizedBox(
                           height: 100,
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width,
+                          width: MediaQuery.of(context).size.width,
                           child:
                           Stack(children: [
                             Positioned(
                               top: 100 * 0.1,
-                              right: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * .3,
+                              right: MediaQuery.of(context).size.width * .3,
                               child: const CircleAvatar(
                                 radius: 4,
                                 backgroundColor: AppColors.primary,
                               ),
                             ),
                             Positioned(
-                              top: 100 * .1,
-                              left: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * .3,
+                              top: 100* .1,
+                              left: MediaQuery.of(context).size.width * .3,
                               child: const CircleAvatar(
                                 radius: 4,
                                 backgroundColor: AppColors.primary,
@@ -152,22 +134,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                             // second row of circles
                             Positioned(
-                              top: 100 * .3,
-                              right: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.05,
+                              top: 100* .3,
+                              right: MediaQuery.of(context).size.width * 0.05,
                               child: CircleAvatar(
                                 radius: 3,
                                 backgroundColor: AppColors.primary,
                               ),
                             ),
                             Positioned(
-                              top: 100 * .3,
-                              left: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.05,
+                              top: 100* .3,
+                              left: MediaQuery.of(context).size.width * 0.05,
                               child: CircleAvatar(
                                 radius: 3,
                                 backgroundColor: AppColors.primary,
@@ -176,22 +152,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                             // second row of circles
                             Positioned(
-                              top: 100 * .3,
-                              left: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.21,
+                              top: 100* .3,
+                              left: MediaQuery.of(context).size.width * 0.21,
                               child: CircleAvatar(
                                 radius: 3,
                                 backgroundColor: AppColors.primary,
                               ),
                             ),
                             Positioned(
-                              top: 100 * .3,
-                              right: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.21,
+                              top: 100* .3,
+                              right: MediaQuery.of(context).size.width * 0.21,
                               child: const CircleAvatar(
                                 radius: 3,
                                 backgroundColor: AppColors.primary,
@@ -200,87 +170,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                             //third row of circles
                             Positioned(
-                              top: 100 * 0.15,
-                              right: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.13,
+                              top: 100* 0.15,
+                              right: MediaQuery.of(context).size.width * 0.13,
                               child: const CircleAvatar(
                                 radius: 4,
                                 backgroundColor: AppColors.primary,
                               ),
                             ),
                             Positioned(
-                              top: 100 * 0.15,
-                              left: MediaQuery
-                                  .of(context)
-                                  .size
-                                  .width * 0.13,
+                              top: 100* 0.15,
+                              left: MediaQuery.of(context).size.width * 0.13,
                               child: const CircleAvatar(
                                 radius: 4,
                                 backgroundColor: AppColors.primary,
                               ),
                             ),
-                            Positioned(top: 0,
+                            Positioned(child:  Container(
+                              height: 90,
+                              padding: EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  shape: BoxShape.circle,
+                                  border: Border.all(color: AppColors.grey3, width: 3)),
+                              child:cubit.userModel==null||cubit.userModel!.data!.user!.image.isEmpty? Image.asset(ImageAssests.profileImage):
+                              ManageCircleNetworkImage(imageUrl: cubit.userModel!.data!.user!.image,),
+                            ),
+                              top: 0,
                               left: 0,
-                              right: 0,child: Container(
-                                  height: 90,
-                                  padding: EdgeInsets.all(6),
-                                  decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                          color: AppColors.grey3, width: 3)),
-                                  child: Image.asset(ImageAssests.profileImage)
-                              ),
+                              right: 0,
                             )
-                        //third row of circles
-                        Positioned(
-                          top: 100* 0.15,
-                          right: MediaQuery.of(context).size.width * 0.13,
-                          child: const CircleAvatar(
-                            radius: 4,
-                            backgroundColor: AppColors.primary,
-                          ),
-                        ),
-                        Positioned(
-                          top: 100* 0.15,
-                          left: MediaQuery.of(context).size.width * 0.13,
-                          child: const CircleAvatar(
-                            radius: 4,
-                            backgroundColor: AppColors.primary,
-                          ),
-                        ),
-                      Positioned(child:  Container(
-height: 90,
-                        padding: EdgeInsets.all(6),
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            shape: BoxShape.circle,
-                            border: Border.all(color: AppColors.grey3, width: 3)),
-                        child:cubit.userModel==null||cubit.userModel!.data!.user!.image.isEmpty? Image.asset(ImageAssests.profileImage):
-                        ManageCircleNetworkImage(imageUrl: cubit.userModel!.data!.user!.image,),
-                      ),
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                      )
 
                           ],),
                         ),
 
                         Center(
-                          child: Text(
-                            cubit.userModel != null ? cubit.userModel!.data!
-                                .user!.name : '',
+                          child:  Text(
+                            cubit.userModel!=null?cubit.userModel!.data!.user!.name:'',
                             style: TextStyle(
                                 fontWeight: FontWeight.w700, fontSize: 18),
                           ),
                         ),
                         Center(
-                          child: Text(
-                            cubit.userModel != null ? cubit.userModel!.data!
-                                .user!.phone : '',
+                          child:  Text(
+                            cubit.userModel!=null?cubit.userModel!.data!.user!.phone:'',
                             style: TextStyle(
                                 fontWeight: FontWeight.w400, fontSize: 18),
                           ),
@@ -290,10 +222,7 @@ height: 90,
                               horizontal: 20, vertical: 10),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 10, vertical: 6),
-                          width: MediaQuery
-                              .of(context)
-                              .size
-                              .width * 0.85,
+                          width: MediaQuery.of(context).size.width * 0.85,
                           decoration: BoxDecoration(
                               shape: BoxShape.rectangle,
                               borderRadius: BorderRadius.circular(10),
@@ -313,14 +242,10 @@ height: 90,
                                 const Text(
                                   AppStrings.language,
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
+                                      fontSize: 18, fontWeight: FontWeight.w700),
                                 ).tr(),
                                 SizedBox(
-                                  width: MediaQuery
-                                      .of(context)
-                                      .size
-                                      .width * 0.4,
+                                  width: MediaQuery.of(context).size.width * 0.4,
                                 ),
                                 Localizations.localeOf(context) == Locale("en")
                                     ? Text(cubit.arabicSymbol)
@@ -338,10 +263,7 @@ height: 90,
                                 horizontal: 20, vertical: 10),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 6),
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.85,
+                            width: MediaQuery.of(context).size.width * 0.85,
                             decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(10),
@@ -356,8 +278,7 @@ height: 90,
                                 const Text(
                                   AppStrings.contactUs,
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
+                                      fontSize: 18, fontWeight: FontWeight.w700),
                                 ).tr(),
                               ],
                             ),
@@ -372,10 +293,7 @@ height: 90,
                                 horizontal: 20, vertical: 10),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 6),
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.85,
+                            width: MediaQuery.of(context).size.width * 0.85,
                             decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(10),
@@ -390,8 +308,7 @@ height: 90,
                                 const Text(
                                   AppStrings.shareApp,
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
+                                      fontSize: 18, fontWeight: FontWeight.w700),
                                 ).tr(),
                               ],
                             ),
@@ -406,10 +323,7 @@ height: 90,
                                 horizontal: 20, vertical: 10),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 6),
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.85,
+                            width: MediaQuery.of(context).size.width * 0.85,
                             decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(10),
@@ -424,8 +338,7 @@ height: 90,
                                 const Text(
                                   AppStrings.rateApp,
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
+                                      fontSize: 18, fontWeight: FontWeight.w700),
                                 ).tr(),
                               ],
                             ),
@@ -434,8 +347,7 @@ height: 90,
                         InkWell(
                           onTap: () {
                             Preferences.instance.clearUserData();
-                            Navigator.pushNamedAndRemoveUntil(
-                              context, Routes.loginRoute, (route) {
+                            Navigator.pushNamedAndRemoveUntil(context, Routes.loginRoute,(route) {
                               return false;
                             },);
                           },
@@ -444,10 +356,7 @@ height: 90,
                                 horizontal: 20, vertical: 10),
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 10, vertical: 6),
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.85,
+                            width: MediaQuery.of(context).size.width * 0.85,
                             decoration: BoxDecoration(
                                 shape: BoxShape.rectangle,
                                 borderRadius: BorderRadius.circular(10),
@@ -462,8 +371,7 @@ height: 90,
                                 const Text(
                                   AppStrings.logout,
                                   style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
+                                      fontSize: 18, fontWeight: FontWeight.w700),
                                 ).tr(),
                               ],
                             ),
@@ -516,7 +424,8 @@ height: 90,
                         SizedBox(height: 150,),
                       ],
                     ),
-                  ),
+                  ) ,
+
 
 
                   //
@@ -764,6 +673,7 @@ height: 90,
   }
 
   Future<void> rateApp() async {
+
     if (await inAppReview.isAvailable()) {
       inAppReview.requestReview();
     }
@@ -804,309 +714,9 @@ height: 90,
   }
 
   Future<void> setuppackage() async {
-    packageInfo = await PackageInfo.fromPlatform();
+    packageInfo=   await PackageInfo.fromPlatform();
+
   }
-
-                            child: Row(
-                              children: [
-                                Image.asset(ImageAssests.rateAppIcon),
-                                const SizedBox(
-                                  width: 15,
-                                ),
-                                const Text(
-                                  AppStrings.rateApp,
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
-                                ).tr(),
-                              ],
-                            ),
-                          ),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            Preferences.instance.clearUserData();
-                            Navigator.pushNamedAndRemoveUntil(
-                              context, Routes.loginRoute, (route) {
-                              return false;
-                            },);
-                          },
-                          child: Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 20, vertical: 10),
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 6),
-                            width: MediaQuery
-                                .of(context)
-                                .size
-                                .width * 0.85,
-                            decoration: BoxDecoration(
-                                shape: BoxShape.rectangle,
-                                borderRadius: BorderRadius.circular(10),
-                                border:
-                            child: Row(
-                              children: [
-                                Image.asset(ImageAssests.logOutIcon),
-                                const SizedBox(
-                                  width: 15,
-                                ),
-                                const Text(
-                                  AppStrings.logout,
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.w700),
-                                ).tr(),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            InkWell(
-                              child: Image.asset(ImageAssests.facebookIcon),
-                              onTap: () {
-                                _openSocialUrl(
-                                    url: cubit.setting!
-                                        .data.facebook);
-                              },
-                            ),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  _openSocialUrl(
-                                      url: cubit.setting!
-                                          .data.instagram);
-                                },
-                                child: Image.asset(ImageAssests.instagramIcon)),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  _openSocialUrl(
-                                      url: cubit.setting!
-                                          .data.twitter);
-                                },
-                                child: Image.asset(ImageAssests.twitterIcon)),
-                            const SizedBox(
-                              width: 10,
-                            ),
-                            InkWell(
-                                onTap: () {
-                                  _openSocialUrl(
-                                      url: cubit.setting!
-                                          .data.linkedin);
-                                },
-                                child: Image.asset(ImageAssests.linkedInIcon)),
-                          ],
-                        ),
-                        SizedBox(height: 150,),
-                      ],
-                    ),
-                  ),
-                  //
-                  //  //first 2 circles
-                  //
-                  //  //profile image
-                  //  Positioned(
-                  //      top: 100* 0.22,
-                  //      child:,
-                  //
-                  //  //all fields
-                  // // Positioned(
-                  //    // top: 100* 0.17,
-                  //    // right: 0,
-                  //    // left: 0,
-                  //    // bottom: 0,
-                  //  //  child:
-                  //    SingleChildScrollView(
-                  //      child: Column(
-                  //        children: [
-                  //          const Text(
-                  //            'محمد محمد',
-                  //            style: TextStyle(
-                  //                fontWeight: FontWeight.w700, fontSize: 18),
-                  //          ),
-                  //          const Text(
-                  //            '01030504268',
-                  //            style: TextStyle(
-                  //                fontWeight: FontWeight.w400, fontSize: 18),
-                  //          ),
-                  //          Container(
-                  //            margin: const EdgeInsets.symmetric(
-                  //                horizontal: 20, vertical: 10),
-                  //            padding: const EdgeInsets.symmetric(
-                  //                horizontal: 10, vertical: 6),
-                  //            width: MediaQuery.of(context).size.width * 0.85,
-                  //            decoration: BoxDecoration(
-                  //                shape: BoxShape.rectangle,
-                  //                borderRadius: BorderRadius.circular(10),
-                  //                border:
-                  //                    Border.all(width: 2, color: AppColors.grey3)),
-                  //            child: InkWell(
-                  //              onTap: () {
-                  //                cubit.changeApplicationLanguage(context);
-                  //                // EasyLocalization.of(context)?.setLocale(Locale('en', ''));
-                  //              },
-                  //              child: Row(
-                  //                children: [
-                  //                  Image.asset(ImageAssests.languageIcon),
-                  //                  const SizedBox(
-                  //                    width: 15,
-                  //                  ),
-                  //                  const Text(
-                  //                    AppStrings.language,
-                  //                    style: TextStyle(
-                  //                        fontSize: 18, fontWeight: FontWeight.w700),
-                  //                  ).tr(),
-                  //                  SizedBox(
-                  //                    width: MediaQuery.of(context).size.width * 0.4,
-                  //                  ),
-                  //                  Localizations.localeOf(context) == Locale("en")
-                  //                      ? Text(cubit.arabicSymbol)
-                  //                      : Text(cubit.englishSymbol)
-                  //                ],
-                  //              ),
-                  //            ),
-                  //          ),
-                  //          InkWell(
-                  //            onTap: () {
-                  //              Navigator.pushNamed(context, Routes.contactUsRoute);
-                  //            },
-                  //            child: Container(
-                  //              margin: const EdgeInsets.symmetric(
-                  //                  horizontal: 20, vertical: 10),
-                  //              padding: const EdgeInsets.symmetric(
-                  //                  horizontal: 10, vertical: 6),
-                  //              width: MediaQuery.of(context).size.width * 0.85,
-                  //              decoration: BoxDecoration(
-                  //                  shape: BoxShape.rectangle,
-                  //                  borderRadius: BorderRadius.circular(10),
-                  //                  border:
-                  //                      Border.all(width: 2, color: AppColors.grey3)),
-                  //              child: Row(
-                  //                children: [
-                  //                  Image.asset(ImageAssests.contactUsIcon),
-                  //                  const SizedBox(
-                  //                    width: 15,
-                  //                  ),
-                  //                  const Text(
-                  //                    AppStrings.contactUs,
-                  //                    style: TextStyle(
-                  //                        fontSize: 18, fontWeight: FontWeight.w700),
-                  //                  ).tr(),
-                  //                ],
-                  //              ),
-                  //            ),
-                  //          ),
-                  //          Container(
-                  //            margin: const EdgeInsets.symmetric(
-                  //                horizontal: 20, vertical: 10),
-                  //            padding: const EdgeInsets.symmetric(
-                  //                horizontal: 10, vertical: 6),
-                  //            width: MediaQuery.of(context).size.width * 0.85,
-                  //            decoration: BoxDecoration(
-                  //                shape: BoxShape.rectangle,
-                  //                borderRadius: BorderRadius.circular(10),
-                  //                border:
-                  //                    Border.all(width: 2, color: AppColors.grey3)),
-                  //            child: Row(
-                  //              children: [
-                  //                Image.asset(ImageAssests.shareAppIcon),
-                  //                const SizedBox(
-                  //                  width: 15,
-                  //                ),
-                  //                const Text(
-                  //                  AppStrings.shareApp,
-                  //                  style: TextStyle(
-                  //                      fontSize: 18, fontWeight: FontWeight.w700),
-                  //                ).tr(),
-                  //              ],
-                  //            ),
-                  //          ),
-                  //          Container(
-                  //            margin: const EdgeInsets.symmetric(
-                  //                horizontal: 20, vertical: 10),
-                  //            padding: const EdgeInsets.symmetric(
-                  //                horizontal: 10, vertical: 6),
-                  //            width: MediaQuery.of(context).size.width * 0.85,
-                  //            decoration: BoxDecoration(
-                  //                shape: BoxShape.rectangle,
-                  //                borderRadius: BorderRadius.circular(10),
-                  //                border:
-                  //                    Border.all(width: 2, color: AppColors.grey3)),
-                  //            child: Row(
-                  //              children: [
-                  //                Image.asset(ImageAssests.rateAppIcon),
-                  //                const SizedBox(
-                  //                  width: 15,
-                  //                ),
-                  //                const Text(
-                  //                  AppStrings.rateApp,
-                  //                  style: TextStyle(
-                  //                      fontSize: 18, fontWeight: FontWeight.w700),
-                  //                ).tr(),
-                  //              ],
-                  //            ),
-                  //          ),
-                  //          InkWell(
-                  //            onTap: () {
-                  //              Navigator.pushReplacementNamed(
-                  //                  context, Routes.loginRoute);
-                  //            },
-                  //            child: Container(
-                  //              margin: const EdgeInsets.symmetric(
-                  //                  horizontal: 20, vertical: 10),
-                  //              padding: const EdgeInsets.symmetric(
-                  //                  horizontal: 10, vertical: 6),
-                  //              width: MediaQuery.of(context).size.width * 0.85,
-                  //              decoration: BoxDecoration(
-                  //                  shape: BoxShape.rectangle,
-                  //                  borderRadius: BorderRadius.circular(10),
-                  //                  border:
-                  //                      Border.all(width: 2, color: AppColors.grey3)),
-                  //              child: Row(
-                  //                children: [
-                  //                  Image.asset(ImageAssests.logOutIcon),
-                  //                  const SizedBox(
-                  //                    width: 15,
-                  //                  ),
-                  //                  const Text(
-                  //                    AppStrings.logout,
-                  //                    style: TextStyle(
-                  //                        fontSize: 18, fontWeight: FontWeight.w700),
-                  //                  ).tr(),
-                  //                ],
-                  //              ),
-                  //            ),
-                  //          ),
-                  //          Row(
-                  //            mainAxisAlignment: MainAxisAlignment.center,
-                  //            children: [
-                  //              Image.asset(ImageAssests.facebookIcon),
-                  //              const SizedBox(
-                  //                width: 10,
-                  //              ),
-                  //              Image.asset(ImageAssests.instagramIcon),
-                  //              const SizedBox(
-                  //                width: 10,
-                  //              ),
-                  //              Image.asset(ImageAssests.twitterIcon),
-                  //              const SizedBox(
-                  //                width: 10,
-                  //              ),
-                  //              Image.asset(ImageAssests.linkedInIcon),
-                  //            ],
-                  //          )
-                  //        ],
-                  //      ),
-                  //    ),
-                  //  ),
-    packageInfo = await PackageInfo.fromPlatform();
-
   void _openSocialUrl({required String url}) async {
     Uri uri = Uri.parse(url);
 
