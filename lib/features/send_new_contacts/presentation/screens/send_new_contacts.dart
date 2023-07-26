@@ -12,8 +12,12 @@ class SendNewContacts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AddInvitationCubit cubit=context.read<AddInvitationCubit>();
     return  Scaffold(
-      body: Column(
+
+      body: BlocBuilder<AddInvitationCubit, AddInvitationState>(
+  builder: (context, state) {
+    return Column(
         children: [
           ClipPath(
             clipper: SmallBottomCurveClipper(),
@@ -31,7 +35,7 @@ class SendNewContacts extends StatelessWidget {
                   width: double.infinity,
                   child: Center(
                     child: const Text(
-                      AppStrings.createNewInvitation,
+                      AppStrings.send,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: 18,
@@ -169,14 +173,14 @@ class SendNewContacts extends StatelessWidget {
                                             fontWeight: FontWeight.w700,
                                             color: AppColors.primary
                                         ),),
-                                        // Text(
-                                        //   "${
-                                        //       context.read<AddInvitationCubit>().selectedContactModelList.length}",
-                                        //   style: const TextStyle(
-                                        //     fontSize: 20,
-                                        //     fontWeight: FontWeight.w700,
-                                        //   ),
-                                        // ),
+                                        Text(
+                                          "${
+                                              context.read<AddInvitationCubit>().model.selectedContactModelList.length}",
+                                          style: const TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                        ),
                                         SizedBox(
                                           height: 46,
                                           width: MediaQuery.of(context).size.width*0.7,
@@ -187,6 +191,8 @@ class SendNewContacts extends StatelessWidget {
                                             child: const Text(AppStrings.send, style: TextStyle(
                                                 color: Colors.white),).tr(),
                                             onPressed: () {
+                                              cubit.model.step=5;
+                                              context.read<AddInvitationCubit>().updateinviatation(context);
                                              // Navigator.pushNamed(context, Routes.homeRoute);
 
                                             },
@@ -232,39 +238,41 @@ class SendNewContacts extends StatelessWidget {
               ),
             ),
           ),
-          // Expanded(child: ListView.separated(
-          //     itemBuilder: (context, index) {
-          //
-          //       return Padding(
-          //         padding: const EdgeInsets.symmetric(horizontal: 38.0),
-          //         child:
-          //         context.read<AddInvitationCubit>().selectedContactModelList[index].phones!.isNotEmpty?
-          //         Row(children: [
-          //           Text("${index+1} - المكرم :",style: const TextStyle(
-          //               fontWeight: FontWeight.w700,
-          //               fontSize: 20
-          //           ),),
-          //
-          //           Expanded(
-          //             child: Text(" ${context.read<AddInvitationCubit>().selectedContactModelList[index].name}",style: const TextStyle(
-          //                 fontWeight: FontWeight.w400,
-          //                 fontSize: 20
-          //             ),
-          //               overflow: TextOverflow.clip,
-          //               softWrap: true,
-          //               maxLines: 1,
-          //
-          //             ),
-          //           )
-          //         ],):
-          //         SizedBox(),
-          //       );
-          //     }, separatorBuilder: (context, index) {
-          //   return const SizedBox(height: 10,);
-          // }, itemCount:context.read<AddInvitationCubit>().selectedContactModelList.length),
-          // )
+          Expanded(child: ListView.separated(
+              itemBuilder: (context, index) {
+
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 38.0),
+                  child:
+                  context.read<AddInvitationCubit>().model.selectedContactModelList[index].phones!.isNotEmpty?
+                  Row(children: [
+                    Text("${index+1} - المكرم :",style: const TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20
+                    ),),
+
+                    Expanded(
+                      child: Text(" ${context.read<AddInvitationCubit>().model.selectedContactModelList[index].name}",style: const TextStyle(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 20
+                      ),
+                        overflow: TextOverflow.clip,
+                        softWrap: true,
+                        maxLines: 1,
+
+                      ),
+                    )
+                  ],):
+                  SizedBox(),
+                );
+              }, separatorBuilder: (context, index) {
+            return const SizedBox(height: 10,);
+          }, itemCount:context.read<AddInvitationCubit>().model.selectedContactModelList.length),
+          )
         ],
-      ),
+      );
+  },
+),
     );
   }
 }

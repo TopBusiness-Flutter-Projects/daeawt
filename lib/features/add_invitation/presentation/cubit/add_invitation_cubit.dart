@@ -368,6 +368,8 @@ for(int j=0;j<contactModelList.length;j++){
     );
   }
   void updateinviatation(BuildContext context) async {
+    print("lflfl");
+  //  print(model.selectedContactModelList.length);
     AppWidget.createProgressDialog(context, tr.tr('wait'));
     final response = await api.updateinvitation(model,homeListItemModel!.id);
     response.fold(
@@ -388,6 +390,7 @@ for(int j=0;j<contactModelList.length;j++){
   void setData(InvitationModel homeListItemModel) {
     isfirst=true;
     this.homeListItemModel = homeListItemModel;
+
     model.title = homeListItemModel.title;
     model.date = homeListItemModel.date;
     model.as_draft = int.parse(homeListItemModel.status);
@@ -426,6 +429,53 @@ for(int j=0;j<contactModelList.length;j++){
         }
       }
     }
+    emit(AddInvitationInitial());
+  }
+  void setData1(InvitationModel homeListItemModel) {
+    isfirst=true;
+    this.homeListItemModel = homeListItemModel;
+
+    model.title = homeListItemModel.title;
+    model.date = homeListItemModel.date;
+    model.as_draft = int.parse(homeListItemModel.status);
+    model.longitude = double.parse(homeListItemModel.longitude);
+    model.latitude = double.parse(homeListItemModel.latitude);
+    model.image = homeListItemModel.image;
+    dateController.text = homeListItemModel.date;
+    nameController.text = homeListItemModel.title;
+    model.address = homeListItemModel.address;
+    address = model.address;
+    selectLocation(LatLng(model.latitude, model.longitude));
+    updateBirthDate(date: model.date);
+    print("homeListItemModel.invitees.length");
+    print(homeListItemModel.invitees.length);
+    for(int i=0;i<homeListItemModel.invitees.length;i++){
+      model.selectedContactModelList.add(ContactModel(name:homeListItemModel.invitees[i].name,phones: [Item(label: 'mobile',value:homeListItemModel.invitees[i].phone )] ));
+    }
+    // if (contactModelList.isNotEmpty&&model.selectedContactModelList.length==0) {
+    //   if (homeListItemModel.invitees.isNotEmpty) {
+    //     print("ddddd");
+    //     for (int i = 0; i < homeListItemModel!.invitees.length; i++) {
+    //       print("ddddwwwww");
+    //       for(int j=0;j<contactModelList.length;j++){
+    //         if (contactModelList[j].phones!.elementAt(0).value==homeListItemModel!.invitees.elementAt(i).phone) {
+    //           print("ssssss");
+    //           print(contactModelList.elementAt(0).phones!.elementAt(0).label);
+    //
+    //           contactModelList[j].numberOfInvitedPeople =
+    //               homeListItemModel!.invitees[i].inviteesNumber;
+    //
+    //           contactModelList[j].isSelected =
+    //               changesSelectButton(false);
+    //           model.selectedContactModelList
+    //               .add(contactModelList[i]);
+    //         }
+    //
+    //       }
+    //
+    //     }
+    //   }
+    // }
     emit(AddInvitationInitial());
   }
 

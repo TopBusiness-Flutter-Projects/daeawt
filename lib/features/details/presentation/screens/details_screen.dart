@@ -361,7 +361,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   //اضافة مدعوين
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.addPersonRoute);
+                      Navigator.pushNamed(context, Routes.addPersonRoute,arguments: widget.homeListItemModel);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.black1,

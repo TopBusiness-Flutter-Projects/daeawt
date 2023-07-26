@@ -16,8 +16,11 @@ class AddNewContacts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AddInvitationCubit cubit=context.read<AddInvitationCubit>();
     return  Scaffold(
-      body: SingleChildScrollView(
+      body: BlocBuilder<AddInvitationCubit, AddInvitationState>(
+  builder: (context, state) {
+    return SingleChildScrollView(
         child: Column(
           children: [
             ClipPath(
@@ -35,8 +38,8 @@ class AddNewContacts extends StatelessWidget {
                     height: 160,
                     width: double.infinity,
                     child: Center(
-                      child: const Text(
-                        AppStrings.createNewInvitation,
+                      child:  Text(
+                        'update_invitation'.tr(),
                         style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontSize: 18,
@@ -208,16 +211,16 @@ class AddNewContacts extends StatelessWidget {
                                   }, icon: const Icon(Icons.edit)),
                               TextButton(
                                   onPressed: () {
-                                    // cubit.contactModelList[i].isSelected =  cubit.changesSelectButton(cubit.contactModelList[i].isSelected!);
-                                    // if(cubit.contactModelList[i].isSelected!){
-                                    //   if(cubit.contactModelList[i].phones!.isNotEmpty){
-                                    //     cubit.selectedContactModelList.add(cubit.contactModelList[i]);
-                                    //   }
-                                    //
-                                    // }
-                                    // else {
-                                    //   cubit.selectedContactModelList.remove(cubit.contactModelList[i]);
-                                    // }
+                                    cubit.contactModelList[i].isSelected =  cubit.changesSelectButton(cubit.contactModelList[i].isSelected!);
+                                    if(cubit.contactModelList[i].isSelected!){
+                                      if(cubit.contactModelList[i].phones!.isNotEmpty){
+                                        cubit.model.selectedContactModelList.add(cubit.contactModelList[i]);
+                                      }
+
+                                    }
+                                    else {
+                                      cubit.model.selectedContactModelList.remove(cubit.contactModelList[i]);
+                                    }
 
                                   },
 
@@ -267,7 +270,9 @@ class AddNewContacts extends StatelessWidget {
             ),
           ],
         ),
-      ),
+      );
+  },
+),
     );
   }
 }

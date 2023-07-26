@@ -37,6 +37,7 @@ import 'core/utils/toast_message_method.dart';
 
 
 import 'features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
+import 'features/add_person/presentation/cubit/add_person_cubit.dart';
 import 'features/apology/cubit/appology_cubit.dart';
 import 'features/confirmed/cubit/confirmed_cubit.dart';
 import 'features/home/cubit/home_cubit.dart';
@@ -176,6 +177,9 @@ class _ElmazoonState extends State<Elmazoon> {
         ),
         BlocProvider(
           create: (_) => injector.serviceLocator<ProfileCubit>(),
+        ),
+        BlocProvider(
+          create: (_) => injector.serviceLocator<AddPersonCubit>(),
         ),
 
 

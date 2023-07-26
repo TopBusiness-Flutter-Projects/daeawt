@@ -149,7 +149,9 @@ class AppRoutes{
       return MaterialPageRoute(builder: (context) =>    MessagesScreen(homeListItemModel:homeListItemModel),);
 
     case Routes.addPersonRoute:
-      return MaterialPageRoute(builder: (context) =>   const AddPerson(),);
+      InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
+
+      return MaterialPageRoute(builder: (context) =>    AddPerson(homeListItemModel:homeListItemModel),);
 
     case Routes.addNewContactsRoute:
       return MaterialPageRoute(builder: (context) =>   const AddNewContacts(),);
@@ -164,14 +166,14 @@ class AppRoutes{
     // case Routes.messagesRoute:
     //   return MaterialPageRoute(builder: (context) =>    MessagesScreen(),);
 
-    case Routes.addPersonRoute:
-      return MaterialPageRoute(builder: (context) =>   const AddPerson(),);
+    // case Routes.addPersonRoute:
+    //   return MaterialPageRoute(builder: (context) =>   const AddPerson(),);
 
     case Routes.addNewContactsRoute:
       return MaterialPageRoute(builder: (context) =>   const AddNewContacts(),);
 
-    case Routes.sendNewContactsRoute:
-      return MaterialPageRoute(builder: (context) =>   const SendNewContacts(),);
+    // case Routes.sendNewContactsRoute:
+    //   return MaterialPageRoute(builder: (context) =>   const SendNewContacts(),);
 
     case Routes.scannedRoute:
       InvitationModel homeListItemModel=settings.arguments as  InvitationModel;
