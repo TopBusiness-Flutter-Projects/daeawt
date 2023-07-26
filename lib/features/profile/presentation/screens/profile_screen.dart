@@ -224,16 +224,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Positioned(top: 0,
                               left: 0,
                               right: 0,child: Container(
-                                height: 90,
-                                padding: EdgeInsets.all(6),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                        color: AppColors.grey3, width: 3)),
-                                child: Image.asset(ImageAssests.profileImage)
-                            ),
+                                  height: 90,
+                                  padding: EdgeInsets.all(6),
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      shape: BoxShape.circle,
+                                      border: Border.all(
+                                          color: AppColors.grey3, width: 3)),
+                                  child: Image.asset(ImageAssests.profileImage)
+                              ),
                             )
+                        //third row of circles
+                        Positioned(
+                          top: 100* 0.15,
+                          right: MediaQuery.of(context).size.width * 0.13,
+                          child: const CircleAvatar(
+                            radius: 4,
+                            backgroundColor: AppColors.primary,
+                          ),
+                        ),
+                        Positioned(
+                          top: 100* 0.15,
+                          left: MediaQuery.of(context).size.width * 0.13,
+                          child: const CircleAvatar(
+                            radius: 4,
+                            backgroundColor: AppColors.primary,
+                          ),
+                        ),
+                      Positioned(child:  Container(
+height: 90,
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: AppColors.grey3, width: 3)),
+                        child:cubit.userModel==null||cubit.userModel!.data!.user!.image.isEmpty? Image.asset(ImageAssests.profileImage):
+                        ManageCircleNetworkImage(imageUrl: cubit.userModel!.data!.user!.image,),
+                      ),
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                      )
 
                           ],),
                         ),
@@ -775,6 +806,306 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> setuppackage() async {
     packageInfo = await PackageInfo.fromPlatform();
   }
+
+                            child: Row(
+                              children: [
+                                Image.asset(ImageAssests.rateAppIcon),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                const Text(
+                                  AppStrings.rateApp,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700),
+                                ).tr(),
+                              ],
+                            ),
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Preferences.instance.clearUserData();
+                            Navigator.pushNamedAndRemoveUntil(
+                              context, Routes.loginRoute, (route) {
+                              return false;
+                            },);
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 20, vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 6),
+                            width: MediaQuery
+                                .of(context)
+                                .size
+                                .width * 0.85,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.rectangle,
+                                borderRadius: BorderRadius.circular(10),
+                                border:
+                            child: Row(
+                              children: [
+                                Image.asset(ImageAssests.logOutIcon),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                const Text(
+                                  AppStrings.logout,
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.w700),
+                                ).tr(),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InkWell(
+                              child: Image.asset(ImageAssests.facebookIcon),
+                              onTap: () {
+                                _openSocialUrl(
+                                    url: cubit.setting!
+                                        .data.facebook);
+                              },
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  _openSocialUrl(
+                                      url: cubit.setting!
+                                          .data.instagram);
+                                },
+                                child: Image.asset(ImageAssests.instagramIcon)),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  _openSocialUrl(
+                                      url: cubit.setting!
+                                          .data.twitter);
+                                },
+                                child: Image.asset(ImageAssests.twitterIcon)),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  _openSocialUrl(
+                                      url: cubit.setting!
+                                          .data.linkedin);
+                                },
+                                child: Image.asset(ImageAssests.linkedInIcon)),
+                          ],
+                        ),
+                        SizedBox(height: 150,),
+                      ],
+                    ),
+                  ),
+                  //
+                  //  //first 2 circles
+                  //
+                  //  //profile image
+                  //  Positioned(
+                  //      top: 100* 0.22,
+                  //      child:,
+                  //
+                  //  //all fields
+                  // // Positioned(
+                  //    // top: 100* 0.17,
+                  //    // right: 0,
+                  //    // left: 0,
+                  //    // bottom: 0,
+                  //  //  child:
+                  //    SingleChildScrollView(
+                  //      child: Column(
+                  //        children: [
+                  //          const Text(
+                  //            'محمد محمد',
+                  //            style: TextStyle(
+                  //                fontWeight: FontWeight.w700, fontSize: 18),
+                  //          ),
+                  //          const Text(
+                  //            '01030504268',
+                  //            style: TextStyle(
+                  //                fontWeight: FontWeight.w400, fontSize: 18),
+                  //          ),
+                  //          Container(
+                  //            margin: const EdgeInsets.symmetric(
+                  //                horizontal: 20, vertical: 10),
+                  //            padding: const EdgeInsets.symmetric(
+                  //                horizontal: 10, vertical: 6),
+                  //            width: MediaQuery.of(context).size.width * 0.85,
+                  //            decoration: BoxDecoration(
+                  //                shape: BoxShape.rectangle,
+                  //                borderRadius: BorderRadius.circular(10),
+                  //                border:
+                  //                    Border.all(width: 2, color: AppColors.grey3)),
+                  //            child: InkWell(
+                  //              onTap: () {
+                  //                cubit.changeApplicationLanguage(context);
+                  //                // EasyLocalization.of(context)?.setLocale(Locale('en', ''));
+                  //              },
+                  //              child: Row(
+                  //                children: [
+                  //                  Image.asset(ImageAssests.languageIcon),
+                  //                  const SizedBox(
+                  //                    width: 15,
+                  //                  ),
+                  //                  const Text(
+                  //                    AppStrings.language,
+                  //                    style: TextStyle(
+                  //                        fontSize: 18, fontWeight: FontWeight.w700),
+                  //                  ).tr(),
+                  //                  SizedBox(
+                  //                    width: MediaQuery.of(context).size.width * 0.4,
+                  //                  ),
+                  //                  Localizations.localeOf(context) == Locale("en")
+                  //                      ? Text(cubit.arabicSymbol)
+                  //                      : Text(cubit.englishSymbol)
+                  //                ],
+                  //              ),
+                  //            ),
+                  //          ),
+                  //          InkWell(
+                  //            onTap: () {
+                  //              Navigator.pushNamed(context, Routes.contactUsRoute);
+                  //            },
+                  //            child: Container(
+                  //              margin: const EdgeInsets.symmetric(
+                  //                  horizontal: 20, vertical: 10),
+                  //              padding: const EdgeInsets.symmetric(
+                  //                  horizontal: 10, vertical: 6),
+                  //              width: MediaQuery.of(context).size.width * 0.85,
+                  //              decoration: BoxDecoration(
+                  //                  shape: BoxShape.rectangle,
+                  //                  borderRadius: BorderRadius.circular(10),
+                  //                  border:
+                  //                      Border.all(width: 2, color: AppColors.grey3)),
+                  //              child: Row(
+                  //                children: [
+                  //                  Image.asset(ImageAssests.contactUsIcon),
+                  //                  const SizedBox(
+                  //                    width: 15,
+                  //                  ),
+                  //                  const Text(
+                  //                    AppStrings.contactUs,
+                  //                    style: TextStyle(
+                  //                        fontSize: 18, fontWeight: FontWeight.w700),
+                  //                  ).tr(),
+                  //                ],
+                  //              ),
+                  //            ),
+                  //          ),
+                  //          Container(
+                  //            margin: const EdgeInsets.symmetric(
+                  //                horizontal: 20, vertical: 10),
+                  //            padding: const EdgeInsets.symmetric(
+                  //                horizontal: 10, vertical: 6),
+                  //            width: MediaQuery.of(context).size.width * 0.85,
+                  //            decoration: BoxDecoration(
+                  //                shape: BoxShape.rectangle,
+                  //                borderRadius: BorderRadius.circular(10),
+                  //                border:
+                  //                    Border.all(width: 2, color: AppColors.grey3)),
+                  //            child: Row(
+                  //              children: [
+                  //                Image.asset(ImageAssests.shareAppIcon),
+                  //                const SizedBox(
+                  //                  width: 15,
+                  //                ),
+                  //                const Text(
+                  //                  AppStrings.shareApp,
+                  //                  style: TextStyle(
+                  //                      fontSize: 18, fontWeight: FontWeight.w700),
+                  //                ).tr(),
+                  //              ],
+                  //            ),
+                  //          ),
+                  //          Container(
+                  //            margin: const EdgeInsets.symmetric(
+                  //                horizontal: 20, vertical: 10),
+                  //            padding: const EdgeInsets.symmetric(
+                  //                horizontal: 10, vertical: 6),
+                  //            width: MediaQuery.of(context).size.width * 0.85,
+                  //            decoration: BoxDecoration(
+                  //                shape: BoxShape.rectangle,
+                  //                borderRadius: BorderRadius.circular(10),
+                  //                border:
+                  //                    Border.all(width: 2, color: AppColors.grey3)),
+                  //            child: Row(
+                  //              children: [
+                  //                Image.asset(ImageAssests.rateAppIcon),
+                  //                const SizedBox(
+                  //                  width: 15,
+                  //                ),
+                  //                const Text(
+                  //                  AppStrings.rateApp,
+                  //                  style: TextStyle(
+                  //                      fontSize: 18, fontWeight: FontWeight.w700),
+                  //                ).tr(),
+                  //              ],
+                  //            ),
+                  //          ),
+                  //          InkWell(
+                  //            onTap: () {
+                  //              Navigator.pushReplacementNamed(
+                  //                  context, Routes.loginRoute);
+                  //            },
+                  //            child: Container(
+                  //              margin: const EdgeInsets.symmetric(
+                  //                  horizontal: 20, vertical: 10),
+                  //              padding: const EdgeInsets.symmetric(
+                  //                  horizontal: 10, vertical: 6),
+                  //              width: MediaQuery.of(context).size.width * 0.85,
+                  //              decoration: BoxDecoration(
+                  //                  shape: BoxShape.rectangle,
+                  //                  borderRadius: BorderRadius.circular(10),
+                  //                  border:
+                  //                      Border.all(width: 2, color: AppColors.grey3)),
+                  //              child: Row(
+                  //                children: [
+                  //                  Image.asset(ImageAssests.logOutIcon),
+                  //                  const SizedBox(
+                  //                    width: 15,
+                  //                  ),
+                  //                  const Text(
+                  //                    AppStrings.logout,
+                  //                    style: TextStyle(
+                  //                        fontSize: 18, fontWeight: FontWeight.w700),
+                  //                  ).tr(),
+                  //                ],
+                  //              ),
+                  //            ),
+                  //          ),
+                  //          Row(
+                  //            mainAxisAlignment: MainAxisAlignment.center,
+                  //            children: [
+                  //              Image.asset(ImageAssests.facebookIcon),
+                  //              const SizedBox(
+                  //                width: 10,
+                  //              ),
+                  //              Image.asset(ImageAssests.instagramIcon),
+                  //              const SizedBox(
+                  //                width: 10,
+                  //              ),
+                  //              Image.asset(ImageAssests.twitterIcon),
+                  //              const SizedBox(
+                  //                width: 10,
+                  //              ),
+                  //              Image.asset(ImageAssests.linkedInIcon),
+                  //            ],
+                  //          )
+                  //        ],
+                  //      ),
+                  //    ),
+                  //  ),
+    packageInfo = await PackageInfo.fromPlatform();
 
   void _openSocialUrl({required String url}) async {
     Uri uri = Uri.parse(url);
