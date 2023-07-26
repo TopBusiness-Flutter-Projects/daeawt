@@ -260,6 +260,7 @@ for(int j=0;j<contactModelList.length;j++){
         emit(LocationPermissionFailedState());
       }
     }
+    checkDataVaild1();
   }
 
   Future<bool> _handleLocationPermission(context) async {

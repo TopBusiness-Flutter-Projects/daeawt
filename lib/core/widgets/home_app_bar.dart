@@ -43,7 +43,7 @@ class HomeAppBar extends StatelessWidget {
                       style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: Colors.white),
                     );
                   },),
-                  const Text("welcome_to",
+                   Text("welcome_to".tr(),
                     style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Colors.white),),
 
                 ],
