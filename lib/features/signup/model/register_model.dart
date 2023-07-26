@@ -3,6 +3,7 @@ import 'package:email_validator/email_validator.dart';
 
 class RegisterModel {
   int user_id=0;
+  String image='';
   String email = '';
   String password = '';
   String name = '';
@@ -33,7 +34,9 @@ class RegisterModel {
         "phone": phone,
         "email": email,
         "name": name,
-        "password": password,
+    if (image.isNotEmpty&&!image.contains("http")) ...{"image": await MultipartFile.fromFile(image)},
+
+
 
 
       };

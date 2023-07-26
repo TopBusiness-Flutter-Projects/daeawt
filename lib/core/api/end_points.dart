@@ -1,11 +1,11 @@
 class EndPoints {
   static const String baseUrl = 'https://daawat.topbusiness.io/api/';
  // static const String userUrl = '${baseUrl}auth/login';
-  //static const String deleteUrl = '${baseUrl}provider/auth/delete-account';
+  static const String deleteUrl = '${baseUrl}provider/auth/delete-account';
   static const String invitationhomeListUrl = '${baseUrl}invitations/home';
   static const String contactListUrl = '${baseUrl}invitations/contacts';
  static const String settingurl = '${baseUrl}setting';
-  //static const String sliderhomeListUrl = '${baseUrl}sliders';
+  static const String notificationListUrl = '${baseUrl}notifications';
   //static const String citiesListUrl = '${baseUrl}cities';
   //static const String serviceTypeListUrl = '${baseUrl}translation_types';
 //  static const String translationLanguageListUrl = '${baseUrl}translation_languages';

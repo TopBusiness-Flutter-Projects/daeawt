@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../config/routes/app_routes.dart';
 import '../../../../core/preferences/preferences.dart';
 
 part 'profile_state.dart';
@@ -75,4 +76,23 @@ ServiceApi api;
 
 
   }
+  deleteAccount(BuildContext context) async {
+    final response = await api.deleteAccount();
+    response.fold(
+
+          (l) => emit(DeleteUserFailure()),
+          (r) {
+        Preferences.instance.clearUserData().then((value) {
+          Navigator.pushNamedAndRemoveUntil(context, Routes.loginRoute,(route) {
+            return true;
+          },);
+        });
+
+        emit(DeleteUserSuccessfully());
+      },
+
+
+    );
+  }
+
 }

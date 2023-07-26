@@ -12,7 +12,7 @@ import 'package:daeawt/features/google_map/presentation/screens/google_map.dart'
 import 'package:daeawt/features/add_invitation/presentation/screens/add_invitation2.dart';
 import 'package:daeawt/features/add_invitation/presentation/screens/add_invitation_screen.dart';
 import 'package:daeawt/features/home/presentation/screens/home_screen.dart';
-import 'package:daeawt/features/home/presentation/screens/notification_screen.dart';
+import 'package:daeawt/features/notifications/presentation/screens/notification_screen.dart';
 import 'package:daeawt/features/profile/presentation/screens/profile_screen.dart';
 import 'package:daeawt/features/scan/presenation/screens/scan_screen.dart';
 import 'package:daeawt/features/invited/presentation/screens/invited_screen.dart';

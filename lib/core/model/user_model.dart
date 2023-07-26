@@ -95,7 +95,7 @@ class User {
     id: json["id"],
     name: json["name"],
     phone: json["phone"]??" ",
-    email: json["email"],
+    email: json["email"]??'',
     status: json["status"]??0,
     userType: json["user_type"],
     watts: json["watts"],

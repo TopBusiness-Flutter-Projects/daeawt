@@ -1,8 +1,12 @@
 import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/model/notification.dart';
+
 class NotificationsListItem extends StatelessWidget {
-  const NotificationsListItem({Key? key}) : super(key: key);
+  const NotificationsListItem({Key? key, required this.notificationModel})
+      : super(key: key);
+  final NotificationModel notificationModel;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class NotificationsListItem extends StatelessWidget {
               )
             ],
           ),
-          const Expanded(
+          Expanded(
             child: Padding(
               padding: EdgeInsets.all(8.0),
               child: Column(
@@ -30,20 +34,20 @@ class NotificationsListItem extends StatelessWidget {
                         width: 5,
                       ),
                       Text(
-                        "عنوان الاشعار",
+                        notificationModel.title,
                         style: TextStyle(
                             fontSize: 19, fontWeight: FontWeight.w700),
                       ),
                       Spacer(),
-                      Text(
-                        "منذ 20 دقيقة",
-                        style: TextStyle(
-                            fontSize: 10, fontWeight: FontWeight.w400),
-                      ),
+                      // Text(
+                      // notificationModel.c,
+                      //   style: TextStyle(
+                      //       fontSize: 10, fontWeight: FontWeight.w400),
+                      // ),
                     ],
                   ),
                   Text(
-                    "محتوى التنبيه محتوى التنبيه محتوى التنبيه محتوى التنبيه",
+                    notificationModel.body,
                     textAlign: TextAlign.start,
                     style: TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                   ),

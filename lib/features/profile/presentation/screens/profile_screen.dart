@@ -76,8 +76,63 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   fontWeight: FontWeight.w700),
                             ).tr(),
                             Expanded(child: Container(),),
-                            const MySvgWidget(
-                                path: ImageAssests.deleteIcon, size: 22),
+                            InkWell(
+                              onTap: () {
+                                //todo show dialog
+                                showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          border: Border.all(color: Colors.orange,width: 2)
+                                      ),
+                                      child: AlertDialog(
+                                        // title: Text('Dialog Title'),
+                                        content: Text('delete_your_account'.tr(),
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(color: Colors.orange),
+                                        ),
+                                        actions: <Widget>[
+
+                                          SizedBox(
+                                            width:125,
+                                            child: ElevatedButton(
+                                              child: Text('cancel'.tr()),
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor: Colors.red
+                                              ),
+                                            ),
+                                          ),
+
+
+                                          SizedBox(
+                                            width:125,
+                                            child: ElevatedButton(
+                                              child: Text('ok'.tr()),
+                                              onPressed: () async {
+                                                // Do something when the user presses the OK button
+                                                await cubit.deleteAccount(context);
+
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor: Colors.green
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                );
+
+                              },
+                              child: const MySvgWidget(
+                                  path: ImageAssests.deleteIcon, size: 22),
+                            ),
                             const SizedBox(
                               width: 10,
                             ),
@@ -193,7 +248,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   shape: BoxShape.circle,
                                   border: Border.all(color: AppColors.grey3, width: 3)),
                               child:cubit.userModel==null||cubit.userModel!.data!.user!.image.isEmpty? Image.asset(ImageAssests.profileImage):
-                              ManageCircleNetworkImage(imageUrl: cubit.userModel!.data!.user!.image,),
+                              ManageCircleNetworkImage(imageUrl: cubit.userModel!.data!.user!.image,
+                                height: 90,
+                                width: 90,
+                              ),
                             ),
                               top: 0,
                               left: 0,

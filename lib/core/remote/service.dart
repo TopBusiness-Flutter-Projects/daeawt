@@ -13,6 +13,7 @@ import '../error/failures.dart';
 
 
 import '../model/InvitationDataModel.dart';
+import '../model/notification.dart';
 import '../model/check_code_model.dart';
 import '../model/contact_us_model.dart';
 import '../model/contacts_model.dart';
@@ -78,6 +79,22 @@ class ServiceApi {
       return Left(ServerFailure());
     }
   }
+  Future<Either<Failure, StatusResponse>> deleteAccount() async {
+    try{
+      UserModel loginModel = await Preferences.instance.getUserModel();
+      final response = await dio.post(
+        EndPoints.deleteUrl,
+        options: Options(
+          headers: {'Authorization': loginModel.data!.accessToken!},
+        ),
+      );
+      return Right(StatusResponse.fromJson(response));
+    }on ServerException {
+      return Left(ServerFailure());
+    }
+
+  }
+
   Future<Either<Failure, StatusResponse>> addInvitation(AddInvitationModel invitationModel) async {
     try {
       print(";;;;");
@@ -260,6 +277,25 @@ class ServiceApi {
       );
       print(response);
       return Right(InvitationDataModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  Future<Either<Failure, NotificationDataModel>> getnotifications(
+      ) async {
+     String lan = await Preferences.instance.getSavedLang();
+     UserModel loginModel = await Preferences.instance.getUserModel();
+
+     try {
+      final response = await dio.get(
+        EndPoints.notificationListUrl ,
+
+        options: Options(
+          headers: {'Authorization': loginModel.data!.accessToken!},
+        ),
+      );
+      print(response);
+      return Right(NotificationDataModel.fromJson(response));
     } on ServerException {
       return Left(ServerFailure());
     }

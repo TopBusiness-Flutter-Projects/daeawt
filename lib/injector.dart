@@ -24,9 +24,11 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
 import 'features/apology/cubit/appology_cubit.dart';
+import 'features/edit_profile/cubit/edit_profile_cubit.dart';
 import 'features/home/cubit/home_cubit.dart';
 import 'features/login/cubit/login_cubit.dart';
 import 'features/messages/presentation/cubit/messages_cubit.dart';
+import 'features/notifications/cubit/notifications_cubit.dart';
 import 'features/signup/cubit/signup_cubit.dart';
 import 'features/waiting/cubit/waiting_cubit.dart';
 
@@ -66,6 +68,12 @@ Future<void> setup() async {
   );
   serviceLocator.registerFactory(
         () => NotsentCubit(),
+  );
+  serviceLocator.registerFactory(
+        () => EditProfileCubit(serviceLocator()),
+  );
+  serviceLocator.registerFactory(
+        () => NotificationsCubit(serviceLocator()),
   );
   serviceLocator.registerFactory(
         () => FaildCubit(),
