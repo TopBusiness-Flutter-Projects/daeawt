@@ -40,6 +40,10 @@ dependencies:
   flutter_windowmanager: ^0.2.0
   image_picker:
   google_maps_flutter:
+  google_maps_webservice: ^0.0.14
+  search_map_place_updated: ^0.0.4
+  flutter_google_places:
+  awesome_snackbar_content:
   geocoding:
   firebase_core:
   firebase_auth:

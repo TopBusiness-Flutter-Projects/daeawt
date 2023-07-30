@@ -65,7 +65,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             size: 30,
                           ),
                         ),
-
                         onPressed: () {
                           Navigator.pop(context);
                         },
@@ -129,7 +128,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       //edit
                                       InkWell(
                                         onTap: () {
-                                          context.read<AddInvitationCubit>().setData(widget.homeListItemModel);
+                                          context
+                                              .read<AddInvitationCubit>()
+                                              .setData(
+                                                  widget.homeListItemModel);
                                           Navigator.pushNamed(context,
                                               Routes.addInvitationRoute);
                                         },
@@ -237,7 +239,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   onTap: () {
                                     Navigator.pop(context);
                                     Navigator.pushNamed(
-                                        context, Routes.reminderRoute,arguments: widget.homeListItemModel);
+                                        context, Routes.reminderRoute,
+                                        arguments: widget.homeListItemModel);
                                   },
                                   child: const Text(
                                     AppStrings.sendReminder,
@@ -293,30 +296,39 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       mainAxisSpacing: 7),
                               itemBuilder: (context, index) {
                                 return InkWell(
-                                  onTap: (){
-                                    if(index==1){
-                                      Navigator.pushNamed(context, Routes.invitedRoute,arguments: widget.homeListItemModel);
-                                    }
-                                    else if(index==0){
-                                      Navigator.pushNamed(context, Routes.messagesRoute,arguments: widget.homeListItemModel);
-                                    }
-                                    else if(index==2){
-                                      Navigator.pushNamed(context, Routes.scannedRoute,arguments: widget.homeListItemModel);
-                                    }
-                                    else if(index ==3){
-                                      Navigator.pushNamed(context, Routes.confirmedRoute,arguments: widget.homeListItemModel);
-                                    }
-                                    else if(index ==5){
-                                      Navigator.pushNamed(context, Routes.waitingRoute,arguments: widget.homeListItemModel);
-                                    }
-                                    else if(index ==4){
-                                      Navigator.pushNamed(context, Routes.apologyRoute,arguments: widget.homeListItemModel);
-                                    }
-                                    else if(index ==7){
-                                      Navigator.pushNamed(context, Routes.failedRoute,arguments: widget.homeListItemModel);
-                                    }
-                                    else if(index ==6){
-                                      Navigator.pushNamed(context, Routes.notSentRoute,arguments: widget.homeListItemModel);
+                                  onTap: () {
+                                    if (index == 1) {
+                                      Navigator.pushNamed(
+                                          context, Routes.invitedRoute,
+                                          arguments: widget.homeListItemModel);
+                                    } else if (index == 0) {
+                                      Navigator.pushNamed(
+                                          context, Routes.messagesRoute,
+                                          arguments: widget.homeListItemModel);
+                                    } else if (index == 2) {
+                                      Navigator.pushNamed(
+                                          context, Routes.scannedRoute,
+                                          arguments: widget.homeListItemModel);
+                                    } else if (index == 3) {
+                                      Navigator.pushNamed(
+                                          context, Routes.confirmedRoute,
+                                          arguments: widget.homeListItemModel);
+                                    } else if (index == 5) {
+                                      Navigator.pushNamed(
+                                          context, Routes.waitingRoute,
+                                          arguments: widget.homeListItemModel);
+                                    } else if (index == 4) {
+                                      Navigator.pushNamed(
+                                          context, Routes.apologyRoute,
+                                          arguments: widget.homeListItemModel);
+                                    } else if (index == 7) {
+                                      Navigator.pushNamed(
+                                          context, Routes.failedRoute,
+                                          arguments: widget.homeListItemModel);
+                                    } else if (index == 6) {
+                                      Navigator.pushNamed(
+                                          context, Routes.notSentRoute,
+                                          arguments: widget.homeListItemModel);
                                     }
                                   },
                                   child: Material(
@@ -359,7 +371,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   //اضافة مدعوين
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, Routes.addPersonRoute,arguments: widget.homeListItemModel);
+                      Navigator.pushNamed(context, Routes.addPersonRoute,
+                          arguments: widget.homeListItemModel);
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppColors.black1,
@@ -459,7 +472,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         borderRadius:
                                             BorderRadius.circular(10)),
                                     child: Text(
-                                      widget.homeListItemModel.status == "0" ? "not_confirmed".tr() : "confirmed".tr(), //مؤكد
+                                      widget.homeListItemModel.status == "0"
+                                          ? "not_confirmed".tr()
+                                          : "confirmed".tr(), //مؤكد
                                       style: TextStyle(
                                           color:
                                               widget.homeListItemModel.status ==
@@ -513,7 +528,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
             AppStrings.areYouSureDeleteOccasion,
             style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
           ).tr(),
-          content: Text(widget.homeListItemModel.title,textAlign: TextAlign.center,
+          content: Text(widget.homeListItemModel.title,
+              textAlign: TextAlign.center,
               style:
                   const TextStyle(fontSize: 14, fontWeight: FontWeight.w700)),
           actions: <Widget>[
@@ -529,7 +545,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ).tr(),
                 onPressed: () {
                   context.read<DetailsCubit>().delete(context);
-                 // Navigator.of(context).pop();
+                  // Navigator.of(context).pop();
                 },
               ),
             ),

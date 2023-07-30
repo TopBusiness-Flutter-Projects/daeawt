@@ -9,9 +9,11 @@ import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'app.dart';
 import 'app_bloc_observer.dart';
-import 'config/routes/app_routes.dart';
-import 'core/utils/app_colors.dart';
 import 'firebase_options.dart';
+
+
+
+final locator = GetIt.instance;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -61,4 +63,4 @@ Future<void> main() async {
 
   );
 }
-final locator = GetIt.instance;
+

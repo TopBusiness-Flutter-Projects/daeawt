@@ -132,7 +132,7 @@ class AppRoutes{
 
 
     case Routes.googleMapRoute:
-      return MaterialPageRoute(builder: (context) =>   const GoogleMapScreen(),);
+      return MaterialPageRoute(builder: (context) =>    GoogleMapScreen(),);
 
     case Routes.reminderRoute:
        InvitationModel homeListItemModel=settings.arguments as  InvitationModel;

@@ -116,7 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                         // controller: cubit.emailControl,
                         validator: (value) {
-
                           if (value == null || value.isEmpty) {
                             return 'field_reguired'.tr();
                           }
@@ -238,7 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   InkWell(
                     onTap: () async {
-                    await  cubit.saveUserDataByGoogleSignIn(context);
+                      await cubit.saveUserDataByGoogleSignIn(context);
                     },
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
