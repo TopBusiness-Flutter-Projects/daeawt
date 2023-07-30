@@ -1,8 +1,10 @@
 import 'dart:async';
 
 import 'package:daeawt/config/routes/app_routes.dart';
+import 'package:daeawt/core/utils/app_colors.dart';
 import 'package:daeawt/features/login/presentation/screens/login_screen.dart';
 import 'package:daeawt/preferences/preferences.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/model/user_model.dart';
@@ -80,12 +82,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 )),
             Padding(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.2),
+                  top: MediaQuery.of(context).size.height * 0.3),
               child: Center(
                 child: SizedBox(
                     //height: 200,
                     width: MediaQuery.of(context).size.width * 0.8,
-                    child: Image.asset(ImageAssests.splashCenterLogo)),
+                    child: Center(child: Text('app_name'.tr(),style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold,color: AppColors.primary),)),),
               ),
             ),
             const Spacer(),

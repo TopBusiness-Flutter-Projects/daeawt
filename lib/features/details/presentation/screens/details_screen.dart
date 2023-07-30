@@ -74,7 +74,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       const Text(
                         AppStrings.occasionDetails,
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 14,
                             fontWeight: FontWeight.w700,
                             color: Colors.white),
                       ).tr(),
@@ -110,7 +110,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                             AppStrings.settings,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 17,
+                                                fontSize: 14,
                                                 color: Colors.white),
                                           ).tr(),
                                           const Spacer(),
@@ -271,7 +271,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     height: 15,
                   ),
                   SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.9,
+                      height: MediaQuery.of(context).size.height * 0.56,
                       child: BlocBuilder<DetailsCubit, DetialsState>(
                         builder: (context, state) {
                           if (state is DetialsLoading) {
@@ -286,11 +286,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               gridDelegate:
                                   const SliverGridDelegateWithMaxCrossAxisExtent(
                                       maxCrossAxisExtent: 180,
-                                      childAspectRatio: 2.1 / 2,
+                                      childAspectRatio: 3.5 / 2,
                                       //horizontal spaces
                                       crossAxisSpacing: 15,
                                       // vertical spaces
-                                      mainAxisSpacing: 10),
+                                      mainAxisSpacing: 7),
                               itemBuilder: (context, index) {
                                 return InkWell(
                                   onTap: (){
@@ -330,20 +330,20 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       children: [
                                         MySvgWidget(
                                             path: cubit.detailsIconsList[index],
-                                            size: 65),
+                                            size: 40),
                                         //  const SizedBox(height: 10,),
                                         Text(
                                           cubit.detailsdata[index],
                                           style: const TextStyle(
                                               color: AppColors.black1,
-                                              fontSize: 18,
+                                              fontSize: 14,
                                               fontWeight: FontWeight.w500),
                                         ),
                                         Text(
                                           cubit.detailsLabels[index],
                                           style: const TextStyle(
                                               color: AppColors.grey5,
-                                              fontSize: 18,
+                                              fontSize: 14,
                                               fontWeight: FontWeight.w500),
                                         ).tr(),
                                       ],
@@ -371,7 +371,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       style: const TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.w700,
-                          fontSize: 18),
+                          fontSize: 14),
                     ),
                   ),
                   const SizedBox(
@@ -471,7 +471,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             ),
                             Text(widget.homeListItemModel.title,
                                 style: const TextStyle(
-                                    fontSize: 18, fontWeight: FontWeight.w700)),
+                                    fontSize: 14, fontWeight: FontWeight.w700)),
                             const SizedBox(
                               height: 5,
                             ),
@@ -488,7 +488,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               ],
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 40,
                             )
                           ],
                         ),
@@ -511,11 +511,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
           buttonPadding: const EdgeInsets.symmetric(horizontal: 2),
           title: const Text(
             AppStrings.areYouSureDeleteOccasion,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+            style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
           ).tr(),
           content: Text(widget.homeListItemModel.title,textAlign: TextAlign.center,
               style:
-                  const TextStyle(fontSize: 18, fontWeight: FontWeight.w700)),
+                  const TextStyle(fontSize: 14, fontWeight: FontWeight.w700)),
           actions: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width * 0.35,

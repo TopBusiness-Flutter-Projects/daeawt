@@ -79,7 +79,7 @@ class OtpScreen extends StatelessWidget {
             //ادخل الكود التأكيدى
             const Text(
               AppStrings.enterVerificationCode,
-              style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+              style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
             ).tr(),
             const SizedBox(
               height: 25,
@@ -101,7 +101,7 @@ class OtpScreen extends StatelessWidget {
                 length: 6,
                 appContext: context,
                 keyboardType: TextInputType.number,
-                textStyle: const TextStyle(fontSize: 17),
+                textStyle: const TextStyle(fontSize: 14),
                 pinTheme: PinTheme(
                   shape: PinCodeFieldShape.underline,
                   borderRadius: BorderRadius.circular(5),

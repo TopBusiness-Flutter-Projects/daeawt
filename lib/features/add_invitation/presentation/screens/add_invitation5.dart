@@ -43,7 +43,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                           AppStrings.createNewInvitation:"update_invitation".tr(),
                           style: const TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 18,
+                              fontSize: 14,
                               color: Colors.white),
                         ).tr(),
                       ),
@@ -189,7 +189,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                     child: const Text(
                       AppStrings.sendInvitations,
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: AppColors.black1),
                     ).tr(),

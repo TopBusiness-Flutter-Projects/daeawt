@@ -44,7 +44,7 @@ class ScanScreen extends StatelessWidget {
                       AppStrings.photoScan,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 18,
+                          fontSize: 14,
                           color: Colors.white),
                     ).tr(),
                   ),
@@ -60,7 +60,9 @@ class ScanScreen extends StatelessWidget {
                 }
                 else if (state is InvitationsSacanError) {
                   return Center(
-                      child: Image.asset(ImageAssests.noDataIcon)
+                      child: Image.asset(ImageAssests.noDataIcon,
+                        width: 60,
+                        height: 60,)
                     // NoDataWidget(
                     //   onclick: () {
                     //     cubit.geInvitationsHome();
@@ -82,7 +84,9 @@ class ScanScreen extends StatelessWidget {
                     );
                   } else {
                     return Center(
-                        child:Image.asset(ImageAssests.noDataIcon)
+                        child:Image.asset(ImageAssests.noDataIcon,
+                          width: 60,
+                          height: 60,)
                       // NoDataWidget(
                       //   onclick: () {
                       //     cubit.geInvitationsHome();

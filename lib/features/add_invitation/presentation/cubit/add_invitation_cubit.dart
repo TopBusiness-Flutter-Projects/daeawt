@@ -365,6 +365,7 @@ for(int j=0;j<contactModelList.length;j++){
       isfirst=true;
       nameController.text='';
       dateController.text='';
+      address="";
       model=AddInvitationModel();
 
           Navigator.pop(context);
@@ -392,6 +393,8 @@ for(int j=0;j<contactModelList.length;j++){
           isfirst=true;
           nameController.text='';
           dateController.text='';
+          address="";
+
           model=AddInvitationModel();
 
 

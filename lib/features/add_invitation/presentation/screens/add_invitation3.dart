@@ -24,382 +24,391 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
       builder: (context, state) {
         AddInvitationCubit cubit = context.read<AddInvitationCubit>();
         return Scaffold(
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                ClipPath(
-                  clipper: SmallBottomCurveClipper(),
-                  child: Stack(
-                    children: [
-                      Container(
-                        decoration: const BoxDecoration(
-                            gradient: LinearGradient(colors: [
-                          AppColors.orange2,
-                          AppColors.primary,
-                        ])),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 60, horizontal: 40),
-                        height: 160,
-                        width: double.infinity,
-                        child: Center(
-                          child: Text(
-                            cubit.homeListItemModel == null
-                                ? AppStrings.createNewInvitation
-                                : "update_invitation".tr(),
-                            style: const TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18,
-                                color: Colors.white),
-                          ).tr(),
-                        ),
-                        //color: Colors.orange,
-                      ),
-                      Positioned(
-                          left: 20,
-                          top: 60,
-                          child: Transform.rotate(
-                            angle: languageCode == "ar" ? 0 : (3.14),
-                            child: IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: const Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 35,
-                                )),
-                          ))
-                    ],
-                  ),
-                ),
-                //first row of numbers in circles
-                Row(
+          body: Column(
+            
+            
+            children: [
+              ClipPath(
+                clipper: SmallBottomCurveClipper(),
+                child: Stack(
                   children: [
-                    const SizedBox(
-                      width: 15,
-                    ),
-                    const NumberWidget(
-                      backgroundColor: AppColors.black1,
-                      text: "1",
-                      textColor: Colors.white,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.13,
-                      child: const Divider(
-                        color: Colors.grey,
+                    Container(
+                      decoration: const BoxDecoration(
+                          gradient: LinearGradient(colors: [
+                            AppColors.orange2,
+                            AppColors.primary,
+                          ])),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 60, horizontal: 40),
+                      height: 160,
+                      width: double.infinity,
+                      child: Center(
+                        child: Text(
+                          cubit.homeListItemModel == null
+                              ? AppStrings.createNewInvitation
+                              : "update_invitation".tr(),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 14,
+                              color: Colors.white),
+                        ).tr(),
                       ),
+                      //color: Colors.orange,
                     ),
-                    const NumberWidget(
-                      backgroundColor: AppColors.black1,
-                      text: "2",
-                      textColor: Colors.white,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.13,
-                      child: const Divider(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    const NumberWidget(
-                      backgroundColor: AppColors.black1,
-                      text: "3",
-                      textColor: Colors.white,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.13,
-                      child: const Divider(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    NumberWidget(
-                      backgroundColor: Colors.grey.withOpacity(0.3),
-                      text: "4",
-                      textColor: AppColors.grey4,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.13,
-                      child: const Divider(
-                        color: Colors.grey,
-                      ),
-                    ),
-                    NumberWidget(
-                      backgroundColor: Colors.grey.withOpacity(0.3),
-                      text: "5",
-                      textColor: AppColors.grey4,
-                    ),
+                    Positioned(
+                        left: 20,
+                        top: 60,
+                        child: Transform.rotate(
+                          angle: languageCode == "ar" ? 0 : (3.14),
+                          child: IconButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              icon: const Icon(
+                                Icons.arrow_forward,
+                                color: Colors.white,
+                                size: 35,
+                              )),
+                        ))
                   ],
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
-                //المدعوين
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                  child: Row(
+              ),
+
+              Expanded(
+                child: SingleChildScrollView(
+                  child: Column(
                     children: [
-                      Stack(
-                        alignment: Alignment.centerRight,
+                      //first row of numbers in circles
+                      Row(
                         children: [
-                          const CircleAvatar(
-                            radius: 20,
-                            backgroundColor: AppColors.primary,
+                          const SizedBox(
+                            width: 15,
                           ),
-                          const Text(
-                            AppStrings.invited,
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.w700),
-                          ).tr(),
-                          const Positioned(
-                            bottom: 3,
-                            // alignment: Alignment.bottomCenter,
-                            child: SizedBox(
-                              width: 40,
-                              child: Divider(
-                                color: AppColors.cyan,
-                                thickness: 2,
-                                height: 2,
-                              ),
+                          const NumberWidget(
+                            backgroundColor: AppColors.black1,
+                            text: "1",
+                            textColor: Colors.white,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.13,
+                            child: const Divider(
+                              color: Colors.grey,
                             ),
-                          )
+                          ),
+                          const NumberWidget(
+                            backgroundColor: AppColors.black1,
+                            text: "2",
+                            textColor: Colors.white,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.13,
+                            child: const Divider(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          const NumberWidget(
+                            backgroundColor: AppColors.black1,
+                            text: "3",
+                            textColor: Colors.white,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.13,
+                            child: const Divider(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          NumberWidget(
+                            backgroundColor: Colors.grey.withOpacity(0.3),
+                            text: "4",
+                            textColor: AppColors.grey4,
+                          ),
+                          SizedBox(
+                            width: MediaQuery.of(context).size.width * 0.13,
+                            child: const Divider(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          NumberWidget(
+                            backgroundColor: Colors.grey.withOpacity(0.3),
+                            text: "5",
+                            textColor: AppColors.grey4,
+                          ),
                         ],
-                      )
-                    ],
-                  ),
-                ),
-
-                //اضافة مدعوين
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 18.0, vertical: 8),
-                      child: const Text(
-                        AppStrings.addGuests,
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.black1),
-                      ).tr(),
-                    ),
-                  ],
-                ),
-
-                //مرافقين
-                Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 18.0, vertical: 8),
-                      child: const Text(
-                        AppStrings.companion,
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                            color: AppColors.black1),
-                      ).tr(),
-                    ),
-                  ],
-                ),
-
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.4,
-                  width: MediaQuery.of(context).size.width * 0.9,
-                  child: ListView.separated(
-                    shrinkWrap: true,
-                    separatorBuilder: (context, index) => const SizedBox(
-                      height: 20,
-                    ),
-                    itemCount: cubit.model.selectedContactModelList.length,
-                    itemBuilder: (context, index) {
-                      return cubit.model.selectedContactModelList[index].phones!
-                              .isNotEmpty
-                          ? Stack(
-                              alignment: Alignment.bottomCenter,
+                      ),
+                      const SizedBox(
+                        height: 30,
+                      ),
+                      //المدعوين
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                        child: Row(
+                          children: [
+                            Stack(
+                              alignment: Alignment.centerRight,
                               children: [
-                                SizedBox(
-                                  height: 150,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.95,
+                                const CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: AppColors.primary,
                                 ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  padding: const EdgeInsets.all(8),
-                                  height: 112,
-                                  width:
-                                      MediaQuery.of(context).size.width * 0.86,
-                                  decoration: BoxDecoration(
-                                      color: AppColors.orange3,
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Row(
-                                              children: [
-                                                const Text(
-                                                  "المكرم : ",
-                                                  style: TextStyle(
-                                                      fontSize: 16,
-                                                      fontWeight:
-                                                          FontWeight.w700),
-                                                ),
-                                                Text(
-                                                  "${cubit.model.selectedContactModelList[index].name?.split(" ")[0]}",
-                                                  style: const TextStyle(
-                                                      fontSize: 17,
-                                                      fontWeight:
-                                                          FontWeight.w400),
-                                                ),
-                                              ],
-                                            ),
-                                            Text(
-                                              "${cubit.model.selectedContactModelList[index].phones?[0].value}",
-                                              style: const TextStyle(
-                                                  fontSize: 14,
-                                                  color: AppColors.grey5,
-                                                  fontWeight: FontWeight.w700),
-                                            ),
-                                          ],
-                                        ),
-                                        Container(
-                                          width: 117,
-                                          height: 33,
-                                          decoration: BoxDecoration(
-                                              color: AppColors.primary,
-                                              borderRadius:
-                                                  BorderRadius.circular(10)),
+                                const Text(
+                                  AppStrings.invited,
+                                  style: TextStyle(
+                                      fontSize: 20, fontWeight: FontWeight.w700),
+                                ).tr(),
+                                const Positioned(
+                                  bottom: 3,
+                                  // alignment: Alignment.bottomCenter,
+                                  child: SizedBox(
+                                    width: 40,
+                                    child: Divider(
+                                      color: AppColors.cyan,
+                                      thickness: 2,
+                                      height: 2,
+                                    ),
+                                  ),
+                                )
+                              ],
+                            )
+                          ],
+                        ),
+                      ),
+
+                      //اضافة مدعوين
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 18.0, vertical: 8),
+                            child: const Text(
+                              AppStrings.addGuests,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                  color: AppColors.black1),
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+
+                      //مرافقين
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 18.0, vertical: 8),
+                            child: const Text(
+                              AppStrings.companion,
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w700,
+                                  color: AppColors.black1),
+                            ).tr(),
+                          ),
+                        ],
+                      ),
+
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.4,
+                        width: MediaQuery.of(context).size.width * 0.9,
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) => const SizedBox(
+                            height: 20,
+                          ),
+                          itemCount: cubit.model.selectedContactModelList.length,
+                          itemBuilder: (context, index) {
+                            return cubit.model.selectedContactModelList[index].phones!
+                                    .isNotEmpty
+                                ? Stack(
+                                    alignment: Alignment.bottomCenter,
+                                    children: [
+                                      SizedBox(
+                                        height: 150,
+                                        width:
+                                            MediaQuery.of(context).size.width * 0.95,
+                                      ),
+                                      Container(
+                                        alignment: Alignment.center,
+                                        padding: const EdgeInsets.all(8),
+                                        height: 112,
+                                        width:
+                                            MediaQuery.of(context).size.width * 0.86,
+                                        decoration: BoxDecoration(
+                                            color: AppColors.orange3,
+                                            borderRadius: BorderRadius.circular(10)),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
                                           child: Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.spaceBetween,
                                             children: [
-                                              IconButton(
-                                                onPressed: () {
-                                                  cubit
-                                                      .incrementNumberOfInvitedPeople(
-                                                          index);
-                                                },
-                                                icon: const Icon(
-                                                  Icons.add,
-                                                  color: Colors.white,
-                                                ),
-                                                padding: EdgeInsets.zero,
-                                              ),
-                                              Text(
-                                                cubit.model
-                                                    .selectedContactModelList
-                                                    .elementAt(index)
-                                                    .numberOfInvitedPeople
-                                                    .toString(),
-                                                style: const TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 20,
-                                                    fontWeight:
-                                                        FontWeight.w700),
-                                              ),
-                                              IconButton(
-                                                  onPressed: () {
-                                                    cubit
-                                                        .decrementNumberOfInvitedPeople(
-                                                            index);
-                                                  },
-                                                  icon: const Icon(
-                                                    Icons.remove,
-                                                    color: Colors.white,
+                                              Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      const Text(
+                                                        "المكرم : ",
+                                                        style: TextStyle(
+                                                            fontSize: 16,
+                                                            fontWeight:
+                                                                FontWeight.w700),
+                                                      ),
+                                                      Text(
+                                                        "${cubit.model.selectedContactModelList[index].name?.split(" ")[0]}",
+                                                        style: const TextStyle(
+                                                            fontSize: 14,
+                                                            fontWeight:
+                                                                FontWeight.w400),
+                                                      ),
+                                                    ],
                                                   ),
-                                                  padding: EdgeInsets.zero),
+                                                  Text(
+                                                    "${cubit.model.selectedContactModelList[index].phones?[0].value}",
+                                                    style: const TextStyle(
+                                                        fontSize: 14,
+                                                        color: AppColors.grey5,
+                                                        fontWeight: FontWeight.w700),
+                                                  ),
+                                                ],
+                                              ),
+                                              Container(
+                                                width: 117,
+                                                height: 33,
+                                                decoration: BoxDecoration(
+                                                    color: AppColors.primary,
+                                                    borderRadius:
+                                                        BorderRadius.circular(10)),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.spaceBetween,
+                                                  children: [
+                                                    IconButton(
+                                                      onPressed: () {
+                                                        cubit
+                                                            .incrementNumberOfInvitedPeople(
+                                                                index);
+                                                      },
+                                                      icon: const Icon(
+                                                        Icons.add,
+                                                        color: Colors.white,
+                                                      ),
+                                                      padding: EdgeInsets.zero,
+                                                    ),
+                                                    Text(
+                                                      cubit.model
+                                                          .selectedContactModelList
+                                                          .elementAt(index)
+                                                          .numberOfInvitedPeople
+                                                          .toString(),
+                                                      style: const TextStyle(
+                                                          color: Colors.white,
+                                                          fontSize: 20,
+                                                          fontWeight:
+                                                              FontWeight.w700),
+                                                    ),
+                                                    IconButton(
+                                                        onPressed: () {
+                                                          cubit
+                                                              .decrementNumberOfInvitedPeople(
+                                                                  index);
+                                                        },
+                                                        icon: const Icon(
+                                                          Icons.remove,
+                                                          color: Colors.white,
+                                                        ),
+                                                        padding: EdgeInsets.zero),
+                                                  ],
+                                                ),
+                                              )
                                             ],
                                           ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                    right: 0,
-                                    top: 15,
-                                    child: CircleAvatar(
-                                      radius: 18,
-                                      backgroundColor: AppColors.primary,
-                                      child: Center(
-                                          child: IconButton(
-                                        onPressed: () {
-                                          cubit.removeSelectedContact(index);
-                                        },
-                                            icon: const Icon(
-                                          Icons.close,
-                                          color: Colors.white,
                                         ),
-                                        padding: EdgeInsets.zero,
-                                      )),
-                                    )),
-                              ],
-                            )
-                          : const SizedBox();
-                    },
-                  ),
-                ),
-                const SizedBox(
-                  height: 40,
-                ),
-                //last 2 buttons
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 10.0, vertical: 15),
-                  //last 2 buttons
-                  child: Row(
-                    children: [
-                      Expanded(
-                        child: CustomButton(
-                          backgroundColor: AppColors.primary,
-                          onPressed: () {
-                            if (cubit.model.selectedContactModelList.length > 0) {
-                              cubit.model.step = 4;
-
-                              Navigator.pushNamed(
-                                  context, Routes.addInvitationStep4Route);
-                            } else {
-                              toastMessage("select_contact".tr(), context);
-                            }
+                                      ),
+                                      Positioned(
+                                          right: 0,
+                                          top: 15,
+                                          child: CircleAvatar(
+                                            radius: 18,
+                                            backgroundColor: AppColors.primary,
+                                            child: Center(
+                                                child: IconButton(
+                                              onPressed: () {
+                                                cubit.removeSelectedContact(index);
+                                              },
+                                                  icon: const Icon(
+                                                Icons.close,
+                                                color: Colors.white,
+                                              ),
+                                              padding: EdgeInsets.zero,
+                                            )),
+                                          )),
+                                    ],
+                                  )
+                                : const SizedBox();
                           },
-                          text: AppStrings.tracking,
                         ),
                       ),
                       const SizedBox(
-                        width: 10,
+                        height: 40,
                       ),
-                      Visibility(
-                        visible: cubit.homeListItemModel == null ? true : false,
-                        child: Expanded(
-                          child: CustomButton(
-                            onPressed: () {
-                              if (cubit.model.selectedContactModelList.length > 0) {
-                                cubit.model.as_draft = 1;
+                      //last 2 buttons
+                      Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10.0, vertical: 15),
+                        //last 2 buttons
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: CustomButton(
+                                backgroundColor: AppColors.primary,
+                                onPressed: () {
+                                  if (cubit.model.selectedContactModelList.length > 0) {
+                                    cubit.model.step = 4;
 
-                                cubit.addinviatation(context);
-                              } else {
-                                toastMessage("select_contact".tr(), context);
-                              }
-                            },
-                            text: AppStrings.save.tr(),
-                          ),
+                                    Navigator.pushNamed(
+                                        context, Routes.addInvitationStep4Route);
+                                  } else {
+                                    toastMessage("select_contact".tr(), context);
+                                  }
+                                },
+                                text: AppStrings.tracking,
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            Visibility(
+                              visible: cubit.homeListItemModel == null ? true : false,
+                              child: Expanded(
+                                child: CustomButton(
+                                  onPressed: () {
+                                    if (cubit.model.selectedContactModelList.length > 0) {
+                                      cubit.model.as_draft = 1;
+
+                                      cubit.addinviatation(context);
+                                    } else {
+                                      toastMessage("select_contact".tr(), context);
+                                    }
+                                  },
+                                  text: AppStrings.save.tr(),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
+                      ),
+                      const SizedBox(
+                        height: 20,
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },

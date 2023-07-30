@@ -70,7 +70,7 @@ class _ApologyScreenState extends State<ApologyScreen> {
                   const Text(
                     AppStrings.apologies,
                     style: TextStyle(
-                        fontSize: 18,
+                        fontSize: 14,
                         fontWeight: FontWeight.w700,
                         color: Colors.white),
                   ).tr(),
@@ -100,25 +100,22 @@ class _ApologyScreenState extends State<ApologyScreen> {
                 child: Row(
                   children: [
 
-                    Positioned(
-                        right: 0,
-                        top: 15,
-                        child: CircleAvatar(
-                          radius: 15,
-                          backgroundColor: AppColors.primary,
-                          child: Center(
-                              child: IconButton(
-                                onPressed: () {
-                                  //TODO-->
-                                  //cubit.removeSelectedContact(index);
-                                },
-                                icon: const Icon(
-                                  Icons.close,
-                                  color: Colors.white,
-                                ),
-                                padding: EdgeInsets.zero,
-                              )),
-                        )),
+                    CircleAvatar(
+                      radius: 15,
+                      backgroundColor: AppColors.primary,
+                      child: Center(
+                          child: IconButton(
+                            onPressed: () {
+                              //TODO-->
+                              //cubit.removeSelectedContact(index);
+                            },
+                            icon: const Icon(
+                              Icons.close,
+                              color: Colors.white,
+                            ),
+                            padding: EdgeInsets.zero,
+                          )),
+                    ),
                     const SizedBox(width: 10,),
                     Column(
                       children: [
@@ -140,7 +137,7 @@ class _ApologyScreenState extends State<ApologyScreen> {
                           easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
                           style: const TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontSize: 17,
+                              fontSize: 14,
                               color: AppColors.grey2
                           ),),
 

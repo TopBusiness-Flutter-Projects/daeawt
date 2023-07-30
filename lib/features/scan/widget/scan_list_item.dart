@@ -23,9 +23,9 @@ class ScanListItem extends StatelessWidget {
                 homeListItemModel.image.isNotEmpty
                     ? ManageNetworkImage(
                   imageUrl: homeListItemModel.image,
-                  borderRadius: 90,
-                  width: 90,
-                  height: 90,
+
+                  width: 120,
+                  height: 120,
                 )
                     : Image.asset(
                     ImageAssests.homeItem),
@@ -38,17 +38,17 @@ class ScanListItem extends StatelessWidget {
                         DateFormat('yyyy EEE MMM dd  ').format(DateTime.parse(homeListItemModel.date))
                      ,
                         style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w400),
+                            fontSize: 14, fontWeight: FontWeight.w400),
                       ),
                       Text(homeListItemModel.title,
                           style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700)),
+                              fontSize: 14, fontWeight: FontWeight.w700)),
                       Text("secret_number".tr(),
                           style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700)),
+                              fontSize: 14, fontWeight: FontWeight.w700)),
                       Text(homeListItemModel.password,
                           style: const TextStyle(
-                              fontSize: 18,
+                              fontSize: 14,
                               fontWeight: FontWeight.w400,
                               color: AppColors.grey4)),
 

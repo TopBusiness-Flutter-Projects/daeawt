@@ -50,7 +50,7 @@ class _InvitedScreenState extends State<InvitedScreen> {
                           AppStrings.invited,
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 18,
+                              fontSize: 14,
                               color: Colors.white),
                         ).tr(),
                       ),
@@ -93,62 +93,62 @@ class _InvitedScreenState extends State<InvitedScreen> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                    child: Row(
-                      children: [
-                        Positioned(
-                            right: 0,
-                            top: 15,
-                            child: CircleAvatar(
-                              radius: 15,
-                              backgroundColor: AppColors.primary,
-                              child: Center(
-                                  child: IconButton(
-                                onPressed: () {
-                                  //TODO-->
-                                  //cubit.removeSelectedContact(index);
-                                },
-                                   icon: const Icon(
-                                  Icons.close,
-                                  color: Colors.white,
-                                ),
-                                padding: EdgeInsets.zero,
-                              )),
+                    child: Container(
+                      height: 60,
+                      child: Row(
+                        children: [
+                          CircleAvatar(
+                            radius: 15,
+                            backgroundColor: AppColors.primary,
+                            child: Center(
+                                child: IconButton(
+                              onPressed: () {
+                                //TODO-->
+                                //cubit.removeSelectedContact(index);
+                              },
+                                 icon: const Icon(
+                                Icons.close,
+                                color: Colors.white,
+                              ),
+                              padding: EdgeInsets.zero,
                             )),
-                        const SizedBox(
-                          width: 10,
-                        ),
-                        Column(
-                          children: [
-                            Row(
-                              children: [
-                                const Text(
-                                  "المكرم :",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 20),
-                                ),
-                                Text(
-                                  cubit.invitees.elementAt(index).name,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20),
-                                ),
-                              ],
-                            ),
-                            Text(
-                              easy.DateFormat('dd HH:mm MMM').format(
-                                  cubit.invitees.elementAt(index).createdAt),
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 17,
-                                  color: AppColors.grey2),
-                            ),
-                          ],
-                        ),
-                        const Spacer(),
-                        const MySvgWidget(
-                            path: ImageAssests.shareIcon, size: 20),
-                      ],
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Column(
+                            children: [
+                              Row(
+                                children: [
+                                  const Text(
+                                    "المكرم :",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 20),
+                                  ),
+                                  Text(
+                                    cubit.invitees.elementAt(index).name,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w400,
+                                        fontSize: 20),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                easy.DateFormat('dd HH:mm MMM').format(
+                                    cubit.invitees.elementAt(index).createdAt),
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    color: AppColors.grey2),
+                              ),
+                            ],
+                          ),
+                          const Spacer(),
+                          const MySvgWidget(
+                              path: ImageAssests.shareIcon, size: 20),
+                        ],
+                      ),
                     ),
                   );
                 },

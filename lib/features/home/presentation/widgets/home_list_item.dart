@@ -30,43 +30,51 @@ class HomeListItem extends StatelessWidget {
                 homeListItemModel.image.isNotEmpty
                     ? ManageNetworkImage(
                         imageUrl: homeListItemModel.image,
-                        borderRadius: 90,
-                        width: MediaQuery.of(context).size.width*0.2,
-                        height: MediaQuery.of(context).size.height*0.11,
+
+                        width:120,
+                        height:120,
                       )
                     : Image.asset(
                         ImageAssests.homeItem), //ImageAssests.homeItem,
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        homeListItemModel.date, //sat, 01 jun 2023
-                        style: const TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.w400),
-                      ),
-                      Text(homeListItemModel.title, //عيد ميلاد
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Text(
+                          homeListItemModel.date, //sat, 01 jun 2023
                           style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700)),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.location_on,
-                            color: AppColors.primary,
-                          ),
-                          Text(homeListItemModel.address,
-                              //شبين الكوم , المنوفية
 
-                              style: const TextStyle(
+                              fontSize: 14, fontWeight: FontWeight.w400),
+                        ),
+                        Text(homeListItemModel.title, //عيد ميلاد
+                            style: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w700)),
+                        Row(
+                          children: [
+                            const Icon(
+                              Icons.location_on,
+                              color: AppColors.primary,
+                            ),
+                            Flexible(
+                              child: Text(
+                                  softWrap: true,
+                                  homeListItemModel.address,
+                                  //شبين الكوم , المنوفية
 
-                                  fontSize: 14, fontWeight: FontWeight.w400)),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 45,
-                      ),
-                    ],
+                                  style: const TextStyle(
+
+                                      fontSize: 14, fontWeight: FontWeight.w400)),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(
+                          height: 45,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

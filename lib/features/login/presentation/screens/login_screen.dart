@@ -49,14 +49,12 @@ class _LoginScreenState extends State<LoginScreen> {
                           padding: const EdgeInsets.only(left: 20, bottom: 10),
                           height: 300,
                           //color: Colors.orange,
-                          child: Image.asset(
-                            ImageAssests.dawatBarKudIcon,
-                          )),
+                          child: Center(child: Text('app_name'.tr(),style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.white),))),
                     ),
                   ),
                   const Text(
                     AppStrings.login,
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                    style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                   ).tr(),
                   const SizedBox(
                     height: 15,
@@ -181,7 +179,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const Text(
                           AppStrings.haveNoAccount,
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w400),
+                              fontSize: 14, fontWeight: FontWeight.w400),
                         ).tr(),
                         TextButton(
                             onPressed: () {
@@ -191,7 +189,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               AppStrings.createAccount,
                               style: TextStyle(
                                   color: AppColors.blue1,
-                                  fontSize: 18,
+                                  fontSize: 14,
                                   fontWeight: FontWeight.w400),
                             ).tr())
                       ],
@@ -248,7 +246,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         const Text(
                           AppStrings.signUpWithGoogle,
                           style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.w700),
+                              fontSize: 14, fontWeight: FontWeight.w700),
                         ).tr(),
                         const SizedBox(
                           width: 5,
@@ -258,7 +256,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         )
                       ],
                     ),
-                  )
+                  ),
+                  const SizedBox(
+                    height: 35,
+                  ),
                 ],
               ),
             ),

@@ -34,13 +34,13 @@ class HomeAppBar extends StatelessWidget {
               child: Column(
                 children: [
                   // const Text("مرحبا , ",
-                  //   style: TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: Colors.white),
+                  //   style: TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: Colors.white),
                   // ),
                   FutureBuilder(
                     future: Preferences.instance.getUserModel(),
                     builder: (context, snapshot) {
                     return  Text("welcome".tr()+snapshot.data!.data!.user!.name.toString(),
-                      style: const TextStyle(fontSize: 18,fontWeight: FontWeight.w700,color: Colors.white),
+                      style: const TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: Colors.white),
                     );
                   },),
                    Text("welcome_to".tr(),

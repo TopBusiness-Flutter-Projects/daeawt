@@ -76,7 +76,10 @@ class HomeTab extends StatelessWidget {
                 }
                 else if (state is InvitationsHomeError) {
                   return Center(
-                    child: Image.asset(ImageAssests.noDataIcon)
+                    child: Image.asset(ImageAssests.noDataIcon,
+                    width: 60,
+                      height: 60,
+                    )
                     // NoDataWidget(
                     //   onclick: () {
                     //     cubit.geInvitationsHome();
@@ -98,7 +101,10 @@ class HomeTab extends StatelessWidget {
                     );
                   } else {
                     return Center(
-                      child:Image.asset(ImageAssests.noDataIcon)
+                      child:Image.asset(ImageAssests.noDataIcon,
+                        width: 60,
+                        height: 60,
+                      )
                       // NoDataWidget(
                       //   onclick: () {
                       //     cubit.geInvitationsHome();

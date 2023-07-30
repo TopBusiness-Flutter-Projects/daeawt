@@ -47,9 +47,7 @@ class NewPasswordScreen extends StatelessWidget {
                             height: 300,
                             width: double.infinity,
                             //color: Colors.orange,
-                            child: Image.asset(
-                              ImageAssests.dawatBarKudIcon,
-                            )),
+                            child:  Center(child: Text('app_name'.tr(),style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.white),))),
                         Positioned(
                             left: 0,
                             top: 40,
@@ -72,7 +70,7 @@ class NewPasswordScreen extends StatelessWidget {
                 ),
                 const Text(
                   AppStrings.enterNewPassword,
-                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                 ).tr(),
                 const SizedBox(
                   height: 45,

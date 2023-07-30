@@ -46,7 +46,7 @@ class EditProfileScreen extends StatelessWidget {
                     child: const Text(
                       AppStrings.modifyAccount,
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: Colors.white),
                     ).tr(),
@@ -69,129 +69,209 @@ class EditProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                InkWell(
-                  onTap: () {
-                    GestureDetector(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (ctx) => AlertDialog(
-                            title: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 5),
-                              child: Text('Choose'.tr()),
-                            ),
-                            contentPadding: EdgeInsets.zero,
-                            content: SizedBox(
-                              width:
-                              MediaQuery.of(context).size.width -
-                                  60,
-                              child: Row(
-                                children: [
-                                  const Spacer(),
-                                  InkWell(
-                                    onTap: () {
-                                      cubit.pickImage(
-                                        type: 'camera',
-                                      );
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: SizedBox(
-                                      height: 80,
-                                      width: 80,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: [
-                                          Icon(Icons.camera_alt,
-                                              size: 45,
-                                              color: AppColors.grey1),
-                                          Text('camera'.tr())
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                  InkWell(
-                                    onTap: () {
-                                      cubit.pickImage(
-                                        type: 'photo',
-                                      );
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: SizedBox(
-                                      height: 80,
-                                      width: 80,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                        children: [
-                                          Icon(Icons.photo,
-                                              size: 45,
-                                              color: AppColors.grey1),
-                                          Text('Gallery'.tr())
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  const Spacer(),
-                                ],
+            InkWell(
+
+                onTap: () {
+                  showDialog(
+                    context: context,
+                    builder: (ctx) => AlertDialog(
+                      title: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5),
+                        child: Text('Choose'.tr()),
+                      ),
+                      contentPadding: EdgeInsets.zero,
+                      content: SizedBox(
+                        width:
+                        MediaQuery.of(context).size.width -
+                            60,
+                        child: Row(
+                          children: [
+                            const Spacer(),
+                            InkWell(
+                              onTap: () {
+                                cubit.pickImage(
+                                  type: 'camera',
+                                );
+                                Navigator.of(context).pop();
+                              },
+                              child: SizedBox(
+                                height: 80,
+                                width: 80,
+                                child: Column(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.camera_alt,
+                                        size: 45,
+                                        color: AppColors.grey1),
+                                    Text('camera'.tr())
+                                  ],
+                                ),
                               ),
                             ),
-                            actions: [
-                              TextButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
-                                  },
-                                  child: Text('cancel'.tr()))
-                            ],
+                            const Spacer(),
+                            InkWell(
+                              onTap: () {
+                                cubit.pickImage(
+                                  type: 'photo',
+                                );
+                                Navigator.of(context).pop();
+                              },
+                              child: SizedBox(
+                                height: 80,
+                                width: 80,
+                                child: Column(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.photo,
+                                        size: 45,
+                                        color: AppColors.grey1),
+                                    Text('Gallery'.tr())
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const Spacer(),
+                          ],
+                        ),
+                      ),
+                      actions: [
+                        TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('cancel'.tr()))
+                      ],
+                    ),
+                  );
+                },
+
+              child: Stack(
+                alignment: Alignment.center,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      GestureDetector(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (ctx) => AlertDialog(
+                              title: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 5),
+                                child: Text('Choose'.tr()),
+                              ),
+                              contentPadding: EdgeInsets.zero,
+                              content: SizedBox(
+                                width:
+                                MediaQuery.of(context).size.width -
+                                    60,
+                                child: Row(
+                                  children: [
+                                    const Spacer(),
+                                    InkWell(
+                                      onTap: () {
+                                        cubit.pickImage(
+                                          type: 'camera',
+                                        );
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: SizedBox(
+                                        height: 80,
+                                        width: 80,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: [
+                                            Icon(Icons.camera_alt,
+                                                size: 45,
+                                                color: AppColors.grey1),
+                                            Text('camera'.tr())
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                    InkWell(
+                                      onTap: () {
+                                        cubit.pickImage(
+                                          type: 'photo',
+                                        );
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: SizedBox(
+                                        height: 80,
+                                        width: 80,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                          children: [
+                                            Icon(Icons.photo,
+                                                size: 45,
+                                                color: AppColors.grey1),
+                                            Text('Gallery'.tr())
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                    const Spacer(),
+                                  ],
+                                ),
+                              ),
+                              actions: [
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text('cancel'.tr()))
+                              ],
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                            color: AppColors.primary,
+                            borderRadius: BorderRadius.circular(22),
                           ),
-                        );
-                      },
-                      child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                          color: AppColors.primary,
-                          borderRadius: BorderRadius.circular(22),
+                          child: Icon(
+                            Icons.linked_camera_rounded,
+                            color: AppColors.primary,
+                            size: 25,
+                          ),
                         ),
-                        child: Icon(
-                          Icons.linked_camera_rounded,
-                          color: AppColors.primary,
-                          size: 25,
+                      );
+                    },
+                    child: CircleAvatar(
+                      radius: 40,
+                      child: cubit.imagePath.isEmpty
+                          ? ManageNetworkImage(
+                        imageUrl: cubit
+                            .editProfileModel.image,
+                        width: 140,
+                        height: 140,
+                        borderRadius: 140,
+                      )
+                          : Image.file(
+                        File(
+                          cubit.imagePath,
                         ),
+                        width: 140.0,
+                        height: 140.0,
+                        fit: BoxFit.cover,
                       ),
-                    );
-                  },
-                  child: CircleAvatar(
-                    radius: 40,
-                    child: cubit.imagePath.isEmpty
-                        ? ManageNetworkImage(
-                      imageUrl: cubit
-                          .editProfileModel.image,
-                      width: 140,
-                      height: 140,
-                      borderRadius: 140,
-                    )
-                        : Image.file(
-                      File(
-                        cubit.imagePath,
-                      ),
-                      width: 140.0,
-                      height: 140.0,
-                      fit: BoxFit.cover,
                     ),
                   ),
-                ),
-                Icon(
-                  Icons.edit_calendar,
-                  color: Colors.white.withOpacity(0.5),
-                  size: 20,
-                )
-              ],
+                  Icon(
+                    Icons.edit_calendar,
+                    color: Colors.white.withOpacity(0.5),
+                    size: 20,
+                  )
+                ],
+              ),
             ),
             const SizedBox(
               height: 40,

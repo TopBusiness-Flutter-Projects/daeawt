@@ -70,7 +70,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
                       const Text(
                         AppStrings.sendReminder,
                         style: TextStyle(
-                            fontSize: 18,
+                            fontSize: 14,
                             fontWeight: FontWeight.w700,
                             color: Colors.white),
                       ).tr(),
@@ -125,7 +125,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
                       AppStrings.reminderWillBeSent,
                       maxLines: 2,
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 14,
                           fontWeight: FontWeight.w400,
                           color: AppColors.black1),
                     ).tr(),
@@ -224,7 +224,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
                                   cubit.invitees.elementAt(index).name,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.w700,
-                                      fontSize: 18,
+                                      fontSize: 14,
                                       color: AppColors.black1),
                                   // context.read<AddInvitationCubit>().selectedContactModelList[index].name!
                                 ),
@@ -254,7 +254,7 @@ class _ReminderScreenState extends State<ReminderScreen> {
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w700,
-                        fontSize: 18),
+                        fontSize: 14),
                   ),
                 ),
               ),

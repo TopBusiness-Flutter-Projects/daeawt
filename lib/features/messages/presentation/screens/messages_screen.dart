@@ -52,7 +52,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                           AppStrings.theMessages,
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 18,
+                              fontSize: 14,
                               color: Colors.white),
                         ).tr(),
                       ),
@@ -103,7 +103,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                               const Flexible(
                                   child: Text("محتوى الرسالة ",
                                   style: TextStyle(
-                                    fontSize: 17,
+                                    fontSize: 14,
                                     fontWeight: FontWeight.w400,
                                     color: AppColors.grey2
                                   ),)),

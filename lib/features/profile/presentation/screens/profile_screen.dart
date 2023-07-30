@@ -55,12 +55,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 // alignment: Alignment.bottomCenter,
                 children: [
-                  SizedBox(height: 100,),
+                  SizedBox(height: 50,),
 
                   Center(
                     child: SizedBox(
                       width: MediaQuery.of(context).size.width,
-                      height: 100,
+                      height: 70,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -153,7 +153,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   Container(
                     width: double.infinity,
-                    height: MediaQuery.of(context).size.height* 0.85,
+                    height: MediaQuery.of(context).size.height* 0.75,
                     decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
@@ -265,14 +265,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           child:  Text(
                             cubit.userModel!=null?cubit.userModel!.data!.user!.name:'',
                             style: TextStyle(
-                                fontWeight: FontWeight.w700, fontSize: 18),
+                                fontWeight: FontWeight.w700, fontSize: 14),
                           ),
                         ),
                         Center(
                           child:  Text(
                             cubit.userModel!=null?cubit.userModel!.data!.user!.phone:'',
                             style: TextStyle(
-                                fontWeight: FontWeight.w400, fontSize: 18),
+                                fontWeight: FontWeight.w400, fontSize: 14),
                           ),
                         ),
                         Container(
@@ -300,7 +300,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 const Text(
                                   AppStrings.language,
                                   style: TextStyle(
-                                      fontSize: 18, fontWeight: FontWeight.w700),
+                                      fontSize: 14, fontWeight: FontWeight.w700),
                                 ).tr(),
                                 SizedBox(
                                   width: MediaQuery.of(context).size.width * 0.4,
@@ -336,7 +336,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 const Text(
                                   AppStrings.contactUs,
                                   style: TextStyle(
-                                      fontSize: 18, fontWeight: FontWeight.w700),
+                                      fontSize: 14, fontWeight: FontWeight.w700),
                                 ).tr(),
                               ],
                             ),
@@ -366,7 +366,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 const Text(
                                   AppStrings.shareApp,
                                   style: TextStyle(
-                                      fontSize: 18, fontWeight: FontWeight.w700),
+                                      fontSize: 14, fontWeight: FontWeight.w700),
                                 ).tr(),
                               ],
                             ),
@@ -396,7 +396,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 const Text(
                                   AppStrings.rateApp,
                                   style: TextStyle(
-                                      fontSize: 18, fontWeight: FontWeight.w700),
+                                      fontSize: 14, fontWeight: FontWeight.w700),
                                 ).tr(),
                               ],
                             ),
@@ -429,7 +429,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 const Text(
                                   AppStrings.logout,
                                   style: TextStyle(
-                                      fontSize: 18, fontWeight: FontWeight.w700),
+                                      fontSize: 14, fontWeight: FontWeight.w700),
                                 ).tr(),
                               ],
                             ),
@@ -479,7 +479,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Image.asset(ImageAssests.linkedInIcon)),
                           ],
                         ),
-                        SizedBox(height: 150,),
+                        SizedBox(height: 20,),
                       ],
                     ),
                   ) ,
@@ -508,12 +508,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   //          const Text(
                   //            'محمد محمد',
                   //            style: TextStyle(
-                  //                fontWeight: FontWeight.w700, fontSize: 18),
+                  //                fontWeight: FontWeight.w700, fontSize: 14),
                   //          ),
                   //          const Text(
                   //            '01030504268',
                   //            style: TextStyle(
-                  //                fontWeight: FontWeight.w400, fontSize: 18),
+                  //                fontWeight: FontWeight.w400, fontSize: 14),
                   //          ),
                   //          Container(
                   //            margin: const EdgeInsets.symmetric(
@@ -540,7 +540,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   //                  const Text(
                   //                    AppStrings.language,
                   //                    style: TextStyle(
-                  //                        fontSize: 18, fontWeight: FontWeight.w700),
+                  //                        fontSize: 14, fontWeight: FontWeight.w700),
                   //                  ).tr(),
                   //                  SizedBox(
                   //                    width: MediaQuery.of(context).size.width * 0.4,
@@ -576,7 +576,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   //                  const Text(
                   //                    AppStrings.contactUs,
                   //                    style: TextStyle(
-                  //                        fontSize: 18, fontWeight: FontWeight.w700),
+                  //                        fontSize: 14, fontWeight: FontWeight.w700),
                   //                  ).tr(),
                   //                ],
                   //              ),
@@ -602,7 +602,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   //                const Text(
                   //                  AppStrings.shareApp,
                   //                  style: TextStyle(
-                  //                      fontSize: 18, fontWeight: FontWeight.w700),
+                  //                      fontSize: 14, fontWeight: FontWeight.w700),
                   //                ).tr(),
                   //              ],
                   //            ),
@@ -627,7 +627,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   //                const Text(
                   //                  AppStrings.rateApp,
                   //                  style: TextStyle(
-                  //                      fontSize: 18, fontWeight: FontWeight.w700),
+                  //                      fontSize: 14, fontWeight: FontWeight.w700),
                   //                ).tr(),
                   //              ],
                   //            ),
@@ -657,7 +657,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   //                  const Text(
                   //                    AppStrings.logout,
                   //                    style: TextStyle(
-                  //                        fontSize: 18, fontWeight: FontWeight.w700),
+                  //                        fontSize: 14, fontWeight: FontWeight.w700),
                   //                  ).tr(),
                   //                ],
                   //              ),
@@ -786,7 +786,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text(
           'invalidUrl'.tr(),
-          style: const TextStyle(fontSize: 18.0),
+          style: const TextStyle(fontSize: 14.0),
         ),
         backgroundColor: AppColors.primary,
         elevation: 8.0,

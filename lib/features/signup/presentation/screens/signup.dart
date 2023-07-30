@@ -54,9 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           height: 300,
                           width: double.infinity,
                           //color: Colors.orange,
-                          child: Image.asset(
-                            ImageAssests.dawatBarKudIcon,
-                          )),
+                          child:  Center(child: Text('app_name'.tr(),style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.white),))),
                       Positioned(
                           left: 20,
                           top: 60,
@@ -78,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               const Text(
                 AppStrings.createNewAccount,
-                style: TextStyle(fontSize: 17, fontWeight: FontWeight.w700),
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
               ).tr(),
               const SizedBox(
                 height: 15,
@@ -260,7 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     const Text(
                       AppStrings.alreadyHaveAnAccount,
                       style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
+                          TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                     ).tr(),
                     TextButton(
                         onPressed: () {
@@ -270,7 +268,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           AppStrings.logIn,
                           style: TextStyle(
                               color: AppColors.blue1,
-                              fontSize: 18,
+                              fontSize: 14,
                               fontWeight: FontWeight.w400),
                         ).tr())
                   ],
@@ -326,7 +324,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     const Text(
                       AppStrings.signUpWithGoogle,
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                      style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                     ).tr(),
                     const SizedBox(
                       width: 5,
@@ -336,7 +334,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     )
                   ],
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 35,
+              ),
+
             ],
           ),
         ),

@@ -15,7 +15,7 @@ ThemeData appTheme() {
     textTheme: const TextTheme(
       bodyMedium: TextStyle(
         height: 1.5,
-        fontSize: 18.0,
+        fontSize: 14.0,
         // fontWeight: FontWeight.bold,
       ),
     ),

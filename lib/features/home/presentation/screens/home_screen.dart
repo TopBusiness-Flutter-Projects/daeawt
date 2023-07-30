@@ -55,29 +55,20 @@ class _HomeScreenState extends State<HomeScreen>
             ),
           ],
         ),
-        floatingActionButton: Stack(
-          children: [
-            Positioned(
-              bottom: 30,
-              left: 170,
-              right: 170,
-              child: FloatingActionButton(
-                  shape: const CircleBorder(),
-                  backgroundColor: AppColors.primary,
-                  child: const Icon(
-                    Icons.add,
-                    size: 30,
-                    color: Colors.white,
-                  ),
-                  onPressed: () {
+        floatingActionButton: FloatingActionButton(
+            shape: CircleBorder(),
+backgroundColor: AppColors.primary,
+            child: const Icon(
+              Icons.add,
 
-
-
-                    Navigator.pushNamed(context, Routes.addInvitationRoute);
-                  }),
+              color: Colors.white,
             ),
-          ],
-        ),
+            onPressed: () {
+
+
+
+              Navigator.pushNamed(context, Routes.addInvitationRoute);
+            }),
         floatingActionButtonLocation:
             FloatingActionButtonLocation.miniCenterDocked,
         bottomNavigationBar: TabBar(

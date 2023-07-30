@@ -153,8 +153,8 @@ class AppRoutes{
 
       return MaterialPageRoute(builder: (context) =>    AddPerson(homeListItemModel:homeListItemModel),);
 
-    case Routes.addNewContactsRoute:
-      return MaterialPageRoute(builder: (context) =>   const AddNewContacts(),);
+    // case Routes.addNewContactsRoute:
+    //   return MaterialPageRoute(builder: (context) =>   const AddNewContacts(),);
 
     case Routes.sendNewContactsRoute:
       return MaterialPageRoute(builder: (context) =>   const SendNewContacts(),);

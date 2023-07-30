@@ -42,7 +42,7 @@ class NotificationScreen extends StatelessWidget {
                     child: const Text(
                       AppStrings.notifications,
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: Colors.white),
                     ).tr(),
@@ -56,7 +56,9 @@ class NotificationScreen extends StatelessWidget {
                   if (state is NotificationLoading) {
                     return const Center(child: ShowLoadingIndicator());
                   } else if (state is NotificationError) {
-                    return Center(child: Image.asset(ImageAssests.noDataIcon)
+                    return Center(child: Image.asset(ImageAssests.noDataIcon,
+                      width: 60,
+                      height: 60,)
                         // NoDataWidget(
                         //   onclick: () {
                         //     cubit.geInvitationsHome();
@@ -76,7 +78,9 @@ class NotificationScreen extends StatelessWidget {
                         },
                       );
                     } else {
-                      return Center(child: Image.asset(ImageAssests.noDataIcon)
+                      return Center(child: Image.asset(ImageAssests.noDataIcon,
+                        width: 60,
+                        height: 60,)
                           // NoDataWidget(
                           //   onclick: () {
                           //     cubit.geInvitationsHome();

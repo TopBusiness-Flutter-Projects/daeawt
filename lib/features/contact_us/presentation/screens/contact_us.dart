@@ -60,7 +60,7 @@ class ContactUsScreen extends StatelessWidget {
                     const Text(
                       AppStrings.contactUs,
                       style: TextStyle(
-                          fontSize: 18,
+                          fontSize: 14,
                           fontWeight: FontWeight.w700,
                           color: Colors.white),
                     ).tr(),

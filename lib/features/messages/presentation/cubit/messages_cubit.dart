@@ -17,8 +17,8 @@ class MessagesCubit extends Cubit<MessagesState> {
   List<Invitee> invitees=[];
   List<Invitee> inviteess=[];
   void setdata(InvitationModel homeListItemModel) {
-    invitees=homeListItemModel.invitees;
-    inviteess.addAll(homeListItemModel.invitees);
+    invitees=homeListItemModel.all_messages;
+    inviteess.addAll(homeListItemModel.all_messages);
 
     emit(MessageLoaded());
   }

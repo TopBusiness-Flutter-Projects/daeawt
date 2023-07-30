@@ -38,7 +38,7 @@ class SendNewContacts extends StatelessWidget {
                       AppStrings.send,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 18,
+                          fontSize: 14,
                           color: Colors.white),
                     ).tr(),
                   ),
@@ -106,7 +106,7 @@ class SendNewContacts extends StatelessWidget {
                 child: const Text(
                   AppStrings.sendInvitations,
                   style: TextStyle(
-                      fontSize: 18,
+                      fontSize: 14,
                       fontWeight: FontWeight.w400,
                       color: AppColors.black1),
                 ).tr(),
