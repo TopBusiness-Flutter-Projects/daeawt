@@ -12,10 +12,11 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:google_maps_webservice/places.dart'as maps;
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
-
+import 'package:search_map_place_updated/search_map_place_updated.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/appwidget.dart';
 import '../../../home/models/contact_model.dart';
@@ -24,12 +25,20 @@ import '../../model/add_invitation_model.dart';
 part 'add_invitation_state.dart';
 
 class AddInvitationCubit extends Cubit<AddInvitationState> {
+
+  AddInvitationCubit(this.api) : super(AddInvitationInitial())
+  {
+    getTheUserPermissionAndLocation();
+}
+
+
+
   TextEditingController dateController = TextEditingController();
   TextEditingController nameController = TextEditingController();
   InvitationModel? homeListItemModel;
   bool isDataVaild1 = false;
 bool isfirst=true;
-  AddInvitationCubit(this.api) : super(AddInvitationInitial());
+
   DateTime initialDate = DateTime(DateTime.now().year);
   DateTime startData = DateTime(DateTime.now().year);
   DateTime endData = DateTime(DateTime.now().year + 100000);
@@ -44,11 +53,20 @@ bool isfirst=true;
   List<ContactModel> contactModelList = [];
   List<ContactModel> allcontactModelList = [];
   late GoogleMapController mapController;
-
+  PermissionStatus permissionStatus =PermissionStatus.denied ;
   LatLng selectedLocation = const LatLng(30.0459, 31.2243);
+  final placesApi = maps.GoogleMapsPlaces(apiKey: 'AIzaSyA6QI378BHt9eqBbiJKtqWHTSAZxcSwN3Q');
+  final TextEditingController searchController = TextEditingController();
+  final List<Marker> searchMarkers = [];
   late Placemark? place;
+  Set<Marker> markers = {};
+  LatLng center= LatLng(31, 31);
   List<String> languageOptions = ["العربية", "English"];
   String selectedLanguage = 'العربية';
+
+  Position position = Position(longitude:31.189283 , latitude:  27.180134,
+      timestamp: DateTime(Duration.millisecondsPerDay), accuracy: 1.5,
+      altitude: 0.8, heading: 100, speed: 12, speedAccuracy: 1);
 
   uploadInvitationImage(BuildContext context) async {
     showModalBottomSheet(
@@ -218,6 +236,90 @@ for(int j=0;j<contactModelList.length;j++){
     contactModelList.elementAt(index).isSelected = false;
     emit(RemoveSelectedContactState());
   }
+//********************Google Map************************************************
+
+  void onCameraMove(CameraPosition position) {
+    center = position.target;
+  }
+  void search() async {
+    // Remove any existing markers
+
+      markers.clear();
+      emit(MarkersCleared());
+
+ center = selectedLocation;
+    // Search for places
+    final response = await placesApi.searchNearbyWithRadius(
+      maps.Location(lat: center.latitude,lng: center.longitude),
+      100000,
+     // type: 'restaurant',
+      keyword: searchController.text,
+    );
+
+    // Add markers for each result
+    response.results.forEach((result) {
+      final marker = Marker(
+        markerId: MarkerId(result.placeId),
+        position: LatLng(result.geometry!.location.lat, result.geometry!.location.lng),
+        infoWindow: InfoWindow(title: result.name),
+      );
+
+        markers.add(marker);
+      emit(MarkerAdded());
+     // moveCamera(center);
+
+    });
+  }
+  final Marker newMarker = Marker(
+    markerId: MarkerId('marker_id'),
+    position: LatLng(37.7749, -122.4194),
+    infoWindow: InfoWindow(
+      title: 'Marker Title',
+      snippet: 'Marker Snippet',
+    ),
+  );
+getTheUserPermissionAndLocation() async {
+  permissionStatus = await Permission.location.request();
+
+  if (permissionStatus == PermissionStatus.granted) {
+    // User granted location permission, get user's location
+    await _getUserLocation();
+    emit(LocationPermissionSuccess());
+  } else {
+    emit(LocationPermissionFailed());
+    // User denied location permission, display error message
+  }
+}
+  _getUserLocation() async {
+    try {
+      // await  getTheUserPermission();
+      position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+      selectedLocation =  LatLng(position.latitude, position.longitude) ;
+      moveCamera2();
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          selectedLocation.latitude, selectedLocation.longitude);
+      place = placemarks[0];
+      print('Latitude: ${position.latitude}, Longitude: ${position.longitude}');
+    } catch (e) {
+      if (e is PermissionDeniedException) {
+        print('User denied permission to access location');
+      }
+    }
+  }
+  moveCamera2() async {
+    //await getTheUserPermission();
+    mapController.animateCamera(
+
+        CameraUpdate.newCameraPosition(
+            CameraPosition(
+                zoom: 15,
+                // tilt: 60,
+                // bearing: 100,
+                target: LatLng(position.latitude, position.longitude))));
+    emit(CameraMoveState());
+  }
 
   getAddressFromLatLng() async {
     if (await Permission.location.isGranted) {
@@ -317,7 +419,7 @@ for(int j=0;j<contactModelList.length;j++){
     selectedLocation = newLocation;
     emit(ChangeLocationState());
   }
-
+//**********************************************************************************
   changeLanguageOption(String newLanguage) {
     selectedLanguage = newLanguage;
     model.lang = selectedLanguage == "العربية" ? "ar" : "en";
@@ -393,7 +495,6 @@ for(int j=0;j<contactModelList.length;j++){
           nameController.text='';
           dateController.text='';
           model=AddInvitationModel();
-
 
           emit(AddInvitationInitial());
           Navigator.pop(context);

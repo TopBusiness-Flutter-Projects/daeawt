@@ -126,6 +126,7 @@ Future<void> setup() async {
 
   serviceLocator.registerLazySingleton<BaseApiConsumer>(
       () => DioConsumer(client: serviceLocator()));
+
   serviceLocator.registerLazySingleton(() => AppInterceptors());
 
   // Dio
