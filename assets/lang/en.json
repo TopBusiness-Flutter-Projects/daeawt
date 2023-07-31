@@ -54,7 +54,7 @@
   "sending_date": "Sending Date",
   "occasion_site": "Occasion Site",
   "save_as_draft": "Save as a draft",
-  "tracking": "Tracking",
+  "tracking": "Next",
   "select_contacts": "Select Contacts",
   "please_select_contacts": "Please select the required contacts",
   "search": "Search",
@@ -94,7 +94,10 @@
   "code_invalid": "The code is invalid",
   "secret_number": "Secret Number",
   "welcome": "Welcome",
-  "welcome_to": "Welcome to Daeawt"
+  "welcome_to": "Welcome to Daeawt",
+  "no_data": "No Notifications ",
+  "no_invitations": "No Invitations",
+  "available_balance": "Available Balance"
 
 
 

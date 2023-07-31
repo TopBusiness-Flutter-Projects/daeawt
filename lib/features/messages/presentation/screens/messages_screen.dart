@@ -88,12 +88,12 @@ class _MessagesScreenState extends State<MessagesScreen> {
                               const Text("المكرم :",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 20
+                                    fontSize: 14
                                 ),
                               ),
                               Text(cubit.invitees.elementAt(index).name , style: const TextStyle(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 20
+                                  fontSize: 14
                               ),),
                             ],),
 
@@ -103,7 +103,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                               const Flexible(
                                   child: Text("محتوى الرسالة ",
                                   style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w400,
                                     color: AppColors.grey2
                                   ),)),

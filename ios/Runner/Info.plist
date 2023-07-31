@@ -55,6 +55,11 @@
 		<key>NSContactsUsageDescription</key>
 		<string>This app requires contacts access to function properly.</string>
 		<key>UIStatusBarHidden</key>
+		<!-- ... -->
+		<key>NSCameraUsageDescription</key>
+		<string>Camera permission is required for barcode scanning.</string>
+		<!-- ... -->
 		<false/>
+
 	</dict>
 </plist>

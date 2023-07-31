@@ -141,7 +141,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                         child: Row(
                           children: [
                             Stack(
-                              alignment: Alignment.centerRight,
+                              alignment:languageCode=="ar"? Alignment.centerRight:Alignment.centerLeft,
                               children: [
                                 const CircleAvatar(
                                   radius: 20,

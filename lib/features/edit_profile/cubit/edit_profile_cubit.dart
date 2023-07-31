@@ -104,6 +104,7 @@ class EditProfileCubit extends Cubit<EditProfileState> {
           emit(EditProfileFailure());
         } else if (loginModel.code == 200) {
           Navigator.pop(context);
+          Preferences.instance.clearUserData();
           Preferences.instance.setUser(loginModel).then((value) {
             context.read<ProfileCubit>().getUserData();
             Navigator.pop(context);

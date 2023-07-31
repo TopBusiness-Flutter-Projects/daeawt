@@ -144,7 +144,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                         child: Row(
                           children: [
                             Stack(
-                              alignment: Alignment.centerRight,
+                              alignment:languageCode=="ar"? Alignment.centerRight:Alignment.centerLeft,
                               children: [
                                 const CircleAvatar(
                                   radius: 20,
@@ -223,24 +223,23 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                     alignment: Alignment.bottomCenter,
                                     children: [
                                       SizedBox(
-                                        height: 150,
+                                        height: MediaQuery.of(context).size.height*0.12,//todo
                                         width:
                                             MediaQuery.of(context).size.width * 0.95,
                                       ),
                                       Container(
                                         alignment: Alignment.center,
                                         padding: const EdgeInsets.all(8),
-                                        height: 112,
+                                        height: MediaQuery.of(context).size.height*0.12,
                                         width:
-                                            MediaQuery.of(context).size.width * 0.86,
+                                            MediaQuery.of(context).size.width * 0.9,
                                         decoration: BoxDecoration(
                                             color: AppColors.orange3,
                                             borderRadius: BorderRadius.circular(10)),
                                         child: Padding(
                                           padding: const EdgeInsets.all(8.0),
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                             children: [
                                               Column(
                                                 mainAxisAlignment:
@@ -253,7 +252,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                       const Text(
                                                         "المكرم : ",
                                                         style: TextStyle(
-                                                            fontSize: 16,
+                                                            fontSize: 14,
                                                             fontWeight:
                                                                 FontWeight.w700),
                                                       ),
@@ -276,15 +275,14 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                 ],
                                               ),
                                               Container(
-                                                width: 117,
-                                                height: 33,
+                                                width: MediaQuery.of(context).size.width *0.27,
+                                                height: 25,
                                                 decoration: BoxDecoration(
                                                     color: AppColors.primary,
                                                     borderRadius:
                                                         BorderRadius.circular(10)),
                                                 child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.spaceBetween,
+                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                   children: [
                                                     IconButton(
                                                       onPressed: () {
@@ -294,6 +292,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                       },
                                                       icon: const Icon(
                                                         Icons.add,
+                                                        size: 15,
                                                         color: Colors.white,
                                                       ),
                                                       padding: EdgeInsets.zero,
@@ -306,7 +305,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                           .toString(),
                                                       style: const TextStyle(
                                                           color: Colors.white,
-                                                          fontSize: 20,
+                                                          fontSize: 14,
                                                           fontWeight:
                                                               FontWeight.w700),
                                                     ),
@@ -318,6 +317,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                         },
                                                         icon: const Icon(
                                                           Icons.remove,
+                                                          size: 15,
                                                           color: Colors.white,
                                                         ),
                                                         padding: EdgeInsets.zero),
@@ -330,9 +330,9 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                       ),
                                       Positioned(
                                           right: 0,
-                                          top: 15,
+                                          top: 10,
                                           child: CircleAvatar(
-                                            radius: 18,
+                                            radius: 12,
                                             backgroundColor: AppColors.primary,
                                             child: Center(
                                                 child: IconButton(
@@ -342,6 +342,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                   icon: const Icon(
                                                 Icons.close,
                                                 color: Colors.white,
+                                                    size: 12,
                                               ),
                                               padding: EdgeInsets.zero,
                                             )),
@@ -353,7 +354,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        height: 40,
+                        height: 30,
                       ),
                       //last 2 buttons
                       Padding(

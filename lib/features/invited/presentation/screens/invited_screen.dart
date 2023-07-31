@@ -94,11 +94,11 @@ class _InvitedScreenState extends State<InvitedScreen> {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
                     child: Container(
-                      height: 60,
+                      height: MediaQuery.of(context).size.height*0.07,
                       child: Row(
                         children: [
                           CircleAvatar(
-                            radius: 15,
+                            radius: 12,
                             backgroundColor: AppColors.primary,
                             child: Center(
                                 child: IconButton(
@@ -108,6 +108,7 @@ class _InvitedScreenState extends State<InvitedScreen> {
                               },
                                  icon: const Icon(
                                 Icons.close,
+                                size: 12,
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
@@ -124,13 +125,13 @@ class _InvitedScreenState extends State<InvitedScreen> {
                                     "المكرم :",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 20),
+                                        fontSize: 14),
                                   ),
                                   Text(
                                     cubit.invitees.elementAt(index).name,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 20),
+                                        fontSize: 14),
                                   ),
                                 ],
                               ),

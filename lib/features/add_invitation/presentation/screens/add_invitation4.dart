@@ -2,7 +2,7 @@ import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
-import 'package:easy_localization/easy_localization.dart'as easy;
+import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'dart:io';
@@ -17,7 +17,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
+    String? languageCode =
+        easy.EasyLocalization.of(context)?.locale.languageCode;
 
     return BlocConsumer<AddInvitationCubit, AddInvitationState>(
       listener: (context, state) {
@@ -35,17 +36,18 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                     Container(
                       decoration: const BoxDecoration(
                           gradient: LinearGradient(colors: [
-                            AppColors.orange2,
-                            AppColors.primary,
-                          ])),
+                        AppColors.orange2,
+                        AppColors.primary,
+                      ])),
                       padding: const EdgeInsets.symmetric(
                           vertical: 60, horizontal: 40),
                       height: 160,
                       width: double.infinity,
                       child: Center(
-                        child:  Text(
-                          cubit.homeListItemModel==null?
-                          AppStrings.createNewInvitation:"update_invitation".tr(),
+                        child: Text(
+                          cubit.homeListItemModel == null
+                              ? AppStrings.createNewInvitation
+                              : "update_invitation".tr(),
                           style: const TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 14,
@@ -58,7 +60,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                         left: 20,
                         top: 60,
                         child: Transform.rotate(
-                          angle:languageCode=="ar"?0:(3.14) ,
+                          angle: languageCode == "ar" ? 0 : (3.14),
                           child: IconButton(
                               onPressed: () {
                                 Navigator.pop(context);
@@ -67,12 +69,11 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                 Icons.arrow_forward,
                                 color: Colors.white,
                                 size: 35,
-                              )),)
-                    )
+                              )),
+                        ))
                   ],
                 ),
               ),
-
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
@@ -142,7 +143,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                         child: Row(
                           children: [
                             Stack(
-                              alignment: Alignment.centerRight,
+                              alignment:languageCode=="ar"? Alignment.centerRight:Alignment.centerLeft,
                               children: [
                                 const CircleAvatar(
                                   radius: 20,
@@ -151,7 +152,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                 const Text(
                                   AppStrings.review,
                                   style: TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.w700),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700),
                                 ).tr(),
                                 const Positioned(
                                   bottom: 3,
@@ -196,7 +198,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                         width: MediaQuery.of(context).size.width * 0.85,
                         decoration: BoxDecoration(
                             color: AppColors.grey6,
-                            borderRadius: const BorderRadius.all(Radius.circular(10)),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(10)),
                             border: Border.all(color: AppColors.grey5)),
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton2(
@@ -239,7 +242,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                       // the invitation card
                       Container(
                         //the big grey container
-                        height: MediaQuery.of(context).size.height * 0.55,
+                        height: MediaQuery.of(context).size.height * 0.6,
                         width: MediaQuery.of(context).size.width * 0.85,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -250,7 +253,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                             children: [
                               //the image with the 2 texts
                               Container(
-                                  height: MediaQuery.of(context).size.height * 0.38,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.38,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(10),
@@ -259,7 +263,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                     children: [
                                       cubit.invitationImage == null
                                           ? Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(10),
@@ -269,24 +274,33 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                                   )),
                                             )
                                           : Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding:
+                                                  const EdgeInsets.all(8.0),
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
                                                 child: Image.file(
-                                                  File(cubit.invitationImage!.path),
-                                                  height: MediaQuery.of(context).size.height*0.28,
+                                                  File(cubit
+                                                      .invitationImage!.path),
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.28,
                                                 ),
                                               ),
                                             ),
-                                       Padding(
-                                        padding:
-                                            const EdgeInsets.symmetric(horizontal: 8.0),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8.0),
                                         child: Row(
                                           children: [
                                             Text(
-                                              cubit.model.selectedContactModelList.isNotEmpty?
-                                              "المكرم : ${cubit.model.selectedContactModelList[0].name??" "}":" ",
+                                              cubit
+                                                      .model
+                                                      .selectedContactModelList
+                                                      .isNotEmpty
+                                                  ? "المكرم : ${cubit.model.selectedContactModelList[0].name ?? " "}"
+                                                  : " ",
                                               textAlign: TextAlign.start,
                                               style: const TextStyle(
                                                   fontWeight: FontWeight.w400,
@@ -296,14 +310,16 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                           ],
                                         ),
                                       ),
-                                       Padding(
-                                        padding:
-                                            const EdgeInsets.symmetric(horizontal: 8.0),
+                                      Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 8.0),
                                         child: Row(
                                           children: [
                                             Text(
-                                            cubit.selectedLanguage=="العربية"?
-                                            "نتشرف بدعوتكم لحضور ${cubit.model.title}":"We are honored to invite you to attend ${cubit.model.title}",
+                                              cubit.selectedLanguage ==
+                                                      "العربية"
+                                                  ? "نتشرف بدعوتكم لحضور ${cubit.model.title}"
+                                                  : "We are honored to invite you to attend ${cubit.model.title}",
                                               textAlign: TextAlign.start,
                                               style: const TextStyle(
                                                   color: AppColors.black1,
@@ -317,23 +333,30 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                   )),
                               //the 2 buttons
                               Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 3.0,vertical: 12),
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 3.0, vertical: 12),
                                 child: Row(
                                   children: [
                                     Expanded(
                                         child: CustomButton(
                                             onPressed: () {},
                                             height: 45,
-                                            text:  cubit.selectedLanguage=="العربية"?
-                                            "تأكيد":"Confirm",
+                                            text: cubit.selectedLanguage ==
+                                                    "العربية"
+                                                ? "تأكيد"
+                                                : "Confirm",
                                             backgroundColor: AppColors.green2)),
-                                    const SizedBox(width: 8,),
+                                    const SizedBox(
+                                      width: 8,
+                                    ),
                                     Expanded(
                                       child: CustomButton(
                                         onPressed: () {},
                                         height: 45,
-                                        text:  cubit.selectedLanguage=="العربية"?
-                                        "اعتذر":"Apology",
+                                        text:
+                                            cubit.selectedLanguage == "العربية"
+                                                ? "اعتذر"
+                                                : "Apology",
                                         backgroundColor: AppColors.red1,
                                       ),
                                     ),
@@ -345,33 +368,36 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                 height: 45,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(50)
-                                ),
-                                child:  Text( cubit.selectedLanguage=="العربية"?
-                                "موقع المناسبة":"Location",style: const TextStyle(
-                                  color: AppColors.black1,
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w700
-                                ),).tr(),
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.circular(50)),
+                                child: Text(
+                                  cubit.selectedLanguage == "العربية"
+                                      ? "موقع المناسبة"
+                                      : "Location",
+                                  style: const TextStyle(
+                                      color: AppColors.black1,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w700),
+                                ).tr(),
                               )
-
                             ],
                           ),
                         ),
                       ),
                       //the last 2 buttons
                       Padding(
-                        padding:
-                        const EdgeInsets.symmetric(horizontal: 17.0, vertical: 15),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 17.0, vertical: 15),
                         child: Row(
                           children: [
                             Expanded(
                               child: CustomButton(
                                 backgroundColor: AppColors.primary,
                                 onPressed: () {
-cubit.model.step=5;
-                                  Navigator.pushNamed(context, Routes.addInvitationStep5Route);
+                                  cubit.model.step = 5;
+                                  cubit.getTotalInvitedPeople();
+                                  Navigator.pushNamed(
+                                      context, Routes.addInvitationStep5Route);
                                 },
                                 text: AppStrings.tracking,
                               ),
@@ -380,13 +406,13 @@ cubit.model.step=5;
                               width: 10,
                             ),
                             Visibility(
-                              visible: cubit.homeListItemModel==null?true:false,
-
-                              child:
-                            Expanded(
-                              child:  CustomButton(
+                              visible: cubit.homeListItemModel == null
+                                  ? true
+                                  : false,
+                              child: Expanded(
+                                child: CustomButton(
                                   onPressed: () {
-                                    cubit.model.as_draft=1;
+                                    cubit.model.as_draft = 1;
                                     cubit.addinviatation(context);
 
                                     //    Navigator.pushNamed(context, Routes.homeRoute);

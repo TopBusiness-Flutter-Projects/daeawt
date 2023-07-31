@@ -1,12 +1,14 @@
 import 'package:daeawt/features/home/cubit/home_cubit.dart';
-import 'package:easy_localization/easy_localization.dart'as easy;
+import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/assets_manager.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/home_app_bar.dart';
+import '../../../../core/widgets/no_data.dart';
 import '../../../../core/widgets/show_loading_indicator.dart';
 import '../widgets/home_list_item.dart';
 
@@ -15,7 +17,9 @@ class HomeTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String? languageCode = easy.EasyLocalization.of(context)?.locale.languageCode;
+    String? languageCode =
+        easy.EasyLocalization.of(context)?.locale.languageCode;
+
     HomeCubit cubit = context.read<HomeCubit>();
 
     return Scaffold(
@@ -34,22 +38,48 @@ class HomeTab extends StatelessWidget {
                   cubit.geInvitationsHome();
                 },
               )),
+          //balance
+          Container(
+            margin: EdgeInsets.only(bottom: 10),
+            width: 80.w,
+            height: 10.h,
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.centerRight,
+                end: Alignment.centerLeft,
+                colors: [
+                  AppColors.primary,
+                  AppColors.orange4
+                ]
+              ),
+             // color: AppColors.primary,
+              borderRadius: BorderRadius.circular(20)
+            ),
+            child: Column(
+              children: [
+                Text("available_balance").tr(),
+             //   Text(cubit.userModel!.data!.user!.balance!)
+              ],
+            ),
+          ),
           //all invitations
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Row(
               children: [
                 Stack(
-                  alignment:languageCode=="ar"? Alignment.centerRight:Alignment.centerLeft,
+                  alignment: languageCode == "ar"
+                      ? Alignment.centerRight
+                      : Alignment.centerLeft,
                   children: [
                     const CircleAvatar(
                       radius: 20,
                       backgroundColor: AppColors.primary,
                     ),
-                    const Text(
+                     Text(
                       AppStrings.allInvitations,
                       style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                          TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700),
                     ).tr(),
                     const Positioned(
                       bottom: 3,
@@ -73,22 +103,9 @@ class HomeTab extends StatelessWidget {
               builder: (context, state) {
                 if (state is InvitationsHomeLoading) {
                   return const Center(child: ShowLoadingIndicator());
-                }
-                else if (state is InvitationsHomeError) {
-                  return Center(
-                    child: Image.asset(ImageAssests.noDataIcon,
-                    width: 60,
-                      height: 60,
-                    )
-                    // NoDataWidget(
-                    //   onclick: () {
-                    //     cubit.geInvitationsHome();
-                    //   },
-                    //   title: 'no_data'.tr(),
-                    // ),
-                  );
-                }
-                else {
+                } else if (state is InvitationsHomeError) {
+                  return NoData(data:  'no_invitations'.tr(),);
+                } else {
                   if (cubit.invitationsList.isNotEmpty) {
                     return ListView.builder(
                       itemCount: cubit.invitationsList.length,
@@ -100,18 +117,7 @@ class HomeTab extends StatelessWidget {
                       },
                     );
                   } else {
-                    return Center(
-                      child:Image.asset(ImageAssests.noDataIcon,
-                        width: 60,
-                        height: 60,
-                      )
-                      // NoDataWidget(
-                      //   onclick: () {
-                      //     cubit.geInvitationsHome();
-                      //   },
-                      //   title: 'no_data'.tr(),
-                      // ),
-                    );
+                    return  NoData(data:  'no_invitations'.tr(),);
                   }
                 }
               },

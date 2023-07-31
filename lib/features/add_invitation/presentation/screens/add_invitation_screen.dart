@@ -159,7 +159,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                           child: Row(
                             children: [
                               Stack(
-                                alignment: Alignment.centerRight,
+                                alignment:languageCode=="ar"? Alignment.centerRight:Alignment.centerLeft,
                                 children: [
                                   const CircleAvatar(
                                     radius: 20,

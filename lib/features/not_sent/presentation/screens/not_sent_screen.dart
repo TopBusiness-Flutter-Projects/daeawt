@@ -100,7 +100,7 @@ class _NotSentScreenState extends State<NotSentScreen> {
                   children: [
 
                     CircleAvatar(
-                      radius: 15,
+                      radius: 12,
                       backgroundColor: AppColors.primary,
                       child: Center(
                           child: IconButton(
@@ -110,6 +110,7 @@ class _NotSentScreenState extends State<NotSentScreen> {
                             },
                             icon: const Icon(
                               Icons.close,
+                              size: 12,
                               color: Colors.white,
                             ),
                             padding: EdgeInsets.zero,
@@ -122,14 +123,14 @@ class _NotSentScreenState extends State<NotSentScreen> {
                           const Text("المكرم :",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 20
+                                fontSize: 14
                             ),
                           ),
                           Text(
                               cubit.invitees.elementAt(index).name ,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontSize: 20
+                                fontSize: 14
                             ),),
                         ],),
                         Text(

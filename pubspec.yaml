@@ -44,6 +44,7 @@ dependencies:
   search_map_place_updated: ^0.0.4
   flutter_google_places:
   awesome_snackbar_content:
+  sizer: ^2.0.15
   geocoding:
   firebase_core:
   firebase_auth:

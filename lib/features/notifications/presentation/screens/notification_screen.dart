@@ -2,9 +2,11 @@ import 'package:daeawt/core/utils/app_strings.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/assets_manager.dart';
+import '../../../../core/widgets/no_data.dart';
 import '../../../../core/widgets/show_loading_indicator.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
 import '../../../home/presentation/widgets/notification_list_item.dart';
@@ -56,38 +58,21 @@ class NotificationScreen extends StatelessWidget {
                   if (state is NotificationLoading) {
                     return const Center(child: ShowLoadingIndicator());
                   } else if (state is NotificationError) {
-                    return Center(child: Image.asset(ImageAssests.noDataIcon,
-                      width: 60,
-                      height: 60,)
-                        // NoDataWidget(
-                        //   onclick: () {
-                        //     cubit.geInvitationsHome();
-                        //   },
-                        //   title: 'no_data'.tr(),
-                        // ),
-                        );
+                    return NoData(data: 'no_data'.tr(),);
                   } else {
                     if (cubit.invitationsList.isNotEmpty) {
                       return ListView.separated(
                         itemCount: cubit.invitationsList.length,
                         itemBuilder: (context, index) {
-                          return  NotificationsListItem(notificationModel: cubit.invitationsList[index]);
+                          return NotificationsListItem(
+                              notificationModel: cubit.invitationsList[index]);
                         },
                         separatorBuilder: (BuildContext context, int index) {
                           return const Divider();
                         },
                       );
                     } else {
-                      return Center(child: Image.asset(ImageAssests.noDataIcon,
-                        width: 60,
-                        height: 60,)
-                          // NoDataWidget(
-                          //   onclick: () {
-                          //     cubit.geInvitationsHome();
-                          //   },
-                          //   title: 'no_data'.tr(),
-                          // ),
-                          );
+                      return NoData(data: 'no_data'.tr(),);
                     }
                   }
                 },

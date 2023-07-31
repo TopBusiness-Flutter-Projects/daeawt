@@ -100,7 +100,7 @@ class _FailedScreenState extends State<FailedScreen> {
                   children: [
 
                     CircleAvatar(
-                      radius: 15,
+                      radius: 12,
                       backgroundColor: AppColors.primary,
                       child: Center(
                           child: IconButton(
@@ -110,6 +110,7 @@ class _FailedScreenState extends State<FailedScreen> {
                             },
                             icon: const Icon(
                               Icons.close,
+                              size: 12,
                               color: Colors.white,
                             ),
                             padding: EdgeInsets.zero,
@@ -122,13 +123,13 @@ class _FailedScreenState extends State<FailedScreen> {
                           const Text("المكرم :",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 20
+                                fontSize: 14
                             ),
                           ),
                           Text(  cubit.invitees.elementAt(index).name ,
                             style: const TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontSize: 20
+                                fontSize: 14
                             ),),
                         ],),
                         Text( easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),

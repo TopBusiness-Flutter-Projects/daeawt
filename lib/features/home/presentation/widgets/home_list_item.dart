@@ -27,6 +27,7 @@ class HomeListItem extends StatelessWidget {
 
             child: Row(
               children: [
+                SizedBox(width: 5,),
                 homeListItemModel.image.isNotEmpty
                     ? ManageNetworkImage(
                         imageUrl: homeListItemModel.image,
@@ -84,9 +85,9 @@ class HomeListItem extends StatelessWidget {
         Positioned(
           bottom: 4,
           right:languageCode=="ar"? MediaQuery.of(context).size.width * 0.4:
-          MediaQuery.of(context).size.width * 0.4 ,
+          MediaQuery.of(context).size.width * 0.3 ,
           left:languageCode=="ar"? MediaQuery.of(context).size.width * 0.3:
-          MediaQuery.of(context).size.width * 0.27,
+          MediaQuery.of(context).size.width * 0.4,
           child: Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),

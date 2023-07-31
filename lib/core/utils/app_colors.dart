@@ -3,8 +3,11 @@ import 'package:flutter/material.dart';
 class AppColors{
   static Color error = Colors.red;
   static Color success = Colors.green;
-  static const Color primary = Color(0xffFF914C);
+  static const Color primary = Color(0xffFF914C);// #FFC8A6 23.73%,
+
+
   static const Color orange2 = Color(0xffFBB589);
+  static const Color orange4 = Color(0xffFFC8A6);
   static Color hint = Colors.grey;
   static Color blackLite = Colors.black54;
   static const Color orange3 = Color(0xffFFEAD7);

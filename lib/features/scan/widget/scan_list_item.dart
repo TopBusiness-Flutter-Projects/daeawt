@@ -11,8 +11,9 @@ class ScanListItem extends StatelessWidget {
   final InvitationModel homeListItemModel;
   @override
   Widget build(BuildContext context) {
+    String language = EasyLocalization.of(context)!.locale.languageCode;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 12.0,vertical: 5),
       child: Stack(
         children: [
           Card(
@@ -20,6 +21,7 @@ class ScanListItem extends StatelessWidget {
               //  mainAxisAlignment: MainAxisAlignment.start,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox(width: 5,),
                 homeListItemModel.image.isNotEmpty
                     ? ManageNetworkImage(
                   imageUrl: homeListItemModel.image,
@@ -73,8 +75,14 @@ class ScanListItem extends StatelessWidget {
           ),
           Positioned(
               bottom: 4,
-              right: MediaQuery.of(context).size.width * 0.47,
-              left: MediaQuery.of(context).size.width * 0.13,
+              right:language=="ar"?
+              MediaQuery.of(context).size.width * 0.47:
+              MediaQuery.of(context).size.width * 0.2
+              ,
+              left:language=="ar"?
+              MediaQuery.of(context).size.width * 0.13:
+              MediaQuery.of(context).size.width * 0.42
+              ,
               child: Container(
                 alignment: Alignment.center,
                 padding:

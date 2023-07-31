@@ -96,6 +96,9 @@
   "code_invalid": "الكود غير صحيح",
   "secret_number": "الرقم السري",
   "welcome": "مرحبا",
-  "welcome_to": "اهلا بك فى دعوات"
+  "welcome_to": "اهلا بك فى دعوات",
+  "no_data": "لا توجد بيانات",
+  "no_invitations": "لا توجد دعوات",
+  "available_balance": "الرصيد المتوفر"
 
 }

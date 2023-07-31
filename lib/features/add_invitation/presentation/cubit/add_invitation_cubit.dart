@@ -25,10 +25,13 @@ import '../../model/add_invitation_model.dart';
 part 'add_invitation_state.dart';
 
 class AddInvitationCubit extends Cubit<AddInvitationState> {
+  var TotalInvitedPeople;
+
 
   AddInvitationCubit(this.api) : super(AddInvitationInitial())
   {
     getTheUserPermissionAndLocation();
+
 }
 
 
@@ -54,17 +57,20 @@ bool isfirst=true;
   List<ContactModel> allcontactModelList = [];
   late GoogleMapController mapController;
   PermissionStatus permissionStatus =PermissionStatus.denied ;
-  LatLng selectedLocation = const LatLng(30.0459, 31.2243);
+  LatLng selectedLocation = const LatLng(30.0459, 31.2243);//todo
   final placesApi = maps.GoogleMapsPlaces(apiKey: 'AIzaSyA6QI378BHt9eqBbiJKtqWHTSAZxcSwN3Q');
   final TextEditingController searchController = TextEditingController();
-  final List<Marker> searchMarkers = [];
+ // final List<Marker> searchMarkers = [];
   late Placemark? place;
-  Set<Marker> markers = {};
+  Set<Marker> markers = {
+
+  };
+
   LatLng center= LatLng(31, 31);
   List<String> languageOptions = ["العربية", "English"];
   String selectedLanguage = 'العربية';
 
-  Position position = Position(longitude:31.189283 , latitude:  27.180134,
+  Position currentPosition = Position(longitude:31.189283 , latitude:  27.180134,
       timestamp: DateTime(Duration.millisecondsPerDay), accuracy: 1.5,
       altitude: 0.8, heading: 100, speed: 12, speedAccuracy: 1);
 
@@ -110,6 +116,16 @@ bool isfirst=true;
     withBarcode = value!;
     model.has_qrcode = withBarcode ? 1 : 0;
     emit(ChangeWithBarcodeCheckListTileState());
+  }
+
+  void getTotalInvitedPeople(){
+    int sum = model.selectedContactModelList.length;
+    for(int i=0;i<model.selectedContactModelList.length ;i++){
+      sum+=model.selectedContactModelList[i].numberOfInvitedPeople;
+      print(sum);
+    }
+   TotalInvitedPeople=sum;
+    emit(AddInvitationInitial());
   }
 
   changeWithSendingDateCheckListTile(bool? value) {
@@ -218,6 +234,8 @@ for(int j=0;j<contactModelList.length;j++){
 
   incrementNumberOfInvitedPeople(int index) {
     model.selectedContactModelList.elementAt(index).numberOfInvitedPeople++;
+    print("+++++++++++++++++++++++++++++++++++++++++++++++++++++$index");
+    print( model.selectedContactModelList.elementAt(index).numberOfInvitedPeople);
     emit(IncrementNumberOfInvitedPeopleState());
   }
 
@@ -226,7 +244,9 @@ for(int j=0;j<contactModelList.length;j++){
         0) {
       model.selectedContactModelList.elementAt(index).numberOfInvitedPeople = 0;
     } else {
-      model.selectedContactModelList.elementAt(index).numberOfInvitedPeople++;
+      model.selectedContactModelList.elementAt(index).numberOfInvitedPeople--;
+      print("-------------------------------------------------$index");
+      print( model.selectedContactModelList.elementAt(index).numberOfInvitedPeople);
     }
     emit(DecrementNumberOfInvitedPeopleState());
   }
@@ -270,9 +290,10 @@ for(int j=0;j<contactModelList.length;j++){
 
     });
   }
-  final Marker newMarker = Marker(
+
+  final Marker newMarker = const Marker(
     markerId: MarkerId('marker_id'),
-    position: LatLng(37.7749, -122.4194),
+    position: LatLng(31, 31),
     infoWindow: InfoWindow(
       title: 'Marker Title',
       snippet: 'Marker Snippet',
@@ -293,33 +314,33 @@ getTheUserPermissionAndLocation() async {
   _getUserLocation() async {
     try {
       // await  getTheUserPermission();
-      position = await Geolocator.getCurrentPosition(
+      currentPosition = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.high,
       );
-      selectedLocation =  LatLng(position.latitude, position.longitude) ;
-      moveCamera2();
+      selectedLocation =  LatLng(currentPosition.latitude, currentPosition.longitude) ;
+      moveCamera(selectedLocation);
       List<Placemark> placemarks = await placemarkFromCoordinates(
           selectedLocation.latitude, selectedLocation.longitude);
       place = placemarks[0];
-      print('Latitude: ${position.latitude}, Longitude: ${position.longitude}');
+      print('Latitude: ${currentPosition.latitude}, Longitude: ${currentPosition.longitude}');
     } catch (e) {
       if (e is PermissionDeniedException) {
         print('User denied permission to access location');
       }
     }
   }
-  moveCamera2() async {
-    //await getTheUserPermission();
-    mapController.animateCamera(
-
-        CameraUpdate.newCameraPosition(
-            CameraPosition(
-                zoom: 15,
-                // tilt: 60,
-                // bearing: 100,
-                target: LatLng(position.latitude, position.longitude))));
-    emit(CameraMoveState());
-  }
+  // moveCamera2() async {
+  //   //await getTheUserPermission();
+  //   mapController.animateCamera(
+  //
+  //       CameraUpdate.newCameraPosition(
+  //           CameraPosition(
+  //               zoom: 15,
+  //               // tilt: 60,
+  //               // bearing: 100,
+  //               target: LatLng(position.latitude, position.longitude))));
+  //   emit(CameraMoveState());
+  // }
 
   getAddressFromLatLng() async {
     if (await Permission.location.isGranted) {
@@ -362,6 +383,50 @@ getTheUserPermissionAndLocation() async {
         emit(LocationPermissionFailedState());
       }
     }
+    checkDataVaild1();
+  }
+  getAddressFromLatLng1() async {
+  //  if (await Permission.location.isGranted) {
+  //     Position userCurrentPosition = await Geolocator.getCurrentPosition(
+  //         desiredAccuracy: LocationAccuracy.high);
+  //     selectedLocation =
+  //         LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude);
+      List<Placemark> placemarks = await placemarkFromCoordinates(
+          selectedLocation.latitude, selectedLocation.longitude);
+      moveCamera(selectedLocation);
+      model.title=nameController.text;
+      place = placemarks[0];
+      model.latitude = selectedLocation.latitude;
+      model.longitude = selectedLocation.longitude;
+      address =
+      '${place?.name}, ${place?.subLocality}, ${place?.subAdministrativeArea},${place?.country}';
+      print(address);
+      model.address = address;
+      emit(LocationPermissionSuccessState());
+    //}
+    // else {
+    //   await Permission.location.request();
+    //   if (await Permission.location.isGranted ||
+    //       await Permission.location.isLimited) {
+    //     Position userCurrentPosition = await Geolocator.getCurrentPosition(
+    //         desiredAccuracy: LocationAccuracy.high);
+    //     selectedLocation =
+    //         LatLng(userCurrentPosition.latitude, userCurrentPosition.longitude);
+    //     moveCamera(selectedLocation);
+    //     List<Placemark> placemarks = await placemarkFromCoordinates(
+    //         selectedLocation.latitude, selectedLocation.longitude);
+    //     place = placemarks[0];
+    //     print(address);
+    //     model.latitude = userCurrentPosition.latitude;
+    //     model.longitude = userCurrentPosition.longitude;
+    //     address =
+    //     '${place?.name}, ${place?.street}, ${place?.subAdministrativeArea},${place?.country}';
+    //     model.address = address;
+    //     emit(LocationPermissionSuccessState());
+    //   } else {
+    //     emit(LocationPermissionFailedState());
+    //   }
+    // }
     checkDataVaild1();
   }
 
@@ -417,6 +482,9 @@ getTheUserPermissionAndLocation() async {
 
   selectLocation(LatLng newLocation) {
     selectedLocation = newLocation;
+   // markers.add(Marker(markerId: MarkerId("id"),position: newLocation,),);
+    moveCamera(newLocation);
+
     emit(ChangeLocationState());
   }
 //**********************************************************************************

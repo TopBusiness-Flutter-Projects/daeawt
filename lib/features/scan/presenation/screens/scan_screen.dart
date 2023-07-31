@@ -1,4 +1,5 @@
 import 'package:daeawt/core/utils/app_strings.dart';
+import 'package:daeawt/core/widgets/no_data.dart';
 import 'package:daeawt/features/scan/cubit/scan_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -59,21 +60,12 @@ class ScanScreen extends StatelessWidget {
                   return const Center(child: ShowLoadingIndicator());
                 }
                 else if (state is InvitationsSacanError) {
-                  return Center(
-                      child: Image.asset(ImageAssests.noDataIcon,
-                        width: 60,
-                        height: 60,)
-                    // NoDataWidget(
-                    //   onclick: () {
-                    //     cubit.geInvitationsHome();
-                    //   },
-                    //   title: 'no_data'.tr(),
-                    // ),
-                  );
+                  return NoData(data:'no_invitations'.tr() ,);
                 }
                 else {
                   if (cubit.invitationsList.isNotEmpty) {
                     return ListView.builder(
+                      padding: EdgeInsets.zero,
                       itemCount: cubit.invitationsList.length,
                       itemBuilder: (context, index) {
                         return  ScanListItem(
@@ -83,17 +75,7 @@ class ScanScreen extends StatelessWidget {
                       },
                     );
                   } else {
-                    return Center(
-                        child:Image.asset(ImageAssests.noDataIcon,
-                          width: 60,
-                          height: 60,)
-                      // NoDataWidget(
-                      //   onclick: () {
-                      //     cubit.geInvitationsHome();
-                      //   },
-                      //   title: 'no_data'.tr(),
-                      // ),
-                    );
+                    return  NoData(data: 'no_invitations'.tr(),);
                   }
                 }
 

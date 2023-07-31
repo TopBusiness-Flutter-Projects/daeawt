@@ -10,7 +10,6 @@ import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../add_invitation/presentation/cubit/add_invitation_cubit.dart';
 
-
 class HomeScreen extends StatefulWidget {
   HomeScreen({Key? key}) : super(key: key);
 
@@ -57,16 +56,12 @@ class _HomeScreenState extends State<HomeScreen>
         ),
         floatingActionButton: FloatingActionButton(
             shape: CircleBorder(),
-backgroundColor: AppColors.primary,
+            backgroundColor: AppColors.primary,
             child: const Icon(
               Icons.add,
-
               color: Colors.white,
             ),
             onPressed: () {
-
-
-
               Navigator.pushNamed(context, Routes.addInvitationRoute);
             }),
         floatingActionButtonLocation:

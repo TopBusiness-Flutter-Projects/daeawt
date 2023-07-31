@@ -41,16 +41,27 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
 
                 onTap: (LatLng location) {
                   cubit.selectLocation(location);
-                  cubit.getAddressFromLatLng();
+                  cubit.moveCamera(location);
+                  cubit.getAddressFromLatLng1();
                 },
                 initialCameraPosition: const CameraPosition(
                     target: LatLng(30.0450, 31.2242), zoom: 8),
                 onMapCreated: (controller) {
-                  googleMapController = controller;
+                  cubit.mapController = controller;
+                 // googleMapController = controller;
                   // cubit.center = cubit.position.target;
                 },
 
-                markers: cubit.markers,
+                markers: {
+                  Marker(
+                    markerId: MarkerId('selected_location'),
+                    position: cubit.selectedLocation,
+                    // infoWindow: InfoWindow(
+                    //   title: 'Egypt',
+                    // ),
+                  ),
+                }
+                //cubit.markers,
                 //{
 
                 //   Marker(
@@ -75,7 +86,17 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                   ),
                 ),
               ),
-              ElevatedButton(onPressed: _handlePressButton, child: const Text("Search Places"))
+              Align(
+                alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 35.0),
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        minimumSize: Size(MediaQuery.of(context).size.width / 3, 40)
+                      ),
+                        onPressed: _handlePressButton,
+                        child: const Text("Search Places")),
+                  ))
             ],
           ),
         );
@@ -89,13 +110,13 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
         apiKey: widget.kGoogleApiKey,
         onError: onError,
         mode: _mode,
-        language: 'en',
+        language: 'ar',
         strictbounds: false,
         types: [""],
         decoration: InputDecoration(
             hintText: 'Search',
             focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: BorderSide(color: Colors.white))),
-        components: [Component(Component.country,"pk"),Component(Component.country,"usa")]);
+        components: [Component(Component.country,"usa")]);
 
 
     displayPrediction(p!,widget.homeScaffoldKey.currentState);

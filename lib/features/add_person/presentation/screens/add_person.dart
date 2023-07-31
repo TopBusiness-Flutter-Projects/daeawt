@@ -174,8 +174,8 @@ class _AddPersonState extends State<AddPerson> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 18.0, vertical: 8),
+                        padding: const EdgeInsets.only(
+                            right: 18.0,left: 18,top: 10 ),
                         child: const Text(
                           AppStrings.companion,
                           style: TextStyle(
@@ -188,12 +188,13 @@ class _AddPersonState extends State<AddPerson> {
                   ),
 
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.45,
+                    height: MediaQuery.of(context).size.height * 0.5,
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: ListView.separated(
+                      padding: EdgeInsets.zero,
                       shrinkWrap: true,
                       separatorBuilder: (context, index) => const SizedBox(
-                        height: 20,
+                        height: 5,
                       ),
                       itemCount:cubit.invitees.length,
                       itemBuilder: (context, index) {
@@ -203,14 +204,14 @@ class _AddPersonState extends State<AddPerson> {
                           alignment: Alignment.bottomCenter,
                           children: [
                             SizedBox(
-                              height: 150,
+                              height: MediaQuery.of(context).size.height*0.12,//todo
                               width:
                               MediaQuery.of(context).size.width * 0.95,
                             ),
                             Container(
                               alignment: Alignment.center,
                               padding: const EdgeInsets.all(8),
-                              height: 112,
+                              height:MediaQuery.of(context).size.height*0.1,//todo
                               width:
                               MediaQuery.of(context).size.width * 0.86,
                               decoration: BoxDecoration(
@@ -233,7 +234,7 @@ class _AddPersonState extends State<AddPerson> {
                                             const Text(
                                               "المكرم : ",
                                               style: TextStyle(
-                                                  fontSize: 16,
+                                                  fontSize: 14,
                                                   fontWeight:
                                                   FontWeight.w700),
                                             ),
@@ -256,8 +257,8 @@ class _AddPersonState extends State<AddPerson> {
                                       ],
                                     ),
                                     Container(
-                                      width: 117,
-                                      height: 33,
+                                      width: MediaQuery.of(context).size.width *0.27,
+                                      height: 25,
                                       decoration: BoxDecoration(
                                           color: AppColors.primary,
                                           borderRadius:
@@ -272,6 +273,7 @@ class _AddPersonState extends State<AddPerson> {
                                             },
                                             icon: const Icon(
                                               Icons.add,
+                                              size: 15,
                                               color: Colors.white,
                                             ),
                                             padding: EdgeInsets.zero,
@@ -280,7 +282,7 @@ class _AddPersonState extends State<AddPerson> {
                                             cubit.invitees[index].inviteesNumber                                          .toString(),
                                             style: const TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 20,
+                                                fontSize: 14,
                                                 fontWeight:
                                                 FontWeight.w700),
                                           ),
@@ -290,6 +292,7 @@ class _AddPersonState extends State<AddPerson> {
                                               },
                                               icon: const Icon(
                                                 Icons.remove,
+                                                size: 15,
                                                 color: Colors.white,
                                               ),
                                               padding: EdgeInsets.zero),
@@ -302,9 +305,9 @@ class _AddPersonState extends State<AddPerson> {
                             ),
                             Positioned(
                                 right: 0,
-                                top: 15,
+                                top: 10,
                                 child: CircleAvatar(
-                                  radius: 18,
+                                  radius: 12,
                                   backgroundColor: AppColors.primary,
                                   child: Center(
                                       child: IconButton(
@@ -314,6 +317,7 @@ class _AddPersonState extends State<AddPerson> {
                                         },
                                         icon: const Icon(
                                           Icons.close,
+                                          size: 12,
                                           color: Colors.white,
                                         ),
                                         padding: EdgeInsets.zero,

@@ -274,7 +274,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     height: 15,
                   ),
                   SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.56,
+                      height: MediaQuery.of(context).size.height * 0.57,
                       child: BlocBuilder<DetailsCubit, DetialsState>(
                         builder: (context, state) {
                           if (state is DetialsLoading) {
@@ -289,7 +289,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               gridDelegate:
                                   const SliverGridDelegateWithMaxCrossAxisExtent(
                                       maxCrossAxisExtent: 180,
-                                      childAspectRatio: 3.5 / 2,
+                                      childAspectRatio: 3.1 / 2,
                                       //horizontal spaces
                                       crossAxisSpacing: 15,
                                       // vertical spaces

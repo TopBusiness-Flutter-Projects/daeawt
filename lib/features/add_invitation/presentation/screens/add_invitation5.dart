@@ -152,10 +152,10 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Stack(
-                      alignment: Alignment.centerRight,
+                      alignment:languageCode=="ar"? Alignment.centerRight:Alignment.centerLeft,
                       children: [
                         const CircleAvatar(
-                          radius: 20,
+                          radius: 17,
                           backgroundColor: AppColors.primary,
                         ),
                         const Text(
@@ -249,7 +249,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                                             color: AppColors.primary
                                           ),).tr(),
                                           Text(
-                                            "${cubit.model.selectedContactModelList.length}",
+                                            "${cubit.TotalInvitedPeople}",
                                               style: const TextStyle(
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.w700,
@@ -321,13 +321,13 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                       Row(children: [
                         Text("${index+1} - المكرم :",style: const TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 20
+                          fontSize: 15
                         ),),
 
                         Expanded(
                           child: Text(" ${cubit.model.selectedContactModelList[index].name}",style: const TextStyle(
                           fontWeight: FontWeight.w400,
-                              fontSize: 20
+                              fontSize: 15
                           ),
                           overflow: TextOverflow.clip,
                           softWrap: true,
