@@ -39,6 +39,7 @@ class InvitationModel {
   int step;
   List<Invitee> invitees;
   List<Invitee> all_messages;
+  List<Invitee> invitees_messages;
   List<Invitee> all_confirmed;
   List<Invitee> all_scanned;
   List<Invitee> all_waiting;
@@ -74,6 +75,7 @@ class InvitationModel {
     required this.all_confirmed,
     required this.all_failed,
     required this.all_messages,
+    required this.invitees_messages,
     required this.all_not_sent,
     required this.all_scanned,
     required this.all_waiting,
@@ -108,6 +110,7 @@ class InvitationModel {
     all_confirmed: List<Invitee>.from(json["all_confirmed"].map((x) => Invitee.fromJson(x))),
     all_failed: List<Invitee>.from(json["all_failed"].map((x) => Invitee.fromJson(x))),
     all_messages: List<Invitee>.from(json["all_messages"].map((x) => Invitee.fromJson(x))),
+    invitees_messages: List<Invitee>.from(json["invitees_messages"].map((x) => Invitee.fromJson(x))),
     all_not_sent: List<Invitee>.from(json["all_not_sent"].map((x) => Invitee.fromJson(x))),
     all_scanned: List<Invitee>.from(json["all_scanned"].map((x) => Invitee.fromJson(x))),
     messages: json["messages"],
@@ -140,6 +143,7 @@ class InvitationModel {
     "all_scanned": List<dynamic>.from(all_scanned.map((x) => x.toJson())),
     "all_not_sent": List<dynamic>.from(all_not_sent.map((x) => x.toJson())),
     "all_messages": List<dynamic>.from(all_messages.map((x) => x.toJson())),
+    "invitees_messages": List<dynamic>.from(invitees_messages.map((x) => x.toJson())),
     "all_confirmed": List<dynamic>.from(all_confirmed.map((x) => x.toJson())),
     "all_failed": List<dynamic>.from(all_failed.map((x) => x.toJson())),
     "all_apologized": List<dynamic>.from(all_apologized.map((x) => x.toJson())),
