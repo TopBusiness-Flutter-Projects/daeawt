@@ -99,6 +99,13 @@
   "welcome_to": "اهلا بك فى دعوات",
   "no_data": "لا توجد بيانات",
   "no_invitations": "لا توجد دعوات",
-  "available_balance": "الرصيد المتوفر"
+  "available_balance": "الرصيد المتوفر",
+  "invitation": "دعوة",
+  "exists_user": "المستخدم موجود مسبقا",
+  "enter_date": "ادخل التاريخ",
+  "enter_image": "ادخل صورة الدعوة",
+  "enter_address": "ادخل العنوان",
+  "pick_gallery": "اختر من المعرض",
+  "pick_photo": "التقط صورة"
 
 }

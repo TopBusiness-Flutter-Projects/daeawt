@@ -5,10 +5,13 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import 'dart:io';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/custom_back_arrow.dart';
+import '../../../../core/widgets/divider_widget.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
 import '../../../home/presentation/widgets/number_widget.dart';
 
@@ -22,7 +25,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
 
     return BlocConsumer<AddInvitationCubit, AddInvitationState>(
       listener: (context, state) {
-        // TODO: implement listener
+
       },
       builder: (context, state) {
         AddInvitationCubit cubit = context.read<AddInvitationCubit>();
@@ -39,38 +42,24 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                         AppColors.orange2,
                         AppColors.primary,
                       ])),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 60, horizontal: 40),
-                      height: 160,
+                      padding:  EdgeInsets.symmetric(
+                          vertical: 5.h, horizontal: 10.w),
+                      height: 20.h,
                       width: double.infinity,
                       child: Center(
                         child: Text(
                           cubit.homeListItemModel == null
                               ? AppStrings.createNewInvitation
                               : "update_invitation".tr(),
-                          style: const TextStyle(
+                          style:  TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 14,
+                              fontSize: 11.sp,
                               color: Colors.white),
                         ).tr(),
                       ),
                       //color: Colors.orange,
                     ),
-                    Positioned(
-                        left: 20,
-                        top: 60,
-                        child: Transform.rotate(
-                          angle: languageCode == "ar" ? 0 : (3.14),
-                          child: IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                                size: 35,
-                              )),
-                        ))
+                    const CustomBackArrow(),
                   ],
                 ),
               ),
@@ -80,53 +69,32 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                     children: [
                       //first row of numbers in circles
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            width: 15,
-                          ),
+
                           const NumberWidget(
                             backgroundColor: AppColors.black1,
                             text: "1",
                             textColor: Colors.white,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.13,
-                            child: const Divider(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          const DividerCustomWidget(),
                           const NumberWidget(
                             backgroundColor: AppColors.black1,
                             text: "2",
                             textColor: Colors.white,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.13,
-                            child: const Divider(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          const DividerCustomWidget(),
                           const NumberWidget(
                             backgroundColor: AppColors.black1,
                             text: "3",
                             textColor: Colors.white,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.13,
-                            child: const Divider(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          const DividerCustomWidget(),
                           const NumberWidget(
                               backgroundColor: AppColors.black1,
                               text: "4",
                               textColor: Colors.white),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.13,
-                            child: const Divider(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          const DividerCustomWidget(),
                           NumberWidget(
                             backgroundColor: Colors.grey.withOpacity(0.3),
                             text: "5",
@@ -134,8 +102,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 30,
+                      SizedBox(
+                        height: 4.h,
                       ),
                       //استعراض
                       Padding(
@@ -149,18 +117,18 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                   radius: 20,
                                   backgroundColor: AppColors.primary,
                                 ),
-                                const Text(
+                                 Text(
                                   AppStrings.review,
                                   style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize:  14.sp,
                                       fontWeight: FontWeight.w700),
                                 ).tr(),
-                                const Positioned(
+                                 Positioned(
                                   bottom: 3,
                                   // alignment: Alignment.bottomCenter,
                                   child: SizedBox(
-                                    width: 40,
-                                    child: Divider(
+                                    width: 10.w,
+                                    child: const Divider(
                                       color: AppColors.cyan,
                                       thickness: 2,
                                       height: 2,
@@ -179,10 +147,10 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 18.0, vertical: 8),
-                            child: const Text(
+                            child:  Text(
                               AppStrings.invitationLookLike,
                               style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 11.sp,
                                   fontWeight: FontWeight.w400,
                                   color: AppColors.black1),
                             ).tr(),
@@ -194,7 +162,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                       ),
                       //language
                       Container(
-                        height: 50,
+                        height: 7.h,
                         width: MediaQuery.of(context).size.width * 0.85,
                         decoration: BoxDecoration(
                             color: AppColors.grey6,
@@ -212,8 +180,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                       ),
                                     ))
                                 .toList(),
-                            style: const TextStyle(
-                                fontSize: 14,
+                            style:  TextStyle(
+                                fontSize: 11.sp,
                                 fontWeight: FontWeight.w400,
                                 color: AppColors.black1,
                                 decoration: TextDecoration.none),
@@ -224,16 +192,16 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        height: 15,
+                       SizedBox(
+                        height: 3.h,
                       ),
                       //استعراض رسالة الدعوة
                       Center(
-                          child: const Text(
+                          child:  Text(
                         AppStrings.reviewInvitation,
                         style: TextStyle(
                             color: AppColors.primary,
-                            fontSize: 14,
+                            fontSize: 12.sp,
                             fontWeight: FontWeight.w400),
                       ).tr()),
                       const SizedBox(
@@ -242,7 +210,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                       // the invitation card
                       Container(
                         //the big grey container
-                        height: MediaQuery.of(context).size.height * 0.6,
+                        height: MediaQuery.of(context).size.height * 0.66,
                         width: MediaQuery.of(context).size.width * 0.85,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
@@ -254,7 +222,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                               //the image with the 2 texts
                               Container(
                                   height:
-                                      MediaQuery.of(context).size.height * 0.38,
+                                      MediaQuery.of(context).size.height * 0.44,
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(10),
@@ -302,10 +270,10 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                                   ? "المكرم : ${cubit.model.selectedContactModelList[0].name ?? " "}"
                                                   : " ",
                                               textAlign: TextAlign.start,
-                                              style: const TextStyle(
+                                              style:  TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   color: AppColors.black1,
-                                                  fontSize: 16),
+                                                  fontSize: 12.sp),
                                             ),
                                           ],
                                         ),
@@ -315,16 +283,20 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                             horizontal: 8.0),
                                         child: Row(
                                           children: [
-                                            Text(
-                                              cubit.selectedLanguage ==
-                                                      "العربية"
-                                                  ? "نتشرف بدعوتكم لحضور ${cubit.model.title}"
-                                                  : "We are honored to invite you to attend ${cubit.model.title}",
-                                              textAlign: TextAlign.start,
-                                              style: const TextStyle(
-                                                  color: AppColors.black1,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 14),
+                                            Expanded(
+                                              child: Text(
+                                                cubit.selectedLanguage ==
+                                                        "العربية"
+                                                    ? "نتشرف بدعوتكم لحضور ${cubit.model.title}"
+                                                    : "We are honored to invite you to attend ${cubit.model.title}",
+                                                textAlign: TextAlign.start,
+                                                maxLines: 2,
+                                                 overflow: TextOverflow.ellipsis,
+                                                style:  TextStyle(
+                                                    color: AppColors.black1,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12.sp),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -340,7 +312,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                     Expanded(
                                         child: CustomButton(
                                             onPressed: () {},
-                                            height: 45,
+                                            height: 6.h,
                                             text: cubit.selectedLanguage ==
                                                     "العربية"
                                                 ? "تأكيد"
@@ -352,7 +324,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                     Expanded(
                                       child: CustomButton(
                                         onPressed: () {},
-                                        height: 45,
+                                        height: 6.h,
                                         text:
                                             cubit.selectedLanguage == "العربية"
                                                 ? "اعتذر"
@@ -365,7 +337,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                               ),
                               //invitation location
                               Container(
-                                height: 45,
+                                height:6.h,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                     color: Colors.white,
@@ -374,9 +346,9 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                   cubit.selectedLanguage == "العربية"
                                       ? "موقع المناسبة"
                                       : "Location",
-                                  style: const TextStyle(
+                                  style:  TextStyle(
                                       color: AppColors.black1,
-                                      fontSize: 14,
+                                      fontSize: 12.sp,
                                       fontWeight: FontWeight.w700),
                                 ).tr(),
                               )
@@ -402,8 +374,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                 text: AppStrings.tracking,
                               ),
                             ),
-                            const SizedBox(
-                              width: 10,
+                            SizedBox(
+                              width: 2.w,
                             ),
                             Visibility(
                               visible: cubit.homeListItemModel == null
@@ -424,8 +396,8 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 20,
+                      SizedBox(
+                        height: 10.h,
                       ),
                     ],
                   ),

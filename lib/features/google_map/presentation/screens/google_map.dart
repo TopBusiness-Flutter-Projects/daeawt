@@ -45,7 +45,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                   cubit.getAddressFromLatLng1();
                 },
                 initialCameraPosition: const CameraPosition(
-                    target: LatLng(30.0450, 31.2242), zoom: 8),
+                    target: LatLng(30.0450, 31.2242), zoom: 12),
                 onMapCreated: (controller) {
                   cubit.mapController = controller;
                  // googleMapController = controller;

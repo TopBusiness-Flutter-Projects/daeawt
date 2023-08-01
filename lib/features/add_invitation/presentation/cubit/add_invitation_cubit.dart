@@ -83,7 +83,7 @@ bool isfirst=true;
           children: <Widget>[
             ListTile(
               leading: const Icon(Icons.photo_library),
-              title: const Text("Pick from gallery"),
+              title:  Text("pick_gallery").tr(),
               onTap: () async {
                 // Pick an image.
                 invitationImage =
@@ -96,7 +96,7 @@ bool isfirst=true;
             ),
             ListTile(
               leading: const Icon(Icons.camera_alt),
-              title: const Text("Take a photo"),
+              title: const Text("pick_photo").tr(),
               onTap: () async {
                 // Pick an image.
                 invitationImage =

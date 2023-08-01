@@ -2,11 +2,14 @@ import 'package:daeawt/core/utils/toast_message_method.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/custom_back_arrow.dart';
 import '../../../../core/widgets/custom_buttom.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
+import '../../../../core/widgets/divider_widget.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
 import '../../../home/presentation/widgets/number_widget.dart';
 import 'package:contacts_service/contacts_service.dart';
@@ -36,37 +39,23 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                             AppColors.orange2,
                             AppColors.primary,
                           ])),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 60, horizontal: 40),
-                      height: 160,
+                      padding:  EdgeInsets.symmetric(
+                          vertical: 5.h, horizontal: 10.w),
+                      height: 20.h,
                       width: double.infinity,
                       child: Center(
                         child:  Text(
                           cubit.homeListItemModel==null?
                           AppStrings.createNewInvitation:"update_invitation".tr(),
-                          style: const TextStyle(
+                          style:  TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 14,
+                              fontSize: 12.sp,
                               color: Colors.white),
                         ).tr(),
                       ),
                       //color: Colors.orange,
                     ),
-                    Positioned(
-                        left: 20,
-                        top: 60,
-                        child: Transform.rotate(
-                          angle:languageCode=="ar"?0:(3.14) ,
-                          child: IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                                size: 35,
-                              )),)
-                    )
+                    const CustomBackArrow(),
                   ],
                 ),
               ),
@@ -77,54 +66,33 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                    
                       //first row of numbers in circles
                       Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            width: 15,
-                          ),
+
                           const NumberWidget(
                             backgroundColor: AppColors.black1,
                             text: "1",
                             textColor: Colors.white,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.13,
-                            child: const Divider(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          const DividerCustomWidget(),
                           const NumberWidget(
                             backgroundColor: AppColors.black1,
                             text: "2",
                             textColor: Colors.white,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.13,
-                            child: const Divider(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          const DividerCustomWidget(),
                           NumberWidget(
                             backgroundColor: Colors.grey.withOpacity(0.3),
                             text: "3",
                             textColor: AppColors.grey4,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.13,
-                            child: const Divider(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          const DividerCustomWidget(),
                           NumberWidget(
                             backgroundColor: Colors.grey.withOpacity(0.3),
                             text: "4",
                             textColor: AppColors.grey4,
                           ),
-                          SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.13,
-                            child: const Divider(
-                              color: Colors.grey,
-                            ),
-                          ),
+                          const DividerCustomWidget(),
                           NumberWidget(
                             backgroundColor: Colors.grey.withOpacity(0.3),
                             text: "5",
@@ -132,8 +100,8 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      const SizedBox(
-                        height: 30,
+                       SizedBox(
+                        height: 4.h,
                       ),
                       //المضافين
                       Padding(
@@ -147,17 +115,17 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                   radius: 20,
                                   backgroundColor: AppColors.primary,
                                 ),
-                                const Text(
+                                 Text(
                                   AppStrings.selectContacts,
                                   style: TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.w700),
+                                      fontSize: 14.sp, fontWeight: FontWeight.w700),
                                 ).tr(),
-                                const Positioned(
+                                 Positioned(
                                   bottom: 3,
                                   // alignment: Alignment.bottomCenter,
                                   child: SizedBox(
-                                    width: 40,
-                                    child: Divider(
+                                    width: 10.w,
+                                    child: const Divider(
                                       color: AppColors.cyan,
                                       thickness: 2,
                                       height: 2,
@@ -179,10 +147,10 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                           Padding(
                             padding: const EdgeInsets.symmetric(
                                 horizontal: 18.0, vertical: 8),
-                            child: const Text(
+                            child:  Text(
                               AppStrings.pleaseSelectContacts,
                               style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 11.sp,
                                   fontWeight: FontWeight.w400,
                                   color: AppColors.black1),
                             ).tr(),
@@ -227,14 +195,14 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        const Text(
+                                         Text(
                                           "المكرم",
                                           style: TextStyle(
-                                              fontSize: 16,
+                                              fontSize: 12.sp,
                                               fontWeight: FontWeight.w700),
                                         ),
                                         SizedBox(
-                                          width: 150,
+                                          width: 33.w,
                                           child: Column(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
@@ -245,8 +213,8 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                                   child: Text(
                                                 cubit.contactModelList[i].name!,
                                                 textAlign: TextAlign.center,
-                                                style: const TextStyle(
-                                                    fontSize: 15,
+                                                style:  TextStyle(
+                                                    fontSize: 11.sp,
                                                     fontWeight: FontWeight.w700),
                                               )),
                                               ListView.builder(
@@ -260,9 +228,9 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                                     cubit.contactModelList[i]
                                                         .phones![index].value!,
                                                     textAlign: TextAlign.center,
-                                                    style: const TextStyle(
+                                                    style:  TextStyle(
                                                         color: AppColors.grey5,
-                                                        fontSize: 15,
+                                                        fontSize: 11.sp,
                                                         fontWeight: FontWeight.w700),
                                                   );
                                                 },
@@ -294,18 +262,18 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                             },
                                             child: !cubit
                                                     .contactModelList[i].isSelected!
-                                                ? const Text(
+                                                ?  Text(
                                                     AppStrings.select,
                                                     style: TextStyle(
                                                         color: AppColors.primary,
-                                                        fontSize: 14,
+                                                        fontSize: 12.sp,
                                                         fontWeight: FontWeight.w700),
                                                   ).tr()
-                                                : const Text(
+                                                :  Text(
                                                     AppStrings.remove,
                                                     style: TextStyle(
                                                         color: AppColors.red1,
-                                                        fontSize: 14,
+                                                        fontSize: 12.sp,
                                                         fontWeight: FontWeight.w700),
                                                   ).tr()),
                                       ],
@@ -347,8 +315,8 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                 text: AppStrings.tracking,
                               ),
                             ),
-                            const SizedBox(
-                              width: 10,
+                             SizedBox(
+                              width: 3.w,
                             ),
                             Visibility(
                               visible: cubit.homeListItemModel==null?true:false,

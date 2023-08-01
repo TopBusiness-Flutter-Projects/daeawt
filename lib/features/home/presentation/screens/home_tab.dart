@@ -27,102 +27,137 @@ class HomeTab extends StatelessWidget {
         children: [
           const HomeAppBar(),
           //search
-          SizedBox(
-              width: MediaQuery.of(context).size.width * 0.8,
-              height: 60,
-              child: CustomTextFormField(
-                textController: cubit.searchController,
-                hintText: AppStrings.searchYourInvitations.tr(),
-                prefixIcon: const Icon(Icons.search),
-                onChanged: (p0) {
-                  cubit.geInvitationsHome();
-                },
-              )),
-          //balance
-          Container(
-            margin: EdgeInsets.only(bottom: 10),
-            width: 80.w,
-            height: 10.h,
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(
-                begin: Alignment.centerRight,
-                end: Alignment.centerLeft,
-                colors: [
-                  AppColors.primary,
-                  AppColors.orange4
-                ]
-              ),
-             // color: AppColors.primary,
-              borderRadius: BorderRadius.circular(20)
-            ),
-            child: Column(
-              children: [
-                Text("available_balance").tr(),
-             //   Text(cubit.userModel!.data!.user!.balance!)
-              ],
-            ),
-          ),
-          //all invitations
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 18.0),
-            child: Row(
-              children: [
-                Stack(
-                  alignment: languageCode == "ar"
-                      ? Alignment.centerRight
-                      : Alignment.centerLeft,
-                  children: [
-                    const CircleAvatar(
-                      radius: 20,
-                      backgroundColor: AppColors.primary,
-                    ),
+         Expanded(
+         child:   SingleChildScrollView(
+         physics: AlwaysScrollableScrollPhysics(),
+
+         child: Column(
+         children: [
+           SizedBox(
+               width: MediaQuery.of(context).size.width * 0.8,
+               height: 60,
+               child: CustomTextFormField(
+                 textController: cubit.searchController,
+                 hintText: AppStrings.searchYourInvitations.tr(),
+                 prefixIcon: const Icon(Icons.search),
+                 onChanged: (p0) {
+                   cubit.geInvitationsHome();
+                 },
+               )),
+           //balance
+           Container(
+             margin: EdgeInsets.only(bottom: 10),
+             width: 80.w,
+             height: 10.h,
+             decoration: BoxDecoration(
+                 gradient: const LinearGradient(
+                     begin: Alignment.centerRight,
+                     end: Alignment.centerLeft,
+                     colors: [
+                       AppColors.primary,
+                       AppColors.orange4
+                     ]
+                 ),
+                 // color: AppColors.primary,
+                 borderRadius: BorderRadius.circular(20)
+             ),
+             child: Padding(
+               padding: const EdgeInsets.all(8.0),
+               child: Column(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 crossAxisAlignment: CrossAxisAlignment.start,
+                 children: [
+                   Text("available_balance",style: TextStyle(
+                       fontSize: 16.sp,
+                       color: Colors.white,
+                       fontWeight: FontWeight.w700
+                   ),).tr(),
+                   Row(
+                     children: [
+                       Text(cubit.userModel?.data?.user?.balance??"0",
+                           style: TextStyle(
+                               fontSize: 16.sp,
+                               color: Colors.white,
+                               fontWeight: FontWeight.w400
+                           )),
+                       SizedBox(width: 5,),
+                       Text("invitation",
+                           style: TextStyle(
+                               fontSize: 16.sp,
+                               color: Colors.white,
+                               fontWeight: FontWeight.w400
+                           )).tr(),
+                     ],
+                   ),
+
+                 ],
+               ),
+             ),
+           ),
+           //all invitations
+           Padding(
+             padding: const EdgeInsets.symmetric(horizontal: 18.0),
+             child: Row(
+               children: [
+                 Stack(
+                   alignment: languageCode == "ar"
+                       ? Alignment.centerRight
+                       : Alignment.centerLeft,
+                   children: [
+                     const CircleAvatar(
+                       radius: 20,
+                       backgroundColor: AppColors.primary,
+                     ),
                      Text(
-                      AppStrings.allInvitations,
-                      style:
-                          TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700),
-                    ).tr(),
-                    const Positioned(
-                      bottom: 3,
-                      // alignment: Alignment.bottomCenter,
-                      child: SizedBox(
-                        width: 40,
-                        child: Divider(
-                          color: AppColors.cyan,
-                          thickness: 2,
-                          height: 2,
-                        ),
-                      ),
-                    )
-                  ],
-                )
-              ],
-            ),
-          ),
-          Expanded(
-            child: BlocBuilder<HomeCubit, HomeState>(
-              builder: (context, state) {
-                if (state is InvitationsHomeLoading) {
-                  return const Center(child: ShowLoadingIndicator());
-                } else if (state is InvitationsHomeError) {
-                  return NoData(data:  'no_invitations'.tr(),);
-                } else {
-                  if (cubit.invitationsList.isNotEmpty) {
-                    return ListView.builder(
-                      itemCount: cubit.invitationsList.length,
-                      itemBuilder: (context, index) {
-                        return HomeListItem(
-                          homeListItemModel:
-                              cubit.invitationsList.elementAt(index),
-                        );
-                      },
-                    );
-                  } else {
-                    return  NoData(data:  'no_invitations'.tr(),);
-                  }
-                }
-              },
-            ),
-          ),
+                       AppStrings.allInvitations,
+                       style:
+                       TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700),
+                     ).tr(),
+                     const Positioned(
+                       bottom: 3,
+                       // alignment: Alignment.bottomCenter,
+                       child: SizedBox(
+                         width: 40,
+                         child: Divider(
+                           color: AppColors.cyan,
+                           thickness: 2,
+                           height: 2,
+                         ),
+                       ),
+                     )
+                   ],
+                 )
+               ],
+             ),
+           ),
+           BlocBuilder<HomeCubit, HomeState>(
+             builder: (context, state) {
+               if (state is InvitationsHomeLoading) {
+                 return const Center(child: ShowLoadingIndicator());
+               } else if (state is InvitationsHomeError) {
+                 return NoData(data:  'no_invitations'.tr(),);
+               } else {
+                 if (cubit.invitationsList.isNotEmpty) {
+                   return ListView.builder(
+                     physics: const NeverScrollableScrollPhysics(),
+                     shrinkWrap: true,
+                     itemCount: cubit.invitationsList.length,
+                     itemBuilder: (context, index) {
+                       return HomeListItem(
+                         homeListItemModel:
+                         cubit.invitationsList.elementAt(index),
+                       );
+                     },
+                   );
+                 } else {
+                   return  NoData(data:  'no_invitations'.tr(),);
+                 }
+               }
+             },
+           ),
+         ],
+       ),
+     ))
         ],
       ),
     );

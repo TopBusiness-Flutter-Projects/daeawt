@@ -6,6 +6,9 @@ import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:daeawt/core/widgets/custom_text_form_field.dart';
 import 'package:daeawt/core/widgets/small_bottom_curve.dart';
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
+import 'package:sizer/sizer.dart';
+import '../../../../core/widgets/custom_back_arrow.dart';
+import '../../../../core/widgets/divider_widget.dart';
 import '../../../../core/widgets/network_image.dart';
 import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
@@ -53,38 +56,24 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               AppColors.orange2,
                               AppColors.primary,
                             ])),
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 60, horizontal: 40),
-                        height: 160,
+                        padding:  EdgeInsets.symmetric(
+                            vertical: 5.h, horizontal: 10.w),
+                        height: 20.h,
                         width: double.infinity,
                         child: Center(
                           child: Text(
                             cubit.homeListItemModel == null
                                 ? AppStrings.createNewInvitation
                                 : "update_invitation".tr(),
-                            style: const TextStyle(
+                            style:  TextStyle(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 14,
+                                fontSize: 12.sp,
                                 color: Colors.white),
                           ).tr(),
                         ),
                         //color: Colors.orange,
                       ),
-                      Positioned(
-                          left: 20,
-                          top: 60,
-                          child: Transform.rotate(
-                            angle: languageCode == "ar" ? 0 : (3.14),
-                            child: IconButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                icon: const Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.white,
-                                  size: 35,
-                                )),
-                          ))
+                      const CustomBackArrow(),
                     ],
                   ),
                 ),
@@ -95,54 +84,35 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
 
                         //first row of numbers in circles
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const SizedBox(
-                              width: 15,
-                            ),
+                            // const SizedBox(
+                            //   width: 15,
+                            // ),
                             const NumberWidget(
                               backgroundColor: AppColors.black1,
                               text: "1",
                               textColor: Colors.white,
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.13,
-                              child: const Divider(
-                                color: Colors.grey,
-                              ),
-                            ),
+                            const DividerCustomWidget(),
                             NumberWidget(
                               backgroundColor: Colors.grey.withOpacity(0.3),
                               text: "2",
                               textColor: AppColors.grey4,
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.13,
-                              child: const Divider(
-                                color: Colors.grey,
-                              ),
-                            ),
+                            const DividerCustomWidget(),
                             NumberWidget(
                               backgroundColor: Colors.grey.withOpacity(0.3),
                               text: "3",
                               textColor: AppColors.grey4,
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.13,
-                              child: const Divider(
-                                color: Colors.grey,
-                              ),
-                            ),
+                            const DividerCustomWidget(),
                             NumberWidget(
                               backgroundColor: Colors.grey.withOpacity(0.3),
                               text: "4",
                               textColor: AppColors.grey4,
                             ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.13,
-                              child: const Divider(
-                                color: Colors.grey,
-                              ),
-                            ),
+                            const DividerCustomWidget(),
                             NumberWidget(
                               backgroundColor: Colors.grey.withOpacity(0.3),
                               text: "5",
@@ -150,8 +120,8 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                             ),
                           ],
                         ),
-                        const SizedBox(
-                          height: 30,
+                         SizedBox(
+                          height: 3.h,
                         ),
                         //تفاصيل المناسبة
                         Padding(
@@ -165,17 +135,17 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                     radius: 20,
                                     backgroundColor: AppColors.primary,
                                   ),
-                                  const Text(
+                                   Text(
                                     AppStrings.occasionDetails,
                                     style: TextStyle(
-                                        fontSize: 20, fontWeight: FontWeight.w700),
+                                        fontSize: 14.sp, fontWeight: FontWeight.w700),
                                   ).tr(),
-                                  const Positioned(
+                                   Positioned(
                                     bottom: 3,
                                     // alignment: Alignment.bottomCenter,
                                     child: SizedBox(
-                                      width: 40,
-                                      child: Divider(
+                                      width: 10.w,
+                                      child: const Divider(
                                         color: AppColors.cyan,
                                         thickness: 2,
                                         height: 2,
@@ -196,10 +166,10 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 18.0, vertical: 8),
-                              child: const Text(
+                              child:  Text(
                                 AppStrings.enterEventDetails,
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.w400,
                                     color: AppColors.black1),
                               ).tr(),
@@ -213,10 +183,10 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 18.0,
                               ),
-                              child: const Text(
+                              child:  Text(
                                 AppStrings.dateOfOccasion,
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.black1),
                               ).tr(),
@@ -251,8 +221,8 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                 child: Text(
                                   'enter_date',
                                   style:
-                                      TextStyle(color: AppColors.error, fontSize: 10),
-                                )),
+                                      TextStyle(color: AppColors.error, fontSize: 8.sp),
+                                ).tr()),
                           ),
                         ),
                         //اسم المناسبة
@@ -262,10 +232,10 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 18.0,
                               ),
-                              child: const Text(
+                              child:  Text(
                                 AppStrings.occasionName,
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.black1),
                               ).tr(),
@@ -300,10 +270,10 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               padding: const EdgeInsets.symmetric(
                                 horizontal: 18.0,
                               ),
-                              child: const Text(
+                              child:  Text(
                                 AppStrings.invitationImage,
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 11.sp,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.black1),
                               ).tr(),
@@ -329,12 +299,12 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                 const SizedBox(
                                   width: 10,
                                 ),
-                                const Text(
+                                 Text(
                                   AppStrings.uploadInvitationPhoto,
                                   style: TextStyle(
                                       color: AppColors.primary,
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 14),
+                                      fontSize: 11.sp),
                                 ).tr()
                               ],
                             ),
@@ -349,33 +319,37 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                 child: Text(
                                   'enter_image',
                                   style:
-                                      TextStyle(color: AppColors.error, fontSize: 10),
-                                )),
+                                      TextStyle(color: AppColors.error, fontSize: 8.sp),
+                                ).tr()),
                           ),
                         ),
                         cubit.model.image.isNotEmpty
                             ? cubit.model.image.contains("http")
                                 ? SizedBox(
                                     width: MediaQuery.of(context).size.width - 50,
-                                    height: 150,
+                                    height: 17.h,
                                     child: ManageNetworkImage(
-                                        height: 150,
+                                        height: 17.h,
                                         width: MediaQuery.of(context).size.width - 50,
                                         imageUrl: cubit.model.image),
                                   )
                                 : SizedBox(
                                     width: MediaQuery.of(context).size.width - 50,
-                                    height: 150,
-                                    child: Image.file(
-                                        height: 150,
-                                        width: MediaQuery.of(context).size.width - 50,
-                                        fit: BoxFit.fill,
-                                        File(cubit.model.image)),
+                                 //   height: 20.h,
+                                    child: AspectRatio(
+                                      aspectRatio: 3/2,
+                                      child: Image.file(
+                                         // height: 20.h,
+                                          width: MediaQuery.of(context).size.width - 50,
+                                          fit: BoxFit.cover,
+                                         // alignment: Alignment.bottomCenter,
+                                          File(cubit.model.image)),
+                                    ),
                                   )
                             : const SizedBox(),
                         //first check box list tile
                         SizedBox(
-                          height: 40,
+                          height: 5.h,
                           child: Row(
                             children: [
                               Expanded(
@@ -402,7 +376,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         ),
                         //second check box list tile
                         SizedBox(
-                          height: 40,
+                          height:  5.h,
                           child: Row(
                             children: [
                               Expanded(
@@ -431,10 +405,10 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               horizontal: 18.0, vertical: 10),
                           child: Row(
                             children: [
-                              const Text(
+                               Text(
                                 AppStrings.occasionSite,
                                 style: TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 12.sp,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.black1),
                               ).tr(),
@@ -446,14 +420,14 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 18),
                           child: InkWell(
                               onTap: () {
-                                //TODO-->
+                                //TODO-->we can ask the user for location here
                                 Navigator.pushNamed(context, Routes.googleMapRoute);
                               },
                               child: Image.asset(ImageAssests.mapImage)),
                         ),
                         //location name
                         Padding(
-                          padding: EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(8.0),
                           child: Row(
                             children: [
                               const Icon(
@@ -466,8 +440,8 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                     maxLines: 2,
                                     softWrap: true,
                                     overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
-                                        fontSize: 16, fontWeight: FontWeight.w400)),
+                                    style:  TextStyle(
+                                        fontSize: 12.sp, fontWeight: FontWeight.w400)),
                               ),
                             ],
                           ),

@@ -2,8 +2,11 @@ import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/custom_back_arrow.dart';
+import '../../../../core/widgets/divider_widget.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
 import '../../../home/presentation/widgets/number_widget.dart';
 
@@ -16,7 +19,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
 
     return BlocConsumer<AddInvitationCubit, AddInvitationState>(
       listener: (context, state) {
-        // TODO: implement listener
+
       },
       builder: (context, state) {
         AddInvitationCubit cubit = context.read<AddInvitationCubit>();
@@ -33,118 +36,62 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                             AppColors.orange2,
                             AppColors.primary,
                           ])),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 60, horizontal: 40),
-                      height: 160,
+                      padding:  EdgeInsets.symmetric(
+                          vertical: 5.h, horizontal: 10.w),
+                      height: 20.h,
                       width: double.infinity,
                       child: Center(
                         child:  Text(
                           cubit.homeListItemModel==null?
                           AppStrings.createNewInvitation:"update_invitation".tr(),
-                          style: const TextStyle(
+                          style:  TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 14,
+                              fontSize: 11.sp,
                               color: Colors.white),
                         ).tr(),
                       ),
                       //color: Colors.orange,
                     ),
-                    Positioned(
-                        left: 20,
-                        top: 60,
-                        child: Directionality.of(context) == TextDirection.ltr
-                            ? IconButton(
-                          onPressed: () {
-                            Navigator.pop(context);
-                          },
-                          icon: const Icon(
-                            Icons.arrow_back,
-                            color: Colors.white,
-                            size: 35,
-                          ),
-                        )
-                            : IconButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            icon: const Icon(
-                              Icons.arrow_forward,
-                              color: Colors.white,
-                              size: 35,
-                            )))
+                    const CustomBackArrow(),
                   ],
                 ),
               ),
               //first row of numbers in circles
-              Row(
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    width: 15,
-                  ),
-                  const NumberWidget(
+                  NumberWidget(
                     backgroundColor: AppColors.black1,
                     text: "1",
                     textColor: Colors.white,
                   ),
-                  SizedBox(
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.13,
-                    child: const Divider(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  const NumberWidget(
+                  DividerCustomWidget(),
+                  NumberWidget(
                     backgroundColor: AppColors.black1,
                     text: "2",
                     textColor: Colors.white,
                   ),
-                  SizedBox(
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.13,
-                    child: const Divider(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  const NumberWidget(
+                  DividerCustomWidget(),
+                  NumberWidget(
                     backgroundColor: AppColors.black1,
                     text: "3",
                     textColor: Colors.white,
                   ),
-                  SizedBox(
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.13,
-                    child: const Divider(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  const NumberWidget(
+                  DividerCustomWidget(),
+                  NumberWidget(
                       backgroundColor: AppColors.black1,
                       text: "4",
                       textColor: Colors.white),
-                  SizedBox(
-                    width: MediaQuery
-                        .of(context)
-                        .size
-                        .width * 0.13,
-                    child: const Divider(
-                      color: Colors.grey,
-                    ),
-                  ),
-                  const NumberWidget(
+                  DividerCustomWidget(),
+                  NumberWidget(
                     backgroundColor: AppColors.black1,
                     text: "5",
                     textColor: Colors.white,
                   ),
                 ],
               ),
-              const SizedBox(
-                height: 30,
+              SizedBox(
+                height: 4.h,
               ),
               //ارسال
               Padding(
@@ -158,17 +105,17 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                           radius: 17,
                           backgroundColor: AppColors.primary,
                         ),
-                        const Text(
+                         Text(
                           AppStrings.send,
                           style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.w700),
+                              fontSize:  14.sp, fontWeight: FontWeight.w700),
                         ).tr(),
-                        const Positioned(
+                         Positioned(
                           bottom: 3,
                           // alignment: Alignment.bottomCenter,
                           child: SizedBox(
-                            width: 40,
-                            child: Divider(
+                            width: 10.w,
+                            child: const Divider(
                               color: AppColors.cyan,
                               thickness: 2,
                               height: 2,
@@ -186,10 +133,10 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 18.0, vertical: 8),
-                    child: const Text(
+                    child:  Text(
                       AppStrings.sendInvitations,
                       style: TextStyle(
-                          fontSize: 14,
+                          fontSize: 11.sp,
                           fontWeight: FontWeight.w400,
                           color: AppColors.black1),
                     ).tr(),
@@ -203,7 +150,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: SizedBox(
-                  height: 40,
+                  height: 4.h,
                   child: Row(
                     children: [
                       ElevatedButton(
@@ -239,24 +186,24 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                                     color:Colors.white,
                                     height:MediaQuery.of(context).size.height*0.3 ,
                                     child: Padding(
-                                      padding: const EdgeInsets.all(38.0),
+                                      padding:  EdgeInsets.all(7.w),
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
-                                          const Text("wanna_send_invitations",style: TextStyle(
-                                            fontSize: 20,
+                                           Text("wanna_send_invitations",style: TextStyle(
+                                            fontSize: 14.sp,
                                             fontWeight: FontWeight.w700,
                                             color: AppColors.primary
                                           ),).tr(),
                                           Text(
                                             "${cubit.TotalInvitedPeople}",
-                                              style: const TextStyle(
-                                                fontSize: 20,
+                                              style:  TextStyle(
+                                                fontSize: 14.sp,
                                                 fontWeight: FontWeight.w700,
                                               ),
                                             ),
                                           SizedBox(
-                                            height: 46,
+                                            height: 5.h,
                                             width: MediaQuery.of(context).size.width*0.7,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -279,7 +226,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Positioned(
-                                    top: 16,
+                                    top: 0.6.h,
                                     left: 0,
                                     child: GestureDetector(
                                       onTap: () {
@@ -319,15 +266,16 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                       child:
                       cubit.model.selectedContactModelList[index].phones!.isNotEmpty?
                       Row(children: [
-                        Text("${index+1} - المكرم :",style: const TextStyle(
+                        Text("${index+1} - المكرم :",style:  TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 15
+                          fontSize: 11.sp
                         ),),
 
                         Expanded(
-                          child: Text(" ${cubit.model.selectedContactModelList[index].name}",style: const TextStyle(
+                          child: Text(" ${cubit.model.selectedContactModelList[index].name}",
+                            style:  TextStyle(
                           fontWeight: FontWeight.w400,
-                              fontSize: 15
+                              fontSize: 11.sp
                           ),
                           overflow: TextOverflow.clip,
                           softWrap: true,
@@ -341,6 +289,9 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                   }, separatorBuilder: (context, index) {
                 return const SizedBox(height: 10,);
               }, itemCount:cubit.model.selectedContactModelList.length),
+              ),
+              SizedBox(
+                height: 2.h,
               )
             ],
           ),

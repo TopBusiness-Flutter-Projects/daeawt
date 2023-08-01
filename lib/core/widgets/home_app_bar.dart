@@ -3,6 +3,7 @@ import 'package:daeawt/core/widgets/small_bottom_curve.dart';
 import 'package:daeawt/preferences/preferences.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sizer/sizer.dart';
 
 import '../utils/app_colors.dart';
 
@@ -24,7 +25,7 @@ class HomeAppBar extends StatelessWidget {
                 AppColors.primary,
               ])),
               padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
-              height: 160,
+              height: 18.h,
               width: double.infinity,
               //color: Colors.orange,
             ),
@@ -40,11 +41,11 @@ class HomeAppBar extends StatelessWidget {
                     future: Preferences.instance.getUserModel(),
                     builder: (context, snapshot) {
                     return  Text("welcome ".tr()+snapshot.data!.data!.user!.name.toString(),
-                      style: const TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: Colors.white),
+                      style:  TextStyle(fontSize: 12.sp,fontWeight: FontWeight.w700,color: Colors.white),
                     );
                   },),
                    Text("welcome_to".tr(),
-                    style: TextStyle(fontSize: 16,fontWeight: FontWeight.w400,color: Colors.white),),
+                    style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.w400,color: Colors.white),),
 
                 ],
               ),

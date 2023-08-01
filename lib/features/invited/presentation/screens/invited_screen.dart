@@ -3,6 +3,7 @@ import 'package:daeawt/features/invited/presentation/cubit/invited_cubit.dart';
 import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -41,16 +42,16 @@ class _InvitedScreenState extends State<InvitedScreen> {
                         AppColors.orange2,
                         AppColors.primary,
                       ])),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 60, horizontal: 40),
-                      height: 160,
+                      padding:  EdgeInsets.symmetric(
+                          vertical: 5.h, horizontal: 10.w),
+                      height: 20.h,
                       width: double.infinity,
                       child: Center(
-                        child: const Text(
+                        child:  Text(
                           AppStrings.invited,
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 14,
+                              fontSize: 12.sp,
                               color: Colors.white),
                         ).tr(),
                       ),

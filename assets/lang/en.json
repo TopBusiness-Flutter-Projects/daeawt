@@ -97,7 +97,14 @@
   "welcome_to": "Welcome to Daeawt",
   "no_data": "No Notifications ",
   "no_invitations": "No Invitations",
-  "available_balance": "Available Balance"
+  "available_balance": "Available Balance",
+  "invitation": "Invitation",
+  "exists_user": "User Already Exist",
+  "enter_date": "Enter Date",
+  "enter_image": "Enter Invitation Image",
+  "enter_address": "Enter Address",
+  "pick_gallery": "Pick from gallery",
+  "pick_photo": "Take a photo"
 
 
 

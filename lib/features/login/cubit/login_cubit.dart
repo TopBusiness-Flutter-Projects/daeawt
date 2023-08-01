@@ -53,7 +53,7 @@ class LoginCubit extends Cubit<LoginState> {
         print("------------------ ${loginModel.code}");
         if (loginModel.code == 409 || loginModel.code == 410) {
           Navigator.pop(context);
-          toastMessage("exists_email".tr(), context);
+          toastMessage("exists_user".tr(), context);
           // errorGetBar(translateText(AppStrings.noEmailError, context));
           emit(LoginWithGoogleFailure());
         } else if (loginModel.code == 200) {
@@ -79,7 +79,7 @@ class LoginCubit extends Cubit<LoginState> {
           (loginModel) {
         if (loginModel.code == 406||loginModel.code == 410) {
           Navigator.pop(context);
-          toastMessage("invaild_email".tr(), context);
+          toastMessage("exists_user".tr(), context);
           // errorGetBar(translateText(AppStrings.noEmailError, context));
           emit(LoginLoaded());
         } else if (loginModel.code == 200) {
