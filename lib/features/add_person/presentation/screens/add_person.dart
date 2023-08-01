@@ -127,7 +127,7 @@ class _AddPersonState extends State<AddPerson> {
                               // alignment: Alignment.bottomCenter,
                               child: SizedBox(
                                 width: 10.w,
-                                child: Divider(
+                                child: const Divider(
                                   color: AppColors.cyan,
                                   thickness: 2,
                                   height: 2,
@@ -174,12 +174,12 @@ class _AddPersonState extends State<AddPerson> {
                   Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                            right: 18.0,left: 18,top: 10 ),
-                        child: const Text(
+                        padding:  EdgeInsets.only(
+                            right: 6.w,left: 6.w,top: 1.h ),
+                        child:  Text(
                           AppStrings.companion,
                           style: TextStyle(
-                              fontSize: 14,
+                              fontSize: 11.sp,
                               fontWeight: FontWeight.w700,
                               color: AppColors.black1),
                         ).tr(),
@@ -204,16 +204,16 @@ class _AddPersonState extends State<AddPerson> {
                           alignment: Alignment.bottomCenter,
                           children: [
                             SizedBox(
-                              height: MediaQuery.of(context).size.height*0.12,//todo
+                              height: MediaQuery.of(context).size.height*0.13,
                               width:
                               MediaQuery.of(context).size.width * 0.95,
                             ),
                             Container(
                               alignment: Alignment.center,
                               padding: const EdgeInsets.all(8),
-                              height:MediaQuery.of(context).size.height*0.1,//todo
+                              height: MediaQuery.of(context).size.height*0.12,
                               width:
-                              MediaQuery.of(context).size.width * 0.86,
+                              MediaQuery.of(context).size.width * 0.9,
                               decoration: BoxDecoration(
                                   color: AppColors.orange3,
                                   borderRadius: BorderRadius.circular(10)),
@@ -231,17 +231,17 @@ class _AddPersonState extends State<AddPerson> {
                                       children: [
                                         Row(
                                           children: [
-                                            const Text(
+                                             Text(
                                               "المكرم : ",
                                               style: TextStyle(
-                                                  fontSize: 14,
+                                                  fontSize: 11.sp,
                                                   fontWeight:
                                                   FontWeight.w700),
                                             ),
                                             Text(
-                                              "${cubit.invitees[index].name}",
-                                              style: const TextStyle(
-                                                  fontSize: 14,
+                                              cubit.invitees[index].name,
+                                              style:  TextStyle(
+                                                  fontSize: 11.sp,
                                                   fontWeight:
                                                   FontWeight.w400),
                                             ),
@@ -250,15 +250,15 @@ class _AddPersonState extends State<AddPerson> {
                                         Text(
                                           cubit.invitees[index].phone,
                                           style:  TextStyle(
-                                              fontSize: 14,
+                                              fontSize: 11.sp,
                                               color: AppColors.grey5,
                                               fontWeight: FontWeight.w700),
                                         ),
                                       ],
                                     ),
                                     Container(
-                                      width: MediaQuery.of(context).size.width *0.27,
-                                      height: 25,
+                                     // width: MediaQuery.of(context).size.width *0.27,
+                                      height: 3.h,
                                       decoration: BoxDecoration(
                                           color: AppColors.primary,
                                           borderRadius:
@@ -271,18 +271,18 @@ class _AddPersonState extends State<AddPerson> {
                                             onPressed: () {
                                               cubit.incrementNumberOfInvitedPeople(index);
                                             },
-                                            icon: const Icon(
+                                            icon:  Icon(
                                               Icons.add,
-                                              size: 15,
+                                              size: 2.h,
                                               color: Colors.white,
                                             ),
                                             padding: EdgeInsets.zero,
                                           ),
                                           Text(
                                             cubit.invitees[index].inviteesNumber                                          .toString(),
-                                            style: const TextStyle(
+                                            style:  TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 14,
+                                                fontSize: 11.sp,
                                                 fontWeight:
                                                 FontWeight.w700),
                                           ),
@@ -290,9 +290,9 @@ class _AddPersonState extends State<AddPerson> {
                                               onPressed: () {
                                                 cubit.decrementNumberOfInvitedPeople(index);
                                               },
-                                              icon: const Icon(
+                                              icon:  Icon(
                                                 Icons.remove,
-                                                size: 15,
+                                                size: 2.h,
                                                 color: Colors.white,
                                               ),
                                               padding: EdgeInsets.zero),
@@ -305,9 +305,9 @@ class _AddPersonState extends State<AddPerson> {
                             ),
                             Positioned(
                                 right: 0,
-                                top: 10,
+                                top: 0,
                                 child: CircleAvatar(
-                                  radius: 12,
+                                  radius: 3.w,
                                   backgroundColor: AppColors.primary,
                                   child: Center(
                                       child: IconButton(
@@ -315,9 +315,9 @@ class _AddPersonState extends State<AddPerson> {
                                           //TODO-->
                                          // cubit.removeSelectedContact(index);
                                         },
-                                        icon: const Icon(
+                                        icon:  Icon(
                                           Icons.close,
-                                          size: 12,
+                                          size: 1.5.h,
                                           color: Colors.white,
                                         ),
                                         padding: EdgeInsets.zero,
@@ -329,10 +329,10 @@ class _AddPersonState extends State<AddPerson> {
                       },
                     ),
                   ),
-                  const SizedBox(
-                    height: 40,
+                   SizedBox(
+                    height: 3.h,
                   ),
-                  //last 2 buttons
+                  //last  button
                   Padding(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10.0, vertical: 15),
