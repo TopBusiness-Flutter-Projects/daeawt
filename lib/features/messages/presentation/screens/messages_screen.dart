@@ -2,9 +2,11 @@ import 'package:daeawt/features/messages/presentation/cubit/messages_cubit.dart'
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/custom_back_arrow.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
 
 class MessagesScreen extends StatefulWidget {
@@ -43,41 +45,28 @@ class _MessagesScreenState extends State<MessagesScreen> {
                             AppColors.orange2,
                             AppColors.primary,
                           ])),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 60, horizontal: 40),
-                      height: 160,
+                      padding:  EdgeInsets.symmetric(
+                          vertical: 5.h, horizontal: 10.w),
+                      height: 20.h,
                       width: double.infinity,
                       child: Center(
-                        child: const Text(
+                        child:  Text(
                           AppStrings.theMessages,
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 14,
+                              fontSize: 12.sp,
                               color: Colors.white),
                         ).tr(),
                       ),
                       //color: Colors.orange,
                     ),
-                    Positioned(
-                        left: 20,
-                        top: 60,
-                        child: Transform.rotate(
-                          angle:languageCode=="ar"?0:(3.14) ,
-                          child: IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                                size: 35,
-                              )),)
-                    )
+                    const CustomBackArrow(),
                   ],
                 ),
               ),
 
-              Expanded(child: ListView.separated(
+              Expanded(
+                  child: ListView.separated(
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -85,28 +74,28 @@ class _MessagesScreenState extends State<MessagesScreen> {
                         children: [
                            Row(
                             children: [
-                              const Text("المكرم :",
+                               Text("المكرم :",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 14
+                                    fontSize: 12.sp
                                 ),
                               ),
-                              Text(cubit.invitees.elementAt(index).name , style: const TextStyle(
+                              Text(cubit.invitees.elementAt(index).name , style:  TextStyle(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 14
+                                  fontSize: 12.sp
                               ),),
                             ],),
 
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Flexible(
-                                  child: Text("محتوى الرسالة ",
+                               Flexible(
+                                  child: Text("message_content",
                                   style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 10.sp,
                                     fontWeight: FontWeight.w400,
                                     color: AppColors.grey2
-                                  ),)),
+                                  ),).tr()),
 
                               IconButton(
                                 icon: cubit.isVisible?

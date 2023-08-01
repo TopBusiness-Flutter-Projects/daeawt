@@ -106,6 +106,9 @@
   "enter_image": "ادخل صورة الدعوة",
   "enter_address": "ادخل العنوان",
   "pick_gallery": "اختر من المعرض",
-  "pick_photo": "التقط صورة"
+  "pick_photo": "التقط صورة",
+  "message_content": "محتوى الرسالة ",
+  "no_balance": "لا يوجد رصيد",
+  "update_invitation": "تحديث الدعوة"
 
 }

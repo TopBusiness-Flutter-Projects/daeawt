@@ -56,7 +56,7 @@ class User {
   String phone;
   String email;
   int status;
-  String? balance;
+  int? balance;
   dynamic userType;
   String watts;
   String image;
@@ -103,7 +103,7 @@ class User {
     watts: json["watts"],
     image: json["image"],
     address: json["address"],
-    balance: json["balance"]??"0",
+    balance: json["balance"]??0,
     providerType: json["provider_type"],
     translationTypeId: json["translation_type_id"],
     aboutMe: json["about_me"],

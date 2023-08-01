@@ -58,6 +58,7 @@ class _InvitedScreenState extends State<InvitedScreen> {
                       ),
                       //color: Colors.orange,
                     ),
+                    SizedBox(width: MediaQuery.of(context).size.width*0.15,),
                     const CustomBackArrow(),
                   ],
                 ),
@@ -67,7 +68,7 @@ class _InvitedScreenState extends State<InvitedScreen> {
                 padding: const EdgeInsets.all(18.0),
                 child: SizedBox(
                     width: MediaQuery.of(context).size.width * 0.8,
-                    height: 60,
+                    height: 6.h,
                     child: CustomTextFormField(
                       onChanged: (p0) {
                         cubit.onSearchTextChanged(p0);
@@ -141,8 +142,8 @@ class _InvitedScreenState extends State<InvitedScreen> {
                   );
                 },
                 // separatorBuilder: (context, index) =>Divider() ,
-                itemCount: cubit.invitees.length,
-                separatorBuilder: (BuildContext context, int index) {
+                   itemCount: cubit.invitees.length,
+                    separatorBuilder: (BuildContext context, int index) {
                   return const Divider();
                 },
               ))

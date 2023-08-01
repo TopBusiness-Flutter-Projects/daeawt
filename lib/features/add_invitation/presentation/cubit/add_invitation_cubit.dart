@@ -55,7 +55,7 @@ bool isfirst=true;
   bool withSendingDate = false;
   List<ContactModel> contactModelList = [];
   List<ContactModel> allcontactModelList = [];
-  late GoogleMapController mapController;
+   GoogleMapController? mapController;
   PermissionStatus permissionStatus =PermissionStatus.denied ;
   LatLng selectedLocation = const LatLng(30.0459, 31.2243);//todo
   final placesApi = maps.GoogleMapsPlaces(apiKey: 'AIzaSyA6QI378BHt9eqBbiJKtqWHTSAZxcSwN3Q');
@@ -475,7 +475,7 @@ getTheUserPermissionAndLocation() async {
   // }
 
   moveCamera(LatLng target) {
-    mapController.moveCamera(CameraUpdate.newCameraPosition(
+    mapController!.moveCamera(CameraUpdate.newCameraPosition(
         CameraPosition(target: target, zoom: 14)));
     emit(CameraMoveState());
   }
@@ -592,7 +592,10 @@ getTheUserPermissionAndLocation() async {
     nameController.text = homeListItemModel.title;
     model.address = homeListItemModel.address;
     address = model.address;
-    selectLocation(LatLng(model.latitude, model.longitude));
+    print("ddlldld");
+    print(model.date);
+    if(mapController!=null){
+    selectLocation(LatLng(model.latitude, model.longitude));}
     updateBirthDate(date: model.date);
     print("homeListItemModel.invitees.length");
     print(homeListItemModel.invitees.length);

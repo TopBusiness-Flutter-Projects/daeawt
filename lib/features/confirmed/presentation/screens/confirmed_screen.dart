@@ -2,6 +2,7 @@ import 'package:daeawt/features/confirmed/cubit/confirmed_cubit.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -64,11 +65,11 @@ void initState() {
                       Navigator.pop(context);
                     },
                   ),
-                  SizedBox(width: MediaQuery.of(context).size.width*0.15,),
-                  const Text(
+                  SizedBox(width: MediaQuery.of(context).size.width*0.25,),
+                   Text(
                     AppStrings.confirmation,
                     style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 13.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.white),
                   ).tr(),
@@ -107,9 +108,9 @@ void initState() {
                               //TODO-->
                               //cubit.removeSelectedContact(index);
                             },
-                            icon: const Icon(
+                            icon:  Icon(
                               Icons.close,
-                              size: 12,
+                              size:1.5.h,
                               color: Colors.white,
                             ),
                             padding: EdgeInsets.zero,
@@ -119,30 +120,30 @@ void initState() {
                     Column(
                       children: [
                         Row(children: [
-                          const Text("المكرم :",
+                           Text("المكرم :",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 14
+                                fontSize: 11.sp
                             ),
                           ),
                           Text(
                               cubit.invitees.elementAt(index).name ,
-                            style: const TextStyle(
+                            style:  TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontSize: 14
+                                fontSize: 11.sp
                             ),),
                         ],),
                         Text(
                           easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
-                          style: const TextStyle(
+                          style:  TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontSize: 14,
+                              fontSize: 11.sp,
                               color: AppColors.grey2
                           ),),
 
                       ],),
                     const Spacer(),
-                     const MySvgWidget(path: ImageAssests.shareIcon, size: 20),
+                      MySvgWidget(path: ImageAssests.shareIcon, size: 5.w),
 
                   ],
                 ),

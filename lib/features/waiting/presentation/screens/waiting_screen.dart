@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -44,8 +45,8 @@ class _WaitingScreenState extends State<WaitingScreen> {
                     AppColors.primary,
                   ])),
               padding:
-              const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
-              height: 160,
+              EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
+              height: 20.h,
               width: double.infinity,
               child: Row(
                 textDirection: TextDirection.ltr,
@@ -68,8 +69,8 @@ class _WaitingScreenState extends State<WaitingScreen> {
                   SizedBox(width: MediaQuery.of(context).size.width*0.15,),
                    Text(
                     AppStrings.wait.tr(),
-                    style: const TextStyle(
-                        fontSize: 14,
+                    style:  TextStyle(
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.w700,
                         color: Colors.white),
                   ).tr(),
@@ -83,7 +84,7 @@ class _WaitingScreenState extends State<WaitingScreen> {
             padding: const EdgeInsets.all(18.0),
             child: SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
-                height: 60,
+                height: 6.h,
                 child: CustomTextFormField(
                   onChanged: (p0) {
                      cubit.onSearchTextChanged(p0);
@@ -95,57 +96,60 @@ class _WaitingScreenState extends State<WaitingScreen> {
           Expanded(child: ListView.separated(
             itemBuilder:(context, index) {
               return Padding(
-                padding:  EdgeInsets.symmetric(horizontal: 18.0),
-                child: Row(
-                  children: [
+                padding:  const EdgeInsets.symmetric(horizontal: 18.0),
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.07,
+                  child: Row(
+                    children: [
 
-                    CircleAvatar(
-                      radius: 12,
-                      backgroundColor: AppColors.primary,
-                      child: Center(
-                          child: IconButton(
-                            onPressed: () {
-                              //TODO-->
-                              //cubit.removeSelectedContact(index);
-                            },
-                            icon: const Icon(
-                              Icons.close,
-                              size: 14,
-                              color: Colors.white,
+                      CircleAvatar(
+                        radius: 3.w,
+                        backgroundColor: AppColors.primary,
+                        child: Center(
+                            child: IconButton(
+                              onPressed: () {
+                                //TODO-->
+                                //cubit.removeSelectedContact(index);
+                              },
+                              icon:  Icon(
+                                Icons.close,
+                                size: 1.5.h,
+                                color: Colors.white,
+                              ),
+                              padding: EdgeInsets.zero,
+                            )),
+                      ),
+                      const SizedBox(width: 10,),
+                      Column(
+                        children: [
+                          Row(children: [
+                             Text("المكرم :",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 11.sp
+                              ),
                             ),
-                            padding: EdgeInsets.zero,
-                          )),
-                    ),
-                    const SizedBox(width: 10,),
-                    Column(
-                      children: [
-                        Row(children: [
-                          const Text("المكرم :",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 14
-                            ),
-                          ),
+                            Text(
+                              cubit.invitees.elementAt(index).name ,
+                              style:  TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11.sp
+                              ),),
+                          ],),
                           Text(
-                            cubit.invitees.elementAt(index).name ,
-                            style: const TextStyle(
+                            easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
+                            style:  TextStyle(
                                 fontWeight: FontWeight.w400,
-                                fontSize: 14
+                                fontSize: 11.sp,
+                                color: AppColors.grey2
                             ),),
+
                         ],),
-                        Text(
-                          easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 14,
-                              color: AppColors.grey2
-                          ),),
+                      const Spacer(),
+                        MySvgWidget(path: ImageAssests.shareIcon, size: 5.w),
 
-                      ],),
-                    const Spacer(),
-                     const MySvgWidget(path: ImageAssests.shareIcon, size: 20),
-
-                  ],
+                    ],
+                  ),
                 ),
               );
             },

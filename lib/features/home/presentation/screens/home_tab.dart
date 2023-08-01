@@ -23,7 +23,9 @@ class HomeTab extends StatelessWidget {
     HomeCubit cubit = context.read<HomeCubit>();
 
     return Scaffold(
-      body: Column(
+      body: BlocBuilder<HomeCubit, HomeState>(
+  builder: (context, state) {
+    return Column(
         children: [
           const HomeAppBar(),
           //search
@@ -74,7 +76,7 @@ class HomeTab extends StatelessWidget {
                    ),).tr(),
                    Row(
                      children: [
-                       Text(cubit.userModel?.data?.user?.balance??"0",
+                       Text("${cubit.userModel?.data?.user?.balance}",
                            style: TextStyle(
                                fontSize: 16.sp,
                                color: Colors.white,
@@ -159,7 +161,9 @@ class HomeTab extends StatelessWidget {
        ),
      ))
         ],
-      ),
+      );
+  },
+),
     );
   }
 }

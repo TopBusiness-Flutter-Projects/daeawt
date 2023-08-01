@@ -104,7 +104,10 @@
   "enter_image": "Enter Invitation Image",
   "enter_address": "Enter Address",
   "pick_gallery": "Pick from gallery",
-  "pick_photo": "Take a photo"
+  "pick_photo": "Take a photo",
+  "message_content": "Message Content",
+  "no_balance": "No Balance",
+  "update_invitation": "Update Invitation"
 
 
 

@@ -4,6 +4,7 @@ import 'package:daeawt/features/add_person/presentation/cubit/add_person_cubit.d
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sizer/sizer.dart';
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -42,9 +43,9 @@ class _AddPersonState extends State<AddPerson> {
                   AppColors.orange2,
                   AppColors.primary,
                 ])),
-            padding:
-            const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
-            height: 160,
+            padding:  EdgeInsets.symmetric(
+                vertical: 5.h, horizontal: 10.w),
+            height: 20.h,
             width: double.infinity,
             child: Row(
               textDirection: TextDirection.ltr,
@@ -54,7 +55,6 @@ class _AddPersonState extends State<AddPerson> {
                 IconButton(
                   padding: EdgeInsets.zero,
                   icon:
-
                   Transform.rotate(
                     angle:languageCode=="ar"?(3.14):0 ,
                     child: const Icon(
@@ -70,8 +70,8 @@ class _AddPersonState extends State<AddPerson> {
                 const Spacer(),
                 Text(
                   'update_invitation'.tr(),
-                  style: const TextStyle(
-                      fontSize: 14,
+                  style:  TextStyle(
+                      fontSize: 12.sp,
                       fontWeight: FontWeight.w700,
                       color: Colors.white),
                 ).tr(),
@@ -90,8 +90,8 @@ class _AddPersonState extends State<AddPerson> {
                       context.read<AddInvitationCubit>().setData(widget.homeListItemModel);
                       Navigator.pushNamed(context, Routes.addNewContactsRoute);
                     },
-                    icon: const Icon(
-                      Icons.add,color: Colors.white,size: 30,
+                    icon:  Icon(
+                      Icons.add,color: Colors.white,size: 8.w,
                     )),
 
               ],
@@ -117,16 +117,16 @@ class _AddPersonState extends State<AddPerson> {
                               radius: 20,
                               backgroundColor: AppColors.primary,
                             ),
-                            const Text(
+                             Text(
                               AppStrings.addGuests,
                               style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.w700),
+                                  fontSize: 14.sp, fontWeight: FontWeight.w700),
                             ).tr(),
-                            const Positioned(
+                             Positioned(
                               bottom: 3,
                               // alignment: Alignment.bottomCenter,
                               child: SizedBox(
-                                width: 40,
+                                width: 10.w,
                                 child: Divider(
                                   color: AppColors.cyan,
                                   thickness: 2,

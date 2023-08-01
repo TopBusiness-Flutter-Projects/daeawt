@@ -16,6 +16,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   HomeCubit(this.api) : super(HomeInitial()){
     geInvitationsHome();
+    getUserData();
   }
   getUserData() async {
     userModel = await Preferences.instance.getUserModel();
