@@ -8,6 +8,7 @@ import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/assets_manager.dart';
+import '../../../../core/widgets/custom_back_arrow.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
 
@@ -42,12 +43,12 @@ class _InvitedScreenState extends State<InvitedScreen> {
                         AppColors.orange2,
                         AppColors.primary,
                       ])),
-                      padding:  EdgeInsets.symmetric(
-                          vertical: 5.h, horizontal: 10.w),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
                       height: 20.h,
                       width: double.infinity,
                       child: Center(
-                        child:  Text(
+                        child: Text(
                           AppStrings.invited,
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
@@ -57,21 +58,7 @@ class _InvitedScreenState extends State<InvitedScreen> {
                       ),
                       //color: Colors.orange,
                     ),
-                    Positioned(
-                        left: 20,
-                        top: 60,
-                        child: Transform.rotate(
-                          angle: languageCode == "ar" ? 0 : (3.14),
-                          child: IconButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              icon: const Icon(
-                                Icons.arrow_forward,
-                                color: Colors.white,
-                                size: 35,
-                              )),
-                        ))
+                    const CustomBackArrow(),
                   ],
                 ),
               ),
@@ -94,12 +81,12 @@ class _InvitedScreenState extends State<InvitedScreen> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 18.0),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height*0.07,
+                    child: SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.07,
                       child: Row(
                         children: [
                           CircleAvatar(
-                            radius: 12,
+                            radius: 3.w,
                             backgroundColor: AppColors.primary,
                             child: Center(
                                 child: IconButton(
@@ -107,9 +94,9 @@ class _InvitedScreenState extends State<InvitedScreen> {
                                 //TODO-->
                                 //cubit.removeSelectedContact(index);
                               },
-                                 icon: const Icon(
+                              icon: Icon(
                                 Icons.close,
-                                size: 12,
+                                size: 1.5.h,
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
@@ -122,33 +109,32 @@ class _InvitedScreenState extends State<InvitedScreen> {
                             children: [
                               Row(
                                 children: [
-                                  const Text(
+                                  Text(
                                     "المكرم :",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 14),
+                                        fontSize: 11.sp),
                                   ),
                                   Text(
                                     cubit.invitees.elementAt(index).name,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 14),
+                                        fontSize: 11.sp),
                                   ),
                                 ],
                               ),
                               Text(
                                 easy.DateFormat('dd HH:mm MMM').format(
                                     cubit.invitees.elementAt(index).createdAt),
-                                style: const TextStyle(
+                                style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 14,
+                                    fontSize: 11.sp,
                                     color: AppColors.grey2),
                               ),
                             ],
                           ),
                           const Spacer(),
-                          const MySvgWidget(
-                              path: ImageAssests.shareIcon, size: 20),
+                          MySvgWidget(path: ImageAssests.shareIcon, size: 5.w),
                         ],
                       ),
                     ),
