@@ -137,7 +137,7 @@ bool isfirst=true;
 
   Future<List<Contact>> getAllContacts() async {
     //must take the user permission
-  //  getcontacts();
+    getcontacts();
 
     var status = await Permission.contacts.status;
     if (status.isDenied) {
