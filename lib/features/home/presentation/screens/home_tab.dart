@@ -50,7 +50,7 @@ class HomeTab extends StatelessWidget {
            Container(
              margin: EdgeInsets.only(bottom: 10),
              width: 80.w,
-             height: 10.h,
+             height: 12.h,
              decoration: BoxDecoration(
                  gradient: const LinearGradient(
                      begin: Alignment.centerRight,

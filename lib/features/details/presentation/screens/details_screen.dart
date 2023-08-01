@@ -134,6 +134,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         onTap: () {
                                           context
                                               .read<AddInvitationCubit>()
+                                              .getUserData();
+                                          context
+                                              .read<AddInvitationCubit>()
                                               .setData(
                                               widget.homeListItemModel);
                                           Navigator.pushNamed(context,

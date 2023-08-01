@@ -5,6 +5,7 @@ import 'package:daeawt/core/remote/service.dart';
 import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/utils/toast_message_method.dart';
 import 'package:daeawt/features/home/cubit/home_cubit.dart';
+import 'package:daeawt/features/scan/cubit/scan_cubit.dart';
 import 'package:easy_localization/easy_localization.dart' as tr;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,8 @@ import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:search_map_place_updated/search_map_place_updated.dart';
 import '../../../../config/routes/app_routes.dart';
+import '../../../../core/model/user_model.dart';
+import '../../../../core/preferences/preferences.dart';
 import '../../../../core/utils/appwidget.dart';
 import '../../../home/models/contact_model.dart';
 import '../../model/add_invitation_model.dart';
@@ -26,13 +29,19 @@ part 'add_invitation_state.dart';
 
 class AddInvitationCubit extends Cubit<AddInvitationState> {
   var TotalInvitedPeople;
+  UserModel? userModel;
 
 
   AddInvitationCubit(this.api) : super(AddInvitationInitial())
   {
     getTheUserPermissionAndLocation();
-
-}
+    getUserData();
+  }
+  getUserData() async {
+    userModel = await Preferences.instance.getUserModel();
+    //  print("dldldl${userModel!.access_token}");
+    emit(OnUserDataVaild());
+  }
 
 
 
@@ -233,6 +242,7 @@ for(int j=0;j<contactModelList.length;j++){
   }
 
   incrementNumberOfInvitedPeople(int index) {
+
     model.selectedContactModelList.elementAt(index).numberOfInvitedPeople++;
     print("+++++++++++++++++++++++++++++++++++++++++++++++++++++$index");
     print( model.selectedContactModelList.elementAt(index).numberOfInvitedPeople);
@@ -539,8 +549,12 @@ getTheUserPermissionAndLocation() async {
       model=AddInvitationModel();
 
           Navigator.pop(context);
-          context.read<HomeCubit>().geInvitationsHome();
-          Navigator.pushNamed(context, Routes.homeRoute);
+          Preferences.instance.setUser(userModel!).then((value) => {
+            context.read<HomeCubit>().geInvitationsHome(),
+          context.read<ScanCubit>().geInvitationsHome(),
+
+          Navigator.pushNamed(context, Routes.homeRoute)});
+
       emit(AddInvitationInitial());
         } else {
           toastMessage(tr.tr("fail send"), context);
@@ -566,11 +580,15 @@ getTheUserPermissionAndLocation() async {
           address="";
 
           model=AddInvitationModel();
-
-          emit(AddInvitationInitial());
           Navigator.pop(context);
-          context.read<HomeCubit>().geInvitationsHome();
-          Navigator.pushNamed(context, Routes.homeRoute);
+
+          Preferences.instance.setUser(userModel!).then((value) => {
+            context.read<HomeCubit>().geInvitationsHome(),
+            context.read<ScanCubit>().geInvitationsHome(),
+              Navigator.pushNamed(context, Routes.homeRoute)});
+          emit(AddInvitationInitial());
+
+
         } else {
           toastMessage(tr.tr("fail send"), context);
         }

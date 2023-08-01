@@ -253,9 +253,17 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                   children: [
                                                     IconButton(
                                                       onPressed: () {
-                                                        cubit
+                                                        if(cubit.userModel!.data!.user!.balance!>0){
+                                                          cubit.userModel!.data!.user!.balance=cubit.userModel!.data!.user!.balance!-1;
+
+                                                          cubit
                                                             .incrementNumberOfInvitedPeople(
                                                                 index);
+                                                        }else {
+                                                        toastMessage(
+                                                        "no_balance".tr(), context);
+                                                        }
+
                                                       },
                                                       icon:  Icon(
                                                         Icons.add,
@@ -278,6 +286,8 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                     ),
                                                     IconButton(
                                                         onPressed: () {
+                                                          cubit.userModel!.data!.user!.balance=cubit.userModel!.data!.user!.balance!+1;
+
                                                           cubit
                                                               .decrementNumberOfInvitedPeople(
                                                                   index);

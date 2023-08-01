@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
+import '../../../../core/utils/toast_message_method.dart';
 import '../../../../core/widgets/custom_buttom.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
@@ -31,9 +32,9 @@ class AddNewContacts extends StatelessWidget {
                     Container(
                       decoration: const BoxDecoration(
                           gradient: LinearGradient(colors: [
-                            AppColors.orange2,
-                            AppColors.primary,
-                          ])),
+                        AppColors.orange2,
+                        AppColors.primary,
+                      ])),
                       padding: const EdgeInsets.symmetric(
                           vertical: 60, horizontal: 40),
                       height: 160,
@@ -67,12 +68,10 @@ class AddNewContacts extends StatelessWidget {
                   ],
                 ),
               ),
-
               Expanded(
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-
                       const SizedBox(
                         height: 20,
                       ),
@@ -91,7 +90,8 @@ class AddNewContacts extends StatelessWidget {
                                 const Text(
                                   AppStrings.selectContacts,
                                   style: TextStyle(
-                                      fontSize: 20, fontWeight: FontWeight.w700),
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.w700),
                                 ).tr(),
                                 const Positioned(
                                   bottom: 3,
@@ -153,11 +153,13 @@ class AddNewContacts extends StatelessWidget {
                               boxShadow: const [
                                 BoxShadow(color: Colors.grey, blurRadius: 10),
                                 BoxShadow(color: Colors.white, blurRadius: 10),
-                                BoxShadow(color: Colors.black38, blurRadius: 10),
+                                BoxShadow(
+                                    color: Colors.black38, blurRadius: 10),
                               ]),
                           child: FutureBuilder<List<Contact>>(
-                            future:
-                                context.read<AddInvitationCubit>().getAllContacts(),
+                            future: context
+                                .read<AddInvitationCubit>()
+                                .getAllContacts(),
                             builder: (context, snapshot) {
                               if (snapshot.hasData) {
                                 return ListView.builder(
@@ -190,7 +192,8 @@ class AddNewContacts extends StatelessWidget {
                                                 textAlign: TextAlign.center,
                                                 style: const TextStyle(
                                                     fontSize: 15,
-                                                    fontWeight: FontWeight.w700),
+                                                    fontWeight:
+                                                        FontWeight.w700),
                                               )),
                                               ListView.builder(
                                                 shrinkWrap: true,
@@ -204,7 +207,8 @@ class AddNewContacts extends StatelessWidget {
                                                 itemBuilder: (context, index) {
                                                   return Text(
                                                     context
-                                                        .read<AddInvitationCubit>()
+                                                        .read<
+                                                            AddInvitationCubit>()
                                                         .contactModelList[i]
                                                         .phones![index]
                                                         .value!,
@@ -212,7 +216,8 @@ class AddNewContacts extends StatelessWidget {
                                                     style: const TextStyle(
                                                         color: AppColors.grey5,
                                                         fontSize: 15,
-                                                        fontWeight: FontWeight.w700),
+                                                        fontWeight:
+                                                            FontWeight.w700),
                                                   );
                                                 },
                                               ),
@@ -224,21 +229,51 @@ class AddNewContacts extends StatelessWidget {
                                             icon: const Icon(Icons.edit)),
                                         TextButton(
                                             onPressed: () {
-                                              cubit.contactModelList[i].isSelected =
-                                                  cubit.changesSelectButton(cubit
-                                                      .contactModelList[i]
-                                                      .isSelected!);
-                                              if (cubit
-                                                  .contactModelList[i].isSelected!) {
-                                                if (cubit.contactModelList[i].phones!
-                                                    .isNotEmpty) {
-                                                  cubit.model.selectedContactModelList
-                                                      .add(cubit.contactModelList[i]);
+                                              if (cubit.contactModelList[i]
+                                                          .isSelected ==
+                                                      false &&
+                                                  cubit.userModel!.data!.user!
+                                                          .balance! >
+                                                      0) {
+                                                cubit.contactModelList[i]
+                                                        .isSelected =
+                                                    cubit.changesSelectButton(
+                                                        cubit
+                                                            .contactModelList[i]
+                                                            .isSelected!);
+                                                if (cubit.contactModelList[i]
+                                                    .isSelected!) {
+                                                  if (cubit.contactModelList[i]
+                                                      .phones!.isNotEmpty) {
+                                                    cubit.model
+                                                        .selectedContactModelList
+                                                        .add(cubit
+                                                            .contactModelList[i]);
+                                                    cubit.userModel!.data!.user!
+                                                        .balance = cubit
+                                                            .userModel!
+                                                            .data!
+                                                            .user!
+                                                            .balance! -
+                                                        1;
+                                                  }
+                                                } else {
+                                                  cubit.model
+                                                      .selectedContactModelList
+                                                      .remove(cubit
+                                                          .contactModelList[i]);
+                                                  cubit.userModel!.data!.user!
+                                                      .balance = cubit
+                                                          .userModel!
+                                                          .data!
+                                                          .user!
+                                                          .balance! +
+                                                      1;
                                                 }
-                                              } else {
-                                                cubit.model.selectedContactModelList
-                                                    .remove(
-                                                        cubit.contactModelList[i]);
+                                              }
+                                              else {
+                                                toastMessage(
+                                                    "no_balance".tr(), context);
                                               }
                                             },
                                             child: !context
@@ -248,16 +283,19 @@ class AddNewContacts extends StatelessWidget {
                                                 ? const Text(
                                                     AppStrings.select,
                                                     style: TextStyle(
-                                                        color: AppColors.primary,
+                                                        color:
+                                                            AppColors.primary,
                                                         fontSize: 14,
-                                                        fontWeight: FontWeight.w700),
+                                                        fontWeight:
+                                                            FontWeight.w700),
                                                   ).tr()
                                                 : const Text(
                                                     AppStrings.remove,
                                                     style: TextStyle(
                                                         color: AppColors.red1,
                                                         fontSize: 14,
-                                                        fontWeight: FontWeight.w700),
+                                                        fontWeight:
+                                                            FontWeight.w700),
                                                   ).tr()),
                                       ],
                                     );
@@ -281,7 +319,8 @@ class AddNewContacts extends StatelessWidget {
                             horizontal: 10.0, vertical: 15),
                         child: CustomButton(
                           onPressed: () {
-                            Navigator.pushNamed(context, Routes.sendNewContactsRoute);
+                            Navigator.pushNamed(
+                                context, Routes.sendNewContactsRoute);
                           },
                           text: AppStrings.tracking.tr(),
                         ),

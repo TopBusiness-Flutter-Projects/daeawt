@@ -22,3 +22,4 @@ class LocationPermissionSuccess extends AddInvitationState {}
 class LocationPermissionFailed extends AddInvitationState {}
 class MarkersCleared extends AddInvitationState {}
 class MarkerAdded extends AddInvitationState {}
+class OnUserDataVaild extends AddInvitationState {}

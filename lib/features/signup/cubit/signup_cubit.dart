@@ -2,6 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
 import '../../../config/routes/app_routes.dart';
@@ -9,6 +10,8 @@ import '../../../core/preferences/preferences.dart';
 import '../../../core/remote/service.dart';
 import '../../../core/utils/appwidget.dart';
 import '../../../core/utils/toast_message_method.dart';
+import '../../home/cubit/home_cubit.dart';
+import '../../profile/presentation/cubit/profile_cubit.dart';
 import '../model/register_model.dart';
 part 'signup_state.dart';
 
@@ -55,6 +58,8 @@ class SignupCubit extends Cubit<SignupState> {
            } else if (loginModel.code == 200) {
              Navigator.pop(context);
              Preferences.instance.setUser(loginModel).then((value) {
+               context.read<HomeCubit>().getUserData();
+               context.read<ProfileCubit>().getUserData();
                Navigator.pushNamedAndRemoveUntil(
                    context, Routes.homeRoute, (route) => false);
                // emit(OnLoginSuccess(response));
@@ -95,7 +100,10 @@ class SignupCubit extends Cubit<SignupState> {
         } else if (loginModel.code == 200) {
           Navigator.pop(context);
           Preferences.instance.setUser(loginModel).then((value) {
+            context.read<HomeCubit>().getUserData();
+            context.read<ProfileCubit>().getUserData();
             Navigator.pushNamedAndRemoveUntil(
+
                 context, Routes.homeRoute, (route) => false);
             // emit(OnLoginSuccess(response));
           });

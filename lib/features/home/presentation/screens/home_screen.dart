@@ -70,6 +70,9 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
                 onPressed: () {
                   if (cubit.userModel!.data!.user!.balance!>0){
+                    context
+                        .read<AddInvitationCubit>()
+                        .getUserData();
                     Navigator.pushNamed(context, Routes.addInvitationRoute);}
                   else{
                     toastMessage("no_balance".tr(), context);
@@ -94,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen>
                       ),
                       Text(
                         AppStrings.home,
-                        style: TextStyle(fontSize: 8.sp),
+                        style: TextStyle(fontSize: 6.sp),
                       ).tr()
                     ],
                   ),
@@ -105,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen>
                       const Icon(Icons.notification_important),
                       Text(
                         AppStrings.notifications,
-                        style: TextStyle(fontSize: 8.sp),
+                        style: TextStyle(fontSize: 6.sp),
                       ).tr()
                     ],
                   ),
@@ -116,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen>
                       const Icon(Icons.scanner),
                       Text(
                         AppStrings.scan,
-                        style: TextStyle(fontSize: 8.sp),
+                        style: TextStyle(fontSize: 6.sp),
                       ).tr(),
                     ],
                   ),
@@ -127,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen>
                       const Icon(Icons.person_2_outlined),
                       Text(
                         AppStrings.profile,
-                        style: TextStyle(fontSize: 8.sp),
+                        style: TextStyle(fontSize: 6.sp),
                       ).tr(),
                     ],
                   ),

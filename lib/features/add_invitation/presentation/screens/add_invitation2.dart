@@ -243,6 +243,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                             icon: const Icon(Icons.edit)),
                                         TextButton(
                                             onPressed: () {
+                                              if(cubit.contactModelList[i].isSelected==false&&cubit.userModel!.data!.user!.balance!>0){
                                               cubit.contactModelList[i].isSelected =
                                                   cubit.changesSelectButton(cubit
                                                       .contactModelList[i]
@@ -253,11 +254,18 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                                     .isNotEmpty) {
                                                   cubit.model.selectedContactModelList
                                                       .add(cubit.contactModelList[i]);
+                                                  cubit.userModel!.data!.user!.balance=cubit.userModel!.data!.user!.balance!-1;
                                                 }
                                               } else {
                                                 cubit.model.selectedContactModelList
                                                     .remove(
                                                         cubit.contactModelList[i]);
+                                                cubit.userModel!.data!.user!.balance=cubit.userModel!.data!.user!.balance!+1;
+
+                                              }}
+                                              else{
+                                                toastMessage("no_balance".tr(), context);
+
                                               }
                                             },
                                             child: !cubit
