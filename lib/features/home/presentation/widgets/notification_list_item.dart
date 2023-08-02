@@ -14,14 +14,8 @@ class NotificationsListItem extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: Row(
         children: [
-          Column(
-            children: [
-              Image.asset(ImageAssests.notificationIcon),
-              const SizedBox(
-                height: 40,
-              )
-            ],
-          ),
+          Center(child: Image.asset(ImageAssests.notificationIcon)),
+
           Expanded(
             child: Padding(
               padding: EdgeInsets.all(8.0),
@@ -36,7 +30,7 @@ class NotificationsListItem extends StatelessWidget {
                       Text(
                         notificationModel.title,
                         style: TextStyle(
-                            fontSize: 19, fontWeight: FontWeight.w700),
+                            fontSize: 15, fontWeight: FontWeight.w700),
                       ),
                       Spacer(),
                       // Text(

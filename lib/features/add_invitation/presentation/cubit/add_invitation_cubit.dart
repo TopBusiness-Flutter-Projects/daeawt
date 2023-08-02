@@ -51,7 +51,7 @@ class AddInvitationCubit extends Cubit<AddInvitationState> {
   bool isDataVaild1 = false;
 bool isfirst=true;
 
-  DateTime initialDate = DateTime(DateTime.now().year);
+  DateTime initialDate = DateTime.now();
   DateTime startData = DateTime(DateTime.now().year);
   DateTime endData = DateTime(DateTime.now().year + 100000);
   ServiceApi api;
