@@ -40,7 +40,9 @@ class HomeAppBar extends StatelessWidget {
                   FutureBuilder(
                     future: Preferences.instance.getUserModel(),
                     builder: (context, snapshot) {
-                    return  Text("welcome ".tr()+snapshot.data!.data!.user!.name.toString(),
+                    return  Text("welcome ".tr()+
+                        (snapshot.data!.data!=null?
+                        snapshot.data!.data!.user!.name.toString():""),
                       style:  TextStyle(fontSize: 12.sp,fontWeight: FontWeight.w700,color: Colors.white),
                     );
                   },),

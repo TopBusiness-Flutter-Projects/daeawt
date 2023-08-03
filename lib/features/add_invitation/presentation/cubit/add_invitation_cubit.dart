@@ -526,10 +526,13 @@ getTheUserPermissionAndLocation() async {
     model.selectedContactModelList.clear();
     print("dlflfllf");
     // print(inviteess.length);
+    if(text.isEmpty){
+      contactModelList.addAll(allcontactModelList);
+    }else{
     for (ContactModel userDetail in allcontactModelList) {
       print(text + "dddd");
       if (userDetail.name!.contains(text)) contactModelList.add(userDetail);
-    }
+    }}
     emit(AddInvitationInitial());
   }
 
@@ -545,12 +548,17 @@ getTheUserPermissionAndLocation() async {
       isfirst=true;
       nameController.text='';
       dateController.text='';
+    //  userModel!.data!.user!.balance--;
       address="";
       model=AddInvitationModel();
+     contactModelList.clear;
+     model.selectedContactModelList.clear();
+     print("************************** clered**********************");
 
           Navigator.pop(context);
           Preferences.instance.setUser(userModel!).then((value) => {
-            context.read<HomeCubit>().geInvitationsHome(),
+            context.read<HomeCubit>().getUserData(),
+              context.read<HomeCubit>().geInvitationsHome(),
           context.read<ScanCubit>().geInvitationsHome(),
 
           Navigator.pushNamed(context, Routes.homeRoute)});
@@ -578,11 +586,15 @@ getTheUserPermissionAndLocation() async {
           nameController.text='';
           dateController.text='';
           address="";
+          contactModelList.clear();
 
+       //   getUserData();
           model=AddInvitationModel();
           Navigator.pop(context);
-
+         model.selectedContactModelList.clear();
           Preferences.instance.setUser(userModel!).then((value) => {
+            context.read<HomeCubit>().getUserData(),
+
             context.read<HomeCubit>().geInvitationsHome(),
             context.read<ScanCubit>().geInvitationsHome(),
               Navigator.pushNamed(context, Routes.homeRoute)});

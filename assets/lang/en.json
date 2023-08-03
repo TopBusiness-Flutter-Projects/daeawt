@@ -13,6 +13,8 @@
   "sign_up_with_google": " Sign Up With Google",
   "create_new_account": " Create New Account",
   "name": " Name",
+  "phone_invalid": "Incorrect Phone",
+
   "phone_number": "Phone Number",
   "already_have_account": "Already Have An Account",
   "enter_mobile_number": "Please enter your mobile number to retrieve your password",
@@ -93,6 +95,7 @@
   "process_failed": "The process failed try again",
   "code_invalid": "The code is invalid",
   "secret_number": "Secret Number",
+  "email_invalid": "Incorrect Email",
   "welcome": "Welcome",
   "welcome_to": "Welcome to Daeawt",
   "no_data": "No Notifications ",

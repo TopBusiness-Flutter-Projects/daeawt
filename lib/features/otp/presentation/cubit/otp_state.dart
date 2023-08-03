@@ -7,3 +7,4 @@ class OtpInitial extends OtpState {}
 class CheckCodeFailure extends OtpState {}
 class CheckCodeLoading extends OtpState {}
 class CheckCodeSuccess extends OtpState {}
+class CheckCodeSuccessfully extends OtpState {}

@@ -91,6 +91,7 @@
   "send_invitations": "ارسال الدعوات",
   "wanna_send_invitations": "هل ترغب بارسال جميع الدعوات؟",
   "email_invalid": "البريد الإلكتروني المحدد غير صالح",
+  "phone_invalid": "رقم الجوال المحدد غير صالح",
   "reset_password_failed": "فشل في تعيين رقم سري",
   "process_failed": "فشلت العملية حاول مرة اخرى",
   "code_invalid": "الكود غير صحيح",
