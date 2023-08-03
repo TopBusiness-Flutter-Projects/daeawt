@@ -13,17 +13,19 @@ import '../../../../core/widgets/bottom_curve.dart';
 
 
 class OtpScreen extends StatelessWidget {
-  const OtpScreen({Key? key}) : super(key: key);
+  const OtpScreen({Key? key,this.smsCode}) : super(key: key);
+  final smsCode ;
 
   @override
   Widget build(BuildContext context) {
+
     var languageCode = EasyLocalization.of(context)!.locale.languageCode;
 
     return BlocConsumer<ForgotPasswordCubit, ForgotPasswordState>(
   listener: (context, state) {
-   // if(state is CheckCodeSuccess){
-   //   Navigator.pushNamed(context, Routes.newPasswordRoute);
-   // }
+   if(state is CheckCodeSuccessfully){
+  //   Navigator.pushNamed(context, Routes.newPasswordRoute);
+   }
    if (state is CheckCodeFailure){
      ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: const Text("code_invalid").tr()));
@@ -33,7 +35,9 @@ class OtpScreen extends StatelessWidget {
     ForgotPasswordCubit cubit = context.read<ForgotPasswordCubit>();
     return BlocConsumer<OtpCubit, OtpState>(
   listener: (context, state) {
-    // TODO: implement listener
+   if(state is CheckCodeSuccessfully){
+
+   }
   },
   builder: (context, state) {
     OtpCubit cubit = context.read<OtpCubit>();
@@ -117,7 +121,7 @@ class OtpScreen extends StatelessWidget {
             ),
             CustomButton(onPressed: () async {
 
-           await  cubit.checkCode(context);
+          await  cubit.checkCode(context);
             },text: AppStrings.confirm,)
           ],
         ),

@@ -1,3 +1,4 @@
+import 'package:daeawt/core/utils/toast_message_method.dart';
 import 'package:daeawt/features/forgot_password/presentation/cubit/forgot_password_cubit.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -21,12 +22,16 @@ class ForgotPasswordScreen extends StatelessWidget {
       listener: (context, state) {
         if (state is InvalidEmailState) {
           ScaffoldMessenger.of(context).showSnackBar(
-               SnackBar(content: const Text("email_invalid").tr()));
-        } if (state is ResetPasswordFailure) {
-          ScaffoldMessenger.of(context).showSnackBar(
-               SnackBar(content: const Text("reset_password_failed").tr()));
+              SnackBar(content: const Text("phone_invalid").tr()));
         }
-        if(state is ResetPasswordSuccess){
+        if (state is ResetPasswordFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: const Text("reset_password_failed").tr()));
+        }
+        if (state is ResetPasswordSuccess) {
+          Navigator.pushNamed(context, Routes.otpRoute);
+        }
+        if (state is OnSmsCodeSent) {
           Navigator.pushNamed(context, Routes.otpRoute);
         }
       },
@@ -53,7 +58,14 @@ class ForgotPasswordScreen extends StatelessWidget {
                             height: 300,
                             width: double.infinity,
                             //color: Colors.orange,
-                            child:  Center(child: Text('app_name'.tr(),style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,color: AppColors.white),))),
+                            child: Center(
+                                child: Text(
+                              'app_name'.tr(),
+                              style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.white),
+                            ))),
                         Positioned(
                             left: 0,
                             top: 40,
@@ -77,18 +89,16 @@ class ForgotPasswordScreen extends StatelessWidget {
                 //forgot password
                 const Text(
                   AppStrings.forgetPassword,
-                  style:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                 ).tr(),
                 const SizedBox(
                   height: 15,
                 ),
                 //enter mobile number
                 const Text(
-                  "please_enter_email",
+                  "enter_mobile_number",
                   // AppStrings.enterMobileNumber,
-                  style:
-                      TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
+                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w400),
                 ).tr(),
                 const SizedBox(
                   height: 45,
@@ -97,9 +107,9 @@ class ForgotPasswordScreen extends StatelessWidget {
                 Padding(
                     padding: const EdgeInsets.all(18.0),
                     child: CustomTextFormField(
-                      textController: cubit.emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      hintText: AppStrings.email,
+                      textController: cubit.phoneController,
+                      keyboardType: TextInputType.phone,
+                      hintText: AppStrings.phoneNumber,
                       prefixIcon: const Icon(
                         Icons.wifi_calling_3_rounded,
                         color: AppColors.primary,
@@ -112,7 +122,11 @@ class ForgotPasswordScreen extends StatelessWidget {
                 CustomButton(
                   text: AppStrings.recovery,
                   onPressed: () async {
-                    await cubit.resetPassword1(context);
+                    if (cubit.phoneController.text.isNotEmpty) {
+                      await cubit.resetPassword1(context);
+                    } else {
+                      toastMessage('enter_mobile_number'.tr(), context);
+                    }
                   },
                 ),
                 const SizedBox(

@@ -213,7 +213,7 @@ class ServiceApi {
       final response = await dio.post(
         EndPoints.forgotPasswordUrl,
         body: {
-          'email': email,
+          'phone': email,
 
         },
       );
@@ -248,7 +248,7 @@ class ServiceApi {
         body: {
         "password":password,
           "password_confirmation":passwordConfirmation,
-          "code":code,
+          "phone":code,
         },
       );
       print("0000000000000000000000000000000000000000000000");

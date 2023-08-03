@@ -31,131 +31,137 @@ void initState() {
     var languageCode = easy.EasyLocalization.of(context)!.locale.languageCode;
     return BlocBuilder<ConfirmedCubit, ConfirmedState>(
   builder: (context, state) {
-    return Scaffold (
-      body: Column(
-        children: [
-          ClipPath(
-            clipper: SmallBottomCurveClipper(),
-            child: Container(
-              alignment: Alignment.bottomCenter,
-              decoration: const BoxDecoration(
-                  gradient: LinearGradient(colors: [
-                    AppColors.orange2,
-                    AppColors.primary,
-                  ])),
-              padding:
-              const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
-              height: 160,
-              width: double.infinity,
-              child: Row(
-                textDirection: TextDirection.ltr,
-                children: [
-                  IconButton(
-                    padding: EdgeInsets.zero,
-                    icon:
-                    Transform.rotate(
-                      angle: languageCode == "ar"? (3.14):0,
-                      child:   const Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                        size: 30,
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  SizedBox(width: MediaQuery.of(context).size.width*0.25,),
-                   Text(
-                    AppStrings.confirmation,
-                    style: TextStyle(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.w700,
-                        color: Colors.white),
-                  ).tr(),
-
-                ],
-              ),
-            ),
-          ),
-          //ابحث
-          Padding(
-            padding: const EdgeInsets.all(18.0),
-            child: SizedBox(
-                width: MediaQuery.of(context).size.width * 0.8,
-                height: 60,
-                child: CustomTextFormField(
-                  onChanged: (p0) {
-                     cubit.onSearchTextChanged(p0);
-                  },
-                  hintText: AppStrings.search,
-                  prefixIcon: const Icon(Icons.search),
-                )),
-          ),
-          Expanded(child: ListView.separated(
-            itemBuilder:(context, index) {
-              return Padding(
-                padding:  const EdgeInsets.symmetric(horizontal: 18.0),
+    return WillPopScope(
+      onWillPop: () async{
+        cubit.onSearchTextChanged('');
+        return true;
+      },
+      child: Scaffold (
+        body: Column(
+          children: [
+            ClipPath(
+              clipper: SmallBottomCurveClipper(),
+              child: Container(
+                alignment: Alignment.bottomCenter,
+                decoration: const BoxDecoration(
+                    gradient: LinearGradient(colors: [
+                      AppColors.orange2,
+                      AppColors.primary,
+                    ])),
+                padding:
+                const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
+                height: 160,
+                width: double.infinity,
                 child: Row(
+                  textDirection: TextDirection.ltr,
                   children: [
-
-                    CircleAvatar(
-                      radius: 12,
-                      backgroundColor: AppColors.primary,
-                      child: Center(
-                          child: IconButton(
-                            onPressed: () {
-                              //TODO-->
-                              //cubit.removeSelectedContact(index);
-                            },
-                            icon:  Icon(
-                              Icons.close,
-                              size:1.5.h,
-                              color: Colors.white,
-                            ),
-                            padding: EdgeInsets.zero,
-                          )),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      icon:
+                      Transform.rotate(
+                        angle: languageCode == "ar"? (3.14):0,
+                        child:   const Icon(
+                          Icons.arrow_back,
+                          color: Colors.white,
+                          size: 30,
+                        ),
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
-                    const SizedBox(width: 10,),
-                    Column(
-                      children: [
-                        Row(children: [
-                           Text("المكرم :",
-                            style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 11.sp
-                            ),
-                          ),
-                          Text(
-                              cubit.invitees.elementAt(index).name ,
-                            style:  TextStyle(
-                                fontWeight: FontWeight.w400,
-                                fontSize: 11.sp
-                            ),),
-                        ],),
-                        Text(
-                          easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
-                          style:  TextStyle(
-                              fontWeight: FontWeight.w400,
-                              fontSize: 11.sp,
-                              color: AppColors.grey2
-                          ),),
-
-                      ],),
-                    const Spacer(),
-                      MySvgWidget(path: ImageAssests.shareIcon, size: 5.w),
+                    SizedBox(width: MediaQuery.of(context).size.width*0.25,),
+                     Text(
+                      AppStrings.confirmation,
+                      style: TextStyle(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white),
+                    ).tr(),
 
                   ],
                 ),
-              );
-            },
-            // separatorBuilder: (context, index) =>Divider() ,
-            itemCount:
-              cubit.invitees.length
-            , separatorBuilder: (BuildContext context, int index) {
-            return const Divider();
-          },))
-        ],
+              ),
+            ),
+            //ابحث
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: 60,
+                  child: CustomTextFormField(
+                    onChanged: (p0) {
+                       cubit.onSearchTextChanged(p0);
+                    },
+                    hintText: AppStrings.search,
+                    prefixIcon: const Icon(Icons.search),
+                  )),
+            ),
+            Expanded(child: ListView.separated(
+              itemBuilder:(context, index) {
+                return Padding(
+                  padding:  const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: Row(
+                    children: [
+
+                      CircleAvatar(
+                        radius: 12,
+                        backgroundColor: AppColors.primary,
+                        child: Center(
+                            child: IconButton(
+                              onPressed: () {
+                                //TODO-->
+                                //cubit.removeSelectedContact(index);
+                              },
+                              icon:  Icon(
+                                Icons.close,
+                                size:1.5.h,
+                                color: Colors.white,
+                              ),
+                              padding: EdgeInsets.zero,
+                            )),
+                      ),
+                      const SizedBox(width: 10,),
+                      Column(
+                        children: [
+                          Row(children: [
+                             Text("المكرم :",
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 11.sp
+                              ),
+                            ),
+                            Text(
+                                cubit.invitees.elementAt(index).name ,
+                              style:  TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 11.sp
+                              ),),
+                          ],),
+                          Text(
+                            easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
+                            style:  TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 11.sp,
+                                color: AppColors.grey2
+                            ),),
+
+                        ],),
+                      const Spacer(),
+                        MySvgWidget(path: ImageAssests.shareIcon, size: 5.w),
+
+                    ],
+                  ),
+                );
+              },
+              // separatorBuilder: (context, index) =>Divider() ,
+              itemCount:
+                cubit.invitees.length
+              , separatorBuilder: (BuildContext context, int index) {
+              return const Divider();
+            },))
+          ],
+        ),
       ),
     );
   },

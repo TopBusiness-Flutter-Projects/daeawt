@@ -25,6 +25,7 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+
   // await PushNotificationService.instance.initialise();
   //await FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
   // await FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE)
