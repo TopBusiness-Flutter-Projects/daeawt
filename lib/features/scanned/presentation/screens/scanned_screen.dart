@@ -7,6 +7,7 @@ import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/utils/assets_manager.dart';
+import '../../../../core/utils/shareinvitee.dart';
 import '../../../../core/widgets/custom_text_form_field.dart';
 import '../../../../core/widgets/my_svg_widget.dart';
 import '../../../../core/widgets/small_bottom_curve.dart';
@@ -135,7 +136,7 @@ class _ScannedScreenState extends State<ScannedScreen> {
                           ),),
                         ],),
                         Text(
-                          easy.DateFormat('dd HH:mm MMM').format(cubit.invitees.elementAt(index).createdAt),
+                          easy.DateFormat('dd HH:mm MMM').format(  DateTime.parse(cubit.invitees.elementAt(index).createdAt)),
                           style:  TextStyle(
                               fontWeight: FontWeight.w400,
                               fontSize: 11.sp,
@@ -144,8 +145,13 @@ class _ScannedScreenState extends State<ScannedScreen> {
 
                       ],),
                     const Spacer(),
-                     MySvgWidget(path: ImageAssests.shareIcon, size: 5.w),
-
+                    InkWell(
+                        onTap: () {
+                          shareInvitee(cubit.invitees.elementAt(index),
+                              widget.homeListItemModel, context);
+                        },
+                        child: MySvgWidget(
+                            path: ImageAssests.shareIcon, size: 5.w))
                   ],
                 ),
               );

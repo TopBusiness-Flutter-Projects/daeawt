@@ -537,7 +537,9 @@ getTheUserPermissionAndLocation() async {
   }
 
   void addinviatation(BuildContext context) async {
+    print(model.selectedContactModelList.elementAt(0).phones?.elementAt(0).value);
     AppWidget.createProgressDialog(context, tr.tr('wait'));
+
     final response = await api.addInvitation(model);
     response.fold(
       (failure) =>

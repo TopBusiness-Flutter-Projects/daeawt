@@ -231,8 +231,9 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                                   itemBuilder: (context, index) {
                                                     return Text(
                                                       cubit.contactModelList[i]
-                                                          .phones![index].value!,
+                                                          .phones![index].value!.toString().replaceAll(" ", ""),
                                                       textAlign: TextAlign.center,
+
                                                       style:  TextStyle(
                                                           color: AppColors.grey5,
                                                           fontSize: 11.sp,
@@ -248,7 +249,8 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                               icon: const Icon(Icons.edit)),
                                           TextButton(
                                               onPressed: () {
-                                                if(cubit.contactModelList[i].isSelected==false&&cubit.userModel!.data!.user!.balance!>0){
+                                                if(cubit.contactModelList[i].isSelected==false
+                                                    &&cubit.userModel!.data!.user!.balance!>0){
                                                 cubit.contactModelList[i].isSelected =
                                                     cubit.changesSelectButton(cubit
                                                         .contactModelList[i]
@@ -261,16 +263,27 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                                         .add(cubit.contactModelList[i]);
                                                     cubit.userModel!.data!.user!.balance=cubit.userModel!.data!.user!.balance!-1;
                                                   }
-                                                } else {
-                                                  cubit.model.selectedContactModelList
-                                                      .remove(
-                                                          cubit.contactModelList[i]);
-                                                  cubit.userModel!.data!.user!.balance=cubit.userModel!.data!.user!.balance!+1;
-
-                                                }}
+                                                }
+                                             }
                                                 else{
-                                                  toastMessage("no_balance".tr(), context);
+                                                  if(cubit.contactModelList[i].isSelected==true){
+                                                    cubit.contactModelList[i].isSelected =
+                                                        cubit.changesSelectButton(cubit
+                                                            .contactModelList[i]
+                                                            .isSelected!);
 
+                                                    cubit.model.selectedContactModelList
+                                                        .remove(
+                                                        cubit.contactModelList[i]);
+                                                    cubit.userModel!.data!.user!.balance=cubit.userModel!.data!.user!.balance!+1;
+
+
+                                                  }
+                                                  else {
+                                                    toastMessage(
+                                                        "no_balance".tr(),
+                                                        context);
+                                                  }
                                                 }
                                               },
                                               child: !cubit

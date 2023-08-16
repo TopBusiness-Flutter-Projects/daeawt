@@ -1,7 +1,7 @@
 import 'package:contacts_service/contacts_service.dart';
 import 'package:equatable/equatable.dart';
 
-class ContactModel extends Equatable{
+class ContactModel {
   String? name;
 
   List<Item>? phones;

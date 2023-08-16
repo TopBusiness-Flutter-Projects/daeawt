@@ -41,11 +41,12 @@ class AddInvitationModel {
         if (image.isNotEmpty&&!image.contains("http")) ...{"image": await MultipartFile.fromFile(image)},
         if (selectedContactModelList.isNotEmpty) ...{
           for (int i = 0; i < selectedContactModelList.length; i++) ...{
+
             "invitees[$i][invitees_number]":
                 selectedContactModelList.elementAt(i).numberOfInvitedPeople,
             "invitees[$i][name]": selectedContactModelList.elementAt(i).name,
             "invitees[$i][phone]":
-                selectedContactModelList.elementAt(i).phones!.elementAt(0).value
+            "${selectedContactModelList.elementAt(i).phones!.elementAt(0).value!.replaceAll(" ", "")}"
           }
         }
       };

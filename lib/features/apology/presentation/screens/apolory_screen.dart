@@ -1,4 +1,5 @@
-import 'package:easy_localization/easy_localization.dart'as easy;
+import 'package:daeawt/core/utils/shareinvitee.dart';
+import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:sizer/sizer.dart';
@@ -13,9 +14,9 @@ import '../../../../core/widgets/small_bottom_curve.dart';
 import '../../cubit/appology_cubit.dart';
 
 class ApologyScreen extends StatefulWidget {
-
-  const ApologyScreen({Key? key, required this.homeListItemModel}) : super(key: key);
-  final InvitationModel homeListItemModel ;
+  const ApologyScreen({Key? key, required this.homeListItemModel})
+      : super(key: key);
+  final InvitationModel homeListItemModel;
 
   @override
   State<ApologyScreen> createState() => _ApologyScreenState();
@@ -27,67 +28,70 @@ class _ApologyScreenState extends State<ApologyScreen> {
     super.initState();
     context.read<AppologyCubit>().setdata(widget.homeListItemModel);
   }
+
   @override
   Widget build(BuildContext context) {
-    AppologyCubit cubit=context.read<AppologyCubit>();
+    AppologyCubit cubit = context.read<AppologyCubit>();
 
     var languageCode = easy.EasyLocalization.of(context)!.locale.languageCode;
     return BlocBuilder<AppologyCubit, AppologyState>(
       builder: (context, state) {
         return WillPopScope(
-          onWillPop: () async{
+          onWillPop: () async {
             cubit.onSearchTextChanged('');
             return true;
           },
-          child: Scaffold (
-      body: Column(
-          children: [
-            ClipPath(
-            clipper: SmallBottomCurveClipper(),
-            child: Stack(
+          child: Scaffold(
+            body: Column(
               children: [
-                Container(
-                  decoration: const BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        AppColors.orange2,
-                        AppColors.primary,
-                      ])),
-                  padding:
-                  EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
-                  height: 20.h,
-                  width: double.infinity,
-                  child: Center(
-                    child: Text(
-                      AppStrings.apologies,
-                      style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 12.sp,
-                          color: Colors.white),
-                    ).tr(),
+                ClipPath(
+                  clipper: SmallBottomCurveClipper(),
+                  child: Stack(
+                    children: [
+                      Container(
+                        decoration: const BoxDecoration(
+                            gradient: LinearGradient(colors: [
+                          AppColors.orange2,
+                          AppColors.primary,
+                        ])),
+                        padding: EdgeInsets.symmetric(
+                            vertical: 5.h, horizontal: 10.w),
+                        height: 20.h,
+                        width: double.infinity,
+                        child: Center(
+                          child: Text(
+                            AppStrings.apologies,
+                            style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 12.sp,
+                                color: Colors.white),
+                          ).tr(),
+                        ),
+                        //color: Colors.orange,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.15,
+                      ),
+                      const CustomBackArrow(),
+                    ],
                   ),
-                  //color: Colors.orange,
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width*0.15,),
-                const CustomBackArrow(),
-              ],
-            ),
-          ),
-            //ابحث
-            Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: 6.h,
-                  child: CustomTextFormField(
-                    onChanged: (p0) {
-                      cubit.onSearchTextChanged(p0);
-                    },
-                    hintText: AppStrings.search.tr(),
-                    prefixIcon: const Icon(Icons.search),
-                  )),
-            ),
-            Expanded(
-                child: ListView.separated(
+                //ابحث
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      height: 6.h,
+                      child: CustomTextFormField(
+                        onChanged: (p0) {
+                          cubit.onSearchTextChanged(p0);
+                        },
+                        hintText: AppStrings.search.tr(),
+                        prefixIcon: const Icon(Icons.search),
+                      )),
+                ),
+                Expanded(
+                    child: ListView.separated(
                   itemBuilder: (context, index) {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -100,17 +104,17 @@ class _ApologyScreenState extends State<ApologyScreen> {
                               backgroundColor: AppColors.primary,
                               child: Center(
                                   child: IconButton(
-                                    onPressed: () {
-                                      //TODO-->
-                                      //cubit.removeSelectedContact(index);
-                                    },
-                                    icon: Icon(
-                                      Icons.close,
-                                      size: 1.5.h,
-                                      color: Colors.white,
-                                    ),
-                                    padding: EdgeInsets.zero,
-                                  )),
+                                onPressed: () {
+                                  //TODO-->
+                                  //cubit.removeSelectedContact(index);
+                                },
+                                icon: Icon(
+                                  Icons.close,
+                                  size: 1.5.h,
+                                  color: Colors.white,
+                                ),
+                                padding: EdgeInsets.zero,
+                              )),
                             ),
                             const SizedBox(
                               width: 10,
@@ -135,7 +139,9 @@ class _ApologyScreenState extends State<ApologyScreen> {
                                 ),
                                 Text(
                                   easy.DateFormat('dd HH:mm MMM').format(
-                                      cubit.invitees.elementAt(index).createdAt),
+                                      DateTime.parse(cubit.invitees
+                                          .elementAt(index)
+                                          .createdAt)),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 11.sp,
@@ -144,7 +150,13 @@ class _ApologyScreenState extends State<ApologyScreen> {
                               ],
                             ),
                             const Spacer(),
-                            MySvgWidget(path: ImageAssests.shareIcon, size: 5.w),
+                            InkWell(
+                                onTap: () {
+                                  shareInvitee(cubit.invitees.elementAt(index),
+                                      widget.homeListItemModel, context);
+                                },
+                                child: MySvgWidget(
+                                    path: ImageAssests.shareIcon, size: 5.w)),
                           ],
                         ),
                       ),
@@ -156,11 +168,11 @@ class _ApologyScreenState extends State<ApologyScreen> {
                     return const Divider();
                   },
                 ))
-          ],
-      ),
-    ),
+              ],
+            ),
+          ),
         );
-  },
-);
+      },
+    );
   }
 }

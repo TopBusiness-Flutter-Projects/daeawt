@@ -13,17 +13,17 @@ import 'base_api_consumer.dart';
 import 'end_points.dart';
 
 class DioConsumer implements BaseApiConsumer {
-  final Dio client;
+  final Dio dioClient;
 
-  DioConsumer({required this.client}) {
-    (client.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
+  DioConsumer({required this.dioClient}) {
+    (dioClient.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
         (HttpClient client) {
       client.badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
       return client;
     };
 
-    client.options
+    dioClient.options
       ..baseUrl = EndPoints.baseUrl
       ..responseType = ResponseType.plain
       ..followRedirects = false
@@ -34,9 +34,9 @@ class DioConsumer implements BaseApiConsumer {
         return status! < StatusCode.internalServerError;
       };
 
-    client.interceptors.add(injector.serviceLocator<AppInterceptors>());
+    dioClient.interceptors.add(injector.serviceLocator<AppInterceptors>());
     if (kDebugMode) {
-      client.interceptors.add(injector.serviceLocator<LogInterceptor>());
+      dioClient.interceptors.add(injector.serviceLocator<LogInterceptor>());
     }
   }
 
@@ -44,7 +44,7 @@ class DioConsumer implements BaseApiConsumer {
   Future get(String path,
       {Map<String, dynamic>? queryParameters, Options? options}) async {
     try {
-      final response = await client.get(
+      final response = await dioClient.get(
         path,
         queryParameters: queryParameters,
         options: options,
@@ -62,7 +62,7 @@ class DioConsumer implements BaseApiConsumer {
       Map<String, dynamic>? queryParameters,
       Options? options}) async {
     try {
-      final response = await client.post(
+      final response = await dioClient.post(
         path,
         data: formDataIsEnabled ? FormData.fromMap(body!) : body,
         queryParameters: queryParameters,
@@ -80,7 +80,7 @@ class DioConsumer implements BaseApiConsumer {
       Map<String, dynamic>? queryParameters,
       Options? options}) async {
     try {
-      final response = await client.put(
+      final response = await dioClient.put(
         path,
         data: body,
         queryParameters: queryParameters,
@@ -107,7 +107,7 @@ class DioConsumer implements BaseApiConsumer {
         switch (error.response?.statusCode) {
           case StatusCode.badRequest:
             throw const BadRequestException();
-          case StatusCode.unautherized:
+          case StatusCode.unauthorized:
             throw const UnauthorizedException();
           case StatusCode.forbidden:
           case StatusCode.notFound:
@@ -131,7 +131,7 @@ class DioConsumer implements BaseApiConsumer {
       Map<String, dynamic>? queryParameters,
       Options? options}) async {
     try {
-      final response = await client.post(
+      final response = await dioClient.post(
         path,
         data: formDataIsEnabled ? FormData.fromMap(body!) : body,
         queryParameters: queryParameters,
@@ -150,7 +150,7 @@ class DioConsumer implements BaseApiConsumer {
       Map<String, dynamic>? queryParameters,
       Options? options}) async {
     try {
-      final response = await client.delete(
+      final response = await dioClient.delete(
         path,
         data: formDataIsEnabled ? FormData.fromMap(body!) : body,
         queryParameters: queryParameters,

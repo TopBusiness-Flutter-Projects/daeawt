@@ -137,6 +137,7 @@ class Preferences {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.remove('user');
   }
+
   Future<bool> clearAllData() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     return preferences.clear();

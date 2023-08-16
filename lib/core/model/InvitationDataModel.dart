@@ -28,6 +28,7 @@ class InvitationModel {
   String title;
   String image;
   String hasQrcode;
+  String share_link;
   dynamic qrcode;
   String sendDate;
   String address;
@@ -61,6 +62,7 @@ class InvitationModel {
     required this.title,
     required this.image,
     required this.hasQrcode,
+    required this.share_link,
     this.qrcode,
     required this.sendDate,
     required this.address,
@@ -95,6 +97,7 @@ class InvitationModel {
     title: json["title"],
     image: json["image"],
     hasQrcode: json["has_qrcode"],
+    share_link: json["share_link"],
     qrcode: json["qrcode"],
     sendDate: json["send_date"],
     address: json["address"],
@@ -128,7 +131,7 @@ class InvitationModel {
     "date": date,
     "title": title,
     "image": image,
-    "has_qrcode": hasQrcode,
+    "share_link": share_link,
     "qrcode": qrcode,
     "send_date": sendDate,
     "address": address,
@@ -167,8 +170,8 @@ class Invitee {
   String phone;
   int inviteesNumber;
   int status;
-  DateTime createdAt;
-  DateTime updatedAt;
+  String createdAt;
+  String updatedAt;
 
   bool isselected=false;
 
@@ -193,8 +196,8 @@ class Invitee {
     phone: json["phone"]??'',
     inviteesNumber: json["invitees_number"]??0,
     status: json["status"]??0,
-    createdAt: DateTime.parse(json["created_at"]),
-    updatedAt: DateTime.parse(json["updated_at"]),
+    createdAt: json["created_at"]??'18-04-2020',
+    updatedAt: json["updated_at"]??'18-04-2020',
     messages:json["messages"]!=null? List<Message>.from(json["messages"].map((x) => Message.fromJson(x))):[],
   );
 
@@ -206,8 +209,8 @@ class Invitee {
     "phone": phone,
     "invitees_number": inviteesNumber,
     "status": status,
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
+    "created_at": createdAt,
+    "updated_at": updatedAt,
     "messages": List<dynamic>.from(messages.map((x) => x.toJson())),
   };
 }
