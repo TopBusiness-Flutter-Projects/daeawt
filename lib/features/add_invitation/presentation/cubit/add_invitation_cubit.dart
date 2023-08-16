@@ -156,6 +156,12 @@ bool isfirst=true;
             (await ContactsService.getContacts(withThumbnails: false)).toList();
 
         for (int i = 0; i < contacts.length; i++) {
+          if(contactModelList.isEmpty){
+            contactModelList.add(ContactModel(
+                name: contacts[i].displayName,
+                phones: contacts[i].phones,
+                isSelected: false));
+          }else{
           if (!contactModelList.contains(contacts[i])) {
             if (contacts[i].phones!.isNotEmpty) {
               contactModelList.add(ContactModel(
@@ -163,7 +169,7 @@ bool isfirst=true;
                   phones: contacts[i].phones,
                   isSelected: false));
             }
-          }
+          }}
         }
         allcontactModelList.addAll(contactModelList);
         if (isfirst&&homeListItemModel != null &&
@@ -196,6 +202,12 @@ bool isfirst=true;
           (await ContactsService.getContacts(withThumbnails: false)).toList();
 
       for (int i = 0; i < contacts.length; i++) {
+        if(contactModelList.isEmpty){
+          contactModelList.add(ContactModel(
+              name: contacts[i].displayName,
+              phones: contacts[i].phones,
+              isSelected: false));
+        }else{
         if (!contactModelList.contains(contacts[i])) {
           if (contacts[i].phones!.isNotEmpty) {
             contactModelList.add(ContactModel(
@@ -203,7 +215,7 @@ bool isfirst=true;
                 phones: contacts[i].phones,
                 isSelected: false));
           }
-        }
+        }}
       }
       allcontactModelList.addAll(contactModelList);
       if (isfirst&&homeListItemModel != null && homeListItemModel!.invitees.isNotEmpty&&model.selectedContactModelList.isEmpty) {
@@ -714,6 +726,12 @@ getTheUserPermissionAndLocation() async {
       (r) {
         for (int i = 0; i < r.data.length; i++) {
           if (r.data[i].phone.isNum) {
+            if(contactModelList.isEmpty){
+              contactModelList.add(ContactModel(
+                  name: r.data[i].name,
+                  phones: [Item(label: 'mobile', value: r.data[i].phone)],
+                  isSelected: false));
+            }else{
             if (!contactModelList.contains(ContactModel(
                 name: r.data[i].name,
                 phones: [Item(label: 'mobile', value: r.data[i].phone)],
@@ -722,7 +740,7 @@ getTheUserPermissionAndLocation() async {
                   name: r.data[i].name,
                   phones: [Item(label: 'mobile', value: r.data[i].phone)],
                   isSelected: false));
-            }
+            }}
           }
         }
       },

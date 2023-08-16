@@ -192,7 +192,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                             child: FutureBuilder<List<Contact>>(
                               future: cubit.getAllContacts(),
                               builder: (context, snapshot) {
-                                if (snapshot.hasData) {
+                                if (snapshot.hasData&&snapshot.data!.isNotEmpty) {
                                   return ListView.builder(
                                     itemCount: snapshot.data?.length,
                                     itemBuilder: (context, i) {
