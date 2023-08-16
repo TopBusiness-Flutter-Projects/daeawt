@@ -10,7 +10,7 @@ void shareInvitee(Invitee invitee, InvitationModel invitationModel,
     BuildContext context) async {
   Preferences.instance.getUserModel().then((value) async => {
         await FlutterShare.share(
-            title: "المكرمة${invitee.name}\n${EasyLocalization.of(context)!
+            title: "المكرم${invitee.name}\n${EasyLocalization.of(context)!
                             .currentLocale!
                             .languageCode ==
                     "ar"
