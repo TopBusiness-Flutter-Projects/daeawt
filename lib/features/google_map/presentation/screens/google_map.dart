@@ -23,7 +23,7 @@ class GoogleMapScreen extends StatefulWidget {
 class _GoogleMapScreenState extends State<GoogleMapScreen> {
   final Mode _mode = Mode.overlay;
   Set<Marker> markersList = {};
-  late GoogleMapController googleMapController;
+   GoogleMapController? googleMapController;
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AddInvitationCubit, AddInvitationState>(
@@ -48,7 +48,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                     target: LatLng(30.0450, 31.2242), zoom: 12),
                 onMapCreated: (controller) {
                   cubit.mapController = controller;
-                 // googleMapController = controller;
+                  googleMapController = controller;
                   // cubit.center = cubit.position.target;
                 },
 
@@ -152,9 +152,10 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
     markersList.add(Marker(markerId: const MarkerId("0"),position: LatLng(lat, lng),infoWindow: InfoWindow(title: detail.result.name)));
 
     setState(() {});
-
-    googleMapController.animateCamera(CameraUpdate.newLatLngZoom(LatLng(lat, lng), 14.0));
-
+if(googleMapController!=null) {
+  googleMapController!.animateCamera(
+      CameraUpdate.newLatLngZoom(LatLng(lat, lng), 14.0));
+}
   }
 
 }
