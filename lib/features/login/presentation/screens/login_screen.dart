@@ -164,7 +164,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   CustomButton(
                     text: AppStrings.login.tr(),
                     onPressed: () {
-                      cubit.login(context);
+                      if(formKey.currentState!.validate()){
+                        cubit.login(context);
+                      }
+
                     },
                   ),
                   const SizedBox(
