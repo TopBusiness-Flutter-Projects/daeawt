@@ -97,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen>
                       ),
                       Text(
                         AppStrings.home,
-                        style: TextStyle(fontSize: 6.sp),
+                        style: TextStyle(fontSize: 6),
                       ).tr()
                     ],
                   ),
@@ -108,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen>
                       const Icon(Icons.notification_important),
                       Text(
                         AppStrings.notifications,
-                        style: TextStyle(fontSize: 6.sp),
+                        style: TextStyle(fontSize: 6),
                       ).tr()
                     ],
                   ),
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen>
                       const Icon(Icons.scanner),
                       Text(
                         AppStrings.scan,
-                        style: TextStyle(fontSize: 6.sp),
+                        style: TextStyle(fontSize: 6),
                       ).tr(),
                     ],
                   ),
@@ -130,7 +130,7 @@ class _HomeScreenState extends State<HomeScreen>
                       const Icon(Icons.person_2_outlined),
                       Text(
                         AppStrings.profile,
-                        style: TextStyle(fontSize: 6.sp),
+                        style: TextStyle(fontSize: 6),
                       ).tr(),
                     ],
                   ),

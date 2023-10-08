@@ -54,7 +54,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                           AppStrings.theMessages,
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 12.sp,
+                              fontSize: 12,
                               color: Colors.white),
                         ).tr(),
                       ),
@@ -77,12 +77,12 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                Text("المكرم :",
                                 style: TextStyle(
                                     fontWeight: FontWeight.w700,
-                                    fontSize: 12.sp
+                                    fontSize: 12
                                 ),
                               ),
                               Text(cubit.invitees.elementAt(index).name , style:  TextStyle(
                                   fontWeight: FontWeight.w400,
-                                  fontSize: 12.sp
+                                  fontSize: 12
                               ),),
                             ],),
 
@@ -92,7 +92,7 @@ class _MessagesScreenState extends State<MessagesScreen> {
                                Flexible(
                                   child: Text("message_content",
                                   style: TextStyle(
-                                    fontSize: 10.sp,
+                                    fontSize: 10,
                                     fontWeight: FontWeight.w400,
                                     color: AppColors.grey2
                                   ),).tr()),

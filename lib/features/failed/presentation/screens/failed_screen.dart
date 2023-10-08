@@ -61,7 +61,7 @@ class _FailedScreenState extends State<FailedScreen> {
                       AppStrings.failed,
                       style: TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 12.sp,
+                          fontSize: 12,
                           color: Colors.white),
                     ).tr(),
                   ),
@@ -96,7 +96,7 @@ class _FailedScreenState extends State<FailedScreen> {
                       child: Row(
                         children: [
                           CircleAvatar(
-                            radius: 3.w,
+                            radius: 3,
                             backgroundColor: AppColors.primary,
                             child: Center(
                                 child: IconButton(
@@ -123,13 +123,13 @@ class _FailedScreenState extends State<FailedScreen> {
                                     "المكرم :",
                                     style: TextStyle(
                                         fontWeight: FontWeight.w700,
-                                        fontSize: 11.sp),
+                                        fontSize: 11),
                                   ),
                                   Text(
                                     cubit.invitees.elementAt(index).name,
                                     style: TextStyle(
                                         fontWeight: FontWeight.w400,
-                                        fontSize: 11.sp),
+                                        fontSize: 11),
                                   ),
                                 ],
                               ),
@@ -138,7 +138,7 @@ class _FailedScreenState extends State<FailedScreen> {
                                   DateTime.parse(cubit.invitees.elementAt(index).createdAt)),
                                 style: TextStyle(
                                     fontWeight: FontWeight.w400,
-                                    fontSize: 11.sp,
+                                    fontSize: 11,
                                     color: AppColors.grey2),
                               ),
                             ],

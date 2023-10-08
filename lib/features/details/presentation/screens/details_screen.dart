@@ -74,7 +74,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                        Text(
                         AppStrings.occasionDetails,
                         style: TextStyle(
-                            fontSize: 11.sp,
+                            fontSize: 11,
                             fontWeight: FontWeight.w700,
                             color: Colors.white),
                       ).tr(),
@@ -112,7 +112,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                             AppStrings.settings,
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
-                                                fontSize: 12.sp,
+                                                fontSize: 12,
                                                 color: Colors.white),
                                           ).tr(),
                                           const Spacer(),
@@ -154,7 +154,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                               AppStrings.occasionModification,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: 12.sp,
+                                                  fontSize: 12,
                                                   color: Colors.white),
                                             ).tr()
                                           ],
@@ -177,7 +177,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                               AppStrings.deleteTheOccasion,
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w700,
-                                                  fontSize: 12.sp,
+                                                  fontSize: 12,
                                                   color: Colors.white),
                                             ).tr()
                                           ],
@@ -355,14 +355,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                             cubit.detailsdata[index],
                                             style:  TextStyle(
                                                 color: AppColors.black1,
-                                                fontSize: 12.sp,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w500),
                                           ),
                                           Text(
                                             cubit.detailsLabels[index],
                                             style:  TextStyle(
                                                 color: AppColors.grey5,
-                                                fontSize: 12.sp,
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w500),
                                           ).tr(),
                                         ],
@@ -397,7 +397,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                  Text(
                                   AppStrings.occasionDetails,
                                   style: TextStyle(
-                                      fontSize: 12.sp, fontWeight: FontWeight.w700),
+                                      fontSize: 12, fontWeight: FontWeight.w700),
                                 ).tr(),
                                 !cubit.isBottomDetailsWidgetVisible
                                     ?  Icon(
@@ -443,7 +443,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       Text(
                                         widget.homeListItemModel.date,
                                         style:  TextStyle(
-                                            fontSize: 12.sp,
+                                            fontSize: 12,
                                             fontWeight: FontWeight.w400),
                                       ),
                                       const SizedBox(
@@ -476,7 +476,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                   ),
                                   Text(widget.homeListItemModel.title,
                                       style:  TextStyle(
-                                          fontSize: 12.sp, fontWeight: FontWeight.w700)),
+                                          fontSize: 12, fontWeight: FontWeight.w700)),
                                   const SizedBox(
                                     height: 5,
                                   ),
@@ -488,7 +488,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       ),
                                       Text(widget.homeListItemModel.address,
                                           style:  TextStyle(
-                                              fontSize: 12.sp,
+                                              fontSize: 12,
                                               fontWeight: FontWeight.w400))
                                     ],
                                   ),
@@ -518,7 +518,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   style:  TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.w700,
-                      fontSize: 11.sp),
+                      fontSize: 11),
                 ),
               ),
             ],
@@ -537,12 +537,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
           buttonPadding: const EdgeInsets.symmetric(horizontal: 2),
           title:  Text(
             AppStrings.areYouSureDeleteOccasion,
-            style: TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w700),
+            style: TextStyle(fontSize: 10, fontWeight: FontWeight.w700),
           ).tr(),
           content: Text(widget.homeListItemModel.title,
               textAlign: TextAlign.center,
               style:
-                   TextStyle(fontSize: 10.sp, fontWeight: FontWeight.w700)),
+                   TextStyle(fontSize: 10, fontWeight: FontWeight.w700)),
           actions: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width * 0.35,

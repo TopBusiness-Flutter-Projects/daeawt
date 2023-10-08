@@ -25,7 +25,7 @@ class HomeAppBar extends StatelessWidget {
                 AppColors.primary,
               ])),
               padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
-              height: 18.h,
+              height: 18,
               width: double.infinity,
               //color: Colors.orange,
             ),
@@ -43,11 +43,11 @@ class HomeAppBar extends StatelessWidget {
                     return  Text("welcome ".tr()+
                         (snapshot.data!=null&&snapshot.data!.data!=null?
                         snapshot.data!.data!.user!.name.toString():""),
-                      style:  TextStyle(fontSize: 12.sp,fontWeight: FontWeight.w700,color: Colors.white),
+                      style:  TextStyle(fontSize: 12,fontWeight: FontWeight.w700,color: Colors.white),
                     );
                   },),
                    Text("welcome_to".tr(),
-                    style: TextStyle(fontSize: 12.sp,fontWeight: FontWeight.w400,color: Colors.white),),
+                    style: TextStyle(fontSize: 12,fontWeight: FontWeight.w400,color: Colors.white),),
 
                 ],
               ),

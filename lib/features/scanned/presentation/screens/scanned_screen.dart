@@ -71,7 +71,7 @@ class _ScannedScreenState extends State<ScannedScreen> {
                    Text(
                     AppStrings.scanned,
                     style: TextStyle(
-                        fontSize: 12.sp,
+                        fontSize: 12,
                         fontWeight: FontWeight.w700,
                         color: Colors.white),
                   ).tr(),
@@ -125,21 +125,21 @@ class _ScannedScreenState extends State<ScannedScreen> {
                            Text("المكرم :",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 11.sp
+                                fontSize: 11
                             ),
                           ),
                           Text(
                             cubit.invitees.elementAt(index).name ,
                             style:  TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontSize: 11.sp
+                              fontSize: 11
                           ),),
                         ],),
                         Text(
                           easy.DateFormat('dd HH:mm MMM').format(  DateTime.parse(cubit.invitees.elementAt(index).createdAt)),
                           style:  TextStyle(
                               fontWeight: FontWeight.w400,
-                              fontSize: 11.sp,
+                              fontSize: 11,
                               color: AppColors.grey2
                           ),),
 

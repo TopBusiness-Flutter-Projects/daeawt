@@ -21,12 +21,12 @@ class ScanListItem extends StatelessWidget {
               //  mainAxisAlignment: MainAxisAlignment.start,
               // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(width: 5,),
+                SizedBox(width: 2,),
                 homeListItemModel.image.isNotEmpty
                     ? ManageNetworkImage(
                   imageUrl: homeListItemModel.image,
 
-                  width: 120,
+                  width: MediaQuery.of(context).size.width/4,
                   height: 120,
                 )
                     : Image.asset(

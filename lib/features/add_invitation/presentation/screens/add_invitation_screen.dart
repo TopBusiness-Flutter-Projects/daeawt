@@ -57,8 +57,8 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               AppColors.primary,
                             ])),
                         padding:  EdgeInsets.symmetric(
-                            vertical: 5.h, horizontal: 10.w),
-                        height: 20.h,
+                            vertical: 5, horizontal: 10),
+                        height: 20,
                         width: double.infinity,
                         child: Center(
                           child: Text(
@@ -67,7 +67,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                 : "update_invitation".tr(),
                             style:  TextStyle(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 12.sp,
+                                fontSize: 12,
                                 color: Colors.white),
                           ).tr(),
                         ),
@@ -121,7 +121,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                           ],
                         ),
                          SizedBox(
-                          height: 3.h,
+                          height: 3,
                         ),
                         //تفاصيل المناسبة
                         Padding(
@@ -138,13 +138,13 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                    Text(
                                     AppStrings.occasionDetails,
                                     style: TextStyle(
-                                        fontSize: 14.sp, fontWeight: FontWeight.w700),
+                                        fontSize: 14, fontWeight: FontWeight.w700),
                                   ).tr(),
                                    Positioned(
                                     bottom: 3,
                                     // alignment: Alignment.bottomCenter,
                                     child: SizedBox(
-                                      width: 10.w,
+                                      width: 10,
                                       child: const Divider(
                                         color: AppColors.cyan,
                                         thickness: 2,
@@ -169,7 +169,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               child:  Text(
                                 AppStrings.enterEventDetails,
                                 style: TextStyle(
-                                    fontSize: 11.sp,
+                                    fontSize: 11,
                                     fontWeight: FontWeight.w400,
                                     color: AppColors.black1),
                               ).tr(),
@@ -186,7 +186,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               child:  Text(
                                 AppStrings.dateOfOccasion,
                                 style: TextStyle(
-                                    fontSize: 11.sp,
+                                    fontSize: 11,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.black1),
                               ).tr(),
@@ -221,7 +221,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                 child: Text(
                                   'enter_date',
                                   style:
-                                      TextStyle(color: AppColors.error, fontSize: 8.sp),
+                                      TextStyle(color: AppColors.error, fontSize: 8),
                                 ).tr()),
                           ),
                         ),
@@ -235,7 +235,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               child:  Text(
                                 AppStrings.occasionName,
                                 style: TextStyle(
-                                    fontSize: 11.sp,
+                                    fontSize: 11,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.black1),
                               ).tr(),
@@ -273,7 +273,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               child:  Text(
                                 AppStrings.invitationImage,
                                 style: TextStyle(
-                                    fontSize: 11.sp,
+                                    fontSize: 11,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.black1),
                               ).tr(),
@@ -304,7 +304,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                   style: TextStyle(
                                       color: AppColors.primary,
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 11.sp),
+                                      fontSize: 11),
                                 ).tr()
                               ],
                             ),
@@ -319,7 +319,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                 child: Text(
                                   'enter_image',
                                   style:
-                                      TextStyle(color: AppColors.error, fontSize: 8.sp),
+                                      TextStyle(color: AppColors.error, fontSize: 8),
                                 ).tr()),
                           ),
                         ),
@@ -327,9 +327,9 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                             ? cubit.model.image.contains("http")
                                 ? SizedBox(
                                     width: MediaQuery.of(context).size.width - 50,
-                                    height: 17.h,
+                                    height: 17,
                                     child: ManageNetworkImage(
-                                        height: 17.h,
+                                        height: 17,
                                         width: MediaQuery.of(context).size.width - 50,
                                         imageUrl: cubit.model.image),
                                   )
@@ -349,7 +349,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                             : const SizedBox(),
                         //first check box list tile
                         SizedBox(
-                          height: 5.h,
+                          height: 5,
                           child: Row(
                             children: [
                               Expanded(
@@ -376,7 +376,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         ),
                         //second check box list tile
                         SizedBox(
-                          height:  5.h,
+                          height:  5,
                           child: Row(
                             children: [
                               Expanded(
@@ -408,7 +408,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                Text(
                                 AppStrings.occasionSite,
                                 style: TextStyle(
-                                    fontSize: 12.sp,
+                                    fontSize: 12,
                                     fontWeight: FontWeight.w700,
                                     color: AppColors.black1),
                               ).tr(),
@@ -441,7 +441,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                     softWrap: true,
                                     overflow: TextOverflow.ellipsis,
                                     style:  TextStyle(
-                                        fontSize: 12.sp, fontWeight: FontWeight.w400)),
+                                        fontSize: 12, fontWeight: FontWeight.w400)),
                               ),
                             ],
                           ),

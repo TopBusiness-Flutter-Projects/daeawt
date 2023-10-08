@@ -54,17 +54,19 @@ Future<void> main() async {
   Bloc.observer = AppBlocObserver();
 
   runApp(
-    Sizer(
-      builder: (context, orientation, deviceType) =>
-       DevicePreview(builder: (context) =>  EasyLocalization(
+  //  Sizer(
+  //    builder: (context, orientation, deviceType) =>
+      // DevicePreview(builder: (context) =>
+           EasyLocalization(
         supportedLocales: [Locale('ar', ''), Locale('en', '')],
         path: 'assets/lang',
         saveLocale: true,
         startLocale: Locale('ar', ''),
         fallbackLocale: Locale('ar', ''),
         child: Phoenix(child: const Elmazoon()),
-      ),),
-    ),
+      ),
+  //),
+   // ),
 
   );
 }

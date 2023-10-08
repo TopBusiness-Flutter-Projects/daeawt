@@ -49,8 +49,8 @@ class HomeTab extends StatelessWidget {
            //balance
            Container(
              margin: EdgeInsets.only(bottom: 10),
-             width: 80.w,
-             height: 12.h,
+             width: 80,
+             height: 12,
              decoration: BoxDecoration(
                  gradient: const LinearGradient(
                      begin: Alignment.centerRight,
@@ -70,7 +70,7 @@ class HomeTab extends StatelessWidget {
                  crossAxisAlignment: CrossAxisAlignment.start,
                  children: [
                    Text("available_balance",style: TextStyle(
-                       fontSize: 16.sp,
+                       fontSize: 16,
                        color: Colors.white,
                        fontWeight: FontWeight.w700
                    ),).tr(),
@@ -78,14 +78,14 @@ class HomeTab extends StatelessWidget {
                      children: [
                        Text("${cubit.userModel?.data?.user?.balance}",
                            style: TextStyle(
-                               fontSize: 16.sp,
+                               fontSize: 16,
                                color: Colors.white,
                                fontWeight: FontWeight.w400
                            )),
                        SizedBox(width: 5,),
                        Text("invitation",
                            style: TextStyle(
-                               fontSize: 16.sp,
+                               fontSize: 16,
                                color: Colors.white,
                                fontWeight: FontWeight.w400
                            )).tr(),
@@ -113,7 +113,7 @@ class HomeTab extends StatelessWidget {
                      Text(
                        AppStrings.allInvitations,
                        style:
-                       TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w700),
+                       TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
                      ).tr(),
                      const Positioned(
                        bottom: 3,

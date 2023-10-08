@@ -18,8 +18,8 @@ class NoData extends StatelessWidget{
             Image.asset(
               ImageAssests.noDataIcon,
               fit: BoxFit.cover,
-              width: 30.w,
-              height: 15.h,
+              width: 30,
+              height: 15,
             ),
             SizedBox(
               height: 10,

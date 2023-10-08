@@ -55,7 +55,7 @@ class _ApologyScreenState extends State<ApologyScreen> {
                           AppColors.primary,
                         ])),
                         padding: EdgeInsets.symmetric(
-                            vertical: 5.h, horizontal: 10.w),
+                            vertical: 5.h, horizontal: 10),
                         height: 20.h,
                         width: double.infinity,
                         child: Center(
@@ -63,7 +63,7 @@ class _ApologyScreenState extends State<ApologyScreen> {
                             AppStrings.apologies,
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 12.sp,
+                                fontSize: 12,
                                 color: Colors.white),
                           ).tr(),
                         ),
@@ -100,7 +100,7 @@ class _ApologyScreenState extends State<ApologyScreen> {
                         child: Row(
                           children: [
                             CircleAvatar(
-                              radius: 3.w,
+                              radius: 3,
                               backgroundColor: AppColors.primary,
                               child: Center(
                                   child: IconButton(
@@ -127,13 +127,13 @@ class _ApologyScreenState extends State<ApologyScreen> {
                                       "المكرم :",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w700,
-                                          fontSize: 11.sp),
+                                          fontSize: 11),
                                     ),
                                     Text(
                                       cubit.invitees.elementAt(index).name,
                                       style: TextStyle(
                                           fontWeight: FontWeight.w400,
-                                          fontSize: 11.sp),
+                                          fontSize: 11),
                                     ),
                                   ],
                                 ),
@@ -144,7 +144,7 @@ class _ApologyScreenState extends State<ApologyScreen> {
                                           .createdAt)),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
-                                      fontSize: 11.sp,
+                                      fontSize: 11,
                                       color: AppColors.grey2),
                                 ),
                               ],

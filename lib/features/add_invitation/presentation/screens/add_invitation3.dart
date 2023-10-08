@@ -50,7 +50,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                               : "update_invitation".tr(),
                           style:  TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 11.sp,
+                              fontSize: 11,
                               color: Colors.white),
                         ).tr(),
                       ),
@@ -119,7 +119,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                  Text(
                                   AppStrings.invited,
                                   style: TextStyle(
-                                      fontSize: 14.sp, fontWeight: FontWeight.w700),
+                                      fontSize: 14, fontWeight: FontWeight.w700),
                                 ).tr(),
                                  Positioned(
                                   bottom: 3,
@@ -148,7 +148,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                             child:  Text(
                               AppStrings.addGuests,
                               style: TextStyle(
-                                  fontSize: 11.sp,
+                                  fontSize: 11,
                                   fontWeight: FontWeight.w400,
                                   color: AppColors.black1),
                             ).tr(),
@@ -165,7 +165,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                             child:  Text(
                               AppStrings.companion,
                               style: TextStyle(
-                                  fontSize: 12.sp,
+                                  fontSize: 12,
                                   fontWeight: FontWeight.w700,
                                   color: AppColors.black1),
                             ).tr(),

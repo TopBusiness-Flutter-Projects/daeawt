@@ -71,7 +71,7 @@ class _AddPersonState extends State<AddPerson> {
                 Text(
                   'update_invitation'.tr(),
                   style:  TextStyle(
-                      fontSize: 12.sp,
+                      fontSize: 12,
                       fontWeight: FontWeight.w700,
                       color: Colors.white),
                 ).tr(),
@@ -120,7 +120,7 @@ class _AddPersonState extends State<AddPerson> {
                              Text(
                               AppStrings.addGuests,
                               style: TextStyle(
-                                  fontSize: 14.sp, fontWeight: FontWeight.w700),
+                                  fontSize: 14, fontWeight: FontWeight.w700),
                             ).tr(),
                              Positioned(
                               bottom: 3,
@@ -179,7 +179,7 @@ class _AddPersonState extends State<AddPerson> {
                         child:  Text(
                           AppStrings.companion,
                           style: TextStyle(
-                              fontSize: 11.sp,
+                              fontSize: 11,
                               fontWeight: FontWeight.w700,
                               color: AppColors.black1),
                         ).tr(),
@@ -234,14 +234,14 @@ class _AddPersonState extends State<AddPerson> {
                                              Text(
                                               "المكرم : ",
                                               style: TextStyle(
-                                                  fontSize: 11.sp,
+                                                  fontSize: 11,
                                                   fontWeight:
                                                   FontWeight.w700),
                                             ),
                                             Text(
                                               cubit.invitees[index].name,
                                               style:  TextStyle(
-                                                  fontSize: 11.sp,
+                                                  fontSize: 11,
                                                   fontWeight:
                                                   FontWeight.w400),
                                             ),
@@ -250,7 +250,7 @@ class _AddPersonState extends State<AddPerson> {
                                         Text(
                                           cubit.invitees[index].phone,
                                           style:  TextStyle(
-                                              fontSize: 11.sp,
+                                              fontSize: 11,
                                               color: AppColors.grey5,
                                               fontWeight: FontWeight.w700),
                                         ),
@@ -282,7 +282,7 @@ class _AddPersonState extends State<AddPerson> {
                                             cubit.invitees[index].inviteesNumber                                          .toString(),
                                             style:  TextStyle(
                                                 color: Colors.white,
-                                                fontSize: 11.sp,
+                                                fontSize: 11,
                                                 fontWeight:
                                                 FontWeight.w700),
                                           ),
