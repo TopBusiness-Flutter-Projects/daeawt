@@ -31,45 +31,48 @@ class ScanListItem extends StatelessWidget {
                 )
                     : Image.asset(
                     ImageAssests.homeItem),
-                 Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        DateFormat('yyyy EEE MMM dd  ').format(DateTime.parse(homeListItemModel.date))
-                     ,
-                        style: const TextStyle(
-                            fontSize: 14, fontWeight: FontWeight.w400),
-                      ),
-                      Text(homeListItemModel.title,
+                 Flexible(
+                   fit: FlexFit.tight,
+                   child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          DateFormat('yyyy EEE MMM dd  ').format(DateTime.parse(homeListItemModel.date))
+                       ,
                           style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w700)),
-                      Text("secret_number".tr(),
-                          style: const TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w700)),
-                      Text(homeListItemModel.password,
-                          style: const TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.grey4)),
+                              fontSize: 14, fontWeight: FontWeight.w400),
+                        ),
+                        Text(homeListItemModel.title,
+                            style: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w700)),
+                        Text("secret_number".tr(),
+                            style: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.w700)),
+                        Text(homeListItemModel.password,
+                            style: const TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.grey4)),
 
-                      const SizedBox(
-                        height: 45,
-                      ),
-                      // Padding(
-                      //   padding: EdgeInsets.symmetric(horizontal: 50.0),
-                      //   child: Container(
-                      //     padding: EdgeInsets.all(10),
-                      //     decoration: BoxDecoration(
-                      //       color: Colors.green,
-                      //       borderRadius: BorderRadius.circular(10)
-                      //     ),
-                      //       child: Text("approved")),
-                      // ),
-                    ],
-                  ),
+                        const SizedBox(
+                          height: 45,
+                        ),
+                        // Padding(
+                        //   padding: EdgeInsets.symmetric(horizontal: 50.0),
+                        //   child: Container(
+                        //     padding: EdgeInsets.all(10),
+                        //     decoration: BoxDecoration(
+                        //       color: Colors.green,
+                        //       borderRadius: BorderRadius.circular(10)
+                        //     ),
+                        //       child: Text("approved")),
+                        // ),
+                      ],
+                    ),
                 ),
+                 ),
               ],
             ),
           ),

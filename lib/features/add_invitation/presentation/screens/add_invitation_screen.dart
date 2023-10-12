@@ -51,6 +51,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                   child: Stack(
                     children: [
                       Container(
+                        height:200,
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(colors: [
                               AppColors.orange2,
@@ -58,7 +59,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                             ])),
                         padding:  EdgeInsets.symmetric(
                             vertical: 5, horizontal: 10),
-                        height: 20,
+                       // height: 20,
                         width: double.infinity,
                         child: Center(
                           child: Text(
@@ -73,12 +74,29 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         ),
                         //color: Colors.orange,
                       ),
-                      const CustomBackArrow(),
+                      Positioned(
+                          left: 20,
+                          top: 60,
+                          child: Transform.rotate(
+                            angle: languageCode == "ar" ? 0 : (3.14),
+                            child: IconButton(
+                                onPressed: () {
+                                  Navigator.pop(context);
+                                },
+                                icon:  Icon(
+                                  Icons.arrow_forward,
+                                  color: Colors.white,
+                                  size:24,
+                                )),
+                          ))
+                      // const CustomBackArrow(),
                     ],
                   ),
                 ),
-                Expanded(
+                Flexible(
                   child: SingleChildScrollView(
+
+                    physics: const BouncingScrollPhysics(),
                     child: Column(
                       children: [
 

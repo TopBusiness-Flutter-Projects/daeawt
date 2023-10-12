@@ -13,19 +13,21 @@ class HomeAppBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      // height: 100,
       width: double.infinity,
       child: ClipPath(
         clipper: SmallBottomCurveClipper(),
         child: Stack(
           children: [
             Container(
+
               decoration: const BoxDecoration(
                   gradient: LinearGradient(colors: [
                 AppColors.orange2,
                 AppColors.primary,
               ])),
               padding: const EdgeInsets.symmetric(vertical: 60, horizontal: 40),
-              height: 18,
+              height: MediaQuery.of(context).size.height/5,
               width: double.infinity,
               //color: Colors.orange,
             ),
