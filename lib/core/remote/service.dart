@@ -2,6 +2,7 @@ import 'package:daeawt/features/add_invitation/model/add_invitation_model.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 import '../../features/contact_us/presentation/contact_model.dart';
 import '../../features/login/model/login_model.dart';
@@ -52,6 +53,25 @@ class ServiceApi {
           "email":userCredential.user?.email,
           "name":userCredential.user?.displayName,
           "google_id":userCredential.user?.uid,
+
+
+        },
+      );
+
+      return Right(UserModel.fromJson(response));
+    } on ServerException {
+      return Left(ServerFailure());
+    }
+  }
+  Future<Either<Failure, UserModel>> registerWithApple(AuthorizationCredentialAppleID userCredential) async {
+    try {
+      final response = await dio.post(
+        EndPoints.registerWithGoogleUrl,
+        formDataIsEnabled: true,
+        body: {
+          "email":userCredential.email,
+          "name":userCredential.givenName,
+          "google_id":userCredential.userIdentifier,
 
 
         },

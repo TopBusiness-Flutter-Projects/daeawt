@@ -31,14 +31,13 @@
 	<array>
 		<dict>
 			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleURLName</key>
 			<string>google</string>
-			<key>CFBundleURLSchemes</key>
+			<key>CFBundleURLName</key>
 			<array>
 				<string>com.googleusercontent.apps.187798023388-cua5icrubet7f75jj4vfe15ppfvj5pbg</string>
 			</array>
 		</dict>
+		<dict/>
 		<dict/>
 	</array>
 	<key>CFBundleVersion</key>

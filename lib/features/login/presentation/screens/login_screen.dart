@@ -3,6 +3,7 @@ import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/assets_manager.dart';
@@ -22,6 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   void initState() {
     super.initState();
+
     //formKey.currentState!.validate();
   }
 
@@ -259,6 +261,28 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                   ),
+                  const SizedBox(
+                    height: 15,
+                  ),
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/3),
+              child: SignInWithAppleButton(
+
+                onPressed: () async {
+                  final credential = await SignInWithApple.getAppleIDCredential(
+                    scopes: [
+                      AppleIDAuthorizationScopes.email,
+                      AppleIDAuthorizationScopes.fullName,
+                    ],
+                  );
+
+                 cubit.saveUserDataByAppleSignIn(context,credential);
+
+                  // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
+                  // after they have been validated with Apple (see `Integration` section for more information on how to do this)
+                },
+              ),
+            ),
                   const SizedBox(
                     height: 35,
                   ),

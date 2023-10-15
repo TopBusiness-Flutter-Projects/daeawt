@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:meta/meta.dart';
+import 'package:sign_in_with_apple_platform_interface/authorization_credential.dart';
 
 import '../../../config/routes/app_routes.dart';
 import '../../../core/preferences/preferences.dart';
@@ -14,7 +15,8 @@ import '../../../core/remote/service.dart';
 import '../../../core/utils/appwidget.dart';
 import '../../../core/utils/toast_message_method.dart';
 import '../model/login_model.dart';
-
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
@@ -75,6 +77,36 @@ class LoginCubit extends Cubit<LoginState> {
     );
 
   }
+  saveUserDataByAppleSignIn(BuildContext context, AuthorizationCredentialAppleID credential) async {
+    AppWidget.createProgressDialog(context, "Loading");
+
+    final response = await api.registerWithApple(credential);
+
+    response.fold(
+          (failure) => {Navigator.pop(context), emit(LoginWithGoogleLoading())},
+          (loginModel) {
+        print("------------------ ${loginModel.code}");
+        if (loginModel.code == 409 || loginModel.code == 410) {
+          Navigator.pop(context);
+          toastMessage("exists_user".tr(), context);
+          // errorGetBar(translateText(AppStrings.noEmailError, context));
+          emit(LoginWithGoogleFailure());
+        } else if (loginModel.code == 200) {
+          emit(LoginWithGoogleSuccess());
+          Navigator.pop(context);
+          Navigator.pushReplacementNamed(context, Routes.homeRoute);
+          Preferences.instance.setUser(loginModel).then((value) {
+            context.read<HomeCubit>().getUserData();
+            context.read<ProfileCubit>().getUserData();
+            Navigator.pushNamedAndRemoveUntil(
+                context, Routes.homeRoute, (route) => false);
+            // emit(OnLoginSuccess(response));
+          });
+        }
+      },
+    );
+
+  }
 
   void login(BuildContext context) async {
     AppWidget.createProgressDialog(context, 'wait'.tr());
@@ -100,6 +132,8 @@ class LoginCubit extends Cubit<LoginState> {
       },
     );
   }
+
+
 
   void checkValidLoginData() {
     if (loginModel.isDataValid()) {
