@@ -37,8 +37,8 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                             AppColors.primary,
                           ])),
                       padding:  EdgeInsets.symmetric(
-                          vertical: 5.h, horizontal: 10.w),
-                      height: 20.h,
+                          vertical: .05*MediaQuery.of(context).size.height, horizontal: .1*MediaQuery.of(context).size.width),
+                      height: .2*MediaQuery.of(context).size.height,
                       width: double.infinity,
                       child: Center(
                         child:  Text(
@@ -46,7 +46,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                           AppStrings.createNewInvitation:"update_invitation".tr(),
                           style:  TextStyle(
                               fontWeight: FontWeight.w700,
-                              fontSize: 11.sp,
+                              fontSize: MediaQuery.of(context).size.width/24,
                               color: Colors.white),
                         ).tr(),
                       ),
@@ -91,7 +91,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 4.h,
+                height: .04*MediaQuery.of(context).size.height,
               ),
               //ارسال
               Padding(
@@ -108,13 +108,13 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                          Text(
                           AppStrings.send,
                           style: TextStyle(
-                              fontSize:  14.sp, fontWeight: FontWeight.w700),
+                              fontSize:  MediaQuery.of(context).size.width/26, fontWeight: FontWeight.w700),
                         ).tr(),
                          Positioned(
                           bottom: 3,
                           // alignment: Alignment.bottomCenter,
                           child: SizedBox(
-                            width: 10.w,
+                            width: .1*MediaQuery.of(context).size.width,
                             child: const Divider(
                               color: AppColors.cyan,
                               thickness: 2,
@@ -136,7 +136,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                     child:  Text(
                       AppStrings.sendInvitations,
                       style: TextStyle(
-                          fontSize: 11.sp,
+                          fontSize: MediaQuery.of(context).size.width/24,
                           fontWeight: FontWeight.w400,
                           color: AppColors.black1),
                     ).tr(),
@@ -150,7 +150,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
                 child: SizedBox(
-                  height: 4.h,
+                  height: .04*MediaQuery.of(context).size.height,
                   child: Row(
                     children: [
                       ElevatedButton(
@@ -186,24 +186,26 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                                     color:Colors.white,
                                     height:MediaQuery.of(context).size.height*0.3 ,
                                     child: Padding(
-                                      padding:  EdgeInsets.all(7.w),
+                                      padding:  EdgeInsets.all(
+                                          .07*MediaQuery.of(context).size.width
+                                      ),
                                       child: Column(
                                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                         children: [
                                            Text("wanna_send_invitations",style: TextStyle(
-                                            fontSize: 14.sp,
+                                            fontSize: MediaQuery.of(context).size.width/26,
                                             fontWeight: FontWeight.w700,
                                             color: AppColors.primary
                                           ),).tr(),
                                           Text(
                                             "${cubit.TotalInvitedPeople}",
                                               style:  TextStyle(
-                                                fontSize: 14.sp,
+                                                fontSize: MediaQuery.of(context).size.width/26,
                                                 fontWeight: FontWeight.w700,
                                               ),
                                             ),
                                           SizedBox(
-                                            height: 5.h,
+                                            height: .05*MediaQuery.of(context).size.height,
                                             width: MediaQuery.of(context).size.width*0.7,
                                             child: ElevatedButton(
                                               style: ElevatedButton.styleFrom(
@@ -226,7 +228,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Positioned(
-                                    top: 0.6.h,
+                                    top: 0.06*MediaQuery.of(context).size.height,
                                     left: 0,
                                     child: GestureDetector(
                                       onTap: () {
@@ -268,14 +270,14 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                       Row(children: [
                         Text("${index+1} - المكرم :",style:  TextStyle(
                           fontWeight: FontWeight.w700,
-                          fontSize: 11.sp
+                          fontSize: MediaQuery.of(context).size.width/24
                         ),),
 
                         Expanded(
                           child: Text(" ${cubit.model.selectedContactModelList[index].name}",
                             style:  TextStyle(
                           fontWeight: FontWeight.w400,
-                              fontSize: 11.sp
+                              fontSize: MediaQuery.of(context).size.width/24
                           ),
                           overflow: TextOverflow.clip,
                           softWrap: true,
@@ -291,7 +293,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
               }, itemCount:cubit.model.selectedContactModelList.length),
               ),
               SizedBox(
-                height: 2.h,
+                height: .02*MediaQuery.of(context).size.height,
               )
             ],
           ),

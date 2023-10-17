@@ -47,8 +47,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         AppColors.primary,
                       ])),
                   padding:  EdgeInsets.symmetric(
-                      vertical: 5.h, horizontal: 10.w),
-                  height: 20.h,
+                      vertical: .05*MediaQuery.of(context).size.height, horizontal: .1*MediaQuery.of(context).size.width),
+                  height:.2*MediaQuery.of(context).size.height,
                   width: double.infinity,
                   child: Row(
                     textDirection: TextDirection.ltr,
@@ -349,7 +349,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         children: [
                                           MySvgWidget(
                                               path: cubit.detailsIconsList[index],
-                                              size: 10.w),
+                                              size: .1*MediaQuery.of(context).size.width),
 
                                           Text(
                                             cubit.detailsdata[index],
@@ -382,7 +382,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                         //تفاصيل المناسبة
                         Container(
-                          margin:  EdgeInsets.only(bottom: 5.h, top: 10),
+                          margin:  EdgeInsets.only(bottom: .05*MediaQuery.of(context).size.height, top: 10),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -403,12 +403,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     ?  Icon(
                                         Icons.arrow_drop_down_sharp,
                                         color: AppColors.black1,
-                                        size: 4.h,
+                                        size: .04*MediaQuery.of(context).size.height,
                                       )
                                     :  Icon(
                                         Icons.arrow_drop_up_sharp,
                                         color: AppColors.black1,
-                                        size: 4.h,
+                                        size: .04*MediaQuery.of(context).size.height,
                                       ),
                               ],
                             ),
@@ -493,7 +493,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     ],
                                   ),
                                    SizedBox(
-                                    height: 3.h,
+                                    height: .03*MediaQuery.of(context).size.height,
                                   )
                                 ],
                               ),

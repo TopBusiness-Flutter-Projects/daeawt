@@ -33,6 +33,8 @@ class ImageAssests{
   static const String theMessageIcon = "$iconsPath/the_message.png";
   static const String uploadImageIcon = "$iconsPath/upload_image.png";
   static const String noDataIcon = "$iconsPath/no_data_icon.png";
+  static const String loadIcon = "$iconsPath/load.png";
+
   //*******************************************************************svg
   static const String messagesIcon = "$iconsPath/messages_icon.svg";
   static const String invitedIcon = "$iconsPath/invited_icon.svg";

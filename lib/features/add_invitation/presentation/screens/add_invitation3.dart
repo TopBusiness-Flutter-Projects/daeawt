@@ -40,8 +40,8 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                             AppColors.primary,
                           ])),
                       padding:  EdgeInsets.symmetric(
-                          vertical: 5.h, horizontal: 10.w),
-                      height: 20.h,
+                          vertical: .05*MediaQuery.of(context).size.height, horizontal: .1*MediaQuery.of(context).size.width),
+                      height: .2*MediaQuery.of(context).size.height,
                       width: double.infinity,
                       child: Center(
                         child: Text(
@@ -102,7 +102,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                         ],
                       ),
                        SizedBox(
-                        height: 4.h,
+                        height: .04*MediaQuery.of(context).size.height,
                       ),
                       //المدعوين
                       Padding(
@@ -125,7 +125,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                   bottom: 3,
                                   // alignment: Alignment.bottomCenter,
                                   child: SizedBox(
-                                    width: 10.w,
+                                    width: .1*MediaQuery.of(context).size.width,
                                     child: const Divider(
                                       color: AppColors.cyan,
                                       thickness: 2,
@@ -179,7 +179,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                         child: ListView.separated(
                           shrinkWrap: true,
                           separatorBuilder: (context, index) =>  SizedBox(
-                            height: 2.h,
+                            height: .02*MediaQuery.of(context).size.height,
                           ),
                           itemCount: cubit.model.selectedContactModelList.length,
                           itemBuilder: (context, index) {
@@ -218,14 +218,14 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                        Text(
                                                         "المكرم : ",
                                                         style: TextStyle(
-                                                            fontSize: 11.sp,
+                                                            fontSize: MediaQuery.of(context).size.width/24,
                                                             fontWeight:
                                                                 FontWeight.w700),
                                                       ),
                                                       Text(
                                                         "${cubit.model.selectedContactModelList[index].name?.split(" ")[0]}",
                                                         style:  TextStyle(
-                                                            fontSize: 11.sp,
+                                                            fontSize: MediaQuery.of(context).size.width/24,
                                                             fontWeight:
                                                                 FontWeight.w400),
                                                       ),
@@ -234,7 +234,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                   Text(
                                                     "${cubit.model.selectedContactModelList[index].phones?[0].value}",
                                                     style:  TextStyle(
-                                                        fontSize: 11.sp,
+                                                        fontSize: MediaQuery.of(context).size.width/24,
                                                         color: AppColors.grey5,
                                                         fontWeight: FontWeight.w700),
                                                   ),
@@ -243,7 +243,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                               //+ 0 -
                                               Container(
                                                // width: MediaQuery.of(context).size.width *0.29,
-                                                height: 3.h,
+                                                height: .03*MediaQuery.of(context).size.height,
                                                 decoration: BoxDecoration(
                                                     color: AppColors.primary,
                                                     borderRadius:
@@ -267,7 +267,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                       },
                                                       icon:  Icon(
                                                         Icons.add,
-                                                        size: 2.h,
+                                                        size: .02*MediaQuery.of(context).size.height,
                                                         color: Colors.white,
                                                       ),
                                                       padding: EdgeInsets.zero,
@@ -280,7 +280,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                           .toString(),
                                                       style:  TextStyle(
                                                           color: Colors.white,
-                                                          fontSize: 11.sp,
+                                                          fontSize: MediaQuery.of(context).size.width/24,
                                                           fontWeight:
                                                               FontWeight.w700),
                                                     ),
@@ -294,7 +294,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                         },
                                                         icon:  Icon(
                                                           Icons.remove,
-                                                          size: 2.h,
+                                                          size: .02*MediaQuery.of(context).size.height,
                                                           color: Colors.white,
                                                         ),
                                                         padding: EdgeInsets.zero),
@@ -309,7 +309,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                           right: 0,
                                           top: 0,
                                           child: CircleAvatar(
-                                            radius: 3.w,
+                                            radius: .03*MediaQuery.of(context).size.width,
                                             backgroundColor: AppColors.primary,
                                             child: Center(
                                                 child: IconButton(
@@ -319,7 +319,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                   icon:  Icon(
                                                 Icons.close,
                                                 color: Colors.white,
-                                                    size: 1.5.h,
+                                                    size: .015*MediaQuery.of(context).size.height,
                                               ),
                                               padding: EdgeInsets.zero,
                                             )),
@@ -331,7 +331,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                         ),
                       ),
                        SizedBox(
-                        height: 10.h,
+                        height: .1*MediaQuery.of(context).size.height,
                       ),
                       //last 2 buttons
                       Padding(
@@ -357,7 +357,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                               ),
                             ),
                              SizedBox(
-                              width: 2.w,
+                              width: .02*MediaQuery.of(context).size.width,
                             ),
                             Visibility(
                               visible: cubit.homeListItemModel == null ? true : false,
@@ -380,7 +380,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                         ),
                       ),
                        SizedBox(
-                        height: 10.h,
+                        height: .1*MediaQuery.of(context).size.height,
                       ),
                     ],
                   ),

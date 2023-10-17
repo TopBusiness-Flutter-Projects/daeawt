@@ -497,10 +497,13 @@ getTheUserPermissionAndLocation() async {
   // }
 
   moveCamera(LatLng target) {
+    if(mapController!=null){
+
+
     mapController!.moveCamera(CameraUpdate.newCameraPosition(
         CameraPosition(target: target, zoom: 14)));
     emit(CameraMoveState());
-  }
+  }}
 
   selectLocation(LatLng newLocation) {
     selectedLocation = newLocation;

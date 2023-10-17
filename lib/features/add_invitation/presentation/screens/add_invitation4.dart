@@ -44,7 +44,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                       ])),
                       padding:  EdgeInsets.symmetric(
                           vertical: 5, horizontal: 10),
-                      height: 20,
+                      height: .2*MediaQuery.of(context).size.height,
                       width: double.infinity,
                       child: Center(
                         child: Text(
@@ -162,7 +162,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                       ),
                       //language
                       Container(
-                        height: 7,
+                        height: .07*MediaQuery.of(context).size.height,
                         width: MediaQuery.of(context).size.width * 0.85,
                         decoration: BoxDecoration(
                             color: AppColors.grey6,
@@ -232,7 +232,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                       cubit.invitationImage == null
                                           ? Padding(
                                               padding:
-                                                  const EdgeInsets.all(8.0),
+                                                  const EdgeInsets.all(0.0),
                                               child: ClipRRect(
                                                   borderRadius:
                                                       BorderRadius.circular(10),
@@ -243,7 +243,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                             )
                                           : Padding(
                                               padding:
-                                                  const EdgeInsets.all(8.0),
+                                                  const EdgeInsets.all(0.0),
                                               child: ClipRRect(
                                                 borderRadius:
                                                     BorderRadius.circular(10),
@@ -312,7 +312,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                     Expanded(
                                         child: CustomButton(
                                             onPressed: () {},
-                                            height: 6,
+                                            height: .06*MediaQuery.of(context).size.height,
                                             text: cubit.selectedLanguage ==
                                                     "العربية"
                                                 ? "تأكيد"
@@ -324,7 +324,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                     Expanded(
                                       child: CustomButton(
                                         onPressed: () {},
-                                        height: 6,
+                                        height: .06*MediaQuery.of(context).size.height,
                                         text:
                                             cubit.selectedLanguage == "العربية"
                                                 ? "اعتذر"
@@ -337,7 +337,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                               ),
                               //invitation location
                               Container(
-                                height:6,
+                                height: .06*MediaQuery.of(context).size.height,
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
                                     color: Colors.white,

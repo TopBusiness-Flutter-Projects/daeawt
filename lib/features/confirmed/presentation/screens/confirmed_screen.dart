@@ -116,7 +116,7 @@ void initState() {
                               },
                               icon:  Icon(
                                 Icons.close,
-                                size:1.5.h,
+                                size:.015*MediaQuery.of(context).size.height,
                                 color: Colors.white,
                               ),
                               padding: EdgeInsets.zero,
@@ -140,7 +140,7 @@ void initState() {
                               ),),
                           ],),
                           Text(
-                            easy.DateFormat('dd HH:mm MMM').format(  DateTime.parse(cubit.invitees.elementAt(index).createdAt)),
+                            easy.DateFormat('dd HH:mm MMM').format(  easy.DateFormat('dd-MM-yyyy').parse(cubit.invitees.elementAt(index).createdAt)),
                             style:  TextStyle(
                                 fontWeight: FontWeight.w400,
                                 fontSize: 11,
@@ -155,7 +155,7 @@ void initState() {
                                 widget.homeListItemModel, context);
                           },
                           child: MySvgWidget(
-                              path: ImageAssests.shareIcon, size: 5.w))
+                              path: ImageAssests.shareIcon, size: .05*MediaQuery.of(context).size.width))
                     ],
                   ),
                 );

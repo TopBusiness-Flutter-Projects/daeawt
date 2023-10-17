@@ -53,8 +53,8 @@ class _NotSentScreenState extends State<NotSentScreen> {
                           AppColors.primary,
                         ])),
                     padding:
-                    EdgeInsets.symmetric(vertical: 5.h, horizontal: 10.w),
-                    height: 20.h,
+                    EdgeInsets.symmetric(vertical: .05*MediaQuery.of(context).size.height, horizontal: .1*MediaQuery.of(context).size.width),
+                    height: .2*MediaQuery.of(context).size.height,
                     width: double.infinity,
                     child: Center(
                       child: Text(
@@ -77,7 +77,7 @@ class _NotSentScreenState extends State<NotSentScreen> {
               padding: const EdgeInsets.all(18.0),
               child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.8,
-                  height: 6.h,
+                  height: .06*MediaQuery.of(context).size.height,
                   child: CustomTextFormField(
                     onChanged: (p0) {
                       cubit.onSearchTextChanged(p0);
@@ -96,7 +96,7 @@ class _NotSentScreenState extends State<NotSentScreen> {
                         child: Row(
                           children: [
                             CircleAvatar(
-                              radius: 3.w,
+                              radius: .03*MediaQuery.of(context).size.width,
                               backgroundColor: AppColors.primary,
                               child: Center(
                                   child: IconButton(
@@ -106,7 +106,7 @@ class _NotSentScreenState extends State<NotSentScreen> {
                                     },
                                     icon: Icon(
                                       Icons.close,
-                                      size: 1.5.h,
+                                      size: .015*MediaQuery.of(context).size.height,
                                       color: Colors.white,
                                     ),
                                     padding: EdgeInsets.zero,
@@ -135,7 +135,7 @@ class _NotSentScreenState extends State<NotSentScreen> {
                                 ),
                                 Text(
                                   easy.DateFormat('dd HH:mm MMM').format(
-                                      DateTime.parse(cubit.invitees.elementAt(index).createdAt)),
+                                       easy.DateFormat('dd-MM-yyyy').parse(cubit.invitees.elementAt(index).createdAt)),
                                   style: TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 11,
@@ -150,7 +150,7 @@ class _NotSentScreenState extends State<NotSentScreen> {
                                       widget.homeListItemModel, context);
                                 },
                                 child: MySvgWidget(
-                                    path: ImageAssests.shareIcon, size: 5.w))                          ],
+                                    path: ImageAssests.shareIcon, size: .05*MediaQuery.of(context).size.width))                          ],
                         ),
                       ),
                     );

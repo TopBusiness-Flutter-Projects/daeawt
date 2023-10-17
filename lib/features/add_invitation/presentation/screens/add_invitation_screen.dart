@@ -51,7 +51,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                   child: Stack(
                     children: [
                       Container(
-                        height:200,
+                        height: .2*MediaQuery.of(context).size.height,
                         decoration: const BoxDecoration(
                             gradient: LinearGradient(colors: [
                               AppColors.orange2,
@@ -353,11 +353,11 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                   )
                                 : SizedBox(
                                     width: MediaQuery.of(context).size.width - 50,
-                                 //   height: 20.h,
+                                 //   height: .2*MediaQuery.of(context).size.height,
                                     child: AspectRatio(
                                       aspectRatio: 3/2,
                                       child: Image.file(
-                                         // height: 20.h,
+                                         // height: .2*MediaQuery.of(context).size.height,
                                           width: MediaQuery.of(context).size.width - 50,
                                           fit: BoxFit.cover,
                                          // alignment: Alignment.bottomCenter,
@@ -367,7 +367,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                             : const SizedBox(),
                         //first check box list tile
                         SizedBox(
-                          height: 5,
+                          height:  .05*MediaQuery.of(context).size.height,
                           child: Row(
                             children: [
                               Expanded(
@@ -394,7 +394,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                         ),
                         //second check box list tile
                         SizedBox(
-                          height:  5,
+                          height:  .05*MediaQuery.of(context).size.height,
                           child: Row(
                             children: [
                               Expanded(
@@ -545,6 +545,9 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
         builder: (context, child) {
           return Theme(
             data: Theme.of(context).copyWith(
+              textTheme: TextTheme(
+                titleLarge: TextStyle(fontSize: 14)
+              ),
                 colorScheme: const ColorScheme.light(
                     primary: AppColors.primary,
                     onPrimary: AppColors.white,

@@ -14,6 +14,7 @@ import '../../../../core/widgets/small_bottom_curve.dart';
 import '../../../home/presentation/widgets/number_widget.dart';
 import 'package:contacts_service/contacts_service.dart';
 import '../cubit/add_invitation_cubit.dart';
+import 'package:daeawt/core/utils/assets_manager.dart';
 
 class AddInvitationStepTwoScreen extends StatelessWidget {
   const AddInvitationStepTwoScreen({Key? key}) : super(key: key);
@@ -46,7 +47,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                             ])),
                         padding:  EdgeInsets.symmetric(
                             vertical: 5, horizontal: 10),
-                        height: 20,
+                        height: .2*MediaQuery.of(context).size.height,
                         width: double.infinity,
                         child: Center(
                           child:  Text(
@@ -207,7 +208,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                                 fontWeight: FontWeight.w700),
                                           ),
                                           SizedBox(
-                                            width: 33,
+                                            width: .5*MediaQuery.of(context).size.width,
                                             child: Column(
                                               mainAxisAlignment:
                                                   MainAxisAlignment.center,
@@ -307,7 +308,18 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                     },
                                   );
                                 } else if (snapshot.hasError) {
-                                  return const Text("error_getting_contacts").tr();
+                                  return InkWell(
+                                    onTap: () {
+                                      cubit.getAllContacts();
+                                    },
+                                    child: Column(
+                                      children: [
+                                        Image.asset(ImageAssests.loadIcon,width: 20,
+                                          height: 20,),
+                                        const Text("error_getting_contacts").tr(),
+                                      ],
+                                    ),
+                                  );
                                 } else {
                                   return const Center(
                                     child: CircularProgressIndicator(),

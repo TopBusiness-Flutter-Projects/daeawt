@@ -32,7 +32,7 @@ class HomeAppBar extends StatelessWidget {
               //color: Colors.orange,
             ),
               Positioned(
-              top: 50,
+              top: 30,
               right: 15,
               child: Column(
                 children: [

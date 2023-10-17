@@ -20,7 +20,7 @@ class CustomBackArrow extends StatelessWidget {
               icon:  Icon(
                 Icons.arrow_forward,
                 color: Colors.white,
-                size: 4.h,
+                size:.04*MediaQuery.of(context).size.height,
               )),
         ));
   }

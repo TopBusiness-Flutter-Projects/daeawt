@@ -46,8 +46,8 @@ class _MessagesScreenState extends State<MessagesScreen> {
                             AppColors.primary,
                           ])),
                       padding:  EdgeInsets.symmetric(
-                          vertical: 5.h, horizontal: 10.w),
-                      height: 20.h,
+                          vertical:.05*MediaQuery.of(context).size.height, horizontal: .1*MediaQuery.of(context).size.width),
+                      height: .2*MediaQuery.of(context).size.height,
                       width: double.infinity,
                       child: Center(
                         child:  Text(

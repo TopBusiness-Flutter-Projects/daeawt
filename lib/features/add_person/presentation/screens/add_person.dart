@@ -44,8 +44,8 @@ class _AddPersonState extends State<AddPerson> {
                   AppColors.primary,
                 ])),
             padding:  EdgeInsets.symmetric(
-                vertical: 5.h, horizontal: 10.w),
-            height: 20.h,
+                vertical: .05*MediaQuery.of(context).size.height, horizontal: .1*MediaQuery.of(context).size.width),
+            height: .2*MediaQuery.of(context).size.height,
             width: double.infinity,
             child: Row(
               textDirection: TextDirection.ltr,
@@ -91,7 +91,7 @@ class _AddPersonState extends State<AddPerson> {
                       Navigator.pushNamed(context, Routes.addNewContactsRoute);
                     },
                     icon:  Icon(
-                      Icons.add,color: Colors.white,size: 8.w,
+                      Icons.add,color: Colors.white,size: .08*MediaQuery.of(context).size.width,
                     )),
 
               ],
@@ -126,7 +126,7 @@ class _AddPersonState extends State<AddPerson> {
                               bottom: 3,
                               // alignment: Alignment.bottomCenter,
                               child: SizedBox(
-                                width: 10.w,
+                                width: .1*MediaQuery.of(context).size.width,
                                 child: const Divider(
                                   color: AppColors.cyan,
                                   thickness: 2,
@@ -175,7 +175,7 @@ class _AddPersonState extends State<AddPerson> {
                     children: [
                       Padding(
                         padding:  EdgeInsets.only(
-                            right: 6.w,left: 6.w,top: 1.h ),
+                            right: .06*MediaQuery.of(context).size.width,left: .06*MediaQuery.of(context).size.width,top: .01*MediaQuery.of(context).size.height ),
                         child:  Text(
                           AppStrings.companion,
                           style: TextStyle(
@@ -258,7 +258,7 @@ class _AddPersonState extends State<AddPerson> {
                                     ),
                                     Container(
                                      // width: MediaQuery.of(context).size.width *0.27,
-                                      height: 3.h,
+                                      height: .03*MediaQuery.of(context).size.height,
                                       decoration: BoxDecoration(
                                           color: AppColors.primary,
                                           borderRadius:
@@ -273,7 +273,7 @@ class _AddPersonState extends State<AddPerson> {
                                             },
                                             icon:  Icon(
                                               Icons.add,
-                                              size: 2.h,
+                                              size: .02*MediaQuery.of(context).size.height,
                                               color: Colors.white,
                                             ),
                                             padding: EdgeInsets.zero,
@@ -292,7 +292,7 @@ class _AddPersonState extends State<AddPerson> {
                                               },
                                               icon:  Icon(
                                                 Icons.remove,
-                                                size: 2.h,
+                                                size: .02*MediaQuery.of(context).size.height,
                                                 color: Colors.white,
                                               ),
                                               padding: EdgeInsets.zero),
@@ -307,7 +307,7 @@ class _AddPersonState extends State<AddPerson> {
                                 right: 0,
                                 top: 0,
                                 child: CircleAvatar(
-                                  radius: 3.w,
+                                  radius: .03*MediaQuery.of(context).size.width,
                                   backgroundColor: AppColors.primary,
                                   child: Center(
                                       child: IconButton(
@@ -317,7 +317,7 @@ class _AddPersonState extends State<AddPerson> {
                                         },
                                         icon:  Icon(
                                           Icons.close,
-                                          size: 1.5.h,
+                                          size: .015*MediaQuery.of(context).size.height,
                                           color: Colors.white,
                                         ),
                                         padding: EdgeInsets.zero,
@@ -330,7 +330,7 @@ class _AddPersonState extends State<AddPerson> {
                     ),
                   ),
                    SizedBox(
-                    height: 3.h,
+                    height: .03*MediaQuery.of(context).size.height,
                   ),
                   //last  button
                   Padding(
