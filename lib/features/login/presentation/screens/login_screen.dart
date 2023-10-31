@@ -265,7 +265,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 15,
                   ),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/3),
+              padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/4.5),
               child: SignInWithAppleButton(
 
                 onPressed: () async {
