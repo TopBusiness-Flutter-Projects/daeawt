@@ -2,7 +2,6 @@ import 'package:daeawt/core/utils/assets_manager.dart';
 import 'package:daeawt/core/widgets/my_svg_widget.dart';
 import 'package:daeawt/core/widgets/show_loading_indicator.dart';
 import 'package:daeawt/features/add_invitation/presentation/cubit/add_invitation_cubit.dart';
-import 'package:sizer/sizer.dart';
 import '../../../../core/model/InvitationDataModel.dart';
 import '../../../../core/widgets/network_image.dart';
 import 'package:easy_localization/easy_localization.dart' as easy;
@@ -295,7 +294,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 gridDelegate:
                                     const SliverGridDelegateWithMaxCrossAxisExtent(
                                         maxCrossAxisExtent: 180,
-                                        childAspectRatio: 3.1 / 2,
+                                        childAspectRatio: 4 / 2,
                                         //horizontal spaces
                                         crossAxisSpacing: 15,
 
@@ -377,12 +376,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
                         //اضافة مدعوين
 
-                        const SizedBox(
-                          height: 10,
-                        ),
+                        // const SizedBox(
+                        //   height: 10,
+                        // ),
                         //تفاصيل المناسبة
                         Container(
-                          margin:  EdgeInsets.only(bottom: .05*MediaQuery.of(context).size.height, top: 10),
+                          margin:  EdgeInsets.only(bottom: .003*MediaQuery.of(context).size.height, top: 10),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -425,30 +424,34 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 children: [
                                   Center(
                                     child: SizedBox(
-                                      width: MediaQuery.of(context).size.width * 0.75,
+                                      width: MediaQuery.of(context).size.width * 0.4,
+                                      height: MediaQuery.of(context).size.height * 0.15,
                                       child: widget.homeListItemModel.image.isNotEmpty
                                           ? ManageNetworkImage(
                                               imageUrl:
                                                   widget.homeListItemModel.image,
+                                       // width:MediaQuery.of(context).size.width * 0.5 ,
                                             )
-                                          : Image.asset(ImageAssests.homeItem),
+                                          : Image.asset(ImageAssests.homeItem,
+                                       // width:MediaQuery.of(context).size.width * 0.5 ,
+                                      ),
                                     ),
                                   ),
-                                  const SizedBox(
-                                    height: 15,
-                                  ),
+                                  // const SizedBox(
+                                  //   height: 10,
+                                  // ),
                                   Row(
                                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                     children: [
                                       Text(
                                         widget.homeListItemModel.date,
-                                        style:  TextStyle(
+                                        style:  const TextStyle(
                                             fontSize: 12,
                                             fontWeight: FontWeight.w400),
                                       ),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
+                                     // const SizedBox(
+                                     //    width: 20,
+                                     //  ),
                                       Container(
                                           alignment: Alignment.center,
                                           padding: const EdgeInsets.symmetric(
@@ -475,7 +478,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     ],
                                   ),
                                   Text(widget.homeListItemModel.title,
-                                      style:  TextStyle(
+                                      style:  const TextStyle(
                                           fontSize: 12, fontWeight: FontWeight.w700)),
                                   const SizedBox(
                                     height: 5,
@@ -486,10 +489,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         Icons.location_on_outlined,
                                         color: AppColors.primary,
                                       ),
-                                      Text(widget.homeListItemModel.address,
-                                          style:  TextStyle(
-                                              fontSize: 12,
-                                              fontWeight: FontWeight.w400))
+                                      Expanded(
+                                        child: Text(widget.homeListItemModel.address,
+                                            style:  const TextStyle(
+                                                fontSize: 12,
+                                                fontWeight: FontWeight.w400)),
+                                      )
                                     ],
                                   ),
                                    SizedBox(
@@ -521,6 +526,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       fontSize: 11),
                 ),
               ),
+              SizedBox(height: 10,)
             ],
           ),
         );

@@ -11,7 +11,7 @@ import 'package:google_maps_webservice/places.dart';
 class GoogleMapScreen extends StatefulWidget {
    GoogleMapScreen({Key? key}) : super(key: key);
 
-   final kGoogleApiKey = 'AIzaSyA6QI378BHt9eqBbiJKtqWHTSAZxcSwN3Q';
+   final kGoogleApiKey = 'AIzaSyCZjDPvxg9h3IUSfVPzIwnKli5Y17p-v9g';
   final homeScaffoldKey = GlobalKey<ScaffoldState>();
   @override
   State<GoogleMapScreen> createState() => _GoogleMapScreenState();
@@ -31,7 +31,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
           body: Stack(
             children: [
               GoogleMap(
-                onCameraMove: cubit.onCameraMove,
+                onCameraMove:(position) => {},
                 myLocationButtonEnabled: true,
                 myLocationEnabled: true,
                 mapType: MapType.normal,
@@ -53,6 +53,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                   Marker(
                     markerId: MarkerId('selected_location'),
                     position: cubit.selectedLocation,
+                    icon: BitmapDescriptor.defaultMarker
                     // infoWindow: InfoWindow(
                     //   title: 'Egypt',
                     // ),
@@ -113,7 +114,7 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
         decoration: InputDecoration(
             hintText: 'Search',
             focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(20), borderSide: BorderSide(color: Colors.white))),
-        components: [Component(Component.country,"usa")]);
+        components: [Component(Component.country,"eg")]);
 
 
     displayPrediction(p!,widget.homeScaffoldKey.currentState);
@@ -145,9 +146,10 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
     final lat = detail.result.geometry!.location.lat;
     final lng = detail.result.geometry!.location.lng;
 
-    markersList.clear();
-    markersList.add(Marker(markerId: const MarkerId("0"),position: LatLng(lat, lng),infoWindow: InfoWindow(title: detail.result.name)));
-
+    // markersList.clear();
+    // markersList.add(Marker(markerId: const MarkerId("0"),position: LatLng(lat, lng),infoWindow: InfoWindow(title: detail.result.name)));
+context.read<AddInvitationCubit>().selectedLocation=LatLng(detail.result.geometry!.location.lat, detail.result.geometry!.location.lng
+);
     setState(() {});
 if(googleMapController!=null) {
   googleMapController!.animateCamera(

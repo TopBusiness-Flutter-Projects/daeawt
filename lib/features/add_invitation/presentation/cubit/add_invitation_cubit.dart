@@ -14,10 +14,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart'as maps;
+import 'package:google_maps_webservice/places.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:search_map_place_updated/search_map_place_updated.dart';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/model/user_model.dart';
 import '../../../../core/preferences/preferences.dart';
@@ -66,14 +66,12 @@ bool isfirst=true;
   List<ContactModel> allcontactModelList = [];
    GoogleMapController? mapController;
   PermissionStatus permissionStatus =PermissionStatus.denied ;
-  LatLng selectedLocation = const LatLng(30.0459, 31.2243);//todo
-  final placesApi = maps.GoogleMapsPlaces(apiKey: 'AIzaSyA6QI378BHt9eqBbiJKtqWHTSAZxcSwN3Q');
+  LatLng selectedLocation =  LatLng(30.0459, 31.2243);//todo
+  final placesApi = maps.GoogleMapsPlaces(apiKey: 'AIzaSyA6QI378BHt9eqBbiJKtqWHTSAZxcSwN3Q',);
   final TextEditingController searchController = TextEditingController();
  // final List<Marker> searchMarkers = [];
   late Placemark? place;
-  Set<Marker> markers = {
 
-  };
 
   LatLng center= LatLng(31, 31);
   List<String> languageOptions = ["العربية", "English"];
@@ -286,12 +284,13 @@ for(int j=0;j<contactModelList.length;j++){
   void search() async {
     // Remove any existing markers
 
-      markers.clear();
+      //markers.clear();
       emit(MarkersCleared());
 
- center = selectedLocation;
+    center = selectedLocation;
     // Search for places
     final response = await placesApi.searchNearbyWithRadius(
+
       maps.Location(lat: center.latitude,lng: center.longitude),
       100000,
      // type: 'restaurant',
@@ -299,18 +298,30 @@ for(int j=0;j<contactModelList.length;j++){
     );
 
     // Add markers for each result
-    response.results.forEach((result) {
-      final marker = Marker(
-        markerId: MarkerId(result.placeId),
-        position: LatLng(result.geometry!.location.lat, result.geometry!.location.lng),
-        infoWindow: InfoWindow(title: result.name),
-      );
-
-        markers.add(marker);
+      PlacesSearchResult placesSearchResult =  response.results.first;
+      print("lglglgl");
+      // final marker = Marker(
+      //   markerId: MarkerId(placesSearchResult.placeId),
+      //   icon: BitmapDescriptor.defaultMarker,
+      //   position: LatLng(placesSearchResult.geometry!.location.lat, placesSearchResult.geometry!.location.lng),
+      //  // infoWindow: InfoWindow(title: placesSearchResult.name),
+      // );
+      selectedLocation=LatLng(placesSearchResult.geometry!.location.lat, placesSearchResult.geometry!.location.lng);
+      // markers.clear();
+      // markers.add(marker);
       emit(MarkerAdded());
-     // moveCamera(center);
-
-    });
+    // response.results.forEach((result) {
+    //   final marker = Marker(
+    //     markerId: MarkerId(result.placeId),
+    //     position: LatLng(result.geometry!.location.lat, result.geometry!.location.lng),
+    //     infoWindow: InfoWindow(title: result.name),
+    //   );
+    //
+    //     markers.add(marker);
+    //   emit(MarkerAdded());
+    //  // moveCamera(center);
+    //
+    // });
   }
 
   final Marker newMarker = const Marker(

@@ -153,17 +153,17 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                                     radius: 20,
                                     backgroundColor: AppColors.primary,
                                   ),
-                                   Text(
+                                   const Text(
                                     AppStrings.occasionDetails,
                                     style: TextStyle(
                                         fontSize: 14, fontWeight: FontWeight.w700),
                                   ).tr(),
-                                   Positioned(
+                                   const Positioned(
                                     bottom: 3,
                                     // alignment: Alignment.bottomCenter,
                                     child: SizedBox(
                                       width: 10,
-                                      child: const Divider(
+                                      child: Divider(
                                         color: AppColors.cyan,
                                         thickness: 2,
                                         height: 2,
@@ -184,7 +184,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   horizontal: 18.0, vertical: 8),
-                              child:  Text(
+                              child:  const Text(
                                 AppStrings.enterEventDetails,
                                 style: TextStyle(
                                     fontSize: 11,
@@ -423,7 +423,7 @@ class _AddInvitationScreenState extends State<AddInvitationScreen> {
                               horizontal: 18.0, vertical: 10),
                           child: Row(
                             children: [
-                               Text(
+                               const Text(
                                 AppStrings.occasionSite,
                                 style: TextStyle(
                                     fontSize: 12,
