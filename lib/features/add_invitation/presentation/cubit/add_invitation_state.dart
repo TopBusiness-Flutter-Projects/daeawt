@@ -23,3 +23,4 @@ class LocationPermissionFailed extends AddInvitationState {}
 class MarkersCleared extends AddInvitationState {}
 class MarkerAdded extends AddInvitationState {}
 class OnUserDataVaild extends AddInvitationState {}
+class SelectedNewDropDownState extends AddInvitationState {}

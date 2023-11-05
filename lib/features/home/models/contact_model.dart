@@ -7,14 +7,15 @@ class ContactModel {
   List<Item>? phones;
 
   bool? isSelected;
+  String? title;
 
   int numberOfInvitedPeople=0;
 
-  ContactModel({this.name, this.phones, this.isSelected=false});
+  ContactModel({this.name, this.phones, this.isSelected=false,this.title="المكرم"});
 
   @override
   String toString() {
-    return 'ContactModel{name: $name, phones: $phones, isSelected: $isSelected}';
+    return 'ContactModel{name: $name, phones: $phones, isSelected: $isSelected , title: $title}';
   }
 
   @override

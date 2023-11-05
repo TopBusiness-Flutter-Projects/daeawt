@@ -5,7 +5,6 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:sizer/sizer.dart';
 import 'dart:io';
 import '../../../../config/routes/app_routes.dart';
 import '../../../../core/utils/app_colors.dart';
@@ -64,8 +63,10 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                 ),
               ),
               Expanded(
-                child: SingleChildScrollView(
-                  child: Column(
+                child:
+              //  SingleChildScrollView(
+                  //child:
+                Column(
                     children: [
                       //first row of numbers in circles
                       Row(
@@ -102,7 +103,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       //استعراض
@@ -192,12 +193,12 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                       SizedBox(
+                       const SizedBox(
                         height: 3,
                       ),
                       //استعراض رسالة الدعوة
                       Center(
-                          child:  Text(
+                          child:  const Text(
                         AppStrings.reviewInvitation,
                         style: TextStyle(
                             color: AppColors.primary,
@@ -208,154 +209,164 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                         height: 10,
                       ),
                       // the invitation card
-                      Container(
-                        //the big grey container
-                        height: MediaQuery.of(context).size.height * 0.66,
-                        width: MediaQuery.of(context).size.width * 0.85,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: AppColors.grey6),
-                        child: Padding(
-                          padding: const EdgeInsets.all(8),
-                          child: Column(
-                            children: [
-                              //the image with the 2 texts
-                              Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.44,
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Column(
-                                    children: [
-                                      cubit.invitationImage == null
-                                          ? Padding(
-                                              padding:
-                                                  const EdgeInsets.all(0.0),
-                                              child: ClipRRect(
-                                                  borderRadius:
-                                                      BorderRadius.circular(10),
-                                                  child: Image.asset(
-                                                    ImageAssests
-                                                        .invitationPlaceholder,
-                                                  )),
-                                            )
-                                          : Padding(
-                                              padding:
-                                                  const EdgeInsets.all(0.0),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(10),
-                                                child: Image.file(
-                                                  File(cubit
-                                                      .invitationImage!.path),
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.28,
-                                                ),
-                                              ),
-                                            ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: Row(
-                                          children: [
-                                            Text(
-                                              cubit
-                                                      .model
-                                                      .selectedContactModelList
-                                                      .isNotEmpty
-                                                  ? "المكرم : ${cubit.model.selectedContactModelList[0].name ?? " "}"
-                                                  : " ",
-                                              textAlign: TextAlign.start,
-                                              style:  TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  color: AppColors.black1,
-                                                  fontSize: 12),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8.0),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                cubit.selectedLanguage ==
-                                                        "العربية"
-                                                    ? "نتشرف بدعوتكم لحضور ${cubit.model.title}"
-                                                    : "We are honored to invite you to attend ${cubit.model.title}",
-                                                textAlign: TextAlign.start,
-                                                maxLines: 2,
+                     Container(
+                       //the big grey container
+                      // height: MediaQuery.of(context).size.height * 0.66,
+                       height: MediaQuery.of(context).size.height * 0.42,
+                       width: MediaQuery.of(context).size.width * 0.85,
+                       decoration: BoxDecoration(
+                           borderRadius: BorderRadius.circular(10),
+                           color: AppColors.grey6),
+                       child: Padding(
+                         padding: const EdgeInsets.all(8),
+                         child: SingleChildScrollView(
+                           physics: const AlwaysScrollableScrollPhysics(),
+                           child: Column(
+                             children: [
+                               //the image with the 2 texts
+                               Container(
+                                 padding: const EdgeInsets.only(bottom: 15),
+                                 //  height:
+                                  // MediaQuery.of(context).size.height * 0.35,
+                                   decoration: BoxDecoration(
+                                     color: Colors.white,
+                                     borderRadius: BorderRadius.circular(10),
+                                   ),
+                                   child: Column(
+                                     children: [
+                                       cubit.invitationImage == null
+                                           ? Padding(
+                                         padding:
+                                         const EdgeInsets.all(0.0),
+                                         child: ClipRRect(
+                                             borderRadius:
+                                             BorderRadius.circular(10),
+                                             child: Image.asset(
+                                               ImageAssests
+                                                   .invitationPlaceholder,
+                                             )),
+                                       )
+                                           : Padding(
+                                         padding:
+                                         const EdgeInsets.all(0.0),
+                                         child: ClipRRect(
+                                           borderRadius:
+                                           BorderRadius.circular(10),
+                                           child: Image.file(
+                                             File(cubit
+                                                 .invitationImage!.path),
+                                             fit: BoxFit.cover,
+                                             height: MediaQuery.of(context)
+                                                 .size
+                                                 .height *
+                                                 0.28,
+                                             width: MediaQuery.of(context)
+                                                 .size
+                                                 .width *
+                                                 0.8 ,
+                                           ),
+                                         ),
+                                       ),
+                                       Padding(
+                                         padding: const EdgeInsets.symmetric(
+                                             horizontal: 8.0),
+                                         child: Row(
+                                           children: [
+                                             Text(
+                                               cubit
+                                                   .model
+                                                   .selectedContactModelList
+                                                   .isNotEmpty
+                                                   ? "المكرم : ${cubit.model.selectedContactModelList[0].name ?? " "}"
+                                                   : " ",
+                                               textAlign: TextAlign.start,
+                                               style:  TextStyle(
+                                                   fontWeight: FontWeight.w400,
+                                                   color: AppColors.black1,
+                                                   fontSize: 12),
+                                             ),
+                                           ],
+                                         ),
+                                       ),
+                                       Padding(
+                                         padding: const EdgeInsets.symmetric(
+                                             horizontal: 8.0),
+                                         child: Row(
+                                           children: [
+                                             Expanded(
+                                               child: Text(
+                                                 cubit.selectedLanguage ==
+                                                     "العربية"
+                                                     ? "نتشرف بدعوتكم لحضور ${cubit.model.title}"
+                                                     : "We are honored to invite you to attend ${cubit.model.title}",
+                                                 textAlign: TextAlign.start,
+                                                 maxLines: 2,
                                                  overflow: TextOverflow.ellipsis,
-                                                style:  TextStyle(
-                                                    color: AppColors.black1,
-                                                    fontWeight: FontWeight.w400,
-                                                    fontSize: 12),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ],
-                                  )),
-                              //the 2 buttons
-                              Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 3.0, vertical: 12),
-                                child: Row(
-                                  children: [
-                                    Expanded(
-                                        child: CustomButton(
-                                            onPressed: () {},
-                                            height: .06*MediaQuery.of(context).size.height,
-                                            text: cubit.selectedLanguage ==
-                                                    "العربية"
-                                                ? "تأكيد"
-                                                : "Confirm",
-                                            backgroundColor: AppColors.green2)),
-                                    const SizedBox(
-                                      width: 8,
-                                    ),
-                                    Expanded(
-                                      child: CustomButton(
-                                        onPressed: () {},
-                                        height: .06*MediaQuery.of(context).size.height,
-                                        text:
-                                            cubit.selectedLanguage == "العربية"
-                                                ? "اعتذر"
-                                                : "Apology",
-                                        backgroundColor: AppColors.red1,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              //invitation location
-                              Container(
-                                height: .06*MediaQuery.of(context).size.height,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50)),
-                                child: Text(
-                                  cubit.selectedLanguage == "العربية"
-                                      ? "موقع المناسبة"
-                                      : "Location",
-                                  style:  TextStyle(
-                                      color: AppColors.black1,
-                                      fontSize: 12,
-                                      fontWeight: FontWeight.w700),
-                                ).tr(),
-                              )
-                            ],
-                          ),
-                        ),
-                      ),
+                                                 style:  TextStyle(
+                                                     color: AppColors.black1,
+                                                     fontWeight: FontWeight.w400,
+                                                     fontSize: 12),
+                                               ),
+                                             ),
+                                           ],
+                                         ),
+                                       ),
+                                     ],
+                                   )),
+                               //the 2 buttons
+                               Padding(
+                                 padding: const EdgeInsets.symmetric(
+                                     horizontal: 3.0, vertical: 12),
+                                 child: Row(
+                                   children: [
+                                     Expanded(
+                                         child: CustomButton(
+                                             onPressed: () {},
+                                             height: .06*MediaQuery.of(context).size.height,
+                                             text: cubit.selectedLanguage ==
+                                                 "العربية"
+                                                 ? "تأكيد"
+                                                 : "Confirm",
+                                             backgroundColor: AppColors.green2)),
+                                     const SizedBox(
+                                       width: 8,
+                                     ),
+                                     Expanded(
+                                       child: CustomButton(
+                                         onPressed: () {},
+                                         height: .06*MediaQuery.of(context).size.height,
+                                         text:
+                                         cubit.selectedLanguage == "العربية"
+                                             ? "اعتذر"
+                                             : "Apology",
+                                         backgroundColor: AppColors.red1,
+                                       ),
+                                     ),
+                                   ],
+                                 ),
+                               ),
+                               //invitation location
+                               Container(
+                                 height: .06*MediaQuery.of(context).size.height,
+                                 alignment: Alignment.center,
+                                 decoration: BoxDecoration(
+                                     color: Colors.white,
+                                     borderRadius: BorderRadius.circular(50)),
+                                 child: Text(
+                                   cubit.selectedLanguage == "العربية"
+                                       ? "موقع المناسبة"
+                                       : "Location",
+                                   style:  TextStyle(
+                                       color: AppColors.black1,
+                                       fontSize: 12,
+                                       fontWeight: FontWeight.w700),
+                                 ).tr(),
+                               )
+                             ],
+                           ),
+                         ),
+                       ),
+                     ),
                       //the last 2 buttons
                       Padding(
                         padding: const EdgeInsets.symmetric(
@@ -374,7 +385,7 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                                 text: AppStrings.tracking,
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 2,
                             ),
                             Visibility(
@@ -396,12 +407,12 @@ class AddInvitationStepFourScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(
-                        height: 10,
-                      ),
+                      // const SizedBox(
+                      //   height: 10,
+                      // ),
                     ],
                   ),
-                ),
+              //  ),
               ),
             ],
           ),

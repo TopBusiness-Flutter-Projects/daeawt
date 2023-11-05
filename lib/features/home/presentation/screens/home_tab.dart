@@ -25,144 +25,149 @@ class HomeTab extends StatelessWidget {
     return Scaffold(
       body: BlocBuilder<HomeCubit, HomeState>(
   builder: (context, state) {
-    return SafeArea(
-      child: Column(
-          children: [
-            const HomeAppBar(),
-            //search
-           Flexible(
-           child:   SingleChildScrollView(
-           physics: AlwaysScrollableScrollPhysics(),
+    return RefreshIndicator(
+      onRefresh: () {
+       return cubit.geInvitationsHome();
+      },
+      child: SafeArea(
+        child: Column(
+            children: [
+              const HomeAppBar(),
+              //search
+             Flexible(
+             child:   SingleChildScrollView(
+             physics: const AlwaysScrollableScrollPhysics(),
 
-           child: Column(
-           children: [
-             SizedBox(
-                 width: MediaQuery.of(context).size.width * 0.8,
-                // height: 60,
-                 child: CustomTextFormField(
-                   textController: cubit.searchController,
-                   hintText: AppStrings.searchYourInvitations.tr(),
-                   prefixIcon: const Icon(Icons.search),
-                   onChanged: (p0) {
-                     cubit.geInvitationsHome();
-                   },
-                 )),
-             //balance
-             Container(
-               margin: EdgeInsets.only(bottom: 10),
-               width: 80,
-               height: 12,
-               decoration: BoxDecoration(
-                   gradient: const LinearGradient(
-                       begin: Alignment.centerRight,
-                       end: Alignment.centerLeft,
-                       colors: [
-                         AppColors.primary,
-                         AppColors.orange4
-                       ]
-                   ),
-                   // color: AppColors.primary,
-                   borderRadius: BorderRadius.circular(20)
-               ),
-               child: Padding(
-                 padding: const EdgeInsets.all(8.0),
-                 child: Column(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     Text("available_balance",style: TextStyle(
-                         fontSize: 16,
-                         color: Colors.white,
-                         fontWeight: FontWeight.w700
-                     ),).tr(),
-                     Row(
-                       children: [
-                         Text("${cubit.userModel?.data?.user?.balance}",
-                             style: TextStyle(
-                                 fontSize: 16,
-                                 color: Colors.white,
-                                 fontWeight: FontWeight.w400
-                             )),
-                         SizedBox(width: 5,),
-                         Text("invitation",
-                             style: TextStyle(
-                                 fontSize: 16,
-                                 color: Colors.white,
-                                 fontWeight: FontWeight.w400
-                             )).tr(),
-                       ],
+             child: Column(
+             children: [
+               SizedBox(
+                   width: MediaQuery.of(context).size.width * 0.8,
+                  // height: 60,
+                   child: CustomTextFormField(
+                     textController: cubit.searchController,
+                     hintText: AppStrings.searchYourInvitations.tr(),
+                     prefixIcon: const Icon(Icons.search),
+                     onChanged: (p0) {
+                       cubit.geInvitationsHome();
+                     },
+                   )),
+               //balance
+               Container(
+                 margin: EdgeInsets.only(bottom: 10),
+                 width: 80,
+                 height: 12,
+                 decoration: BoxDecoration(
+                     gradient: const LinearGradient(
+                         begin: Alignment.centerRight,
+                         end: Alignment.centerLeft,
+                         colors: [
+                           AppColors.primary,
+                           AppColors.orange4
+                         ]
                      ),
+                     // color: AppColors.primary,
+                     borderRadius: BorderRadius.circular(20)
+                 ),
+                 child: Padding(
+                   padding: const EdgeInsets.all(8.0),
+                   child: Column(
+                     mainAxisAlignment: MainAxisAlignment.center,
+                     crossAxisAlignment: CrossAxisAlignment.start,
+                     children: [
+                       Text("available_balance",style: TextStyle(
+                           fontSize: 16,
+                           color: Colors.white,
+                           fontWeight: FontWeight.w700
+                       ),).tr(),
+                       Row(
+                         children: [
+                           Text("${cubit.userModel?.data?.user?.balance}",
+                               style: TextStyle(
+                                   fontSize: 16,
+                                   color: Colors.white,
+                                   fontWeight: FontWeight.w400
+                               )),
+                           SizedBox(width: 5,),
+                           Text("invitation",
+                               style: TextStyle(
+                                   fontSize: 16,
+                                   color: Colors.white,
+                                   fontWeight: FontWeight.w400
+                               )).tr(),
+                         ],
+                       ),
 
+                     ],
+                   ),
+                 ),
+               ),
+               //all invitations
+               Padding(
+                 padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                 child: Row(
+                   children: [
+                     Stack(
+                       alignment: languageCode == "ar"
+                           ? Alignment.centerRight
+                           : Alignment.centerLeft,
+                       children: [
+                         const CircleAvatar(
+                           radius: 20,
+                           backgroundColor: AppColors.primary,
+                         ),
+                         const Text(
+                           AppStrings.allInvitations,
+                           style:
+                           TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
+                         ).tr(),
+                         const Positioned(
+                           bottom: 3,
+                           // alignment: Alignment.bottomCenter,
+                           child: SizedBox(
+                             width: 40,
+                             child: Divider(
+                               color: AppColors.cyan,
+                               thickness: 2,
+                               height: 2,
+                             ),
+                           ),
+                         )
+                       ],
+                     )
                    ],
                  ),
                ),
-             ),
-             //all invitations
-             Padding(
-               padding: const EdgeInsets.symmetric(horizontal: 18.0),
-               child: Row(
-                 children: [
-                   Stack(
-                     alignment: languageCode == "ar"
-                         ? Alignment.centerRight
-                         : Alignment.centerLeft,
-                     children: [
-                       const CircleAvatar(
-                         radius: 20,
-                         backgroundColor: AppColors.primary,
-                       ),
-                       Text(
-                         AppStrings.allInvitations,
-                         style:
-                         TextStyle(fontSize: 14, fontWeight: FontWeight.w700),
-                       ).tr(),
-                       const Positioned(
-                         bottom: 3,
-                         // alignment: Alignment.bottomCenter,
-                         child: SizedBox(
-                           width: 40,
-                           child: Divider(
-                             color: AppColors.cyan,
-                             thickness: 2,
-                             height: 2,
-                           ),
-                         ),
-                       )
-                     ],
-                   )
-                 ],
-               ),
-             ),
-             BlocBuilder<HomeCubit, HomeState>(
-               builder: (context, state) {
-                 if (state is InvitationsHomeLoading) {
-                   return const Center(child: ShowLoadingIndicator());
-                 } else if (state is InvitationsHomeError) {
-                   return NoData(data:  'no_invitations'.tr(),);
-                 } else {
-                   if (cubit.invitationsList.isNotEmpty) {
-                     return ListView.builder(
-                       physics: const NeverScrollableScrollPhysics(),
-                       shrinkWrap: true,
-                       itemCount: cubit.invitationsList.length,
-                       itemBuilder: (context, index) {
-                         return HomeListItem(
-                           homeListItemModel:
-                           cubit.invitationsList.elementAt(index),
-                         );
-                       },
-                     );
+               BlocBuilder<HomeCubit, HomeState>(
+                 builder: (context, state) {
+                   if (state is InvitationsHomeLoading) {
+                     return const Center(child: ShowLoadingIndicator());
+                   } else if (state is InvitationsHomeError) {
+                     return NoData(data:  'no_invitations'.tr(),);
                    } else {
-                     return  NoData(data:  'no_invitations'.tr(),);
+                     if (cubit.invitationsList.isNotEmpty) {
+                       return ListView.builder(
+                         physics: const NeverScrollableScrollPhysics(),
+                         shrinkWrap: true,
+                         itemCount: cubit.invitationsList.length,
+                         itemBuilder: (context, index) {
+                           return HomeListItem(
+                             homeListItemModel:
+                             cubit.invitationsList.elementAt(index),
+                           );
+                         },
+                       );
+                     } else {
+                       return  NoData(data:  'no_invitations'.tr(),);
+                     }
                    }
-                 }
-               },
-             ),
-           ],
-         ),
-       ))
-          ],
-        ),
+                 },
+               ),
+             ],
+           ),
+         ))
+            ],
+          ),
+      ),
     );
   },
 ),

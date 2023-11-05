@@ -216,7 +216,7 @@ class AddInvitationStepThreeScreen extends StatelessWidget {
                                                   Row(
                                                     children: [
                                                        Text(
-                                                        "المكرم : ",
+                                                        "${cubit.contactModelList[index].title} : ",
                                                         style: TextStyle(
                                                             fontSize: MediaQuery.of(context).size.width/24,
                                                             fontWeight:

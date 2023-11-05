@@ -116,7 +116,7 @@ class _InvitedScreenState extends State<InvitedScreen> {
                               children: [
                                 Row(
                                   children: [
-                                    Text(
+                                    const Text(
                                       "المكرم :",
                                       style: TextStyle(
                                           fontWeight: FontWeight.w700,
@@ -124,16 +124,17 @@ class _InvitedScreenState extends State<InvitedScreen> {
                                     ),
                                     Text(
                                       cubit.invitees.elementAt(index).name,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontWeight: FontWeight.w400,
                                           fontSize: 11),
                                     ),
                                   ],
                                 ),
                                 Text(
-                                  easy.DateFormat('dd HH:mm MMM').format(
-                                      easy.DateFormat("dd-MM-yyyy").parse( cubit.invitees.elementAt(index).createdAt)),
-                                  style: TextStyle(
+                                    cubit.invitees.elementAt(index).createdAt.substring(0,10),
+                                  // easy.DateFormat('dd HH:mm MMM').format(
+                                  //     easy.DateFormat("dd-MM-yyyy").parse( cubit.invitees.elementAt(index).createdAt)),
+                                  style: const TextStyle(
                                       fontWeight: FontWeight.w400,
                                       fontSize: 11,
                                       color: AppColors.grey2),

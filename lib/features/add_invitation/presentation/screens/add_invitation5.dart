@@ -268,7 +268,7 @@ class AddInvitationStepFiveScreen extends StatelessWidget {
                       child:
                       cubit.model.selectedContactModelList[index].phones!.isNotEmpty?
                       Row(children: [
-                        Text("${index+1} - المكرم :",style:  TextStyle(
+                        Text("${cubit.contactModelList[index+1].title}  :",style:  TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: MediaQuery.of(context).size.width/24
                         ),),

@@ -35,9 +35,8 @@ class _GoogleMapScreenState extends State<GoogleMapScreen> {
                 myLocationButtonEnabled: true,
                 myLocationEnabled: true,
                 mapType: MapType.normal,
-
-                onTap: (LatLng location) {
-                  cubit.selectLocation(location);
+                onTap: (LatLng location)  {
+                cubit.selectLocation(location);
                   cubit.moveCamera(location);
                   cubit.getAddressFromLatLng1();
                 },

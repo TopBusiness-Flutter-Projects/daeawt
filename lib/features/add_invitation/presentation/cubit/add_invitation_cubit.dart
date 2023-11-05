@@ -514,9 +514,10 @@ getTheUserPermissionAndLocation() async {
     mapController!.moveCamera(CameraUpdate.newCameraPosition(
         CameraPosition(target: target, zoom: 14)));
     emit(CameraMoveState());
-  }}
+  }
+  }
 
-  selectLocation(LatLng newLocation) {
+  selectLocation(LatLng newLocation) async{
     selectedLocation = newLocation;
    // markers.add(Marker(markerId: MarkerId("id"),position: newLocation,),);
     moveCamera(newLocation);
@@ -569,31 +570,28 @@ getTheUserPermissionAndLocation() async {
     final response = await api.addInvitation(model);
     response.fold(
       (failure) =>
-          {Navigator.pop(context), toastMessage(tr.tr("fail send"), context)},
+          {Navigator.pop(context), toastMessage(tr.tr("process_failed"), context)},
       (loginModel) {
         if (loginModel.code == 200) {
      homeListItemModel=null;
       isfirst=true;
       nameController.text='';
       dateController.text='';
-    //  userModel!.data!.user!.balance--;
+      //  userModel!.data!.user!.balance--;
       address="";
       model=AddInvitationModel();
      contactModelList.clear;
      model.selectedContactModelList.clear();
      print("************************** clered**********************");
-
           Navigator.pop(context);
           Preferences.instance.setUser(userModel!).then((value) => {
             context.read<HomeCubit>().getUserData(),
-              context.read<HomeCubit>().geInvitationsHome(),
+              // context.read<HomeCubit>().geInvitationsHome(),
           context.read<ScanCubit>().geInvitationsHome(),
-
           Navigator.pushNamed(context, Routes.homeRoute)});
-
       emit(AddInvitationInitial());
         } else {
-          toastMessage(tr.tr("fail send"), context);
+          toastMessage(tr.tr("process_failed"), context);
         }
       },
     );
@@ -759,5 +757,23 @@ getTheUserPermissionAndLocation() async {
         }
       },
     );
+  }
+
+  final List<String> items = [
+    'المكرم',
+    'المكرمة',
+    'السيد',
+    'الاستاذ',
+    'الاستاذة',
+    'الدكتور',
+    'الدكتورة',
+    'الشيخ',
+    'الشيخة',
+  ];
+  String? selectedValue;
+  onChangedMethod(String? newValue , ContactModel contact){
+    selectedValue = newValue;
+    contact.title = newValue;
+    emit(SelectedNewDropDownState());
   }
 }

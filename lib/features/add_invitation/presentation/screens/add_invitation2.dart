@@ -1,4 +1,5 @@
 import 'package:daeawt/core/utils/toast_message_method.dart';
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:easy_localization/easy_localization.dart'as easy;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -201,12 +202,58 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
                                         children: [
-                                           const Text(
-                                            "المكرم",
-                                            style: TextStyle(
-                                                fontSize: 12,
-                                                fontWeight: FontWeight.w700),
+                                          SizedBox(
+                                            width:MediaQuery.of(context).size.width*0.3,
+                                            child: DropdownButtonHideUnderline(
+                                              child:  DropdownButton2<String>(
+                                               isExpanded: true,
+                                                hint: const Row(
+                                                  children: [
+                                                    // Icon(
+                                                    //   Icons.list,
+                                                    //   size: 16,
+                                                    //   color: Colors.yellow,
+                                                    // ),
+                                                    // SizedBox(
+                                                    //   width: 4,
+                                                    // ),
+                                                    Text(
+                                                      'المكرم',
+                                                      style: TextStyle(
+                                                        fontSize: 14,
+                                                        fontWeight: FontWeight.bold,
+                                                        color: Colors.black,
+                                                      ),
+                                                      overflow: TextOverflow.ellipsis,
+                                                    ),
+                                                  ],
+                                                ),
+                                                items: cubit.items.map((String item)=>DropdownMenuItem<String>(
+                                                  value: item,
+                                                  child: Text(item,
+                                                  style: const TextStyle(
+                                                    fontSize: 14,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.black,
+                                                  ),
+                                                  overflow: TextOverflow.ellipsis,
+                                                ),
+                                                ),
+                                                ).toList(),
+                                                value: cubit.contactModelList[i].title,
+                                                onChanged: (String? value) {
+                                                  cubit.onChangedMethod(value,cubit.contactModelList[i]);
+                                                },
+
+                                              ),
+                                            ),
                                           ),
+                                          //  const Text(
+                                          //   "المكرم",
+                                          //   style: TextStyle(
+                                          //       fontSize: 12,
+                                          //       fontWeight: FontWeight.w700),
+                                          // ),
                                           Expanded(
                                           //  width: .5*MediaQuery.of(context).size.width,
                                             child: Column(
@@ -235,7 +282,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                                           .phones![index].value!.toString().replaceAll(" ", ""),
                                                       textAlign: TextAlign.center,
 
-                                                      style:  TextStyle(
+                                                      style:  const TextStyle(
                                                           color: AppColors.grey5,
                                                           fontSize: 11,
                                                           fontWeight: FontWeight.w700),
@@ -289,14 +336,14 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                               },
                                               child: !cubit
                                                       .contactModelList[i].isSelected!
-                                                  ?  Text(
+                                                  ?  const Text(
                                                       AppStrings.select,
                                                       style: TextStyle(
                                                           color: AppColors.primary,
                                                           fontSize: 12,
                                                           fontWeight: FontWeight.w700),
                                                     ).tr()
-                                                  :  Text(
+                                                  :  const Text(
                                                       AppStrings.remove,
                                                       style: TextStyle(
                                                           color: AppColors.red1,
@@ -354,7 +401,7 @@ class AddInvitationStepTwoScreen extends StatelessWidget {
                                   text: AppStrings.tracking,
                                 ),
                               ),
-                               SizedBox(
+                               const SizedBox(
                                 width: 3,
                               ),
                               Visibility(
