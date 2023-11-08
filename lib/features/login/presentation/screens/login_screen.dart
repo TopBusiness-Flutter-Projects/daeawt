@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:daeawt/core/utils/app_strings.dart';
 import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -264,23 +266,26 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 15,
                   ),
-               Padding(
+            Visibility(
+              visible: Platform.isIOS,
+              child: Padding(
                 padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/4.5),
-                 child: SignInWithAppleButton(
-                onPressed: ()  {
-                  SignInWithApple.getAppleIDCredential(
-                    scopes: [
-                      AppleIDAuthorizationScopes.email,
-                      AppleIDAuthorizationScopes.fullName,
-                    ],
-                  ).then((value) {
-                    cubit.saveUserDataByAppleSignIn(context,value);
-                  });
-                 //
+                child: SignInWithAppleButton(
 
-                  // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
-                  // after they have been validated with Apple (see `Integration` section for more information on how to do this)
-                },
+                  onPressed: () async {
+                    final credential = await SignInWithApple.getAppleIDCredential(
+                      scopes: [
+                        AppleIDAuthorizationScopes.email,
+                        AppleIDAuthorizationScopes.fullName,
+                      ],
+                    );
+
+                   cubit.saveUserDataByAppleSignIn(context,credential);
+
+                    // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
+                    // after they have been validated with Apple (see `Integration` section for more information on how to do this)
+                  },
+                ),
               ),
             ),
                   const SizedBox(
