@@ -10,6 +10,7 @@ import 'package:meta/meta.dart';
 import 'package:sign_in_with_apple_platform_interface/authorization_credential.dart';
 
 import '../../../config/routes/app_routes.dart';
+import '../../../core/model/user_model.dart';
 import '../../../core/preferences/preferences.dart';
 import '../../../core/remote/service.dart';
 import '../../../core/utils/appwidget.dart';
@@ -79,32 +80,40 @@ class LoginCubit extends Cubit<LoginState> {
   }
   saveUserDataByAppleSignIn(BuildContext context, AuthorizationCredentialAppleID credential) async {
     AppWidget.createProgressDialog(context, "Loading");
+    UserModel? userModel = await Preferences.instance.getUserModel();
+    if(userModel.code!=null){
+      print("||||||||||||||||||||||||||||||||||||||");
+      print("user model code = ${userModel.code}");
+      Navigator.pushNamedAndRemoveUntil(
+          context, Routes.homeRoute, (route) => false);
+    }
+ else{
+      final response = await api.registerWithApple(credential);
 
-    final response = await api.registerWithApple(credential);
-
-    response.fold(
-          (failure) => {Navigator.pop(context), emit(LoginWithGoogleLoading())},
-          (loginModel) {
-        print("------------------ ${loginModel.code}");
-        if (loginModel.code == 409 || loginModel.code == 410) {
-          Navigator.pop(context);
-          toastMessage("exists_user".tr(), context);
-          // errorGetBar(translateText(AppStrings.noEmailError, context));
-          emit(LoginWithGoogleFailure());
-        } else if (loginModel.code == 200) {
-          emit(LoginWithGoogleSuccess());
-          Navigator.pop(context);
-          Navigator.pushReplacementNamed(context, Routes.homeRoute);
-          Preferences.instance.setUser(loginModel).then((value) {
-            context.read<HomeCubit>().getUserData();
-            context.read<ProfileCubit>().getUserData();
-            Navigator.pushNamedAndRemoveUntil(
-                context, Routes.homeRoute, (route) => false);
-            // emit(OnLoginSuccess(response));
-          });
-        }
-      },
-    );
+      response.fold(
+            (failure) => {Navigator.pop(context), emit(LoginWithGoogleLoading())},
+            (loginModel) {
+          print("------------------ ${loginModel.code}");
+          if (loginModel.code == 409 || loginModel.code == 410) {
+            Navigator.pop(context);
+            toastMessage("exists_user".tr(), context);
+            // errorGetBar(translateText(AppStrings.noEmailError, context));
+            emit(LoginWithAppleFailure());
+          } else if (loginModel.code == 200) {
+            emit(LoginWithAppleSuccess());
+            Navigator.pop(context);
+            Navigator.pushReplacementNamed(context, Routes.homeRoute);
+            Preferences.instance.setUser(loginModel).then((value) {
+              context.read<HomeCubit>().getUserData();
+              context.read<ProfileCubit>().getUserData();
+              Navigator.pushNamedAndRemoveUntil(
+                  context, Routes.homeRoute, (route) => false);
+              // emit(OnLoginSuccess(response));
+            });
+          }
+        },
+      );
+    }
 
   }
 

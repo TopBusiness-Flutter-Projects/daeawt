@@ -248,12 +248,15 @@ class EditProfileScreen extends StatelessWidget {
                     child: CircleAvatar(
                       radius: 40,
                       child: cubit.imagePath.isEmpty
-                          ? ManageNetworkImage(
+                          ? cubit
+                          .editProfileModel.image.isEmpty?Image.asset(ImageAssests.apologiesIcon):
+                      ManageNetworkImage(
                         imageUrl: cubit
                             .editProfileModel.image,
                         width: 140,
                         height: 140,
                         borderRadius: 140,
+                        
                       )
                           : Image.file(
                         File(

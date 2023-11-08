@@ -11,3 +11,5 @@ class LoginLoaded extends LoginState {}
 class LoginWithGoogleLoading extends LoginState {}
 class LoginWithGoogleFailure extends LoginState {}
 class LoginWithGoogleSuccess extends LoginState {}
+class LoginWithAppleFailure extends LoginState {}
+class LoginWithAppleSuccess extends LoginState {}

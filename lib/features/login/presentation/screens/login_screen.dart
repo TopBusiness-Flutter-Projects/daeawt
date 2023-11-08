@@ -264,19 +264,19 @@ class _LoginScreenState extends State<LoginScreen> {
                   const SizedBox(
                     height: 15,
                   ),
-            Padding(
-              padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/4.5),
-              child: SignInWithAppleButton(
-
-                onPressed: () async {
-                  final credential = await SignInWithApple.getAppleIDCredential(
+               Padding(
+                padding:  EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/4.5),
+                 child: SignInWithAppleButton(
+                onPressed: ()  {
+                  SignInWithApple.getAppleIDCredential(
                     scopes: [
                       AppleIDAuthorizationScopes.email,
                       AppleIDAuthorizationScopes.fullName,
                     ],
-                  );
-
-                 cubit.saveUserDataByAppleSignIn(context,credential);
+                  ).then((value) {
+                    cubit.saveUserDataByAppleSignIn(context,value);
+                  });
+                 //
 
                   // Now send the credential (especially `credential.authorizationCode`) to your server to create a session
                   // after they have been validated with Apple (see `Integration` section for more information on how to do this)

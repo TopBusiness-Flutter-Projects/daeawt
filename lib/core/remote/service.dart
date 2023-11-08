@@ -50,8 +50,8 @@ class ServiceApi {
         EndPoints.registerWithGoogleUrl,
         formDataIsEnabled: true,
         body: {
-          "email":userCredential.user?.email,
-          "name":userCredential.user?.displayName,
+          "email":userCredential.user?.email??" ",
+          "name":userCredential.user?.displayName??" ",
           "google_id":userCredential.user?.uid,
 
 
@@ -64,13 +64,18 @@ class ServiceApi {
     }
   }
   Future<Either<Failure, UserModel>> registerWithApple(AuthorizationCredentialAppleID userCredential) async {
+    print("*********************************");
+    print("email = ${userCredential.email}");
+    print("name = ${userCredential.givenName}");
+    print("google_id = ${userCredential.userIdentifier}");
     try {
+
       final response = await dio.post(
         EndPoints.registerWithGoogleUrl,
         formDataIsEnabled: true,
         body: {
-          "email":userCredential.email,
-          "name":userCredential.givenName,
+          "email":userCredential.email??"email",
+          "name":userCredential.givenName??"name",
           "google_id":userCredential.userIdentifier,
 
 
