@@ -249,7 +249,7 @@ class Message {
     "invitee_id": inviteeId,
     "title": title,
     "message": message,
-    "created_at": createdAt.toIso8601String(),
-    "updated_at": updatedAt.toIso8601String(),
+    "created_at": createdAt,
+    "updated_at": updatedAt,
   };
 }

@@ -176,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 Stack(children: [
                                   Positioned(
                                     top: 100 * 0.1,
-                                    right: MediaQuery.of(context).size.width * .3,
+                                    right: MediaQuery.of(context).size.width * .03,
                                     child: const CircleAvatar(
                                       radius: 4,
                                       backgroundColor: AppColors.primary,
@@ -184,7 +184,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   ),
                                   Positioned(
                                     top: 100* .1,
-                                    left: MediaQuery.of(context).size.width * .3,
+                                    left: MediaQuery.of(context).size.width * .03,
                                     child: const CircleAvatar(
                                       radius: 4,
                                       backgroundColor: AppColors.primary,
@@ -307,7 +307,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                             fontSize: 14, fontWeight: FontWeight.w700),
                                       ).tr(),
                                       SizedBox(
-                                        width: MediaQuery.of(context).size.width * 0.4,
+                                        width: MediaQuery.of(context).size.width * 0.04,
                                       ),
                                       Localizations.localeOf(context) == Locale("en")
                                           ? Text(cubit.arabicSymbol)

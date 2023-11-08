@@ -89,7 +89,7 @@
   "select_all": "Select All",
   "the_messages": "The Messages",
   "please_enter_email": "Please enter your email to recover your password",
-  "error_getting_contacts": "Error in getting contacts",
+  "error_getting_contacts": "No contacts",
   "send_invitations": "Send Invitations",
   "wanna_send_invitations": "Do you want to send all invitations?",
   "reset_password_failed": "Failed to reset password",

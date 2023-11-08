@@ -99,7 +99,7 @@ class OtpScreen extends StatelessWidget {
           //todo
             //PinCodeTextField
             SizedBox(
-              width: MediaQuery.of(context).size.width*0.6,
+              width: MediaQuery.of(context).size.width*0.06,
               child: PinCodeTextField(
                 controller:cubit.pinCode ,
                 length: 6,

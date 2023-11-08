@@ -84,9 +84,9 @@ class HomeListItem extends StatelessWidget {
         ),
         Positioned(
           bottom: 4,
-          right:languageCode=="ar"? MediaQuery.of(context).size.width * 0.4:
+          right:languageCode=="ar"? MediaQuery.of(context).size.width * 0.04:
           MediaQuery.of(context).size.width * 0.3 ,
-          left:languageCode=="ar"? MediaQuery.of(context).size.width * 0.3:
+          left:languageCode=="ar"? MediaQuery.of(context).size.width * 0.03:
           MediaQuery.of(context).size.width * 0.4,
           child: Container(
               alignment: Alignment.center,

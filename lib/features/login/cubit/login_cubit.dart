@@ -49,6 +49,7 @@ class LoginCubit extends Cubit<LoginState> {
   }
 
   saveUserDataByGoogleSignIn(BuildContext context) async {
+    emit(LoadingSignWithGoogle());
     AppWidget.createProgressDialog(context, "Loading");
     UserCredential userCredential = await logInWithGoogle();
     final response = await api.registerWithGoogle(userCredential);
@@ -73,6 +74,9 @@ class LoginCubit extends Cubit<LoginState> {
                 context, Routes.homeRoute, (route) => false);
             // emit(OnLoginSuccess(response));
           });
+        }else{
+
+          print('errrrrrrrror');
         }
       },
     );

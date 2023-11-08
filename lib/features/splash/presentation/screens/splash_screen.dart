@@ -82,7 +82,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 )),
             Padding(
               padding: EdgeInsets.only(
-                  top: MediaQuery.of(context).size.height * 0.3),
+                  top: MediaQuery.of(context).size.height * 0.03),
               child: Center(
                 child: SizedBox(
                     //height: 200,

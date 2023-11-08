@@ -80,7 +80,7 @@ class ScanListItem extends StatelessWidget {
               bottom: 4,
               right:language=="ar"?
               MediaQuery.of(context).size.width * 0.47:
-              MediaQuery.of(context).size.width * 0.2
+              MediaQuery.of(context).size.width * 0.02
               ,
               left:language=="ar"?
               MediaQuery.of(context).size.width * 0.13:
