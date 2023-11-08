@@ -53,8 +53,6 @@ class ServiceApi {
           "email":userCredential.user?.email??" ",
           "name":userCredential.user?.displayName??" ",
           "google_id":userCredential.user?.uid,
-
-
         },
       );
 

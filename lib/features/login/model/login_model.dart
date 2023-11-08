@@ -6,8 +6,6 @@ class LoginModel{
   String email = '';
   String password = '';
 
-
-
   bool isDataValid() {
     if (EmailValidator.validate(email) &&
        !password.isEmpty &&
@@ -22,7 +20,6 @@ class LoginModel{
   Future<Map<String, dynamic>> updateToJson() async => {
 
         "email": email,
-
         "password": password,
 
       };

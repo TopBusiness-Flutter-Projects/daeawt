@@ -21,9 +21,7 @@ import 'package:flutter/services.dart';
 part 'login_state.dart';
 
 class LoginCubit extends Cubit<LoginState> {
-
   LoginCubit(this.api) : super(LoginInitial());
-
   LoginModel loginModel = LoginModel();
   bool isLoginValid=false;
   final ServiceApi api;
@@ -53,7 +51,7 @@ class LoginCubit extends Cubit<LoginState> {
     AppWidget.createProgressDialog(context, "Loading");
     UserCredential userCredential = await logInWithGoogle();
     final response = await api.registerWithGoogle(userCredential);
-
+print(userCredential.user!.photoURL);
     response.fold(
           (failure) => {Navigator.pop(context), emit(LoginWithGoogleLoading())},
           (loginModel) {

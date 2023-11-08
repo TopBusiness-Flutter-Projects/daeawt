@@ -45,7 +45,6 @@ class SignupCubit extends Cubit<SignupState> {
     AppWidget.createProgressDialog(context, "Loading");
     UserCredential userCredential = await signInWithGoogle();
    final response = await api.registerWithGoogle(userCredential);
-
        response.fold(
              (failure) => {Navigator.pop(context), emit(RegisterWithGoogleLoading())},
              (loginModel) {

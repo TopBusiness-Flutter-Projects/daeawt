@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:daeawt/core/utils/app_strings.dart';
 import 'package:daeawt/core/widgets/custom_buttom.dart';
 import 'package:easy_localization/easy_localization.dart';

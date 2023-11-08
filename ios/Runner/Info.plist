@@ -33,6 +33,8 @@
 			<key>CFBundleTypeRole</key>
 			<string>google</string>
 			<key>CFBundleURLName</key>
+			<string></string>
+			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>com.googleusercontent.apps.187798023388-cua5icrubet7f75jj4vfe15ppfvj5pbg</string>
 			</array>
